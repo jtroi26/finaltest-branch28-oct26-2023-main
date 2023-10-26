@@ -1,0 +1,29 @@
+<h1>All subjects</h1>
+<a href="/admin/dashboard">Admin Dashboard</a>
+<br>
+<br>
+<button><a href="/admin/create-subject">Create Subject</a></button>
+<table border="1">
+    <tr>
+        <th>Subject ID</th>
+        <th>Subject Name</th>
+        <th>Teacher ID</th>
+        <th>Assigned Teacher</th>
+        <th colspan="3">Action</th>
+    </tr>
+    <% data.forEach((row) => { %>
+        <tr>
+            <td><%= row.subjectid %></td>
+            <td><%= row.subjectname %></td>
+            <td><%= row.teacherid %></td>
+            <td><%= row.teacher_fullname %></td>
+            <td><a href="/admin/view-subject/<%= row.subjectid %>">View Subject</a></td>
+            <td><a href="/admin/edit-subject/<%= row.subjectid %>">Edit Subject</a></td>
+            <td>
+                <form action="/admin/delete-subject/<%= row.subjectid %>" method="post">
+                    <button type="submit">Delete Subject</button>
+                </form>
+            </td>
+        </tr>
+    <% }); %>
+</table>

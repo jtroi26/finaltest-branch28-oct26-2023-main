@@ -1,0 +1,22 @@
+<h1>View Section</h1>
+
+<h2><%= section.sectionname %></h2>
+
+<h4>Subjects and Teachers:</h4>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Teacher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% subjects.forEach(subject => { %>
+      <tr>
+        <td><%= subject.subjectid %></td>
+        <td><%= subject.subjectname %></td>
+        <td><%= subject.teacher_name %></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+<h1>edit section name</h1>
+<button><a href="/admin/index-section">Back</a></button>
+<form action="/admin/edit-section/<%= sectionData.id %>" method="post">
+      <label for="sectionId">Section ID</label><br>
+      <input type="text" id="sectionId" name="sectionId" value="<%= sectionData.id %>" disabled><br><br>
+
+      
+      <label for="sectionName">Section Name : <%= sectionData.sectionname %></label><br>
+      <input type="text" id="sectionname" name="sectionname" value="<%= sectionData.sectionname %>">
+      <br><br>
+      
+      <input type="submit" value="Update Section">
+    </form>

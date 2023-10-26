@@ -1,0 +1,22 @@
+<h1>All Sections</h1>
+<button><a href="/admin/create-section">Create Section</a></button>
+<button><a href="/admin/dashboard">dashboard</a></button>
+<table border="1">
+    <tr>
+      <th>Section Name</th>
+      <th colspan="3">Actions</th>
+    </tr>
+    <% for (const section of sections) { %>
+      <tr>
+        <td><%= section.sectionname %></td>
+        <td><a href="/admin/view-section/<%= section.id %>">View</a></td>
+        <td><a href="/admin/edit-section/<%= section.id %>">Edit</a></td>
+        <td>
+            <form action="/admin/delete-section/<%= section.id %>" method="post">
+                <button type="submit">Delete Subject</button>
+            </form>
+        </td>
+      </tr>
+    <% } %>
+  </table>
+  

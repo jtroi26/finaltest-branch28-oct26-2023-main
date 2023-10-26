@@ -1,0 +1,32 @@
+<h1>Edit Subject Details</h1>
+
+<form action="/admin/edit-subject/<%= data.subject.id %>" method="post">
+    <label for="subjectid">Subject ID:</label><br><br>
+    <input type="text" id="subjectid" name="subjectid" required placeholder="SubjectID must be unique" value="<%= data.subject.subjectid %>"><br><br>
+    <label for="subjectname">Subject Name</label><br><br>
+    <input type="text" name="subjectname" id="subjectname" required placeholder="Science for example" value="<%= data.subject.subjectname %>"><br><br>
+
+    <label for="sectionname">Section</label><br><br>
+    <select name="sectionname" id="sectionname" required>
+        <% data.sections.forEach((section) => { %>
+            <option value="<%= section.sectionname %>"><%= section.sectionname %></option>
+        <% }); %>
+    </select><br><br>
+
+    <label for="teacherid">Teacher</label><br><br>
+    <select name="teacherid" id="teacherid">
+        <% data.teachers.forEach((teacher) => { %>
+            <option value="<%= teacher.teacherid %>">
+                <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
+            </option>
+        <% }); %>
+    </select> <br><br>
+    <label for="visibility">Visibility</label><br><br>
+    <select name="visibility" id="visibility">
+        <option value="" disabled selected>Choose an option</option>
+        <option value="Visible">Visible</option>
+        <option value="Invisible">Invisible</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
