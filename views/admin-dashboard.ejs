@@ -54,9 +54,40 @@
 
     </nav>
   </div>
+
+  <div class="container mt-5">
+    <div class="row">
+        <!-- User Analytics -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">User Analytics</div>
+                <div class="card-body">
+                    <p>Total Users: <span id="totalUsers">0</span></p>
+                    <p>Active Users (last 7 days): <span id="activeUsers">0</span></p>
+                    <p>Users completed at least one course: <span id="completedCourseUsers">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Analytics -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Course Analytics</div>
+                <div class="card-body">
+                    <p>Total Courses: <span id="totalCourses">0</span></p>
+                    <p>Enrollments: <span id="courseEnrollments">0</span></p>
+                    <p>Most Popular Course: <span id="mostPopularCourse">N/A</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 <script src="/javascripts/dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
 
 </html>

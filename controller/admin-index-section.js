@@ -18,7 +18,7 @@ exports.getIndexSection = (req, res) => {
         console.error(error);
       } else {
         // Render the EJS template and pass the results
-        res.render('admin-index-section', { sections: results });
+        res.render('admin-index-section', { sections: results, admin_id: req.session.admin_id });
       }
       connection.end(); // Close the MySQL connection when done
     });

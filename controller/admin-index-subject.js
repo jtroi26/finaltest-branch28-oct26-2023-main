@@ -39,7 +39,7 @@ WHERE s.visibility = "Visible";
 
             // Pass the data to your EJS template and render it
             console.log(results);
-            res.render('admin-index-subject', { data: results });
+            res.render('admin-index-subject', { data: results, admin_id: req.session.admin_id });
         });
     });
 };
