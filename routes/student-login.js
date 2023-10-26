@@ -4,5 +4,5 @@ const studentLoginController = require('../controller/student-login'); // Import
 
 /* GET home page. */
 router.get('/', studentLoginController.getLoginPage); // Use the controller for the route
-router.post('/student/login',studentLoginController.postStudentLogin);
+router.post('/',studentLoginController.postStudentLogin);
 module.exports = router;
