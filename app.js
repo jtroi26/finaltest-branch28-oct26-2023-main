@@ -23,6 +23,7 @@ var studentDashboardRouter = require('./routes/student-dashboard');
 var teacherLoginRouter = require('./routes/teacher-login');
 var teacherDashboardRouter = require('./routes/teacher-dashboard');
 var logoutRouter = require('./routes/logout');
+var adminCreateTeacherRouter = require('./routes/admin-create-teacher');
 
 
 var app = express();
@@ -69,6 +70,7 @@ app.use('/', adminDeleteSectionRouter);
 app.use('/', teacherLoginRouter);
 app.use('/', teacherDashboardRouter);
 app.use('/', logoutRouter);
+app.use('/', adminCreateTeacherRouter);
 
 
 
