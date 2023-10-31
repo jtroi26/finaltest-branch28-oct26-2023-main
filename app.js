@@ -22,6 +22,9 @@ var studentLoginRouter = require('./routes/student-login');
 var studentDashboardRouter = require('./routes/student-dashboard');
 var teacherLoginRouter = require('./routes/teacher-login');
 var teacherDashboardRouter = require('./routes/teacher-dashboard');
+var logoutRouter = require('./routes/logout');
+
+
 var app = express();
 
 const oneDay = 1000 * 60 * 60 * 24;
@@ -65,6 +68,9 @@ app.use('/', adminViewSectionRouter);
 app.use('/', adminDeleteSectionRouter);
 app.use('/', teacherLoginRouter);
 app.use('/', teacherDashboardRouter);
+app.use('/', logoutRouter);
+
+
 
 
 // catch 404 and forward to error handler
