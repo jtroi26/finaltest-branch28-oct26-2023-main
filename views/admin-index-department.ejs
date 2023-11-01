@@ -1,0 +1,21 @@
+<h1>Departments</h1>
+<a href="/admin/create-department">Create a Department</a>
+<table border="1">
+    <tr>
+        <th>Department</th>
+        <th>Visibility</th>
+        <th colspan="2">Actions</th>
+    </tr>
+    <% departments.forEach(department => { %>
+        <tr>
+            <td><%= department.department %></td>
+            <td><%= department.visibility %></td>
+            <td><a href="/admin/edit-department/<%= department.id %>">Edit</a></td>
+            <td>
+                <form action="/admin/delete-department/<%= department.id %>" method="post">
+                    <button type="submit">Delete Department</button>
+                </form>
+            </td>
+        </tr>
+    <% }); %>
+</table>
