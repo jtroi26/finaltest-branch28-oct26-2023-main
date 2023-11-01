@@ -35,3 +35,5 @@ branch 27 - updated login controller on github
 branch 28 - updated readme
 
 branch 33 - teacher create admin
+branch 34 - teacher index page
+branch 35 - teacher details page
