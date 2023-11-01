@@ -23,7 +23,8 @@ var studentDashboardRouter = require('./routes/student-dashboard');
 var teacherLoginRouter = require('./routes/teacher-login');
 var teacherDashboardRouter = require('./routes/teacher-dashboard');
 var logoutRouter = require('./routes/logout');
-var adminCreateTeacherRouter = require('./routes/admin-create-teacher');
+var adminCreateTeacherRouter = require('./routes/admin-create-teacher-account');
+var adminIndexTeacherRouter = require('./routes/admin-index-teacher');
 
 
 var app = express();
@@ -71,6 +72,7 @@ app.use('/', teacherLoginRouter);
 app.use('/', teacherDashboardRouter);
 app.use('/', logoutRouter);
 app.use('/', adminCreateTeacherRouter);
+app.use('/', adminIndexTeacherRouter);
 
 
 
