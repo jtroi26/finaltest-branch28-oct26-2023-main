@@ -14,7 +14,7 @@ exports.getTeacherDashboard = (req, res) => {
         SELECT subj.id, subj.subjectid, subj.subjectname, subj.teacherid, subj.sectionname, td.firstname, td.middlename, td.lastname, td.department
         FROM subjects AS subj
         INNER JOIN teacherdetails AS td ON subj.teacherid = td.teacherid
-        WHERE td.teacherid = ?
+        WHERE td.teacherid = ? ORDER BY subj.sectionname ASC
     `;
 
     connection.query(sql, [req.session.teacherid], (error, results) => {

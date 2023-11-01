@@ -52,3 +52,44 @@ exports.postTeacherLogin = (req, res) => {
         connection.end();
     });
 };
+
+// exports.postTeacherLogin = (req, res) => {
+//     const connection = mysql.createConnection(conn);
+//     const { teacherid, userlogin, userpassword } = req.body;
+
+//     const sql = `
+//         SELECT teacherlogins.teacherid, teacherdetails.firstname, teacherdetails.middlename, teacherdetails.lastname
+//         FROM teacherlogins
+//         INNER JOIN teacherdetails ON teacherlogins.teacherid = teacherdetails.teacherid
+//         WHERE teacherlogins.teacherid = ? AND teacherlogins.userlogin = ? AND teacherlogins.userpassword = ?
+//     `;
+
+//     connection.query(sql, [teacherid, userlogin, userpassword], (err, results) => {
+//         if (err) {
+//             console.error('Cannot Log In:', err);
+//             res.status(500).send('Internal Server Error');
+//         } else {
+//             if (results.length > 0) {
+//                 const { firstname, middlename, lastname } = results[0];
+//                 const { teacherid } = req.body;
+
+//                 req.session.teacherfirstname = firstname;
+//                 req.session.teachermiddlename = middlename;
+//                 req.session.teacherlastname = lastname;
+//                 req.session.teacherid = teacherid;
+//                 req.session.teacherusername = userlogin;
+
+//                 // Login successful
+//                 res.redirect('/teacher/dashboard');
+//             } else {
+//                 // Increment the login attempts counter
+//                 req.session.loginAttempts++;
+                
+//                 // Login failed
+//                 console.log('Login Failed');
+//                 return res.render('teacher-login', { errorMessage: 'Invalid username or password for student.' });
+//             }
+//         }
+//         connection.end();
+//     });
+// };

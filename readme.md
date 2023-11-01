@@ -46,3 +46,4 @@ branch 40 - edit department page
 branch 41 - delete department function
 branch 42 - updated edit function for teacher account details, suffix view in index-teacher and view-teacher-account
 branch 43 - view subject for teacher page created
+branch 44 - di ko magets

@@ -33,6 +33,7 @@ var adminIndexDepartmentRouter = require('./routes/admin-index-department');
 var adminEditDepartmentRouter = require('./routes/admin-edit-department');
 var adminDeleteDepartmentRouter = require('./routes/admin-delete-department');
 var teacherViewSubject = require('./routes/teacher-view-subject');
+var teacherLessonModules = require('./routes/teacher-lesson-modules');
 
 var app = express();
 
@@ -88,6 +89,7 @@ app.use('/', adminIndexDepartmentRouter);
 app.use('/', adminEditDepartmentRouter);
 app.use('/', adminDeleteDepartmentRouter);
 app.use('/', teacherViewSubject);
+app.use('/', teacherLessonModules);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

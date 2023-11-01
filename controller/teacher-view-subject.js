@@ -20,16 +20,30 @@ exports.getSubjectPage = (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
         if (results.length === 1) {
-            // Assuming 'teacher-view-subject' is your EJS template, you can pass the first result to it
-            res.render('teacher-view-subject', { subject: results[0] });
+            console.log('Query result:', results);
+            
+            const sectionname = results[0].sectionname;
+            const subjectname = results[0].subjectname;
+            const subjectid = results[0].subjectid;
+
+            req.session.sectionname = sectionname;
+            req.session.subjectname = subjectname;
+            req.session.subjectid = subjectid;
+
+            console.log("sectionname: " + req.session.sectionname);
+            console.log("subjectname: " + req.session.subjectname);
+            console.log("subjectid: " + req.session.subjectid);
+
+            res.render('teacher-view-subject', {
+                sectionname: req.session.sectionname,
+                subjectname: req.session.subjectname,
+                subjectid: req.session.subjectid
+            });
         } else {
-            // Handle the case when no or multiple results are found
+            console.error('No or multiple results found');
             res.status(404).send('Subject not found');
         }
 
-        // Don't forget to close the connection
         connection.end();
     });
 };
-
-
