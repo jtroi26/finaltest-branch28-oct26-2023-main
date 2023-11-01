@@ -8,5 +8,35 @@ const conn = {
 };
 
 exports.getIndexTeacherPage = (req, res) => {
-    res.render('admin-index-teacher');
-}
+    const connection = mysql.createConnection(conn);
+
+    const sql = `SELECT id, teacherid, firstname, middlename, lastname, suffix, department, visibility FROM teacherdetails`;
+
+    connection.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error retrieving teacher details:", err);
+            connection.end(); // Close the database connection
+            // Handle the error, e.g., by sending an error response
+            res.status(500).json({ error: "An error occurred while retrieving data." });
+        } else {
+            const teacherData = results.map((td) => {
+                // Construct the teacher name as per your requirements
+                const teacherName = `${td.firstname} ${td.middlename || ''} ${td.lastname} ${td.suffix || ''}`.trim();
+
+                // Return the formatted data
+                return {
+                    id: td.id,
+                    teacherid: td.teacherid,
+                    teachername: teacherName,
+                    department: td.department,
+                    visibility: td.visibility,
+                };
+            });
+
+            connection.end(); // Close the database connection
+
+            // Render the HTML page with the teacher data
+            res.render('admin-index-teacher', { teacherData });
+        }
+    });
+};
