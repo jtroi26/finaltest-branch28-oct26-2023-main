@@ -31,6 +31,7 @@ var adminDeleteTeacherRouter = require('./routes/admin-delete-teacher-account');
 var adminCreateDepartmentRouter = require('./routes/admin-create-department');
 var adminIndexDepartmentRouter = require('./routes/admin-index-department');
 var adminEditDepartmentRouter = require('./routes/admin-edit-department');
+var adminDeleteDepartmentRouter = require('./routes/admin-delete-department');
 
 var app = express();
 
@@ -84,7 +85,7 @@ app.use('/', adminDeleteTeacherRouter);
 app.use('/', adminCreateDepartmentRouter);
 app.use('/', adminIndexDepartmentRouter);
 app.use('/', adminEditDepartmentRouter);
-
+app.use('/', adminDeleteDepartmentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

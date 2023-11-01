@@ -43,3 +43,4 @@ branch 37 - delete teacher account function
 branch 38 - create department page
 branch 39 - index department page
 branch 40 - edit department page
+branch 41 - delete department function
