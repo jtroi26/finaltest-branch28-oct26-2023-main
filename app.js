@@ -26,7 +26,7 @@ var logoutRouter = require('./routes/logout');
 var adminCreateTeacherRouter = require('./routes/admin-create-teacher-account');
 var adminIndexTeacherRouter = require('./routes/admin-index-teacher');
 
-
+ 
 var app = express();
 
 const oneDay = 1000 * 60 * 60 * 24;

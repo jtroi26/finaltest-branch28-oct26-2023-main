@@ -11,7 +11,7 @@ exports.getTeacherCreatePage = (req, res) => {
     const connection = mysql.createConnection(conn);
 
     const sql = `SELECT department FROM departments`;
-
+ 
     connection.query(sql, (err, results) => {
         if (err) {
             console.error('Error fetching departments:', err);
