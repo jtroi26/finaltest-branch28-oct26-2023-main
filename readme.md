@@ -20,7 +20,7 @@ localhost:3000/admin/dashboard = admin dashboard
 localhost:3000/admin/create-section = create section
 localhost:3000/admin/index-section = create section
 localhost:3000/admin/index-teacher = index teacher
-
+localhost:3000/admin/index-department = index department
 
 branch 17 - create for section not working
 branch 18 - create section working
