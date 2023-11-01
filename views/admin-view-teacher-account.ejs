@@ -1,0 +1,20 @@
+<h1>Teacher Account Details</h1>
+
+<h1>ID: <%= combinedData.id %></h1>
+<h1>Teacher ID: <%= combinedData.teacherid %></h1>
+<h1>First Name: <%= combinedData.firstname %></h1>
+<h1>Middle Name: <%= combinedData.middlename %></h1>
+<h1>Last Name: <%= combinedData.lastname %></h1>
+<h1>Suffix: <%= combinedData.suffix !== null ? combinedData.suffix : "none" %></h1>
+<h1>Department: <%= combinedData.department %></h1>
+<h1>Visibility: <%= combinedData.visibility %></h1>
+
+<h1>Login Credentials</h1>
+<% if (combinedData.userlogin !== null && combinedData.userpassword !== null) { %>
+    <h2>user login: <%= combinedData.userlogin %></h2>
+    <h2>user password: <%= combinedData.userpassword %></h2>
+<% } else { %>
+    <p>Account not yet created</p>
+<% } %>
+
+
