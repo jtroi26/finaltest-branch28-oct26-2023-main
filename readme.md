@@ -21,6 +21,7 @@ localhost:3000/admin/create-section = create section
 localhost:3000/admin/index-section = create section
 localhost:3000/admin/index-teacher = index teacher
 localhost:3000/admin/index-department = index department
+localhost:3000/teacher/view-subject/:id = subject view teacher side
 
 branch 17 - create for section not working
 branch 18 - create section working
