@@ -26,6 +26,7 @@ var logoutRouter = require('./routes/logout');
 var adminIndexTeacherRouter = require('./routes/admin-index-teacher');
 var adminCreateTeacherRouter = require('./routes/admin-create-teacher-account');
 var adminViewTeacherRouter = require('./routes/admin-view-teacher-account');
+var adminEditTeacherRouter = require('./routes/admin-edit-teacher-account');
  
 var app = express();
 
@@ -74,6 +75,7 @@ app.use('/', logoutRouter);
 app.use('/', adminIndexTeacherRouter);
 app.use('/', adminCreateTeacherRouter);
 app.use('/', adminViewTeacherRouter);
+app.use('/', adminEditTeacherRouter);
 
 
 

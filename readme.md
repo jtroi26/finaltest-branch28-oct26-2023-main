@@ -37,3 +37,4 @@ branch 28 - updated readme
 branch 33 - teacher create admin
 branch 34 - teacher index page
 branch 35 - teacher details page
+branch 36 - teacher edit details page
