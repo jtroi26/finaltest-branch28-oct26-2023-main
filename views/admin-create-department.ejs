@@ -1,0 +1,13 @@
+<h1>create department</h1>
+<a href="/admin/index-department">Go Back</a>
+<form action="/admin/create-department" method="post">
+    <label for="">Department Name</label><br>
+    <input type="text" name="department" id="department" placeholder="Enter Department Name"><br>
+    <label for="">Visibility</label><br>
+    <select name="visibility" id="visibility">
+        <option value="" default selected disabled>Select Department Visibility</option>
+        <option value="Visible">Visible</option>
+        <option value="Invisible">Invisible</option>
+    </select><br>
+    <input type="submit" value="Create">
+</form>

@@ -19,6 +19,7 @@ localhost:3000/admin/login = adminlogin
 localhost:3000/admin/dashboard = admin dashboard
 localhost:3000/admin/create-section = create section
 localhost:3000/admin/index-section = create section
+localhost:3000/admin/index-teacher = index teacher
 
 
 branch 17 - create for section not working
@@ -39,3 +40,4 @@ branch 34 - teacher index page
 branch 35 - teacher details page
 branch 36 - teacher edit details page
 branch 37 - delete teacher account function
+branch 38 - create department page
