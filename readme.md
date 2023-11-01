@@ -38,3 +38,4 @@ branch 33 - teacher create admin
 branch 34 - teacher index page
 branch 35 - teacher details page
 branch 36 - teacher edit details page
+branch 37 - delete teacher account function

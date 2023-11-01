@@ -27,7 +27,9 @@ var adminIndexTeacherRouter = require('./routes/admin-index-teacher');
 var adminCreateTeacherRouter = require('./routes/admin-create-teacher-account');
 var adminViewTeacherRouter = require('./routes/admin-view-teacher-account');
 var adminEditTeacherRouter = require('./routes/admin-edit-teacher-account');
- 
+var adminDeleteTeacherRouter = require('./routes/admin-delete-teacher-account');
+
+
 var app = express();
 
 const oneDay = 1000 * 60 * 60 * 24;
@@ -76,6 +78,7 @@ app.use('/', adminIndexTeacherRouter);
 app.use('/', adminCreateTeacherRouter);
 app.use('/', adminViewTeacherRouter);
 app.use('/', adminEditTeacherRouter);
+app.use('/', adminDeleteTeacherRouter);
 
 
 

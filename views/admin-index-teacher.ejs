@@ -18,7 +18,11 @@
             <td><%= td.visibility %></td>
             <td><a href="/admin/view/teacher-account/<%= td.id %>">View Account Details</a></td>
             <td><a href="/admin/edit/teacher-account/<%= td.id %>">Edit Account</a></td>
-            <td><%= td.id %></td>
+            <td>
+            <form action="/admin/delete/teacher-account/<%= td.id %>" method="post">
+                <button type="submit">Delete</button>
+            </form>
+            </td>
         </tr>
     <% }); %>
 </table>
