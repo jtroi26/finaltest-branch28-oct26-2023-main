@@ -1,0 +1,17 @@
+<h1>Edit Department</h1>
+<button><a href="/admin/index-department">Back</a></button>
+<form action="/admin/edit-department/<%= departmentData.id %>" method="post">
+    <label for="id">ID</label><br>
+    <input type="text" name="id" id="id" placeholder="<%= departmentData.id %>" disabled readonly><br>
+
+    <label for="department">Department Name</label><br>
+    <input type="text" name="department" id="department" value="<%= departmentData.department %>"><br>
+
+    <label for="visibility">Visibility</label><br>
+    <select name="visibility" id="visibility">
+        <option value="" disabled>Select Department Visibility</option>
+        <option value="Visible" <%= departmentData.visibility === 'Visible' ? 'selected' : '' %>>Visible</option>
+        <option value="Invisible" <%= departmentData.visibility === 'Invisible' ? 'selected' : '' %>>Invisible</option>
+    </select><br>
+    <input type="submit" value="Update Department">
+</form>
