@@ -44,28 +44,30 @@ exports.getEditTeacherAccountPage = (req, res) => {
 
 
 exports.postEditTeacherAccountPage = (req, res) => {
-    const { teacherid, firstname, middlename, lastname, suffix, department, visibility } = req.body;
-    const id = req.params;
+    const {id} = req.params;
+    const {teacherid, firstname, middlename, lastname, suffix, department, visibility} = req.body;
+
+    console.log("id: " + id);
     console.log(req.body);
+
+    const connection = mysql.createConnection(conn);
     const sql = `
     UPDATE teacherdetails 
     SET teacherid = ?, firstname = ?, middlename = ?, lastname = ?, suffix = ?, department = ?, visibility = ? 
     WHERE id = ?;
-    `;
+`;
 
     const values = [teacherid, firstname, middlename, lastname, suffix, department, visibility, id];
 
-    // Create a database connection and execute the update query
-    const connection = mysql.createConnection(conn);
     connection.query(sql, values, (err, result) => {
-        connection.end();
-
         if (err) {
             console.error('Error updating teacher details:', err);
-            res.status(500).json({ error: 'An error occurred while updating data.' });
+            res.status(500).send('Internal Server Error');
         } else {
-            console.log('Teacher details updated successfully.');
+            // Successfully updated the department
             res.redirect('/admin/index-teacher');
         }
+        // Close the database connection
+        connection.end();
     });
-};
+}

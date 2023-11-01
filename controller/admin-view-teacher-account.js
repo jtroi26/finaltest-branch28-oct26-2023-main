@@ -17,8 +17,7 @@ exports.getTeacherAccountView = (req, res) => {
     connection.query(sql1, [id], (err1, results1) => {
         if (err1) {
             console.error("Error retrieving teacher details:", err1);
-            connection.end(); // Close the database connection
-            // Handle the error, e.g., by sending an error response
+            connection.end();
             res.status(500).json({ error: "An error occurred while retrieving data." });
         } else {
             const teacherData = results1[0]; // Assuming there's only one matching record
@@ -27,16 +26,18 @@ exports.getTeacherAccountView = (req, res) => {
             connection.query(sql2, [teacherData.teacherid], (err2, results2) => {
                 if (err2) {
                     console.error("Error retrieving user login and password:", err2);
-                    connection.end(); // Close the database connection
-                    // Handle the error, e.g., by sending an error response
+                    connection.end();
                     res.status(500).json({ error: "An error occurred while retrieving data." });
                 } else {
                     const loginData = results2[0]; // Assuming there's only one matching record
 
-                    connection.end(); // Close the database connection
+                    connection.end();
+
+                    // Modify the 'suffix' field to display "none" if it's "null" or null
+                    const suffix = teacherData.suffix === 'null' || teacherData.suffix === null ? 'N/A' : teacherData.suffix;
 
                     // Combine the teacher data and login data
-                    const combinedData = { ...teacherData, ...loginData };
+                    const combinedData = { ...teacherData, ...loginData, suffix };
 
                     // Render the HTML page with the combined data
                     res.render('admin-view-teacher-account', { combinedData });
@@ -45,4 +46,5 @@ exports.getTeacherAccountView = (req, res) => {
         }
     });
 };
+
 

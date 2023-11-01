@@ -21,7 +21,8 @@ exports.getIndexTeacherPage = (req, res) => {
         } else {
             const teacherData = results.map((td) => {
                 // Construct the teacher name as per your requirements
-                const teacherName = `${td.firstname} ${td.middlename || ''} ${td.lastname} ${td.suffix || ''}`.trim();
+                const suffix = td.suffix === 'null' || td.suffix === null ? '' : td.suffix;
+                const teacherName = `${td.firstname} ${td.middlename || ''} ${td.lastname} ${suffix}`.trim();
 
                 // Return the formatted data
                 return {
@@ -40,3 +41,4 @@ exports.getIndexTeacherPage = (req, res) => {
         }
     });
 };
+
