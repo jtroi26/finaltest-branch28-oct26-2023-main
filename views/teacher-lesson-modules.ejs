@@ -4,58 +4,121 @@
 
 
 <h1>First Quarter Lessons</h1>
-<ol>
-    <li><a href="/teacher/lesson/view/">Lesson place holder </a></li>
-</ol>
+<table border="1" id="firstquartertable">
+    <tr>
+        <th>id</th>
+        <th>lesson id</th>
+        <th>lesson title</th>
+        <th>quarter period</th>
+    </tr>
+</table>
 <h1>Second Quarter Lessons</h1>
-
+<table border="1" id="secondquartertable">
+    <tr>
+        <th>id</th>
+        <th>lesson id</th>
+        <th>lesson title</th>
+        <th>quarter period</th>
+    </tr>
+</table>
 <h1>Third Quarter Lessons</h1>
-
-<h1>Fourth Quarter Lessons</h1> -->
+<table border="1" id="thirdquartertable">
+    <tr>
+        <th>id</th>
+        <th>lesson id</th>
+        <th>lesson title</th>
+        <th>quarter period</th>
+    </tr>
+</table>
+<h1>Fourth Quarter Lessons</h1>
+<table border="1" id="fourthquartertable">
+    <tr>
+        <th>id</th>
+        <th>lesson id</th>
+        <th>lesson title</th>
+        <th>quarter period</th>
+    </tr>
+</table> -->
 
 <h1>Lesson modules for <%= subjectname %> <%= sectionname %> <%= subjectid %></h1>
 <button><a href="/teacher/lesson/create">Create Lesson</a></button>
 
 <h1>First Quarter Lessons</h1>
-<ol>
-    <% if (firstQuarterLessons && firstQuarterLessons.length > 0) { %>
-        <% firstQuarterLessons.forEach(lesson => { %>
-            <li><a href="/teacher/lesson/view/<%= lesson.id %>"><%= lesson.lessonTitle %></a></li>
-        <% }); %>
-    <% } else { %>
-        <li>No lesson was created for the first quarter.</li>
-    <% } %>
-</ol>
+<table border="1" id="firstquartertable">
+    <tr>
+        <th>id</th>
+        <th>lesson id</th>
+        <th>lesson title</th>
+        <th>quarter period</th>
+        <th>subject name</th>
+    </tr>
+    <% firstQuarterLessons.forEach(lesson => { %>
+        <tr>
+            <td><%= lesson.id %></td>
+            <td><%= lesson.lessonID %></td>
+            <td><%= lesson.lessonTitle %></td>
+            <td><%= lesson.quarterperiod %></td>
+            <td><%= lesson.subjectname %></td>
+        </tr>
+    <% }); %>
+</table>
 
 <h1>Second Quarter Lessons</h1>
-<ol>
-    <% if (secondQuarterLessons && secondQuarterLessons.length > 0) { %>
-        <% secondQuarterLessons.forEach(lesson => { %>
-            <li><a href="/teacher/lesson/view/<%= lesson.id %>"><%= lesson.lessonTitle %></a></li>
-        <% }); %>
-    <% } else { %>
-        <li>No lesson was created for the second quarter.</li>
-    <% } %>
-</ol>
+<table border="1" id="secondquartertable">
+    <tr>
+        <th>id</th>
+        <th>lesson id</th>
+        <th>lesson title</th>
+        <th>quarter period</th>
+        <th>subject name</th>
+    </tr>
+    <% secondQuarterLessons.forEach(lesson => { %>
+        <tr>
+            <td><%= lesson.id %></td>
+            <td><%= lesson.lessonID %></td>
+            <td><%= lesson.lessonTitle %></td>
+            <td><%= lesson.quarterperiod %></td>
+            <td><%= lesson.subjectname %></td>
+        </tr>
+    <% }); %>
+</table>
 
 <h1>Third Quarter Lessons</h1>
-<ol>
-    <% if (thirdQuarterLessons && thirdQuarterLessons.length > 0) { %>
-        <% thirdQuarterLessons.forEach(lesson => { %>
-            <li><a href="/teacher/lesson/view/<%= lesson.id %>"><%= lesson.lessonTitle %></a></li>
-        <% }); %>
-    <% } else { %>
-        <li>No lesson was created for the third quarter.</li>
-    <% } %>
-</ol>
+<table border="1" id="thirdquartertable">
+    <tr>
+        <th>id</th>
+        <th>lesson id</th>
+        <th>lesson title</th>
+        <th>quarter period</th>
+        <th>subject name</th>
+    </tr>
+    <% thirdQuarterLessons.forEach(lesson => { %>
+        <tr>
+            <td><%= lesson.id %></td>
+            <td><%= lesson.lessonID %></td>
+            <td><%= lesson.lessonTitle %></td>
+            <td><%= lesson.quarterperiod %></td>
+            <td><%= lesson.subjectname %></td>
+        </tr>
+    <% }); %>
+</table>
 
 <h1>Fourth Quarter Lessons</h1>
-<ol>
-    <% if (fourthQuarterLessons && fourthQuarterLessons.length > 0) { %>
-        <% fourthQuarterLessons.forEach(lesson => { %>
-            <li><a href="/teacher/lesson/view/<%= lesson.id %>"><%= lesson.lessonTitle %></a></li>
-        <% }); %>
-    <% } else { %>
-        <li>No lesson was created for the fourth quarter.</li>
-    <% } %>
-</ol>
+<table border="1" id="fourthquartertable">
+    <tr>
+        <th>id</th>
+        <th>lesson id</th>
+        <th>lesson title</th>
+        <th>quarter period</th>
+        <th>subject name</th>
+    </tr>
+    <% fourthQuarterLessons.forEach(lesson => { %>
+        <tr>
+            <td><%= lesson.id %></td>
+            <td><%= lesson.lessonID %></td>
+            <td><%= lesson.lessonTitle %></td>
+            <td><%= lesson.quarterperiod %></td>
+            <td><%= lesson.subjectname %></td>
+        </tr>
+    <% }); %>
+</table>
