@@ -20,7 +20,9 @@
             <td><%= lesson.subjectname %></td>
             <td><a href="/teacher/lesson/view-lesson/<%= lesson.id %>">View</a></td>
             <td><a href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a></td></td>
-            <td><a href="/teacher/lesson/delete-lesson/<%= lesson.id %>">Delete</a></td>
+            <td>
+                <form action="/teacher/lesson/delete-lesson/<%= lesson.id %>" method="post"><button type="submit">Delete</button></form>
+            </td>
         </tr>
     <% }); %>
 </table>
