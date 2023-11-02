@@ -15,16 +15,16 @@ exports.getCreateAnnouncementPage = (req, res) => {
 exports.postCreateAnnouncementPage = (req, res) => {
     const connection = mysql.createConnection(conn);
 
-    const { announcement, visibility} = req.body;
+    const { announcementTitle, announcement, visibility} = req.body;
 
     const dateCreated = new Date();
     const formattedDate = formatCustomDateTime(dateCreated);
     const updatedDate = formattedDate;
 
-    const sql = `INSERT INTO teacherannouncements (teacherid, subjectname, sectionname, announcement, visibility, dateCreated, dateUpdated)
-    VALUES (?,?,?,?,?,?,?);`;
+    const sql = `INSERT INTO teacherannouncements (teacherid, subjectname, sectionname, announcementTitle,announcement, visibility, dateCreated, dateUpdated)
+    VALUES (?,?,?,?,?,?,?,?);`;
 
-    const values = [req.session.teacherid, req.session.subjectname, req.session.sectionname, announcement, visibility, updatedDate, updatedDate];
+    const values = [req.session.teacherid, req.session.subjectname, req.session.sectionname, announcementTitle, announcement, visibility, updatedDate, updatedDate];
 
     connection.query(sql, values, (err, result) => {
         if (err) {
