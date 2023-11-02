@@ -15,9 +15,9 @@ exports.getSubjectIndexPage = (req, res) => {
     td.teacherid,
     s.visibility,
     CONCAT(td.firstname, ' ', td.middlename, ' ', td.lastname) as teacher_fullname
-FROM subjects as s
-INNER JOIN teacherdetails as td on s.teacherid = td.teacherid
-ORDER BY s.subjectid;
+    FROM subjects as s
+    INNER JOIN teacherdetails as td on s.teacherid = td.teacherid
+    ORDER BY s.subjectid;
     `;
 
     const connection = mysql.createConnection(conn);
