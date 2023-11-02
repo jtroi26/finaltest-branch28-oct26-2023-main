@@ -11,7 +11,7 @@ exports.getSubjectPage = (req, res) => {
     const connection = mysql.createConnection(conn);
     const id = req.params.id; // Assuming 'id' is a route parameter
 
-    const sql = `SELECT subjectid, subjectname, sectionname, visibility FROM subjects WHERE id = ?`;
+    const sql = `SELECT subjectid, subjectname, sectionname, teacherid, visibility FROM subjects WHERE id = ?`;
 
     connection.query(sql, [id], (error, results) => {
         if (error) {
@@ -25,19 +25,23 @@ exports.getSubjectPage = (req, res) => {
             const sectionname = results[0].sectionname;
             const subjectname = results[0].subjectname;
             const subjectid = results[0].subjectid;
+            const teacherid = results[0].teacherid;
 
             req.session.sectionname = sectionname;
             req.session.subjectname = subjectname;
             req.session.subjectid = subjectid;
+            req.session.teacherid = teacherid;
 
             console.log("sectionname: " + req.session.sectionname);
             console.log("subjectname: " + req.session.subjectname);
             console.log("subjectid: " + req.session.subjectid);
+            console.log("teacherid: " + req.session.teacherid);
 
             res.render('teacher-view-subject', {
                 sectionname: req.session.sectionname,
                 subjectname: req.session.subjectname,
-                subjectid: req.session.subjectid
+                subjectid: req.session.subjectid,
+                teacherid:req.session.teacherid
             });
         } else {
             console.error('No or multiple results found');

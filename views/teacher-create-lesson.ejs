@@ -1,0 +1,61 @@
+<h1>Create lesson module for <%= subjectname %> <%= sectionname %></h1>
+
+
+<form action="/teacher/lesson/create" method="post">
+
+    <label for="">Lesson ID</label><br>
+    <input type="text" name="lessonID" id=""><br>
+    
+    <label for="">Lesson Title</label><br>
+    <input type="text" name="lessonTitle" id="lessonTitle"><br>
+
+    <label for="">Quarter Period</label><br>
+    <select name="quarterperiod" id="quarterperiod">
+        <option value="" selected disabled> Choose an Option</option>
+        <option value="First Quarter">First Quarter</option>
+        <option value="Second Quarter">Second Quarter</option>
+        <option value="Third Quarter">Third Quarter</option>
+        <option value="Fourth Quarter">Fourth Quarter</option>
+    </select><br>
+
+    <label for="">Section 1</label><br>
+    <input type="text" name="section1" id="section1"><br>
+
+    <label for="">Section 2</label><br>
+    <input type="text" name="section2" id="section2"><br>
+
+    <label for="">Section 3</label><br>
+    <input type="text" name="section3" id="section3"><br>
+
+    <label for="">Section 4</label><br>
+    <input type="text" name="section4" id="section4"><br>
+
+    <label for="">Section 5</label><br>
+    <input type="text" name="section5" id="section5"><br>
+
+    <label for="">Section 6</label><br>
+    <input type="text" name="section6" id="section6"><br>
+
+    <label for="">Section 7</label><br>
+    <input type="text" name="section7" id="section7"><br>
+
+    <label for="">Section 8</label><br>
+    <input type="text" name="section8" id="section8"><br>
+
+    <label for="">Section 9</label><br>
+    <input type="text" name="section9" id="section9"><br>
+
+    <label for="">Section 10</label><br>
+    <input type="text" name="section10" id="section10"><br>
+
+    <label for="">Lesson Visibility</label><br>
+    <select name="visibility" id="visibility">
+        <option value="" selected disabled>Select an Option</option>
+        <option value="Visible">Visible</option>
+        <option value="Invisible">Invisible</option>
+    </select><br>
+    <br>
+    <input type="submit" value="Create Lesson">
+
+
+</form>
