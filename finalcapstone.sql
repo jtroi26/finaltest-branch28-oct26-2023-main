@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2023 at 03:15 PM
+-- Generation Time: Nov 02, 2023 at 05:36 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -245,6 +245,35 @@ INSERT INTO `subjects` (`id`, `subjectid`, `subjectname`, `teacherid`, `sectionn
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teacherannouncements`
+--
+
+CREATE TABLE `teacherannouncements` (
+  `id` int(11) NOT NULL,
+  `teacherid` varchar(25) DEFAULT NULL,
+  `subjectname` varchar(25) DEFAULT NULL,
+  `sectionname` varchar(25) DEFAULT NULL,
+  `announcementTitle` varchar(30) NOT NULL,
+  `announcement` longtext NOT NULL,
+  `visibility` varchar(15) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `teacherannouncements`
+--
+
+INSERT INTO `teacherannouncements` (`id`, `teacherid`, `subjectname`, `sectionname`, `announcementTitle`, `announcement`, `visibility`, `dateCreated`, `dateUpdated`) VALUES
+(3, '10420012023', 'General Math', '8 - St. John Bosco', 'title1', 'testtest', 'Invisible', '2023-11-02 23:29:12', '2023-11-02 23:29:12'),
+(4, '10420012023', 'General Math', '8 - St. John Bosco', 'title2', 'oi class', 'Invisible', '2023-11-02 23:31:25', '2023-11-02 23:31:25'),
+(5, '2020-069', 'Geometry for kids', '7 - St. Therese', '', 'Tangina niyo class', 'Visible', '2023-11-03 00:20:20', '2023-11-03 00:20:20'),
+(6, NULL, NULL, NULL, 'Testing for hanz', 'Hanz Bernabe', 'Visible', '2023-11-03 00:23:28', '2023-11-03 00:23:28'),
+(7, '2020-069', 'Geometry for kids', '7 - St. Therese', 'Testing for hanz', 'testing hanz', 'Visible', '2023-11-03 00:23:51', '2023-11-03 00:23:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teacherdetails`
 --
 
@@ -369,6 +398,13 @@ ALTER TABLE `subjects`
   ADD KEY `subjects_ibfk_2` (`sectionname`);
 
 --
+-- Indexes for table `teacherannouncements`
+--
+ALTER TABLE `teacherannouncements`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `teacherid` (`teacherid`,`subjectname`,`sectionname`);
+
+--
 -- Indexes for table `teacherdetails`
 --
 ALTER TABLE `teacherdetails`
@@ -443,6 +479,12 @@ ALTER TABLE `subjects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `teacherannouncements`
+--
+ALTER TABLE `teacherannouncements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `teacherdetails`
 --
 ALTER TABLE `teacherdetails`
@@ -497,6 +539,14 @@ ALTER TABLE `students`
 ALTER TABLE `subjects`
   ADD CONSTRAINT `subjects_ibfk_1` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `subjects_ibfk_2` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `teacherannouncements`
+--
+ALTER TABLE `teacherannouncements`
+  ADD CONSTRAINT `teacherannouncements_ibfk_1` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `teacherannouncements_ibfk_2` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `teacherannouncements_ibfk_3` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacherdetails`
