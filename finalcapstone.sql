@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 06:14 PM
+-- Generation Time: Nov 02, 2023 at 03:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -73,16 +73,23 @@ INSERT INTO `adminlogins` (`id`, `admin_id`, `username`, `userpassword`) VALUES
 
 CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
-  `department` varchar(50) NOT NULL
+  `department` varchar(50) NOT NULL,
+  `visibility` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `departments`
 --
 
-INSERT INTO `departments` (`id`, `department`) VALUES
-(2, 'Araling Panlipunan Department'),
-(1, 'TLE Department');
+INSERT INTO `departments` (`id`, `department`, `visibility`) VALUES
+(1, 'TLE Department', 'Visible'),
+(2, 'Araling Panlipunan Department', 'Visible'),
+(3, 'Science Department', 'Visible'),
+(4, 'PE Department', 'Visible'),
+(5, 'CLE Department', 'Visible'),
+(6, 'HeKaSi Department', 'Visible'),
+(7, 'Uwian Department', 'Invisible'),
+(8, 'Mathematics Department', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -93,6 +100,7 @@ INSERT INTO `departments` (`id`, `department`) VALUES
 CREATE TABLE `lessons` (
   `id` int(11) NOT NULL,
   `lessonID` int(11) DEFAULT NULL,
+  `lessonTitle` varchar(30) NOT NULL,
   `subjectname` varchar(25) DEFAULT NULL,
   `teacherid` varchar(25) DEFAULT NULL,
   `quarterperiod` varchar(20) DEFAULT NULL,
@@ -107,8 +115,8 @@ CREATE TABLE `lessons` (
   `section8` longtext DEFAULT NULL,
   `section9` longtext DEFAULT NULL,
   `section10` longtext DEFAULT NULL,
-  `dateCreated` date DEFAULT NULL,
-  `dateUpdated` date DEFAULT NULL,
+  `dateCreated` datetime DEFAULT NULL,
+  `dateUpdated` datetime DEFAULT NULL,
   `visibility` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -116,8 +124,11 @@ CREATE TABLE `lessons` (
 -- Dumping data for table `lessons`
 --
 
-INSERT INTO `lessons` (`id`, `lessonID`, `subjectname`, `teacherid`, `quarterperiod`, `sectionname`, `section1`, `section2`, `section3`, `section4`, `section5`, `section6`, `section7`, `section8`, `section9`, `section10`, `dateCreated`, `dateUpdated`, `visibility`) VALUES
-(1, 1, 'General Math', '2020-069', 'First Quarter', '8 - St. John Bosco', 'test1', 'testtest12', 'testtest13', 'test1', 'test13', 'test12', 'test1', 'test12', 'test13', 'test1', '2023-10-25', '2023-10-28', 'Visible');
+INSERT INTO `lessons` (`id`, `lessonID`, `lessonTitle`, `subjectname`, `teacherid`, `quarterperiod`, `sectionname`, `section1`, `section2`, `section3`, `section4`, `section5`, `section6`, `section7`, `section8`, `section9`, `section10`, `dateCreated`, `dateUpdated`, `visibility`) VALUES
+(1, 1, 'test gen math title', 'General Math', '10420012023', 'First Quarter', '8 - St. John Bosco', 'test11', 'testtest12', 'testtest13', 'test1', 'test13', 'test12', 'test1', 'test12', 'test13', 'test1', '2023-10-25 00:00:00', '2023-11-02 21:27:08', 'Invisible'),
+(2, 1, 'test geometry for kids', 'Geometry for kids', '2020-069', 'First Quarter', '7 - St. Therese', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-02 15:40:14', '2023-11-02 15:40:14', 'Visible'),
+(3, 2, 'test 2 genmath st john', 'General Math', '10420012023', 'Fourth Quarter', '8 - St. John Bosco', 'This is section 11', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-02 16:34:11', '2023-11-02 21:12:49', 'Visible'),
+(4, 1, 'Geometry 2nd q', 'Geometry for kids', '2020-069', 'Second Quarter', '7 - St. Therese', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-02 16:34:54', '2023-11-02 16:34:54', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -159,7 +170,8 @@ CREATE TABLE `sections` (
 INSERT INTO `sections` (`id`, `sectionname`, `visibility`) VALUES
 (1, '8 - St. John Bosco', 'Visible'),
 (2, '9 - St. Therese of Avila', 'Visible'),
-(3, '7 - St. Therese', 'Visible');
+(3, '7 - St. Therese', 'Visible'),
+(4, 'Titesq', 'Invisible');
 
 -- --------------------------------------------------------
 
@@ -224,11 +236,11 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `subjectid`, `subjectname`, `teacherid`, `sectionname`, `visibility`) VALUES
-(1, 'Math-01', 'Mathematics Today', '2013-023', '8 - St. John Bosco', 'Visible'),
-(5, 'Filipino-1', 'Ang Talinhaga ', '2020-069', '9 - St. Therese of Avila', 'Visible'),
+(1, 'Math-01', 'Mathematics Today', '2013-023', '8 - St. John Bosco', 'Invisible'),
+(5, 'Math-003', 'Geometry for kids', '2020-069', '7 - St. Therese', 'Visible'),
 (6, 'SexED-101', 'Sex Education for Teens', '2013-023', '8 - St. John Bosco', 'Visible'),
 (7, 'Math-032', 'Algebra2', '2020-069', '9 - St. Therese of Avila', 'Visible'),
-(8, 'GenMath-11', 'General Math', '2020-069', '8 - St. John Bosco', 'Visible');
+(8, 'GenMath-11', 'General Math', '10420012023', '8 - St. John Bosco', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -242,6 +254,7 @@ CREATE TABLE `teacherdetails` (
   `firstname` varchar(50) DEFAULT NULL,
   `middlename` varchar(50) DEFAULT NULL,
   `lastname` varchar(50) DEFAULT NULL,
+  `suffix` varchar(50) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
   `visibility` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -250,9 +263,10 @@ CREATE TABLE `teacherdetails` (
 -- Dumping data for table `teacherdetails`
 --
 
-INSERT INTO `teacherdetails` (`id`, `teacherid`, `firstname`, `middlename`, `lastname`, `department`, `visibility`) VALUES
-(1, '2013-023', 'Alexandra', 'Echevaria', 'San Jose', 'Araling Panlipunan Department', 'Visible'),
-(2, '2020-069', 'Hanz Angelo', 'Viterbo', 'Bernababe', 'TLE Department', 'Visible');
+INSERT INTO `teacherdetails` (`id`, `teacherid`, `firstname`, `middlename`, `lastname`, `suffix`, `department`, `visibility`) VALUES
+(1, '2013-023', 'Alexandra', 'Echevaria', 'San Jose', 'null', 'Araling Panlipunan Department', 'Visible'),
+(2, '2020-069', 'Hanz Angelo', 'Viterbo', 'Bernababe', NULL, 'Mathematics Department', 'Visible'),
+(3, '10420012023', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'null', 'Uwian Department', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -272,7 +286,8 @@ CREATE TABLE `teacherlogins` (
 --
 
 INSERT INTO `teacherlogins` (`id`, `teacherid`, `userlogin`, `userpassword`) VALUES
-(1, '2020-069', 'havb-069', 'havb-069');
+(1, '2020-069', 'havb-069', 'havb-069'),
+(2, '10420012023', 't-ceapastrana', 'P!*10v@5shsu');
 
 --
 -- Indexes for dumped tables
@@ -389,13 +404,13 @@ ALTER TABLE `adminlogins`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `lessons`
 --
 ALTER TABLE `lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `quarters`
@@ -407,7 +422,7 @@ ALTER TABLE `quarters`
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `studentlogins`
@@ -431,13 +446,13 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `teacherdetails`
 --
 ALTER TABLE `teacherdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `teacherlogins`
 --
 ALTER TABLE `teacherlogins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
