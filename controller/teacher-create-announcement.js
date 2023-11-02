@@ -33,7 +33,7 @@ exports.postCreateAnnouncementPage = (req, res) => {
             res.status(500).send('Internal Server Error');
         } else {
             // Successfully inserted the announcement
-            res.redirect('/teacher/announcement/create'); // Redirect to a success page or another appropriate action
+            res.redirect('/teacher/announcement/'); // Redirect to a success page or another appropriate action
             connection.end(); // Close the database connection
         }
     });

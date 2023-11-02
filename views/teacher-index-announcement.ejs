@@ -1,0 +1,32 @@
+<h1>All of the announcements for <%= sectionname %> <%= subjectname %></h1>
+<h1>Announcements</h1>
+<a href="/teacher/announcement/create">Create Announcement</a>
+    <!-- <ul>
+        <% announcements.forEach(function(announcement) { %>
+            <li>
+                <h2><%= announcement.announcementTitle %></h2>
+                <p><%= announcement.announcement %></p>
+                <p>Created: <%= announcement.dateCreated %></p>
+                <p>Last Updated: <%= announcement.dateUpdated %></p>
+            </li>
+        <% }); %>
+    </ul> -->
+
+    <table border="1">
+        <tr>
+            <th>Announcement Title</th>
+            <th>Announcement Content</th>
+            <th>Date Created </th>
+            <th colspan="3">Actions</th>
+        </tr>
+        <% announcements.forEach(function(announcement) { %>
+            <tr>
+                <td><%= announcement.announcementTitle %></td>
+                <td><%= announcement.announcement %></td>
+                <td><%= announcement.dateCreated%></td>
+                <td><a href="/teacher/announcement/view/<%= announcement.id %>">View</a></td>
+                <td><a href="/teacher/announcement/edit/<%= announcement.id %>">Edit</a></td>
+                <td><a href="/teacher/announcement/delete/<%= announcement.id %>">Delete</a></td>
+            </tr>
+        <% }); %>
+    </table>
