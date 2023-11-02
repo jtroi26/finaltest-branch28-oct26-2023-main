@@ -1,0 +1,62 @@
+<h1>Edit lesson module for <%= lesson.subjectname %> <%= lesson.sectionname %></h1>
+
+<form action="/teacher/lesson/edit-lesson/<%= lesson.id %>" method="post">
+
+    <label for="">Lesson ID</label><br>
+    <input type="text" name="lessonID" id="lessonID" value="<%= lesson.lessonID %>"><br>
+    
+    <label for="">Lesson Title</label><br>
+    <input type="text" name="lessonTitle" id="lessonTitle" value="<%= lesson.lessonTitle %>"><br>
+
+    <label for="">Quarter Period</label><br>
+    <select name="quarterperiod" id="quarterperiod">
+        <option value="" selected disabled>Choose an Option</option>
+        <option value="First Quarter" <%= lesson.quarterperiod === 'First Quarter' ? 'selected' : '' %>>First Quarter</option>
+        <option value="Second Quarter" <%= lesson.quarterperiod === 'Second Quarter' ? 'selected' : '' %>>Second Quarter</option>
+        <option value="Third Quarter" <%= lesson.quarterperiod === 'Third Quarter' ? 'selected' : '' %>>Third Quarter</option>
+        <option value="Fourth Quarter" <%= lesson.quarterperiod === 'Fourth Quarter' ? 'selected' : '' %>>Fourth Quarter</option>
+    </select><br>
+
+    <label for="">Section 1</label><br>
+    <input type="text" name="section1" id="section1" value="<%= lesson.section1 %>"><br>
+
+    <label for="">Section 2</label><br>
+    <input type="text" name="section2" id="section2" value="<%= lesson.section2 %>"><br>
+
+    <label for="">Section 3</label><br>
+    <input type="text" name="section3" id="section3" value="<%= lesson.section3 %>"><br>
+
+    <label for="">Section 4</label><br>
+    <input type="text" name="section4" id="section4" value="<%= lesson.section4 %>"><br>
+
+    <label for="">Section 5</label><br>
+    <input type="text" name="section5" id="section5" value="<%= lesson.section5 %>"><br>
+
+    <label for="">Section 6</label><br>
+    <input type="text" name="section6" id="section6" value="<%= lesson.section6 %>"><br>
+
+    <label for="">Section 7</label><br>
+    <input type="text" name="section7" id="section7" value="<%= lesson.section7 %>"><br>
+
+    <label for="">Section 8</label><br>
+    <input type="text" name="section8" id="section8" value="<%= lesson.section8 %>"><br>
+
+    <label for="">Section 9</label><br>
+    <input type="text" name="section9" id="section9" value="<%= lesson.section9 %>"><br>
+
+    <label for="">Section 10</label><br>
+    <input type="text" name="section10" id="section10" value="<%= lesson.section10 %>"><br>
+
+    <label for="">Lesson Visibility</label><br>
+    <select name="visibility" id="visibility">
+        <option value="" selected disabled>Select an Option</option>
+        <option value="Visible" <%= lesson.visibility === 'Visible' ? 'selected' : '' %>>Visible</option>
+        <option value="Invisible" <%= lesson.visibility === 'Invisible' ? 'selected' : '' %>>Invisible</option>
+    </select><br>
+    <br>
+
+
+
+    <input type="submit" value="Update Lesson">
+
+</form>

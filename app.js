@@ -36,6 +36,7 @@ var teacherViewSubject = require('./routes/teacher-view-subject');
 var teacherLessonModules = require('./routes/teacher-lesson-modules');
 var teacherCreateLesson = require('./routes/teacher-create-lesson');
 var teacherViewLesson = require('./routes/teacher-view-lesson');
+var teacherEditLesson = require('./routes/teacher-edit-lesson');
 
 var app = express();
 
@@ -94,6 +95,7 @@ app.use('/', teacherViewSubject);
 app.use('/', teacherLessonModules);
 app.use('/', teacherCreateLesson);
 app.use('/', teacherViewLesson);
+app.use('/', teacherEditLesson);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -54,3 +54,4 @@ branch 47 - lesson module view now working
 branch 48 - teacher view lesson page created
 branch 49 - updated create section,edit section, index section, lesson modules, view lesson
 branch 50 - changed how visibility is viewed, modified create, edit subject, create and edit teacher account how  they view visibility
+branch 51 - created edit function for teacher lesson.

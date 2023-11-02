@@ -9,7 +9,7 @@
         <th>lesson title</th>
         <th>quarter period</th>
         <th>subject name</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
     <% firstQuarterLessons.forEach(lesson => { %>
         <tr>
@@ -19,6 +19,7 @@
             <td><%= lesson.quarterperiod %></td>
             <td><%= lesson.subjectname %></td>
             <td><a href="/teacher/lesson/view-lesson/<%= lesson.id %>">View</a></td>
+            <td><a href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a></td></td>
             <td><a href="/teacher/lesson/delete-lesson/<%= lesson.id %>">Delete</a></td>
         </tr>
     <% }); %>
@@ -32,7 +33,7 @@
         <th>lesson title</th>
         <th>quarter period</th>
         <th>subject name</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
     <% secondQuarterLessons.forEach(lesson => { %>
         <tr>
@@ -42,6 +43,7 @@
             <td><%= lesson.quarterperiod %></td>
             <td><%= lesson.subjectname %></td>
             <td><a href="/teacher/lesson/view-lesson/<%= lesson.id %>">View</a></td>
+            <td><a href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a></td></td>
             <td><a href="/teacher/lesson/delete-lesson/<%= lesson.id %>">Delete</a></td>
         </tr>
     <% }); %>
@@ -55,7 +57,7 @@
         <th>lesson title</th>
         <th>quarter period</th>
         <th>subject name</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
     <% thirdQuarterLessons.forEach(lesson => { %>
         <tr>
@@ -65,6 +67,7 @@
             <td><%= lesson.quarterperiod %></td>
             <td><%= lesson.subjectname %></td>
             <td><a href="/teacher/lesson/view-lesson/<%= lesson.id %>">View</a></td>
+            <td><a href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a></td></td>
             <td><a href="/teacher/lesson/delete-lesson/<%= lesson.id %>">Delete</a></td>
         </tr>
     <% }); %>
@@ -78,7 +81,7 @@
         <th>lesson title</th>
         <th>quarter period</th>
         <th>subject name</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
     <% fourthQuarterLessons.forEach(lesson => { %>
         <tr>
@@ -88,6 +91,7 @@
             <td><%= lesson.quarterperiod %></td>
             <td><%= lesson.subjectname %></td>
             <td><a href="/teacher/lesson/view-lesson/<%= lesson.id %>">View</a></td>
+            <td><a href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a></td></td>
             <td><a href="/teacher/lesson/delete-lesson/<%= lesson.id %>">Delete</a></td>
         </tr>
     <% }); %>
