@@ -18,8 +18,8 @@
             <td><%= lesson.lessonTitle %></td>
             <td><%= lesson.quarterperiod %></td>
             <td><%= lesson.subjectname %></td>
-            <td><a href="/teacher/lesson/view-module/<%= lesson.id %>">View</a></td>
-            <td><a href="/teacher/lesson/delete-module/<%= lesson.id %>">Delete</a></td>
+            <td><a href="/teacher/lesson/view-lesson/<%= lesson.id %>">View</a></td>
+            <td><a href="/teacher/lesson/delete-lesson/<%= lesson.id %>">Delete</a></td>
         </tr>
     <% }); %>
 </table>

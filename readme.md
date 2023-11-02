@@ -51,3 +51,4 @@ branch 44 - working session teacher lesson module
 branch 45 - done working create lesson and view lesson
 branch 46 - teacher-lesson-modules not working
 branch 47 - lesson module view now working
+branch 48 - teacher view lesson page created
