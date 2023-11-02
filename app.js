@@ -38,6 +38,7 @@ var teacherCreateLesson = require('./routes/teacher-create-lesson');
 var teacherViewLesson = require('./routes/teacher-view-lesson');
 var teacherEditLesson = require('./routes/teacher-edit-lesson');
 var teacherDeleteLesson = require('./routes/teacher-delete-lesson');
+var teacherCreateAnnouncement = require('./routes/teacher-create-announcement');
 
 var app = express();
 
@@ -98,6 +99,7 @@ app.use('/', teacherCreateLesson);
 app.use('/', teacherViewLesson);
 app.use('/', teacherEditLesson);
 app.use('/', teacherDeleteLesson);
+app.use('/', teacherCreateAnnouncement);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
