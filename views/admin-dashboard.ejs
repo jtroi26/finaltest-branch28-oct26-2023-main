@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,10 +30,9 @@
               class="nav_name">Subject</span></a>
           <a href="/admin/index-section" class="nav_link"> <i class='bx bx-calendar nav_icon'></i> <span
               class="nav_name">Section</span></a>
-          <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
-              class="nav_name">Teacher</span></a>
+          <a href="/admin/index-teacher" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span class="nav_name">Teacher</span></a>
           <a href="/admin/index-teacher" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">
-             
+
             </span> </a>
         </div>
       </div>
@@ -48,7 +46,8 @@
         </form>
 
         <% } else { %>
-          <a href="/admin" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
+          <a href="/admin" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span>
+          </a>
           <% } %>
 
 
@@ -57,31 +56,31 @@
 
   <div class="container mt-5">
     <div class="row">
-        <!-- User Analytics -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">User Analytics</div>
-                <div class="card-body">
-                    <p>Total Users: <span id="totalUsers">0</span></p>
-                    <p>Active Users (last 7 days): <span id="activeUsers">0</span></p>
-                    <p>Users completed at least one course: <span id="completedCourseUsers">0</span></p>
-                </div>
-            </div>
+      <!-- User Analytics -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">User Analytics</div>
+          <div class="card-body">
+            <p>Total Users: <span id="totalUsers">0</span></p>
+            <p>Active Users (last 7 days): <span id="activeUsers">0</span></p>
+            <p>Users completed at least one course: <span id="completedCourseUsers">0</span></p>
+          </div>
         </div>
+      </div>
 
-        <!-- Course Analytics -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Course Analytics</div>
-                <div class="card-body">
-                    <p>Total Courses: <span id="totalCourses">0</span></p>
-                    <p>Enrollments: <span id="courseEnrollments">0</span></p>
-                    <p>Most Popular Course: <span id="mostPopularCourse">N/A</span></p>
-                </div>
-            </div>
+      <!-- Course Analytics -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Course Analytics</div>
+          <div class="card-body">
+            <p>Total Courses: <span id="totalCourses">0</span></p>
+            <p>Enrollments: <span id="courseEnrollments">0</span></p>
+            <p>Most Popular Course: <span id="mostPopularCourse">N/A</span></p>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
 </body>
 
@@ -91,4 +90,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
 
 </html>
-
