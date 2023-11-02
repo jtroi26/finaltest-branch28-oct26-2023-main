@@ -23,7 +23,7 @@ exports.getEditTeacherAccountPage = (req, res) => {
             const teacherData = results[0]; // Assuming there's only one matching record
 
             // Now, fetch the departments from the database
-            const departmentsSql = `SELECT department FROM departments`;
+            const departmentsSql = `SELECT department FROM departments WHERE visibility = 'Visible'`;
             connection.query(departmentsSql, (departmentsErr, departmentsResults) => {
                 if (departmentsErr) {
                     console.error('Error fetching departments:', departmentsErr);

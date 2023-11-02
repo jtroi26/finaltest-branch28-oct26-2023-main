@@ -10,9 +10,9 @@ const conn = {
 exports.getEditSubjectPage = (req, res) => {
     const subjectid = req.params.id; // Get subjectid from request parameters
 
-    const subjectSql = 'SELECT id, subjectid, subjectname FROM subjects WHERE subjectid = ?';
-    const sectionSql = 'SELECT sectionname FROM sections';
-    const teacherSql = 'SELECT teacherid, firstname, middlename, lastname FROM teacherdetails';
+    const subjectSql = `SELECT id, subjectid, subjectname FROM subjects WHERE subjectid = ?`;
+    const sectionSql = `SELECT sectionname FROM sections WHERE visibility = 'Visible'`;
+    const teacherSql = `SELECT teacherid, firstname, middlename, lastname FROM teacherdetails WHERE visibility = 'Visible'`;
 
     const connection = mysql.createConnection(conn);
 
