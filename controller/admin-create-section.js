@@ -11,13 +11,13 @@ exports.getCreateSection = (req, res) => {
       res.render('admin-create-section');
 }
 exports.postCreateSection = (req, res) => {
-      const { sectionname } = req.body;
+      const { sectionname , visibility} = req.body;
       const connection = mysql.createConnection(conn);
       // Define the SQL INSERT statement to insert a new section
-      const sql = `INSERT INTO sections (sectionname) VALUES (?)`;
+      const sql = `INSERT INTO sections (sectionname, visibility) VALUES (?,?)`;
   
       // Specify the values to be inserted into the table
-      const values = [sectionname];
+      const values = [sectionname, visibility];
   
       // Create a connection to your database (Assuming you have established the connection earlier)
   

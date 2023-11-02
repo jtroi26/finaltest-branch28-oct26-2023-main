@@ -8,7 +8,7 @@ const conn = {
 };
 
 exports.getSubjectCreatePage = (req, res) => {
-    const sectionSql = 'SELECT sectionname FROM sections';
+    const sectionSql = `SELECT sectionname FROM sections WHERE visibility = 'Visible'`;
     const teacherSql = 'SELECT teacherid, firstname, middlename, lastname FROM teacherdetails';
 
     const connection = mysql.createConnection(conn);

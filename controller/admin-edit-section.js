@@ -26,26 +26,26 @@ exports.getEditSectionPage = (req, res) => {
 
 exports.postEditSectionPage = (req, res) => {
   const { id } = req.params;
-  const { sectionname } = req.body;
+  const { sectionname, visibility } = req.body;
   const connection = mysql.createConnection(conn);
-  const values = [sectionname, id];
+  const values = [sectionname, visibility, id];
   const sql = `
-  UPDATE sections
-  SET
-  sectionname = ?
-  WHERE id = ?; 
+    UPDATE sections
+    SET
+    sectionname = ?, visibility = ?
+    WHERE id = ?;
   `;
 
   connection.query(sql, values, (err, result) => {
     if (err) {
-        console.error('Error updating section:', err);
-        res.status(500).send('Internal Server Error');
+      console.error('Error updating section:', err);
+      res.status(500).send('Internal Server Error');
     } else {
-        // Successfully updated the subject
-        res.redirect('/admin/index-section');
+      // Successfully updated the subject
+      res.redirect('/admin/index-section');
     }
 
     // Close the database connection
     connection.end();
-});
+  });
 }

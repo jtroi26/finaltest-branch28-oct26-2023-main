@@ -8,6 +8,11 @@
       <label for="sectionName">Section Name : <%= sectionData.sectionname %></label><br>
       <input type="text" id="sectionname" name="sectionname" value="<%= sectionData.sectionname %>">
       <br><br>
-      
+      <label for="">Visibility</label><br><br>
+    <select name="visibility" id="visibility">
+        <option value="" disabled selected>Choose an option</option>
+        <option value="Visible">Visible</option>
+        <option value="Invisible">Invisible</option>
+    </select><br>
       <input type="submit" value="Update Section">
     </form>

@@ -4,5 +4,11 @@
 <form action="/admin/create-section" method="post">
       <label for="">Section Name</label><br><br>
       <input type="text" name="sectionname" id="sectionname" placeholder="10 - St. John"><br><br>
+      <label for="">Visibility</label><br><br>
+    <select name="visibility" id="visibility">
+        <option value="" disabled selected>Choose an option</option>
+        <option value="Visible">Visible</option>
+        <option value="Invisible">Invisible</option>
+    </select>
       <input type="submit" value="Submit">
 </form>
