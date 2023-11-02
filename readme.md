@@ -48,3 +48,5 @@ branch 41 - delete department function
 branch 42 - updated edit function for teacher account details, suffix view in index-teacher and view-teacher-account
 branch 43 - view subject for teacher page created
 branch 44 - working session teacher lesson module
+branch 45 - done working create lesson and view lesson
+branch 46 - teacher-lesson-modules not working
