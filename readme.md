@@ -23,6 +23,25 @@ localhost:3000/admin/index-teacher = index teacher
 localhost:3000/admin/index-department = index department
 localhost:3000/teacher/view-subject/:id = subject view teacher side
 
+
+mga wala pang design
+
+/admin/view-subject/GenMath-11
+/admin/edit-subject/GenMath-11
+/admin/edit-section/3
+/admin/index-teacher
+/admin/create-teacher-account
+/admin/edit/teacher-account/1
+/admin/index-department
+/admin/edit-department/2
+/teacher/view-subject/8
+/teacher/announcement/
+/teacher/announcement/view/3
+/teacher/lesson/modules
+/teacher/lesson/view-lesson/1
+/teacher/lesson/edit-lesson/1
+
+
 branch 17 - create for section not working
 branch 18 - create section working
 branch 19 - index section created and working
