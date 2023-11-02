@@ -26,7 +26,11 @@
                 <td><%= announcement.dateCreated%></td>
                 <td><a href="/teacher/announcement/view/<%= announcement.id %>">View</a></td>
                 <td><a href="/teacher/announcement/edit/<%= announcement.id %>">Edit</a></td>
-                <td><a href="/teacher/announcement/delete/<%= announcement.id %>">Delete</a></td>
+                <td>
+                    <form action="/teacher/announcement/delete/<%= announcement.id %>" method="post">
+                        <button type="submit">Delete Announcement</button>
+                    </form>
+              </td>
             </tr>
         <% }); %>
     </table>

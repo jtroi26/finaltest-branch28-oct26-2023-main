@@ -58,3 +58,4 @@ branch 51 - created edit function for teacher lesson.
 branch 52 - created delete function for teacher lesson.
 branch 53 - created teacher announcement create page
 branch 54 - created teacher index page for announcement
+branch 55 - created teacher delete announcement function
