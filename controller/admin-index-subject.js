@@ -12,6 +12,7 @@ exports.getSubjectIndexPage = (req, res) => {
     SELECT
     s.subjectid,
     s.subjectname,
+    s.sectionname,
     td.teacherid,
     s.visibility,
     CONCAT(td.firstname, ' ', td.middlename, ' ', td.lastname) as teacher_fullname

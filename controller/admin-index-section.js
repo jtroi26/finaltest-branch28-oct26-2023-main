@@ -8,7 +8,7 @@ const conn = {
 };
 
 exports.getIndexSection = (req, res) => {
-    const sql = `SELECT * FROM sections ORDER BY sectionname ASC`;
+    const sql = `SELECT * FROM sections ORDER BY visibility DESC, id ASC`;
   
     const connection = mysql.createConnection(conn);
   

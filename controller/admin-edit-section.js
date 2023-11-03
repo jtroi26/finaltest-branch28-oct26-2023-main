@@ -10,7 +10,7 @@ const conn = {
 exports.getEditSectionPage = (req, res) => {
   const { id } = req.params;
   const connection = mysql.createConnection(conn);
-  const sql = `SELECT id, sectionname FROM sections WHERE id = ?`;
+  const sql = `SELECT id, sectionname, visibility FROM sections WHERE id = ?`;
   const values = [id]; // You should pass values as an array
 
   connection.query(sql, values, (err, result) => {

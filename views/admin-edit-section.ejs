@@ -1,18 +1,17 @@
 <h1>edit section name</h1>
 <button><a href="/admin/index-section">Back</a></button>
 <form action="/admin/edit-section/<%= sectionData.id %>" method="post">
-      <label for="sectionId">Section ID</label><br>
-      <input type="text" id="sectionId" name="sectionId" value="<%= sectionData.id %>" disabled><br><br>
+  <label for="sectionId">Section ID</label><br>
+  <input type="text" id="sectionId" name="sectionId" value="<%= sectionData.id %>" disabled><br><br>
 
-      
-      <label for="sectionName">Section Name : <%= sectionData.sectionname %></label><br>
-      <input type="text" id="sectionname" name="sectionname" value="<%= sectionData.sectionname %>">
-      <br><br>
-      <label for="">Visibility</label><br><br>
-    <select name="visibility" id="visibility">
-        <option value="" disabled selected>Choose an option</option>
-        <option value="Visible">Visible</option>
-        <option value="Invisible">Invisible</option>
-    </select><br>
-      <input type="submit" value="Update Section">
-    </form>
+  <label for="sectionName">Section Name : <%= sectionData.sectionname %></label><br>
+  <input type="text" id="sectionname" name="sectionname" value="<%= sectionData.sectionname %>">
+  <br><br>
+  <label for="visibility">Visibility</label><br><br>
+  <select name="visibility" id="visibility">
+    <option value="" selected disabled>Choose an option</option>
+    <option value="Visible" <%= sectionData.visibility === 'Visible' ? 'selected' : '' %>>Visible</option>
+    <option value="Invisible" <%= sectionData.visibility === 'Invisible' ? 'selected' : '' %>>Invisible</option>
+  </select><br>
+  <input type="submit" value="Update Section">
+</form>
