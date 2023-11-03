@@ -1,0 +1,18 @@
+<h1>Edit Announcement</h1>
+
+<form action="/teacher/announcement/edit/<%= announcement.id %>" method="post">
+    <label for="announcementTitle">Announcement Title</label><br>
+    <input type="text" name="announcementTitle" id="announcementTitle"
+        value="<%= announcement.announcementTitle %>"><br><br>
+
+    <label for="announcement">Announcement Content</label><br>
+    <input type="text" name="announcement" id="announcement" value="<%= announcement.announcement %>"><br><br>
+
+    <select name="visibility" id="visibility">
+        <option value="" disabled>Select Announcement Visibility</option>
+        <option value="Visible" <% if (announcement.visibility==='Visible' ) { %>selected<% } %>>Visible</option>
+        <option value="Invisible" <% if (announcement.visibility==='Invisible' ) { %>selected<% } %>>Invisible</option>
+    </select><br><br>
+
+    <input type="submit" value="Update Announcement">
+</form>

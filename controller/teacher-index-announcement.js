@@ -10,7 +10,7 @@ const conn = {
 exports.getAnnouncementIndexPage = (req, res) => {
     const connection = mysql.createConnection(conn);
 
-    const sql = `SELECT * FROM teacherannouncements WHERE teacherid = ? AND subjectname = ? AND sectionname = ?;`;
+    const sql = `SELECT * FROM teacherannouncements WHERE teacherid = ? AND subjectname = ? AND sectionname = ? ORDER BY dateCreated DESC;`;
     const values = [req.session.teacherid, req.session.subjectname, req.session.sectionname];
 
     connection.query(sql, values, (err, results) => {

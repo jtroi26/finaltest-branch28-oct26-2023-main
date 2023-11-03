@@ -79,3 +79,4 @@ branch 53 - created teacher announcement create page
 branch 54 - created teacher index page for announcement
 branch 55 - created teacher delete announcement function
 branch 56 - created view announcement page for teacher side
+branch 57 - created edit announcement page for teacher side
