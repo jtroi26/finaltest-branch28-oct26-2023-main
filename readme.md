@@ -37,6 +37,7 @@ mga wala pang design
 /teacher/view-subject/8
 /teacher/announcement/
 /teacher/announcement/view/3
+/teacher/announcement/edit/3
 /teacher/lesson/modules
 /teacher/lesson/view-lesson/1
 /teacher/lesson/edit-lesson/1
