@@ -18,7 +18,7 @@
         <td><%= student.status %></td>
         <td><a href="/admin/view/student/<%= student.id %>">View</a></td>
         <td><a href="/admin/edit/student/<%= student.id %>">Edit</a></td>
-        <td><a href="/admin/delete/student/<%= student.id %>">Delete</a></td>
+        <td><form action="/admin/delete/student/<%= student.id %>" method="post"><button type="submit">Delete</button></form></td>
     </tr>
     <% }); %>
 </table>
