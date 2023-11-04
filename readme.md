@@ -6,6 +6,9 @@ npm i ejs
 npm i mysql
 npm i express-session
 npm i express-rate-limit
+npm i multer
+npm i fs
+npm i fast-csv
 import finalcapstone.sql
 
 
@@ -82,3 +85,4 @@ branch 55 - created teacher delete announcement function
 branch 56 - created view announcement page for teacher side
 branch 57 - created edit announcement page for teacher side
 branch 58 - updated sql constraints, edited edit section & index section & index subject controller, and edited edit-section & index-subject ejs 
+branch 59 - created admin create student list by uploading a csv file.

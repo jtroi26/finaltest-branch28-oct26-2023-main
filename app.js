@@ -46,6 +46,9 @@ var adminIndexDepartmentRouter = require('./routes/admin-index-department');
 var adminEditDepartmentRouter = require('./routes/admin-edit-department');
 var adminDeleteDepartmentRouter = require('./routes/admin-delete-department');
 
+// admin create student
+var adminCreateStudentRouter = require('./routes/admin-create-student');
+
 // teacher subject-> lesson routes
 var teacherViewSubject = require('./routes/teacher-view-subject');
 var teacherLessonModules = require('./routes/teacher-lesson-modules');
@@ -86,6 +89,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 //routing the routes
 
@@ -128,6 +132,9 @@ app.use('/', adminCreateDepartmentRouter);
 app.use('/', adminIndexDepartmentRouter);
 app.use('/', adminEditDepartmentRouter);
 app.use('/', adminDeleteDepartmentRouter);
+
+// admin create student functions
+app.use('/', adminCreateStudentRouter);
 
 // teacher subject - > lesson routes
 app.use('/', teacherViewSubject);
