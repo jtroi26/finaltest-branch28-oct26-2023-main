@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2023 at 04:48 PM
+-- Generation Time: Nov 04, 2023 at 05:21 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -125,7 +125,8 @@ CREATE TABLE `lessons` (
 --
 
 INSERT INTO `lessons` (`id`, `lessonID`, `lessonTitle`, `subjectname`, `teacherid`, `quarterperiod`, `sectionname`, `section1`, `section2`, `section3`, `section4`, `section5`, `section6`, `section7`, `section8`, `section9`, `section10`, `dateCreated`, `dateUpdated`, `visibility`) VALUES
-(5, 1, 'Testing Lesson 1', 'Sex Education for Teens', '10420012023', 'First Quarter', 'X - St. Paul', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-03 23:10:20', '2023-11-03 23:10:20', 'Visible');
+(5, 1, 'Testing Lesson 1', 'Sex Education for Teens', '10420012023', 'First Quarter', 'X - St. Paul', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-03 23:10:20', '2023-11-03 23:10:20', 'Visible'),
+(6, 1, 'Testing Lesson 1', 'Algebra2', '2020-069', 'First Quarter', 'VIII - St. Anne', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-04 23:09:21', '2023-11-04 23:09:21', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -219,15 +220,21 @@ CREATE TABLE `students` (
   `middlename` varchar(50) DEFAULT NULL,
   `lastname` varchar(50) DEFAULT NULL,
   `suffix` varchar(15) DEFAULT NULL,
-  `sectionname` varchar(50) DEFAULT NULL
+  `sectionname` varchar(50) DEFAULT NULL,
+  `dateEnrolled` datetime DEFAULT NULL,
+  `status` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`) VALUES
-(1, '2020-0001', 'Jan Raymarc', 'D.', 'Mercado', 'none', '8 - St. John Bosco');
+INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`, `dateEnrolled`, `status`) VALUES
+(1, '2020-0001', 'Jan Raymarc', 'D.', 'Mercado', 'none', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(2, 'DAZ20171522', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(3, 'DAZ20230010', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(4, 'DAZ20201010', 'Justroilon', 'C.', 'Rico', 'VI', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(5, 'DAZ20181001', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled');
 
 -- --------------------------------------------------------
 
@@ -394,7 +401,6 @@ ALTER TABLE `studentlogins`
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `studentID` (`studentID`),
-  ADD KEY `studentID_2` (`studentID`),
   ADD KEY `sectionname` (`sectionname`);
 
 --
@@ -457,7 +463,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `lessons`
 --
 ALTER TABLE `lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `quarters`
@@ -481,7 +487,7 @@ ALTER TABLE `studentlogins`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -536,7 +542,7 @@ ALTER TABLE `lessons`
 -- Constraints for table `studentlogins`
 --
 ALTER TABLE `studentlogins`
-  ADD CONSTRAINT `studentlogins_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `students` (`studentID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `studentlogins_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `students` (`studentID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students`
