@@ -49,6 +49,7 @@ var adminDeleteDepartmentRouter = require('./routes/admin-delete-department');
 // admin create student
 var adminCreateStudentRouter = require('./routes/admin-create-student');
 var adminIndexStudentRouter = require('./routes/admin-index-student');
+var adminViewStudentRouter = require('./routes/admin-view-student');
 
 // teacher subject-> lesson routes
 var teacherViewSubject = require('./routes/teacher-view-subject');
@@ -137,6 +138,7 @@ app.use('/', adminDeleteDepartmentRouter);
 // admin create student functions
 app.use('/', adminCreateStudentRouter);
 app.use('/', adminIndexStudentRouter);
+app.use('/', adminViewStudentRouter);
 
 // teacher subject - > lesson routes
 app.use('/', teacherViewSubject);

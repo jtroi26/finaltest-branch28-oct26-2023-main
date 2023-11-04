@@ -42,7 +42,7 @@ exports.postLessonCreatePage= (req, res) => {
             // Successfully inserted the new section
             // You can redirect to a success page or perform other actions
             
-            res.redirect('/teacher/lesson/create');
+            res.redirect('/teacher/lesson/modules');
         }
 
         // Close the database connection

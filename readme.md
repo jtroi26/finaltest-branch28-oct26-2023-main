@@ -90,3 +90,4 @@ branch 57 - created edit announcement page for teacher side
 branch 58 - updated sql constraints, edited edit section & index section & index subject controller, and edited edit-section & index-subject ejs 
 branch 59 - created admin create student list by uploading a csv file.
 branch 60 - created index page for student details
+branch 61 - created view page for student details
