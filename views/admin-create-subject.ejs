@@ -8,18 +8,20 @@
 
     <label for="">Section</label><br><br>
     <select name="sectionname" id="sectionname" required>
-        <% data.sections.forEach((section) => { %>
-            <option value="<%= section.sectionname %>"><%= section.sectionname %></option>
-        <% }); %>
+        <% data.sections.forEach((section)=> { %>
+            <option value="<%= section.sectionname %>">
+                <%= section.sectionname %>
+            </option>
+            <% }); %>
     </select><br><br>
 
     <label for="">Teacher</label><br><br>
     <select name="teacherid" id="teacherid">
-        <% data.teachers.forEach((teacher) => { %>
+        <% data.teachers.forEach((teacher)=> { %>
             <option value="<%= teacher.teacherid %>">
                 <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
             </option>
-        <% }); %>
+            <% }); %>
     </select> <br><br>
     <label for="">Visibility</label><br><br>
     <select name="visibility" id="visibility">

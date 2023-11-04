@@ -60,7 +60,7 @@ exports.getSubjectCreatePage = (req, res) => {
 };
 
 exports.postSubjectCreatePage = (req, res) => {
-    const { subjectid, subjectname, sectionname, teacherid , visibility} = req.body;
+    const { subjectid, subjectname, sectionname, teacherid, visibility } = req.body;
 
     console.log(subjectid);
     console.log(subjectname);
@@ -87,7 +87,7 @@ exports.postSubjectCreatePage = (req, res) => {
                 console.error('Error executing SQL query:', err);
                 res.status(500).send('Internal Server Error');
                 return;
-            }
+            }   
 
             console.log('Subject Added');
             console.log('subjectID: ' + subjectid);

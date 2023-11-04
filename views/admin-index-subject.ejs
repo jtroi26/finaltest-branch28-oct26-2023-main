@@ -7,7 +7,6 @@
     <title>Dashboard</title>
     <link href="/stylesheets/style1.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
 
 </head>
@@ -32,7 +31,8 @@
                             class="nav_name">Section</span></a>
                     <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
                             class="nav_name">Achievements</span></a>
-                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">
+                    <a href="/admin/index-teacher" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span
+                            class="nav_name">
 
                         </span> </a>
                 </div>
@@ -57,9 +57,68 @@
 
     <h1 class="my-4 text-center">All Subjects</h1>
     <div class="text-center mb-3">
-        <a href="/admin/dashboard" class="btn btn-secondary me-2">Admin Dashboard</a>
-        <a href="/admin/create-subject" class="btn btn-primary">Create Subject</a>
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#createSubjectModal">
+            Create Subject
+        </button>
     </div>
+    <div class="modal fade" id="createSubjectModal" tabindex="-1" aria-labelledby="createSubjectModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createSectionModalLabel">Create New Section</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/create-subject" method="post">
+                        <div class="mb-3">
+                            <label for="subjectid" class="form-label">Subject ID:</label>
+                            <input type="text" class="form-control" id="subjectid" name="subjectid" required
+                                placeholder="SubjectID must be unique">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Subject Name</label>
+                            <input type="text" class="form-control" name="subjectname" id="subjectname" required
+                                placeholder="Science for example">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sectionname">Section:</label>
+                            <select name="sectionname" id="sectionname" class="form-select" required>
+                                <% data.sections.forEach((section) => { %>
+                                    <option value="<%= section.sectionname %>">
+                                        <%= section.sectionname %>
+                                    </option>
+                                <% }); %>
+                            </select>
+                        </div>  
+                        <div class="mb-3">
+                            <label for="teacherid">Teacher:</label>
+                            <select name="teacherid" id="teacherid" class="form-select" required>
+                                <% data.teachers.forEach((teacher)=> { %>
+                                    <option value="<%= teacher.teacherid %>">
+                                        <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
+                                    </option>
+                                    <% }); %>
+                            </select>
+                        </div>                      
+                        <div class="mb-3">
+                            <label for="visibility">Visibility</label>
+                            <select name="visibility" id="visibility" class="form-select" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="Visible">Visible</option>
+                                <option value="Invisible">Invisible</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create Section</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -85,21 +144,25 @@
                     <td>
                         <%= row.teacher_fullname %>
                     </td>
-                    <td class="text-center"><a href="/admin/view-subject/<%= row.subjectid %>" class="btn btn-info">View</a></td>
-                    <td class="text-center"><a href="/admin/edit-subject/<%= row.subjectid %>" class="btn btn-warning">Edit</a></td>
+                    <td class="text-center"><a href="/admin/view-subject/<%= row.subjectid %>"
+                            class="btn btn-info">View</a></td>
+                    <td class="text-center"><a href="/admin/edit-subject/<%= row.subjectid %>"
+                            class="btn btn-warning">Edit</a></td>
                     <td class="text-center">
                         <form action="/admin/delete-subject/<%= row.subjectid %>" method="post">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
-            <% }); %>
+                <% }); %>
         </tbody>
     </table>
 
 </body>
-
+<!-- Moved the Bootstrap JS bundle here and removed the incorrect attribute -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Fixed the jQuery script tag -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/javascripts/dashboard.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
 
 </html>
