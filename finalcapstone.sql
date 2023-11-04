@@ -230,7 +230,6 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`, `dateEnrolled`, `status`) VALUES
-(1, '2020-0001', 'Jan Raymarc', 'D.', 'Mercado', 'none', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
 (2, 'DAZ20171522', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
 (3, 'DAZ20230010', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
 (4, 'DAZ20201010', 'Justroilon', 'C.', 'Rico', 'VI', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
