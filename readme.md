@@ -35,19 +35,20 @@ mga wala pang design
 /admin/edit-section/3
 /admin/index-teacher
 /admin/create-teacher-account
-/admin/edit/teacher-account/1
+/admin/edit/teacher-account/:id
 /admin/index-department
-/admin/edit-department/2
-/teacher/view-subject/8
+/admin/edit-department/:id
+/teacher/view-subject/:id
 /teacher/announcement/
-/teacher/announcement/view/3
-/teacher/announcement/edit/3
+/teacher/announcement/view/:id
+/teacher/announcement/edit/:id
 /teacher/lesson/modules
 /teacher/lesson/view-lesson/1
 /teacher/lesson/edit-lesson/1
 localhost:3000/admin/create/student 
 localhost:3000/admin/index/student 
-
+localhost:3000/admin/view/student/:id
+localhost:3000/admin/edit/student/:id
 
 branch 17 - create for section not working
 branch 18 - create section working
@@ -91,3 +92,4 @@ branch 58 - updated sql constraints, edited edit section & index section & index
 branch 59 - created admin create student list by uploading a csv file.
 branch 60 - created index page for student details
 branch 61 - created view page for student details
+branch 62 - created edit page for student details

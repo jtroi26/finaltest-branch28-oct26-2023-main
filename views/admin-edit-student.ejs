@@ -1,0 +1,46 @@
+<h1>Edit Student Details</h1>
+
+<form action="/admin/edit/student/<%= student.id %>" method="post">
+    <label for="studentID">Student ID</label><br><br>
+    <input type="text" name="studentID" id="studentID" value="<%= student.studentID %>"><br>
+
+    <label for="firstname">First Name</label><br><br>
+    <input type="text" name="firstname" id="firstname" value="<%= student.firstname %>"><br>
+
+    <label for="middlename">Middle Name</label><br><br>
+    <input type="text" name="middlename" id="middlename" value="<%= student.middlename %>"><br>
+
+    <label for="lastname">Last Name</label><br><br>
+    <input type="text" name="lastname" id="lastname" value="<%= student.lastname %>"><br>
+
+    <label for="suffix">Suffix</label><br>
+    <select name="suffix" id="suffix">
+        <option value="" disabled>Select an option</option>
+        <option value="Sr." <%= student.suffix === 'Sr.' ? 'selected' : '' %>>Senior</option>
+        <option value="Jr." <%= student.suffix === 'Jr.' ? 'selected' : '' %>>Junior</option>
+        <option value="III" <%= student.suffix === 'III' ? 'selected' : '' %>>III</option>
+        <option value="IV" <%= student.suffix === 'IV' ? 'selected' : '' %>>IV</option>
+        <option value="V" <%= student.suffix === 'V' ? 'selected' : '' %>>V</option>
+        <option value="VI" <%= student.suffix === 'VI' ? 'selected' : '' %>>VI</option>
+        <option value="none" <%= student.suffix === 'none' ? 'selected' : '' %>>none</option>
+    </select><br>
+
+    <label for="sectionname">Section Name</label><br>
+    <select name="sectionname" id="sectionname" required>
+        <option value="" disabled>Select a section</option>
+        <% sections.forEach(section => { %>
+            <option value="<%= section.sectionname %>" <%= student.sectionname === section.sectionname ? 'selected' : '' %><%= student.sectionname === section.sectionname ? 'selected' : '' %><%= student.sectionname === section.sectionname ? 'selected' : '' %>> 
+            <%= section.sectionname %></option>
+        <% }); %>
+    </select><br><br>
+
+    <label for="">Enrollment Status</label><br>
+    <select name="status" id="status">
+        <option value="" disabled>Select an option</option>
+        <option value="Enrolled" <%= student.status === 'Enrolled' ? 'selected' : '' %>>Enrolled</option>
+        <option value="Unenrolled" <%= student.status === 'Unenrolled' ? 'selected' : '' %>>Unenrolled</option>
+    </select><br><br>
+
+    <input type="submit" value="Update Student Data">
+</form>
+
