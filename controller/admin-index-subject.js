@@ -21,6 +21,8 @@ exports.getSubjectIndexPage = (req, res) => {
     ORDER BY s.subjectid;
     `;
 
+    const teachersql = `SELECT id, teacherid, firstname, middlename, lastname, suffix FROM teacherdetails WHERE visibility = 'Visible' ORDER BY id;`;
+
     const connection = mysql.createConnection(conn);
 
     connection.connect((err) => {
@@ -30,19 +32,31 @@ exports.getSubjectIndexPage = (req, res) => {
             return;
         }
 
+        // Execute the main SQL query
         connection.query(sql, (err, results) => {
             if (err) {
                 console.error('Error:', err);
+                connection.end(); // Close the database connection in case of an error
                 res.status(500).send('Internal Server Error');
                 return;
             }
 
-            connection.end(); // Close the database connection
+            // Execute the teachersql query
+            connection.query(teachersql, (err, teacherResults) => {
+                if (err) {
+                    console.error('Error:', err);
+                    connection.end(); // Close the database connection in case of an error
+                    res.status(500).send('Internal Server Error');
+                    return;
+                }
 
-            // Pass the data to your EJS template and render it
-            console.log(results);
-            res.render('admin-index-subject', { data: results, admin_id: req.session.admin_id });
+                connection.end(); // Close the database connection
+
+                // Pass the data to your EJS template and render it
+                res.render('admin-index-subject', { data: results, teachers: teacherResults, admin_id: req.session.admin_id });
+            });
         });
     });
 };
+
 
