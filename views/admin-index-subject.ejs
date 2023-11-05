@@ -94,11 +94,11 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Teacher:</label>
                             <select name="teacherid" id="teacherid" class="form-select" required>
-                                <% data.forEach((teacher)=> { %>
+                                <% teachers.forEach((teacher) => { %>
                                     <option value="<%= teacher.teacherid %>">
-                                        <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
+                                        <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname + (teacher.suffix && teacher.suffix.toLowerCase() !== 'null' ? ' ' + teacher.suffix : '') %>
                                     </option>
-                                    <% }); %>
+                                <% }); %>
                             </select>
                         </div>
                         <div class="mb-3">
