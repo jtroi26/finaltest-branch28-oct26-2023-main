@@ -112,27 +112,79 @@ exports.postCreateStudentManual = (req, res) => {
 };
 
 
-
+// function uploadCsv(filePath, callback) {
+//     const stream = fs.createReadStream(filePath);
+//     const csvData = [];
+//     const fileStream = fastCsv.parse({ headers: true }).on('data', (data) => {
+//         csvData.push(data);
+//     }).on('end', () => {
+//         const connection = mysql.createPool(conn);
+//         const query = 'INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname) VALUES ?';
+//         const values = csvData.map((row) => [row.studentID, row.firstname, row.middlename, row.lastname, row.suffix, row.sectionname]);
+//         connection.query(query, [values], (error) => {
+//             connection.end(); // Close the connection
+//             if (error) {
+//                 console.error(error);
+//             }
+//             callback();
+//         });
+//     });
+//     stream.pipe(fileStream);
+// }
 function uploadCsv(filePath, callback) {
     const stream = fs.createReadStream(filePath);
     const csvData = [];
+    const connection = mysql.createPool(conn);
+
     const fileStream = fastCsv.parse({ headers: true }).on('data', (data) => {
         csvData.push(data);
     }).on('end', () => {
-        const connection = mysql.createPool(conn);
-        const query = 'INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname) VALUES ?';
-        const values = csvData.map((row) => [row.studentID, row.firstname, row.middlename, row.lastname, row.suffix, row.sectionname]);
-        connection.query(query, [values], (error) => {
-            connection.end(); // Close the connection
+        connection.getConnection((error, conn) => {
             if (error) {
                 console.error(error);
+                return;
             }
-            callback();
+
+            const query = 'INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status) VALUES ?';
+            const values = csvData.map((row) => [
+                row.studentID, row.firstname, row.middlename, row.lastname, row.suffix, row.sectionname, row.dateEnrolled, row.status
+            ]);
+
+            // Execute the first SQL query to insert data into the students table
+            conn.query(query, [values], (err) => {
+                if (err) {
+                    console.error('Error inserting data into students:', err);
+                    conn.release(); // Release the connection
+                } else {
+                    // SQL1 was successful, now proceed with SQL2
+                    const studentUserLogins = csvData.map((row) => ({
+                        studentID: row.studentID,
+                        studentUserName: generateUserLogin(row.firstname, row.middlename, row.lastname),
+                        studentPassword: generatePassword()
+                    }));
+
+                    const sql2 = 'INSERT INTO studentlogins (studentID, studentUserName, studentPassword) VALUES ?';
+                    const sql2Values = studentUserLogins.map((login) => [
+                        login.studentID, login.studentUserName, login.studentPassword
+                    ]);
+
+                    // Execute the second SQL query to insert data into the studentlogins table
+                    conn.query(sql2, [sql2Values], (err) => {
+                        if (err) {
+                            console.error('Error inserting data into studentlogins:', err);
+                        } else {
+                            console.log('Data inserted successfully into students and studentlogins');
+                        }
+                        conn.release(); // Release the connection
+                        callback();
+                    });
+                }
+            });
         });
     });
+
     stream.pipe(fileStream);
 }
-
 function generateUserLogin(firstName, middleName, lastName) {
     // Create the user login by taking the first letter of the first name, middle name, and the full last name
     const userLogin = (

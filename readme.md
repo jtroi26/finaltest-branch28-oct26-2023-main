@@ -95,3 +95,4 @@ branch 61 - created view page for student details
 branch 62 - created edit page for student details
 branch 63 - created delete function for student details
 branch 64 - created another form for student for student details
+branch 65 - modified the csv upload to also generate student login data
