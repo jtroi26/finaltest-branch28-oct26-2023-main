@@ -30,9 +30,9 @@ localhost:3000/teacher/view-subject/:id = subject view teacher side
 
 mga wala pang design
 
-/admin/view-subject/GenMath-11
-/admin/edit-subject/GenMath-11
-/admin/edit-section/3
+/admin/view-subject/:id
+/admin/edit-subject/:id
+/admin/edit-section/:id
 /admin/index-teacher
 /admin/create-teacher-account
 /admin/edit/teacher-account/:id
@@ -43,13 +43,29 @@ mga wala pang design
 /teacher/announcement/view/:id
 /teacher/announcement/edit/:id
 /teacher/lesson/modules
-/teacher/lesson/view-lesson/1
-/teacher/lesson/edit-lesson/1
+/teacher/lesson/view-lesson/:id
+/teacher/lesson/edit-lesson/:id
 localhost:3000/admin/create/student 
 localhost:3000/admin/index/student 
 localhost:3000/admin/view/student/:id
 localhost:3000/admin/edit/student/:id
 
+branch 1  - created admin login and dashboard
+branch 2  - created student login and dashboard
+branch 3  - created teacher login and dashboard
+branch 4  - modified admin login and dashboard
+branch 5  - subject create page was done
+branch 6  - index page for all subject was created
+branch 7  - corrected all routes
+branch 8  - optimized version in fetching data for admin/index/subject
+branch 9  - added visibility in the create subject form
+branch 10 - created a view function for the subject
+branch 11 - created delete function for admin-subject
+branch 12 - created edit function, post function not usable
+branch 13 - modified the sql to concat the teacher name
+branch 14 - updated the database and other functions
+branch 15 - updated edit form
+branch 16 - edit function working
 branch 17 - create for section not working
 branch 18 - create section working
 branch 19 - index section created and working
@@ -62,7 +78,10 @@ branch 25 - edited view-section table
 branch 26 - updated controller for teacher login, and added inputfield for teacherlogin
 branch 27 - updated login controller on github
 branch 28 - updated readme
-
+branch 29 - createad a console.log to verify the data that needs to be placed in the form
+branch 30 - create teacher account for admin
+branch 31 - create-department for admin
+branch 32 - index page for admin-departments
 branch 33 - teacher create admin
 branch 34 - teacher index page
 branch 35 - teacher details page
