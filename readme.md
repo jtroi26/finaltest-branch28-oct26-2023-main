@@ -9,6 +9,7 @@ npm i express-rate-limit
 npm i multer
 npm i fs
 npm i fast-csv
+
 import finalcapstone.sql
 
 
@@ -88,3 +89,6 @@ branch 56 - created view announcement page for teacher side
 branch 57 - created edit announcement page for teacher side
 branch 58 - updated sql constraints, edited edit section & index section & index subject controller, and edited edit-section & index-subject ejs 
 branch 59 - created admin create student list by uploading a csv file.
+
+
+branch 5 design - /teacher/view-subject/ , Announctment, Lesson Modules design was added. check the css for css compatability.

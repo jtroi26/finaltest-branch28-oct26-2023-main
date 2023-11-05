@@ -29,6 +29,7 @@ exports.getSubjectModules = (req, res) => {
     const subjectid = req.session.subjectid;
     const subjectname = req.session.subjectname;
     const sectionname = req.session.sectionname;
+    const teacherid = req.session.teacherid;
 
     // Define placeholders for sectionname and subjectname
     const values = [sectionname, subjectname];
@@ -67,10 +68,13 @@ exports.getSubjectModules = (req, res) => {
                                         subjectid,
                                         subjectname,
                                         sectionname,
+                                        teacherid,
+                                        
                                         firstQuarterLessons: firstQuarterResults,
                                         secondQuarterLessons: secondQuarterResults,
                                         thirdQuarterLessons: thirdQuarterResults,
                                         fourthQuarterLessons: fourthQuarterResults,
+                                        
                                     });
                                 }
                             });
