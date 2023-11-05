@@ -10,7 +10,8 @@ const conn = {
 exports.getIndexTeacherPage = (req, res) => {
     const connection = mysql.createConnection(conn);
 
-    const sql = `SELECT id, teacherid, firstname, middlename, lastname, suffix, department, visibility FROM teacherdetails`;
+    const sql = `SELECT id, teacherid, firstname, middlename, lastname, suffix, department, visibility FROM teacherdetails;`
+    const sqlDepartment = `SELECT id, department from departments WHERE visibility = 'Visible';`
 
     connection.query(sql, (err, results) => {
         if (err) {
@@ -34,10 +35,22 @@ exports.getIndexTeacherPage = (req, res) => {
                 };
             });
 
-            connection.end(); // Close the database connection
+            // Now, fetch the departments
+            connection.query(sqlDepartment, (err, departmentResults) => {
+                if (err) {
+                    console.error("Error retrieving departments:", err);
+                    connection.end(); // Close the database connection
+                    // Handle the error, e.g., by sending an error response
+                    res.status(500).json({ error: "An error occurred while retrieving data." });
+                } else {
+                    const departments = departmentResults.map((dept) => dept.department);
 
-            // Render the HTML page with the teacher data
-            res.render('admin-index-teacher', { teacherData });
+                    connection.end(); // Close the database connection
+
+                    // Render the HTML page with the teacher and department data
+                    res.render('admin-index-teacher', { teacherData, departments });
+                }
+            });
         }
     });
 };

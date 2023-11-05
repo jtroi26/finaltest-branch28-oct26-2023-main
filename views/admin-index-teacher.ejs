@@ -67,17 +67,18 @@
                                 <div class="mb-3">
                                     <label for="department" class="form-label">Department</label>
                                     <select name="department" id="department" class="form-select">
-                                        <% for (let departmentObject of departments) { %>
-                                            <option value="<%= departmentObject.department %>">
-                                                <%= departmentObject.department %>
+                                        <option value="" selected disabled></option>
+                                        <% for (let department of departments) { %>
+                                            <option value="<%= department %>">
+                                                <%= department %>
                                             </option>
-                                            <% } %>
+                                        <% } %>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="visibility" class="form-label">Visibility</label>
                                     <select name="visibility" id="visibility" class="form-select">
-                                        <option value="" default selected disabled>Choose an Option</option>
+                                        <option value="" default selected disabled></option>
                                         <option value="Visible">Visible</option>
                                         <option value="Invisible">Invisible</option>
                                     </select>
@@ -104,7 +105,7 @@
                                 <div class="mb-3">
                                     <label for="suffix" class="form-label">Suffix</label>
                                     <select name="suffix" id="suffix" class="form-select">
-                                        <option value="" default disabled selected>Choose an option</option>
+                                        <option value="" disabled selected></option>
                                         <option value="Sr.">Senior</option>
                                         <option value="Jr.">Junior</option>
                                         <option value="III">III</option>
@@ -118,7 +119,6 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Create Account</button>
                         </div>
                     </form>

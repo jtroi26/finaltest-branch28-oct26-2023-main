@@ -229,7 +229,7 @@
                                     
                                     <div class="mb-3">
                                         <label for="sectionName<%= row.subjectid %>" class="form-label">Section</label>
-                                        <select name="sectionname" id="sectionName<%= row.subjectid %>" class="form-select" required>x
+                                        <select name="sectionname" id="sectionName<%= row.subjectid %>" class="form-select" required>
                                             <% data.forEach((section) => { %>
                                                 <option value="<%= section.sectionname %>" 
                                                     <%= section.sectionname === row.sectionname ? 'selected' : '' %>>
