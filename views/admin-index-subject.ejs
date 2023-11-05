@@ -84,6 +84,7 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Section:</label>
                             <select name="sectionname" id="sectionname" class="form-select" required>
+                                <option value="" disabled selected>Choose an option</option>
                                 <% data.forEach((section)=> { %>
                                     <option value="<%= section.sectionname %>">
                                         <%= section.sectionname %>
@@ -94,11 +95,12 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Teacher:</label>
                             <select name="teacherid" id="teacherid" class="form-select" required>
-                                <% teachers.forEach((teacher) => { %>
+                                <option value="" disabled selected>Choose an option</option>
+                                <% teachers.forEach((teacher)=> { %>
                                     <option value="<%= teacher.teacherid %>">
-                                        <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname + (teacher.suffix && teacher.suffix.toLowerCase() !== 'null' ? ' ' + teacher.suffix : '') %>
+                                        <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
                                     </option>
-                                <% }); %>
+                                    <% }); %>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -213,44 +215,59 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form action="/admin/edit-subject/<%= row.subjectid %>" method="post">
                                     <div class="mb-3">
-                                        <label for="subjectId<%= row.subjectid %>" class="form-label">Subject
-                                            ID:</label>
-                                        <input type="text" class="form-control" id="subjectId<%= row.subjectid %>"
-                                            value="<%= row.subjectid %>">
+                                        <label for="subjectid<%= row.subjectid %>" class="form-label">Subject ID</label>
+                                        <input type="text" class="form-control" name="subjectname" id="subjectid<%= row.subjectid %>"
+                                            value="<%= row.subjectid %>" required placeholder="Science for example">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="subjectName<%= row.subjectid %>" class="form-label">Subject
-                                            Name</label>
-                                        <input type="text" class="form-control" id="subjectName<%= row.subjectid %>"
-                                            value="<%= row.subjectname %>">
+                                        <label for="subjectName<%= row.subjectid %>" class="form-label">Subject Name</label>
+                                        <input type="text" class="form-control" name="subjectname" id="subjectName<%= row.subjectid %>"
+                                            value="<%= row.subjectname %>" required placeholder="Science for example">
                                     </div>
+                                    
                                     <div class="mb-3">
-                                        <label for="sectionname" class="form-label">Section</label>
-                                        <select name="sectionname" class="form-select" id="sectionname" required>
-
+                                        <label for="sectionName<%= row.subjectid %>" class="form-label">Section</label>
+                                        <select name="sectionname" id="sectionName<%= row.subjectid %>" class="form-select" required>x
+                                            <% data.forEach((section) => { %>
+                                                <option value="<%= section.sectionname %>" 
+                                                    <%= section.sectionname === row.sectionname ? 'selected' : '' %>>
+                                                    <%= section.sectionname %>
+                                                </option>
+                                            <% }); %>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="teacherid" class="form-label">Teacher</label>
-                                        <select name="teacherid" class="form-select" id="teacherid">
 
-                                    </div>
                                     <div class="mb-3">
-                                        <label for="visibility<%= row.subjectid %>" class="form-label">Visibility</label><br>
+                                        <label for="teacherId<%= row.subjectid %>" class="form-label">Teacher</label>
+                                        <select name="teacherid" id="teacherId<%= row.subjectid %>" class="form-select">
+                                            <% teachers.forEach((teacher) => { %>
+                                                <option value="<%= teacher.teacherid %>"
+                                                    <%= teacher.teacherid === row.teacherid ? 'selected' : '' %>>
+                                                    <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
+                                                </option>
+                                            <% }); %>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="visibility<%= row.subjectid %>" class="form-label">Visibility</label>
                                         <select name="visibility" id="visibility<%= row.subjectid %>" class="form-select">
-                                            <option value="" disabled selected>Choose an Option</option>
-                                            <option value="Visible" <%= subject.visibility === "Visible" ? 'selected' : '' %>>Visible</option>
-                                            <option value="Invisible" <%= subject.visibility === "Invisible" ? 'selected' : '' %>>Invisible</option>
+                                            <option value="Visible" <%= row.visibility === 'Visible' ? 'selected' : '' %>>Visible</option>
+                                            <option value="Invisible" <%= row.visibility === 'Invisible' ? 'selected' : '' %>>Invisible</option>
                                         </select>
+                                    </div>
 
-                                    <button type="submit" class="btn btn-warning">Update</button>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-warning">Update</button>
+                                      </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <% }); %>
 
         </tbody>
