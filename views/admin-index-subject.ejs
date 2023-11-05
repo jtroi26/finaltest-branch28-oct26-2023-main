@@ -84,7 +84,7 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Section:</label>
                             <select name="sectionname" id="sectionname" class="form-select" required>
-                                <% data.sections.forEach((section)=> { %>
+                                <% data.forEach((section)=> { %>
                                     <option value="<%= section.sectionname %>">
                                         <%= section.sectionname %>
                                     </option>
@@ -94,7 +94,7 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Teacher:</label>
                             <select name="teacherid" id="teacherid" class="form-select" required>
-                                <% data.teachers.forEach((teacher)=> { %>
+                                <% data.forEach((teacher)=> { %>
                                     <option value="<%= teacher.teacherid %>">
                                         <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
                                     </option>

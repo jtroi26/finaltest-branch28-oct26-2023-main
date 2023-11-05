@@ -67,7 +67,11 @@
                                 <div class="mb-3">
                                     <label for="department" class="form-label">Department</label>
                                     <select name="department" id="department" class="form-select">
-                                        <!-- Options will be loaded here -->
+                                        <% for (let departmentObject of departments) { %>
+                                            <option value="<%= departmentObject.department %>">
+                                                <%= departmentObject.department %>
+                                            </option>
+                                            <% } %>
                                     </select>
                                 </div>
                                 <div class="mb-3">
