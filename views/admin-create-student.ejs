@@ -6,3 +6,54 @@
     <input type="file" name="csvfile" id="csvfile" accept=".csv">
     <button type="submit">Upload CSV</button>
 </form>
+
+
+<hr>
+
+<h1>or create manually</h1>
+
+<form action="/admin/create/student" method="post">
+    <label for="">Student ID</label> <br>
+    <input type="text" name="studentID" id="studentID"> <br>
+
+    <label for="">First Name</label><br>
+        <input type="text" name="firstname" id="firstname" oninput="generateUserLogin()"><br>
+
+        <label for="">Middle Name</label><br>
+        <input type="text" name="middlename" id="middlename"oninput="generateUserLogin()"><br>
+
+        <label for="">Last Name</label><br>
+        <input type="text" name="lastname" id="lastname"oninput="generateUserLogin()"><br>
+
+        <label for="">Suffix</label><br>
+    <select name="suffix" id="suffix">
+        <option value="" default disabled selected>Choose an option</option>
+        <option value="Sr.">Senior</option>
+        <option value="Jr.">Junior</option>
+        <option value="III">III</option>
+        <option value="IV">IV</option>
+        <option value="V">V</option>
+        <option value="VI">VI</option>
+        <option value="">none</option>
+    </select><br>
+
+    <label for="">Section</label><br>
+    <select name="sectionname" id="sectionname">
+        <% sections.forEach((section) => { %>
+            <option value="<%= section.sectionname %>"><%= section.sectionname %></option>
+        <% }); %>
+    </select><br><br>
+
+    <label for="">Enrollment Date</label><br><br>
+    <input type="datetime-local" name="dateEnrolled"><br>
+
+    <label for="">Enrollment Status</label><br>
+    <select name="status" id="status">
+        <option value="" default selected disabled>Choose an Option</option>
+        <option value="Enrolled">Enrolled</option>
+        <option value="Unenrolled">Unenrolled</option>
+    </select><br>
+
+    
+    <button type="submit">Create Student Account</button>    
+</form>

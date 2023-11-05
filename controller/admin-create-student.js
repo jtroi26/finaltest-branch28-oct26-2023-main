@@ -23,10 +23,35 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 exports.getCreateStudent = (req, res) => {
-    res.render('admin-create-student');
+    const sql = `SELECT id, sectionname FROM sections WHERE visibility = 'Visible';`;
+    const connection = mysql.createConnection(conn);
+
+    connection.connect((err) => {
+        if (err) {
+            console.error('Error connecting to the database:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+
+        // Execute the SQL query to retrieve data
+        connection.query(sql, (err, results) => {
+            if (err) {
+                console.error('Error:', err);
+                connection.end(); // Close the database connection in case of an error
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+
+            connection.end(); // Close the database connection
+
+            // Pass the data to your EJS template and render it
+            res.render('admin-create-student', { sections: results });
+        });
+    });
 };
 
-exports.postCreateStudent = (req, res) => {
+
+exports.postCreateStudentUpload = (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded');
     }
@@ -39,6 +64,54 @@ exports.postCreateStudent = (req, res) => {
 
     uploadCsv(filePath, uploadCallback);
 };
+
+exports.postCreateStudentManual = (req, res) => {
+    const { studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status } = req.body;
+    const newDate = new Date(dateEnrolled).toISOString().slice(0, 19).replace("T", " ");
+
+    const studentLogin = generateUserLogin(firstname, middlename, lastname);
+    const studentPassword = generatePassword();
+
+    const sql1 = `INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status) VALUES (?,?,?,?,?,?,?,?);`;
+    const values1 = [studentID, firstname, middlename, lastname, suffix, sectionname, newDate, status];
+
+    const sql2 = `INSERT INTO studentlogins (studentID, studentUserName, userPassword) VALUES (?,?,?);`;
+    const values2 = [studentID, studentLogin, studentPassword];
+
+    const connection = mysql.createConnection(conn);
+
+    connection.connect((err) => {
+        if (err) {
+            console.error('Error connecting to the database:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+
+        // Execute the first SQL query to insert data into the students table
+        connection.query(sql1, values1, (err, results1) => {
+            if (err) {
+                console.error('Error inserting data into students:', err);
+                res.status(500).send('Error inserting data into students');
+                connection.end();
+                return res.redirect('/admin/create/student'); // Redirect the user back to the create student page
+            }
+
+            // Execute the second SQL query to insert data into the studentlogins table
+            connection.query(sql2, values2, (err, results2) => {
+                if (err) {
+                    console.error('Error inserting data into studentlogins:', err);
+                    res.status(500).send('Error inserting data into studentlogins');
+                } else {
+                    res.redirect('/admin/create/student');
+                }
+
+                connection.end(); // Close the database connection
+            });
+        });
+    });
+};
+
+
 
 function uploadCsv(filePath, callback) {
     const stream = fs.createReadStream(filePath);
@@ -58,4 +131,31 @@ function uploadCsv(filePath, callback) {
         });
     });
     stream.pipe(fileStream);
+}
+
+function generateUserLogin(firstName, middleName, lastName) {
+    // Create the user login by taking the first letter of the first name, middle name, and the full last name
+    const userLogin = (
+        (firstName.split(' ')[0].charAt(0).toLowerCase() || '') +
+        (firstName.split(' ')[1] ? firstName.split(' ')[1].charAt(0).toLowerCase() : '') +
+        middleName.charAt(0).toLowerCase() +
+        lastName.toLowerCase()
+    );
+
+    // Combine the "t" and user login to create the final user login
+    return "DAZSMA" + "-" + userLogin;
+}
+
+function generatePassword() {
+    const length = 12; // Adjust the password length as needed
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*?+";
+    let password = "";
+
+    while (password.length < length) {
+        const charIndex = Math.floor(Math.random() * charset.length);
+        const char = charset.charAt(charIndex);
+        password += char;
+    }
+
+    return password;
 }
