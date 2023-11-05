@@ -46,12 +46,13 @@
 
       <% if (studentID) { %>
 
-        <form action="/logout" method="post">
-
-          <a class="nav_link" type="submit"><button><i class='bx bx-log-out nav_icon'></i></button> <span
-                class="nav_name">SignOut</span> </a>
-        </form>
-
+        <form id="logoutForm" action="/logout" method="post">
+          <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
+              <i class='bx bx-log-out nav_icon'></i>
+              <span class="nav_name">SignOut</span>
+          </a>
+      </form>
+      
         <% } else { %>
           <a href="/" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
           <% } %>

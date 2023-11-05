@@ -2,11 +2,11 @@
 
 <form action="/teacher/announcement/create" method="post">
 
-    <label for="">Announcement Title</label><br>
+    <label for="announcementTitle">Announcement Title</label><br>
     <input type="text" name="announcementTitle" id="announcementTitle"><br><br>
 
-    <label for="">Announcement Content</label><br>
-    <input type="text" name="announcement" id="announcement"><br><br>
+    <label for="announcement">Announcement Content</label><br>
+    <textarea name="announcement" id="announcement" rows="4" cols="50"></textarea><br><br>
 
     <select name="visibility" id="visibility">
         <option value="" default selected disabled>Select Announcement Visibility</option>
