@@ -1,0 +1,20 @@
+<h1>lessons of </h1>
+
+<table border="1">
+    <tr>
+        <th>Lesson ID</th>
+        <th>Lesson Title</th>
+        <th>Quarter Period</th>
+        <th>Action</th>
+    </tr>
+    <% lessonsData.forEach(function(lesson) { %>
+        <tr>
+            <td><%= lesson.lessonID %></td>
+            <td><%= lesson.lessonTitle %></td>
+            <td><%= lesson.quarterperiod %></td>
+            <td>
+                <a href="/student/view/lesson/<%= lesson.id %>">View Lesson</a>
+            </td>
+        </tr>
+    <% }); %>
+</table>

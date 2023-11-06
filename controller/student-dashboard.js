@@ -14,6 +14,7 @@ exports.getStudentDashboard = (req, res) => {
     const sql = `SELECT students.studentID, 
     CONCAT(students.firstname, ' ', students.middlename, ' ', students.lastname, ' ', students.suffix) AS full_name,
     students.sectionname, 
+    subjects.id,
     subjects.subjectid, 
     subjects.subjectname, 
     subjects.teacherid
@@ -31,6 +32,7 @@ exports.getStudentDashboard = (req, res) => {
         if (error) {
             console.error(error);
         } else {
+            console.log(results);
             res.render('student-dashboard', {
                 studentfullname,
                 studentfirstname: req.session.studentfirstname,

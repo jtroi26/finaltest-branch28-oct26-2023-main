@@ -68,6 +68,10 @@ var teacherViewAnnouncement = require('./routes/teacher-view-announcement');
 var teacherEditAnnouncement = require('./routes/teacher-edit-announcement');
 var teacherDeleteAnnouncement = require('./routes/teacher-delete-announcement');
 
+// student lesson view
+var studentSubjectViewRouter = require('./routes/student-view-subject');
+var studentLessonsViewRouter = require('./routes/student-view-lessons');
+
 var app = express();
 
 const oneDay = 1000 * 60 * 60 * 24;
@@ -159,7 +163,9 @@ app.use('/', teacherDeleteAnnouncement);
 app.use('/', teacherViewAnnouncement);
 app.use('/', teacherEditAnnouncement);
 
-
+// student lesson
+app.use('/', studentSubjectViewRouter);
+app.use('/', studentLessonsViewRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
