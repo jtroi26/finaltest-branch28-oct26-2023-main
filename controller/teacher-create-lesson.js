@@ -14,7 +14,7 @@ exports.getLessonCreatePage = (req, res) => {
     const sectionname = req.session.sectionname;
     
 
-   res.render('teacher-create-lesson', {subjectid, subjectname, sectionname});
+   res.render('teacher-create-lesson', {subjectid, subjectname, sectionname, teacherid: req.session.teacherid});
 };
 
 exports.postLessonCreatePage= (req, res) => {

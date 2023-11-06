@@ -27,9 +27,10 @@ exports.getAnnouncementPageView = (req, res) => {
             } else {
                 // Announcement data is available in 'results[0]'
                 const announcementData = results[0];
+
                 
                 // Render the 'teacher-view-announcement' template and pass the announcement data
-                res.render('teacher-view-announcement', { announcement: announcementData });
+                res.render('teacher-view-announcement', { announcement: announcementData, teacherid: req.session.teacherid });
                 console.log(announcementData);
                 // Close the database connection
                 connection.end();

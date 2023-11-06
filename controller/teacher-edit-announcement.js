@@ -30,7 +30,7 @@ exports.getEditAnnouncementForm = (req, res) => {
                 const announcementData = results[0];
                 console.log(announcementData);
                 // Render the 'teacher-edit-announcement' template and pass the announcement data
-                res.render('teacher-edit-announcement', { announcement: announcementData });
+                res.render('teacher-edit-announcement', { announcement: announcementData, teacherid: req.session.teacherid });
 
                 // Close the database connection
                 connection.end();
