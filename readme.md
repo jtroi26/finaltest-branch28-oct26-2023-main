@@ -116,3 +116,4 @@ branch 63 - created delete function for student details
 branch 64 - created another form for student for student details
 branch 65 - modified the csv upload to also generate student login data modified student dashboard page to display available subjects, and create-student logic
 branch 66 - view lessons now available
+branch 67 - view lesson now available

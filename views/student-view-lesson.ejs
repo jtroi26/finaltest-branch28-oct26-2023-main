@@ -1,0 +1,6 @@
+<h1>Lesson Title: <%= lessonData.lessonTitle %></h1>
+
+<% for (let i = 1; i <= 10; i++) { %>
+    <h1>Section <%= i %>: <%= lessonData['section' + i] %></h1>
+<% } %>
+

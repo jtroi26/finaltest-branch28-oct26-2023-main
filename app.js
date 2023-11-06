@@ -71,6 +71,7 @@ var teacherDeleteAnnouncement = require('./routes/teacher-delete-announcement');
 // student lesson view
 var studentSubjectViewRouter = require('./routes/student-view-subject');
 var studentLessonsViewRouter = require('./routes/student-view-lessons');
+var studentLessonViewRouter = require('./routes/student-view-lesson');
 
 var app = express();
 
@@ -166,6 +167,7 @@ app.use('/', teacherEditAnnouncement);
 // student lesson
 app.use('/', studentSubjectViewRouter);
 app.use('/', studentLessonsViewRouter);
+app.use('/', studentLessonViewRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
