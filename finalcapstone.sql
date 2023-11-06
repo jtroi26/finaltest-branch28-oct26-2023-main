@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2023 at 05:21 PM
+-- Generation Time: Nov 06, 2023 at 10:48 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -205,7 +205,12 @@ CREATE TABLE `studentlogins` (
 --
 
 INSERT INTO `studentlogins` (`id`, `studentID`, `studentUserName`, `studentPassword`) VALUES
-(1, '2020-0001', 'jrmercado', 'password');
+(1, NULL, 'jrmercado', 'password'),
+(2, 'DAZ20231111', 'DAZSMA-ceapastrana', 'nfXQPVCn^P3g'),
+(7, 'DAZ20171525', 'DAZSMA-jrdmercado', '3V7$m*PMw$Tg'),
+(8, 'DAZ20230015', 'DAZSMA-ceapastrana', '9lvlIY9BMfQP'),
+(9, 'DAZ20201015', 'DAZSMA-jcrico', 'r?!M0BUWxsjj'),
+(10, 'DAZ20181005', 'DAZSMA-mcramos', 'VXhvn%w#jWIb');
 
 -- --------------------------------------------------------
 
@@ -233,7 +238,12 @@ INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`
 (2, 'DAZ20171522', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
 (3, 'DAZ20230010', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
 (4, 'DAZ20201010', 'Justroilon', 'C.', 'Rico', 'VI', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
-(5, 'DAZ20181001', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled');
+(5, 'DAZ20181001', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(8, 'DAZ20231111', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'none', 'X - St. Paul', '2023-11-06 01:00:00', 'Enrolled'),
+(13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'X - St. Paul', '2023-11-04 21:54:33', 'Enrolled'),
+(14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'IX - St. Thomas', '2023-11-04 21:54:33', 'Unenrolled'),
+(15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'VIII', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VIII - St. Elizabeth', '2023-11-04 21:54:33', 'Unenrolled');
 
 -- --------------------------------------------------------
 
@@ -480,13 +490,13 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `studentlogins`
 --
 ALTER TABLE `studentlogins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `subjects`
