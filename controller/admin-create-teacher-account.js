@@ -20,7 +20,7 @@ exports.getTeacherCreatePage = (req, res) => {
             const departments = results; // Assuming the results contain an array of department names
             // Render the 'admin-create-teacher-account' view and pass the 'departments' to it
             // console.log(departments);
-            res.render('admin-create-teacher-account', { departments });
+            res.render('admin-index-teacher', { departments });
         }
         connection.end();
     });

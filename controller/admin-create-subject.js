@@ -50,7 +50,7 @@ exports.getSubjectCreatePage = (req, res) => {
                 connection.end(); // Close the database connection
 
                 // Pass the data to your EJS template and render it
-                res.render('admin-create-subject', { data });
+                res.render('admin-index-subject', { data });
             })
             .catch((err) => {
                 console.error('Error:', err);

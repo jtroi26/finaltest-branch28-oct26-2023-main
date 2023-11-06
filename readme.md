@@ -94,3 +94,5 @@ branch 60 - created index page for student details
 branch 61 - created view page for student details
 branch 62 - created edit page for student details
 branch 63 - created delete function for student details
+
+branchdesign_9 - done designing admin-subject, admin-section, admin-department

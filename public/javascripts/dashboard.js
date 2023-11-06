@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 // show navbar
                 nav.classList.toggle('show')
                 // change icon
-                toggle.classList.toggle('bx-x')
+                toggle.classList.toggle('fa-x')
                 // add padding to body
                 bodypd.classList.toggle('body-pd')
                 // add padding to header
@@ -36,20 +36,3 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // Your code to run since DOM is loaded and ready
 });
-function toggleNotifications() {
-    var dropdown = document.getElementById("notificationDropdown");
-    dropdown.classList.toggle("show");
-}
-
-window.onclick = function (event) {
-    if (!event.target.matches('.notification-container')) {
-        var dropdowns = document.getElementsByClassName("notification-dropdown");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}

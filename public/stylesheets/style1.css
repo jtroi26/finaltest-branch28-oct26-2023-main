@@ -39,10 +39,8 @@
     cursor: pointer
   }
   
-  .header_notify {
-    color: var(--first-color-light);
-    font-size: 1.5rem;
-    cursor: pointer
+  .no-underline {
+    text-decoration: none !important;
   }
   
   .l-navbar {
