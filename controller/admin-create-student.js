@@ -75,7 +75,7 @@ exports.postCreateStudentManual = (req, res) => {
     const sql1 = `INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status) VALUES (?,?,?,?,?,?,?,?);`;
     const values1 = [studentID, firstname, middlename, lastname, suffix, sectionname, newDate, status];
 
-    const sql2 = `INSERT INTO studentlogins (studentID, studentUserName, userPassword) VALUES (?,?,?);`;
+    const sql2 = `INSERT INTO studentlogins (studentID, studentUserName, studentPassword) VALUES (?,?,?);`;
     const values2 = [studentID, studentLogin, studentPassword];
 
     const connection = mysql.createConnection(conn);
@@ -101,15 +101,19 @@ exports.postCreateStudentManual = (req, res) => {
                 if (err) {
                     console.error('Error inserting data into studentlogins:', err);
                     res.status(500).send('Error inserting data into studentlogins');
-                } else {
-                    res.redirect('/admin/create/student');
+                    connection.end();
+                    return res.redirect('/admin/create/student'); // Redirect the user back to the create student page
                 }
+
+                // Both queries were successful, so redirect the user to a success page or take further action
+                res.redirect('/admin/index/student'); // Change this URL to your desired success page
 
                 connection.end(); // Close the database connection
             });
         });
     });
 };
+
 
 
 // function uploadCsv(filePath, callback) {

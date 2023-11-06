@@ -28,7 +28,7 @@ exports.postStudentLogin = [loginLimiter, (req, res) => {
     const { studentID, studentUserName, studentPassword } = req.body;
 
     const sql = `
-        SELECT s.studentID, s.firstname, s.middlename, s.lastname, s.sectionname
+        SELECT s.studentID, s.firstname, s.middlename, s.lastname, s.suffix, s.sectionname
         FROM studentlogins AS sl
         INNER JOIN students AS s ON sl.studentID = s.studentID
         WHERE sl.studentID = ? AND sl.studentUserName = ? AND sl.studentPassword = ?
@@ -45,14 +45,23 @@ exports.postStudentLogin = [loginLimiter, (req, res) => {
                 // Reset the login attempts counter on successful login
 
                 // Make sure "section" is included in the SQL query
+                req.session.studentID = studentID;
+               
                 const firstname = results[0].firstname;
                 req.session.studentfirstname = firstname;
+                 
                 const middlename = results[0].middlename;
                 req.session.studentmiddlename = middlename;
+               
                 const lastname = results[0].lastname;
                 req.session.studentlastname = lastname;
                 // Make sure "section" is included in the SQL query
-                req.session.studentID = studentID;
+                
+                const section = results[0].sectionname;
+                req.session.sectionname = section;
+
+                const suffix = results[0].suffix;
+                req.session.suffix = suffix;
 
                 // Login successful
                 // Render the student dashboard EJS template with user data
