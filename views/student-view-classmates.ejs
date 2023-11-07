@@ -1,0 +1,12 @@
+<h1>Classmates from <%= sectionname %></h1>
+
+<ol>
+      <% for (let i = 0; i < classmates.length; i++) { %>
+      <li>
+          <strong>Student ID:</strong> <%= classmates[i].studentID %><br>
+          <strong>Student Full Name:</strong> <%= classmates[i].full_name %><br>
+          <strong>Section Name:</strong> <%= classmates[i].sectionname %><br>
+      </li>
+      <hr>
+      <% } %>
+  </ol>
