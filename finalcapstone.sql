@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2023 at 10:48 AM
+-- Generation Time: Nov 07, 2023 at 04:45 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -126,7 +126,8 @@ CREATE TABLE `lessons` (
 
 INSERT INTO `lessons` (`id`, `lessonID`, `lessonTitle`, `subjectname`, `teacherid`, `quarterperiod`, `sectionname`, `section1`, `section2`, `section3`, `section4`, `section5`, `section6`, `section7`, `section8`, `section9`, `section10`, `dateCreated`, `dateUpdated`, `visibility`) VALUES
 (5, 1, 'Testing Lesson 1', 'Sex Education for Teens', '10420012023', 'First Quarter', 'X - St. Paul', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-03 23:10:20', '2023-11-03 23:10:20', 'Visible'),
-(6, 1, 'Testing Lesson 1', 'Algebra2', '2020-069', 'First Quarter', 'VIII - St. Anne', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-04 23:09:21', '2023-11-04 23:09:21', 'Visible');
+(6, 1, 'Testing Lesson 1', 'Algebra2', '2020-069', 'First Quarter', 'VIII - St. Anne', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-04 23:09:21', '2023-11-04 23:09:21', 'Visible'),
+(7, 1, 'Testing Lesson 1', 'MATHTEST', '10420012023', 'First Quarter', 'VII - St. Lorenzo', 'This is section 1', 'This is section 2', 'This is section 3', 'This is section 4', 'This is section 5', 'This is section 6', 'This is section 7', 'This is section 8', 'This is section 9', 'This is section 10', '2023-11-06 23:22:26', '2023-11-06 23:22:26', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -190,6 +191,33 @@ INSERT INTO `sections` (`id`, `sectionname`, `visibility`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `studentattendance`
+--
+
+CREATE TABLE `studentattendance` (
+  `id` int(11) NOT NULL,
+  `studentID` varchar(25) DEFAULT NULL,
+  `subjectname` varchar(25) DEFAULT NULL,
+  `sectionname` varchar(50) DEFAULT NULL,
+  `teacherid` varchar(25) DEFAULT NULL,
+  `date` varchar(25) NOT NULL,
+  `quarterperiod` varchar(20) DEFAULT NULL,
+  `attendance` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `studentattendance`
+--
+
+INSERT INTO `studentattendance` (`id`, `studentID`, `subjectname`, `sectionname`, `teacherid`, `date`, `quarterperiod`, `attendance`) VALUES
+(19, 'DAZ20201015', 'MATHTEST', 'VII - St. Lorenzo', '10420012023', 'November 7, 2023', 'First Quarter', 'P'),
+(20, 'DAZ11111111', 'MATHTEST', 'VII - St. Lorenzo', '10420012023', 'November 7, 2023', 'First Quarter', 'r'),
+(21, 'DAZ20201015', NULL, NULL, NULL, 'November 7, 2023', 'First Quarter', 'P'),
+(22, 'DAZ11111111', NULL, NULL, NULL, 'November 7, 2023', 'First Quarter', 'r');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `studentlogins`
 --
 
@@ -205,12 +233,11 @@ CREATE TABLE `studentlogins` (
 --
 
 INSERT INTO `studentlogins` (`id`, `studentID`, `studentUserName`, `studentPassword`) VALUES
-(1, NULL, 'jrmercado', 'password'),
-(2, 'DAZ20231111', 'DAZSMA-ceapastrana', 'nfXQPVCn^P3g'),
 (7, 'DAZ20171525', 'DAZSMA-jrdmercado', '3V7$m*PMw$Tg'),
 (8, 'DAZ20230015', 'DAZSMA-ceapastrana', '9lvlIY9BMfQP'),
 (9, 'DAZ20201015', 'DAZSMA-jcrico', 'r?!M0BUWxsjj'),
-(10, 'DAZ20181005', 'DAZSMA-mcramos', 'VXhvn%w#jWIb');
+(10, 'DAZ20181005', 'DAZSMA-mcramos', 'VXhvn%w#jWIb'),
+(11, 'DAZ11111111', 'DAZSMA-jlsupra', 'xiz7HL6CK4E&');
 
 -- --------------------------------------------------------
 
@@ -235,15 +262,11 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`, `dateEnrolled`, `status`) VALUES
-(2, 'DAZ20171522', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
-(3, 'DAZ20230010', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
-(4, 'DAZ20201010', 'Justroilon', 'C.', 'Rico', 'VI', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
-(5, 'DAZ20181001', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
-(8, 'DAZ20231111', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'none', 'X - St. Paul', '2023-11-06 01:00:00', 'Enrolled'),
 (13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'X - St. Paul', '2023-11-04 21:54:33', 'Enrolled'),
 (14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'IX - St. Thomas', '2023-11-04 21:54:33', 'Unenrolled'),
 (15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'VIII', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
-(16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VIII - St. Elizabeth', '2023-11-04 21:54:33', 'Unenrolled');
+(16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VIII - St. Elizabeth', '2023-11-04 21:54:33', 'Unenrolled'),
+(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Enrolled');
 
 -- --------------------------------------------------------
 
@@ -269,7 +292,8 @@ INSERT INTO `subjects` (`id`, `subjectid`, `subjectname`, `teacherid`, `sectionn
 (5, 'Math-003', 'Geometry for kids', '2020-069', 'X - St. Joseph', 'Visible'),
 (6, 'SexED-101', 'Sex Education for Teens', '10420012023', 'X - St. Paul', 'Visible'),
 (7, 'Math-032', 'Algebra2', '2020-069', 'VIII - St. Anne', 'Visible'),
-(8, 'GenMath-11', 'General Math', '2013-023', 'VII - St. Lorenzo', 'Visible');
+(8, 'GenMath-11', 'General Math', '2013-023', 'VII - St. Lorenzo', 'Visible'),
+(9, 'Math-004', 'MATHTEST', '10420012023', 'VII - St. Lorenzo', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -398,6 +422,17 @@ ALTER TABLE `sections`
   ADD KEY `sectionname` (`sectionname`);
 
 --
+-- Indexes for table `studentattendance`
+--
+ALTER TABLE `studentattendance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `studentID` (`studentID`),
+  ADD KEY `subjectname` (`subjectname`),
+  ADD KEY `sectionname` (`sectionname`),
+  ADD KEY `teacherid` (`teacherid`),
+  ADD KEY `quarterperiod` (`quarterperiod`);
+
+--
 -- Indexes for table `studentlogins`
 --
 ALTER TABLE `studentlogins`
@@ -472,7 +507,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `lessons`
 --
 ALTER TABLE `lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `quarters`
@@ -487,22 +522,28 @@ ALTER TABLE `sections`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT for table `studentattendance`
+--
+ALTER TABLE `studentattendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
 -- AUTO_INCREMENT for table `studentlogins`
 --
 ALTER TABLE `studentlogins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `teacherannouncements`
@@ -546,6 +587,16 @@ ALTER TABLE `lessons`
   ADD CONSTRAINT `lessons_ibfk_2` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `lessons_ibfk_3` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `lessons_ibfk_4` FOREIGN KEY (`quarterperiod`) REFERENCES `quarters` (`quarterperiod`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `studentattendance`
+--
+ALTER TABLE `studentattendance`
+  ADD CONSTRAINT `studentattendance_ibfk_1` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `studentattendance_ibfk_2` FOREIGN KEY (`quarterperiod`) REFERENCES `quarters` (`quarterperiod`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `studentattendance_ibfk_3` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `studentattendance_ibfk_4` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `studentattendance_ibfk_5` FOREIGN KEY (`studentID`) REFERENCES `students` (`studentID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `studentlogins`
