@@ -77,7 +77,7 @@ var studentClassmatesViewRouter = require('./routes/student-view-classmates');
 // teacher view students
 var teacherViewStudents = require('./routes/teacher-view-students');
 var teacherIndexStudentAttendance = require('./routes/teacher-index-attendance');
-
+var hehe;
 
 var app = express();
 
