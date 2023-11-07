@@ -89,6 +89,7 @@
             <b class="nav-link" id="fourth-quarter-tab" data-bs-toggle="tab" href="#fourth-quarter" role="tab" aria-controls="fourth-quarter" aria-selected="false">Fourth Quarter</b>
         </li>
     </ul>
+
     
 
     <div class="tab-content" id="myTabContent">
@@ -101,7 +102,8 @@
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-9 me-auto">
                     <div class="fw-bold"><%= lesson.subjectname %></div>
-                    <%= lesson.lessonTitle %>
+                    
+                    <a href="/teacher/lesson/view-lesson/<%= lesson.id %>"><%= lesson.lessonTitle %></a>
                   </div>
                   <span class="badge bg-primary rounded-pill">14</span>
                 </li>

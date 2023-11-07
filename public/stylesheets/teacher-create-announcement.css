@@ -407,3 +407,7 @@ a:hover {
   background-color: #007bff; /* Background color on hover */
   color: #fff; /* Text color on hover */
 }
+
+.custom-input {
+  width: 100%; /* Adjust the width to your preference */
+}
