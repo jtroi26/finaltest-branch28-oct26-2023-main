@@ -20,6 +20,7 @@ const upload = multer({ storage: storage }); // Create the upload middleware
 router.get('/admin/create/student', adminCreateStudent.getCreateStudent);
 
 // Handle CSV file upload
-router.post('/upload', upload.single('csvfile'), adminCreateStudent.postCreateStudent);
+router.post('/upload', upload.single('csvfile'), adminCreateStudent.postCreateStudentUpload);
+router.post('/admin/create/student', adminCreateStudent.postCreateStudentManual);
 
 module.exports = router;
