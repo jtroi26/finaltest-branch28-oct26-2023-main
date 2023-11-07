@@ -74,6 +74,10 @@ var studentLessonsViewRouter = require('./routes/student-view-lessons');
 var studentLessonViewRouter = require('./routes/student-view-lesson');
 var studentClassmatesViewRouter = require('./routes/student-view-classmates');
 
+// teacher view students
+var teacherViewStudents = require('./routes/teacher-view-students');
+
+
 var app = express();
 
 const oneDay = 1000 * 60 * 60 * 24;
@@ -170,6 +174,10 @@ app.use('/', studentSubjectViewRouter);
 app.use('/', studentLessonsViewRouter);
 app.use('/', studentLessonViewRouter);
 app.use('/', studentClassmatesViewRouter);
+
+// teacher view students
+app.use('/', teacherViewStudents);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

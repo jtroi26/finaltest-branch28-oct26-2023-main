@@ -1,0 +1,10 @@
+<h1>Students <%= sectionname %> - <%= subjectname %> </h1>
+    <ol>
+        <% students.forEach(function(student) { %>
+        <li>
+            <strong>Student ID:</strong> <%= student.studentID %><br>
+            <strong>Student Full Name:</strong> <%= student.full_name %><br>
+            <strong>Section Name:</strong> <%= student.sectionname %><br>
+        </li>
+        <% }) %>
+    </ol>
