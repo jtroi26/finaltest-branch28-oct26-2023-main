@@ -76,7 +76,7 @@ var studentClassmatesViewRouter = require('./routes/student-view-classmates');
 
 // teacher view students
 var teacherViewStudents = require('./routes/teacher-view-students');
-var teacherIndexStudentAttendance = require('./routes/teacher-index-attendance');
+var teacherCreateStudentAttendance = require('./routes/teacher-create-attendance');
 var hehe;
 
 var app = express();
@@ -178,7 +178,7 @@ app.use('/', studentClassmatesViewRouter);
 
 // teacher view students and attendance
 app.use('/', teacherViewStudents);
-app.use('/', teacherIndexStudentAttendance);
+app.use('/', teacherCreateStudentAttendance);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
