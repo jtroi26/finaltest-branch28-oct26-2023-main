@@ -44,8 +44,9 @@ exports.getEditTeacherAccountPage = (req, res) => {
 
 
 exports.postEditTeacherAccountPage = (req, res) => {
-    const {id} = req.params;
-    const {teacherid, firstname, middlename, lastname, suffix, department, visibility} = req.body;
+
+    const { id } = req.params;
+    const { teacherid, firstname, middlename, lastname, suffix, department, visibility } = req.body;
 
     console.log("id: " + id);
     console.log(req.body);
@@ -54,8 +55,7 @@ exports.postEditTeacherAccountPage = (req, res) => {
     const sql = `
     UPDATE teacherdetails 
     SET teacherid = ?, firstname = ?, middlename = ?, lastname = ?, suffix = ?, department = ?, visibility = ? 
-    WHERE id = ?;
-`;
+    WHERE id = ?;`;
 
     const values = [teacherid, firstname, middlename, lastname, suffix, department, visibility, id];
 
