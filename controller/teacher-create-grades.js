@@ -91,23 +91,20 @@ exports.postGradesPage = (req, res) => {
     const teacherid = req.session.teacherid;
 
     const { assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, grade, total } = req.body;
+
     const dateObject = new Date(dateGiven);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = dateObject.toLocaleDateString(undefined, options);
-    // Your SQL query
-    const sql = `INSERT INTO assessments (assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, sectionname, subjectname, teacherid, grade, total) VALUES (?,?,?,?,?,?,?,?,?,?)`;
 
-    if (!Array.isArray(studentID)) {
-        studentID = [studentID];
-        grade = [grade];
-    }
-
-    if (studentID.length !== grade.length) {
+    // Ensure that the arrays have the same length
+    if (!Array.isArray(studentID) || !Array.isArray(grade) || studentID.length !== grade.length) {
+        // Handle the error (e.g., return an error response)
         return res.status(400).send('Mismatched data');
     }
 
     const connection = mysql.createConnection(conn);
 
+    // Loop through the data and insert assessments for each student
     for (let i = 0; i < studentID.length; i++) {
         if (grade[i] === 'NULL' || grade[i] === null) {
             // Skip this iteration of the loop if grade is 'NULL' or null
@@ -115,22 +112,22 @@ exports.postGradesPage = (req, res) => {
         }
 
         // If grade is not 'NULL' or null, proceed to insert data
+        const sql = `INSERT INTO assessments (assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, sectionname, subjectname, teacherid, grade, total) VALUES (?,?,?,?,?,?,?,?,?,?)`;
+        const values = [assessmentTitle, assessmenttype, quarterperiod, formattedDate, studentID[i], sectionname, subjectname, teacherid, grade[i], total];
 
-        const currentStudentID = studentID[i];
-        const currentGrade = grade[i];
-
-        // Create a new set of values for each iteration of the loop
-        const currentValues = [assessmentTitle, assessmenttype, quarterperiod, formattedDate, currentStudentID, sectionname, subjectname, teacherid, currentGrade, total];
-
-        connection.query(sql, currentValues, (err, results) => {
+        connection.query(sql, values, (err, results) => {
             if (err) {
-                console.error('Error inserting assessments:', err);
+                console.error('Error inserting assessment:', err);
+                // Handle the error (e.g., return an error response)
                 return res.status(500).send('Internal Server Error');
             }
         });
     }
 
+    // Close the database connection after all insertions are complete
     connection.end();
+
+    // Redirect to another page after successful insertion
     res.redirect('/teacher/create/grades');
 };
 
