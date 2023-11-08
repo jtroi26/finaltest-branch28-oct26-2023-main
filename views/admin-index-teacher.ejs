@@ -87,8 +87,8 @@
                                     <select name="department" id="department" class="form-select">
                                         <option value="" selected disabled></option>
                                         <% for (let department of departments) { %>
-                                            <option value="<%= department %>">
-                                                <%= department %>
+                                            <option value="<%= department.department %>">
+                                                <%= department.department %>
                                             </option>
                                             <% } %>
                                     </select>
@@ -221,10 +221,10 @@
                                 </p>
                                 <p>Login Credentials</p>
                                 <% if (td.userlogin !==null && td.userpassword !==null) { %>
-                                    <h2>user login: <%= td.userlogin %>
-                                    </h2>
-                                    <h2>user password: <%= td.userpassword %>
-                                    </h2>
+                                    <p>user login: <%= td.userlogin %>
+                                    </p>
+                                    <p>user password: <%= td.userpassword %>
+                                    </p>
                                     <% } else { %>
                                         <p>Account not yet created</p>
                                         <% } %>
