@@ -80,6 +80,10 @@ var teacherCreateStudentAttendance = require('./routes/teacher-create-attendance
 var teacherIndexStudentAttendance = require('./routes/teacher-index-attendance');
 var teacherEditStudentAttendance = require('./routes/teacher-edit-attendance');
 
+//teacher create grades
+var teacherCreateGrades = require('./routes/teacher-create-grades');
+
+
 var app = express();
 
 const oneDay = 1000 * 60 * 60 * 24;
@@ -182,6 +186,12 @@ app.use('/', teacherViewStudents);
 app.use('/', teacherCreateStudentAttendance);
 app.use('/', teacherIndexStudentAttendance);
 app.use('/', teacherEditStudentAttendance);
+
+// teacher create grades
+app.use('/', teacherCreateGrades);
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

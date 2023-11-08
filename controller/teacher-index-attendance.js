@@ -33,7 +33,8 @@ exports.getAttendanceIndexPage = (req, res) => {
     INNER JOIN studentattendance AS satt ON satt.studentID = s.studentID
     WHERE satt.subjectname = ?
         AND satt.sectionname = ?
-        AND satt.teacherid = ?;
+        AND satt.teacherid = ?
+        AND s.status = 'Enrolled';
     `;
 
     const values = [subjectname, sectionname, teacherid];
@@ -45,6 +46,7 @@ exports.getAttendanceIndexPage = (req, res) => {
             res.status(500).send('Internal Server Error');
         } else {
             // Student attendance data is available in 'results'
+            console.log('in attendance page');
             const attendanceData = results;
             console.log(attendanceData);
 
