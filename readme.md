@@ -93,3 +93,5 @@ branch 59 - created admin create student list by uploading a csv file.
 
 branch 5 design - /teacher/view-subject/ , Announctment, Lesson Modules design was added. check the css for css compatability.
 branchdesign_7 - logout button color fix, Design for announcement view done.
+
+design_brach_13 - Cookies or session for all teacher tabs fix

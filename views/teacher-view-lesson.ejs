@@ -22,6 +22,7 @@
         <!-- MDB -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
   
+        
 </head>
 <body id="body-pd">
 
@@ -67,13 +68,14 @@
         </nav>
       </div>  
 
+      <% if (teacherid) { %>
 
+<br>
 
-    <h1>Subject name: <%= lesson.subjectname %></h1>
-<h1>Section name: <%= lesson.sectionname %></h1>
-<h1>Lesson ID: <%= lesson.lessonID %></h1>
-<h1>Lesson Title: <%= lesson.lessonTitle %></h1>
-<h1>Quarter Period: <%= lesson.quarterperiod %></h1>
+<h3> <%= lesson.quarterperiod %> | <%= lesson.subjectname %> - <%= lesson.sectionname %></h3>
+
+<h2><%= lesson.lessonTitle %></h2>
+
 
 <ul class="nav1 nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
@@ -115,36 +117,63 @@
         </div>
     </div>
     <div class="tab-pane fade" id="section2" role="tabpanel" aria-labelledby="section2-tab">
-        <h1>Section 2: <%= lesson.section2 %></h1>
+        <div>
+            <h1>Section 2: </h1><%- lesson.section2 %>
+        </div>
     </div>
     <div class="tab-pane fade" id="section3" role="tabpanel" aria-labelledby="section3-tab">
-        <h1>Section 3: <%= lesson.section3 %></h1>
+        <div>
+            <h1>Section 3: </h1><%- lesson.section3 %>
+        </div>
     </div>
     <div class="tab-pane fade" id="section4" role="tabpanel" aria-labelledby="section4-tab">
-        <h1>Section 4: <%= lesson.section4 %></h1>
+        <div>
+            <h1>Section 4: </h1><%- lesson.section4 %>
+        </div>
     </div>
     <div class="tab-pane fade" id="section5" role="tabpanel" aria-labelledby="section5-tab">
-        <h1>Section 5: <%= lesson.section5 %></h1>
+        <div>
+            <h1>Section 5: </h1><%- lesson.section5 %>
+        </div>
     </div>
     <div class="tab-pane fade" id="section6" role="tabpanel" aria-labelledby="section6-tab">
-        <h1>Section 6: <%= lesson.section6 %></h1>
+        <div>
+            <h1>Section 6: </h1><%- lesson.section6 %>
+        </div>
     </div>
     <div class="tab-pane fade" id="section7" role="tabpanel" aria-labelledby="section7-tab">
-        <h1>Section 7: <%= lesson.section7 %></h1>
+        <div>
+            <h1>Section 7: </h1><%- lesson.section7 %>
+        </div>
     </div>
     <div class="tab-pane fade" id="section8" role="tabpanel" aria-labelledby="section8-tab">
-        <h1>Section 8: <%= lesson.section8 %></h1>
+        <div>
+            <h1>Section 8: </h1><%- lesson.section8 %>
+        </div>
     </div>
     <div class="tab-pane fade" id="section9" role="tabpanel" aria-labelledby="section9-tab">
-        <h1>Section 9: <%= lesson.section9 %></h1>
+        <div>
+            <h1>Section 9: </h1><%- lesson.section9 %>
+        </div>
     </div>
     <div class="tab-pane fade" id="section10" role="tabpanel" aria-labelledby="section10-tab">
-        <h1>Section 10: <%= lesson.section10 %></h1>
+        <div>
+            <h1>Section 10: </h1><%- lesson.section10 %>
+        </div>
     </div>
 </div>
-<h1>Date Created: <%= lesson.dateCreated %></h1>
-<h1>Date Updated: <%= lesson.dateUpdated %></h1>
-<h1>Visibility: <%= lesson.visibility %></h1>
+
+<h5 style="color: blue;">Visibility Status <%= lesson.visibility %></h5>
+<h6>Date Created: <%= lesson.dateCreated %></h6>
+<h6>Date Updated: <%= lesson.dateUpdated %></h6>
+
+<br><br>
+<a class="btn btn-dark btn-rounded" href="/teacher/lesson/modules">Back</a>
+
+<% } else { %>
+    <br><br><br><br><br><br><br><br><br><br>
+    <h1 style="text-align: center;">Cookies Required :(</h1>
+    <% } %>  
 
 <script>
     function showTab(tabId) {

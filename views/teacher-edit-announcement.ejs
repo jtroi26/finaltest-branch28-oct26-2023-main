@@ -69,7 +69,8 @@
   
       </nav>
     </div>
-    
+    <% if (teacherid) { %>
+ 
     <br><br><br>
 
     <section class="vh-100" >
@@ -113,6 +114,11 @@
         
     </section>
     
+    <% } else { %>
+      <br><br><br><br><br><br><br><br><br><br>
+      <h1 style="text-align: center;">Cookies Required :(</h1>
+      <% } %>  
+
     <script>
       tinymce.init({
         selector: 'textarea',

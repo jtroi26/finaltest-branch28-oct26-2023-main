@@ -66,7 +66,8 @@
     </nav>
   </div>
 
-  
+  <% if (teacherid) { %>
+
     <section class="vh-auto" style="background-color: #eee;">
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -101,6 +102,12 @@
           </div>
         </div>
       </section>
+
+      <% } else { %>
+        <br><br><br><br><br><br><br><br><br><br>
+        <h1 style="text-align: center;">Cookies Required :(</h1>
+        <% } %>  
+
 </body>
 
 <script src="/javascripts/dashboard.js"></script>

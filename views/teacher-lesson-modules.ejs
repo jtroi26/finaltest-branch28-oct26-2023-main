@@ -69,6 +69,8 @@
         </nav>
       </div>  
 
+      <% if (teacherid) { %>
+
 <div class="seperate" id="seperate-id">
     <h1>Lesson modules for <%= subjectname %> <%= sectionname %> <%= subjectid %></h1>
 
@@ -116,71 +118,64 @@
 
         <div class="tab-pane fade" id="second-quarter" role="tabpanel" aria-labelledby="second-quarter-tab">
             <h1>Second Quarter Lessons</h1>
-            <table class="table table-bordered" id="quartertable">
-                <tr>
-                    <th>id</th>
-                    <th>lesson id</th>
-                    <th>lesson title</th>
-                    <th>quarter period</th>
-                    <th>subject name</th>
-                </tr>
+            <ol class="list-group list-group-numbered">
                 <% secondQuarterLessons.forEach(lesson => { %>
-                    <tr>
-                        <td><%= lesson.id %></td>
-                        <td><%= lesson.lessonID %></td>
-                        <td><%= lesson.lessonTitle %></td>
-                        <td><%= lesson.quarterperiod %></td>
-                        <td><%= lesson.subjectname %></td>
-                    </tr>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-9 me-auto">
+                    <div class="fw-bold"><%= lesson.subjectname %></div>
+                    
+                    <a href="/teacher/lesson/view-lesson/<%= lesson.id %>"><%= lesson.lessonTitle %></a>
+
+                  </div>
+                  
+                  <a class="badge bg-primary rounded-pill btn btn-dark btn-rounded" href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a>
+                </li>
                 <% }); %>
-            </table>
+              </ol>
         </div>
 
         <div class="tab-pane fade" id="third-quarter" role="tabpanel" aria-labelledby="third-quarter-tab">
             <h1>Third Quarter Lessons</h1>
-            <table class="table table-bordered" id="quartertable">
-                <tr>
-                    <th>id</th>
-                    <th>lesson id</th>
-                    <th>lesson title</th>
-                    <th>quarter period</th>
-                    <th>subject name</th>
-                </tr>
+            <ol class="list-group list-group-numbered">
                 <% thirdQuarterLessons.forEach(lesson => { %>
-                    <tr>
-                        <td><%= lesson.id %></td>
-                        <td><%= lesson.lessonID %></td>
-                        <td><%= lesson.lessonTitle %></td>
-                        <td><%= lesson.quarterperiod %></td>
-                        <td><%= lesson.subjectname %></td>
-                    </tr>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-9 me-auto">
+                    <div class="fw-bold"><%= lesson.subjectname %></div>
+                    
+                    <a href="/teacher/lesson/view-lesson/<%= lesson.id %>"><%= lesson.lessonTitle %></a>
+
+                  </div>
+                  
+                  <a class="badge bg-primary rounded-pill btn btn-dark btn-rounded" href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a>
+                </li>
                 <% }); %>
-            </table>
+              </ol>
         </div>
 
         <div class="tab-pane fade" id="fourth-quarter" role="tabpanel" aria-labelledby="fourth-quarter-tab">
             <h1>Fourth Quarter Lessons</h1>
-            <table class="table table-bordered" id="quartertable">
-                <tr>
-                    <th>id</th>
-                    <th>lesson id</th>
-                    <th>lesson title</th>
-                    <th>quarter period</th>
-                    <th>subject name</th>
-                </tr>
+            <ol class="list-group list-group-numbered">
                 <% fourthQuarterLessons.forEach(lesson => { %>
-                    <tr>
-                        <td><%= lesson.id %></td>
-                        <td><%= lesson.lessonID %></td>
-                        <td><%= lesson.lessonTitle %></td>
-                        <td><%= lesson.quarterperiod %></td>
-                        <td><%= lesson.subjectname %></td>
-                    </tr>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-9 me-auto">
+                    <div class="fw-bold"><%= lesson.subjectname %></div>
+                    
+                    <a href="/teacher/lesson/view-lesson/<%= lesson.id %>"><%= lesson.lessonTitle %></a>
+
+                  </div>
+                  
+                  <a class="badge bg-primary rounded-pill btn btn-dark btn-rounded" href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a>
+                </li>
                 <% }); %>
-            </table>
+              </ol>
         </div>
     </div>
 </div>
+
+<% } else { %>
+    <br><br><br><br><br><br><br><br><br><br>
+    <h1 style="text-align: center;">Cookies Required :(</h1>
+    <% } %>  
 
     <!-- Include Bootstrap JavaScript and jQuery (before the closing </body> tag) -->
     <script src="/javascripts/teacher-lesson-modules.js"></script>

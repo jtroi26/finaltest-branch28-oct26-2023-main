@@ -90,40 +90,13 @@
         <% }); %>
     </section>
 
-    <table>
-      <thead>
-          <tr>
-              <th>Subject ID</th>
-              <th>Subject Name</th>
-              <th>Section Name</th>
-              <th>First Name</th>
-              <th>Middle Name</th>
-              <th>Last Name</th>
-              <th>Department</th>
-          </tr>
-      </thead>
-      <tbody>
-          <% subjects.forEach(function(subject) { %>
-              <tr>
-                  <td><%= subject.subjectid %></td>
-                  <td><%= subject.subjectname %></td>
-                  <td><%= subject.sectionname %></td>
-                  <td><%= subject.firstname %></td>
-                  <td><%= subject.middlename %></td>
-                  <td><%= subject.lastname %></td>
-                  <td><%= subject.department %></td>
-              </tr>
-          <% }); %>
-      </tbody>
-  </table>
-
   
   
 
     <% } else { %>
-      <br><br><br><br><br><br>
-      <h1>Cookies Required :(</h1>
-      <% } %>
+      <br><br><br><br><br><br><br><br><br><br>
+      <h1 style="text-align: center;">Cookies Required :(</h1>
+      <% } %>  
 
 
 

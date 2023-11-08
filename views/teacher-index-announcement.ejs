@@ -69,6 +69,10 @@
       </nav>
     </div>
 
+    <% if (teacherid) { %>
+
+
+
     <h1>All of the announcements for <%= sectionname %> <%= subjectname %></h1>
 <h1>Announcements</h1>
 
@@ -97,6 +101,12 @@
     </table>
     <br>
     <a href="/teacher/dashboard" class="btn btn-primary btn-rounded">Back</a>
+
+
+    <% } else { %>
+        <br><br><br><br><br><br><br><br><br><br>
+        <h1 style="text-align: center;">Cookies Required :(</h1>
+        <% } %>  
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
 

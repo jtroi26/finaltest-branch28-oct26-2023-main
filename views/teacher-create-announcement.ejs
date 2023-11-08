@@ -71,7 +71,8 @@
   
       </nav>
     </div>
-    
+    <% if (teacherid) { %>
+
     <br><br><br>
 
     <section class="vh-100 " >
@@ -117,7 +118,10 @@
         </div>
         
     </section>
-    
+    <% } else { %>
+      <br><br><br><br><br><br><br><br><br><br>
+      <h1>Cookies Required :(</h1>
+      <% } %>  
     
     <script>
       tinymce.init({
