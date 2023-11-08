@@ -18,19 +18,30 @@ exports.getIndexTeacherPage = (req, res) => {
             return res.status(500).json({ error: "Database connection failed." });
         }
 
-        const sql = `SELECT 
-        td.id AS teacher_id,
-        td.teacherid,
-        td.firstname,
-        td.middlename,
-        td.lastname,
-        IFNULL(td.suffix, ' ') AS suffix,
-        td.department,
-        td.visibility,
-        tl.userlogin,
-        tl.userpassword
-    FROM teacherdetails AS td
-    INNER JOIN teacherlogins AS tl ON tl.teacherid = td.teacherid;`;
+        const sql =
+            `SELECT
+            td.id AS teacher_id,
+            td.teacherid,
+            td.firstname,
+            td.middlename,
+            td.lastname,
+            IFNULL(td.suffix, ' ') AS suffix,
+                td.department,
+                td.visibility,
+                tl.userlogin,
+                tl.userpassword,
+                CONCAT(
+                    td.firstname,
+                    ' ',
+                    IFNULL(td.middlename, ''),
+                    ' ',
+                    td.lastname,
+                    ' ',
+                    IFNULL(td.suffix, '')
+                ) AS teachername
+            FROM teacherdetails AS td
+            INNER JOIN teacherlogins AS tl ON tl.teacherid = td.teacherid`;
+
         const sqlDepartment = `SELECT id, department from departments WHERE visibility = 'Visible';`;
 
         connection.query(sql, (err, results) => {
@@ -40,20 +51,6 @@ exports.getIndexTeacherPage = (req, res) => {
                 return res.status(500).json({ error: "An error occurred while retrieving teacher data." });
             }
 
-            const teacherData = results.map((td) => ({
-                id: td.id,
-                teacherid: td.teacherid,
-                teachername: `${td.firstname} ${td.middlename || ''} ${td.lastname} ${td.suffix}`.trim(),
-                firstname: td.firstname,
-                middlename: td.middlename,
-                lastname: td.lastname,
-                suffix: td.suffix,
-                department: td.department,
-                visibility: td.visibility,
-                userlogin: td.userlogin,
-                userpassword: td.userpassword,
-
-            }));
 
             connection.query(sqlDepartment, (err, departmentResults) => {
                 connection.release(); // Always release the connection back to the pool
@@ -63,7 +60,7 @@ exports.getIndexTeacherPage = (req, res) => {
                     return res.status(500).json({ error: "An error occurred while retrieving department data." });
                 }
 
-                res.render('admin-index-teacher', { teacherData, departments: departmentResults });
+                res.render('admin-index-teacher', { data: results, departments: departmentResults });
             });
         });
     });

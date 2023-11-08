@@ -107,7 +107,7 @@
                                         <label for="sectionname" class="form-label">Section</label>
                                         <select class="form-select" name="sectionname" id="sectionname">
                                             <option value="" default selected disabled>Choose an Option</option>
-                                            <% data.forEach((section)=> { %>
+                                            <% section.forEach((section)=> { %>
                                                 <option value="<%= section.sectionname %>">
                                                     <%= section.sectionname %>
                                                 </option>
@@ -311,9 +311,9 @@
                                         <label for="sectionname" class="form-label">Section Name</label>
                                         <select name="sectionname" id="sectionname" class="form-select" required>
                                             <option value="" disabled>Select a section</option>
-                                            <% data.forEach(section=> { %>
+                                            <% section.forEach(section=> { %>
                                                 <option value="<%= section.sectionname %>"
-                                                    <%=student.sectionname===section.sectionname ? 'selected' : '' %>>
+                                                    <%= student.sectionname === section.sectionname ? 'selected' : '' %>>
                                                     <%= section.sectionname %>
                                                 </option>
                                                 <% }); %>

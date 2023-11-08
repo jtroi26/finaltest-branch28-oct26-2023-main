@@ -156,7 +156,7 @@
             </tr>
         </thead>
         <tbody>
-            <% teacherData.forEach(td=> { %>
+            <% data.forEach(td=> { %>
                 <tr>
                     <td>
                         <%= td.teacherid %>
@@ -172,27 +172,27 @@
                     </td>
                     <td class="text-center">
                         <button class="btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#viewTeacherModal-<%= td.id %>">View</button>
+                            data-bs-target="#viewTeacherModal-<%= td.teacher_id %>">View</button>
                     </td>
                     <td class="text-center">
                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#editTeacherModal-<%= td.id %>">
+                            data-bs-target="#editTeacherModal-<%= td.teacher_id %>">
                             Edit Account
                         </button>
                     </td>
                     <td>
-                        <form action="/admin/delete/teacher-account/<%= td.id %>" method="post">
+                        <form action="/admin/delete/teacher-account/<%= td.teacher_id %>" method="post">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
 
-                <div class="modal fade" id="viewTeacherModal-<%= td.id %>" tabindex="-1"
-                    aria-labelledby="viewTeacherModalLabel-<%= td.id %>" aria-hidden="true">
+                <div class="modal fade" id="viewTeacherModal-<%= td.teacher_id %>" tabindex="-1"
+                    aria-labelledby="viewTeacherModalLabel-<%= td.teacher_id %>" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="viewTeacherModalLabel-<%= td.id %>">View Teacher Details
+                                <h5 class="modal-title" id="viewTeacherModalLabel-<%= td.teacher_id %>">View Teacher Details
                                 </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
@@ -234,31 +234,31 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="editTeacherModal-<%= td.id %>" tabindex="-1"
-                    aria-labelledby="editTeacherModalLabel-<%= td.id %>" aria-hidden="true">
+                <div class="modal fade" id="editTeacherModal-<%= td.teacher_id %>" tabindex="-1"
+                    aria-labelledby="editTeacherModalLabel-<%= td.teacher_id %>" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="editTeacherModalLabel-<%= td.id %>">Edit Teacher</h5>
+                                <h5 class="modal-title" id="editTeacherModalLabel-<%= td.teacher_id %>">Edit Teacher</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/admin/edit/teacher-account/<%= td.id %>" method="post">
+                                <form action="/admin/edit/teacher-account/<%= td.teacher_id %>" method="post">
                                     <div class="row">
                                         <!-- Left side of the modal -->
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="teacherid-<%= td.id %>" class="form-label">Teacher
+                                                <label for="teacherid-<%= td.teacher_id %>" class="form-label">Teacher
                                                     ID</label>
                                                 <input type="text" name="teacherid" class="form-control"
-                                                    id="teacherid-<%= td.id %>" value="<%= td.teacherid %>">
+                                                    id="teacherid-<%= td.teacher_id %>" value="<%= td.teacherid %>">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="department-<%= td.id %>">Department</label><br>
+                                                <label for="department-<%= td.teacher_id %>">Department</label><br>
                                                 <select class="form-select" name="department"
-                                                    id="department-<%= td.id %>">
-                                                    <option value="" disabled <%=!td.department ? 'selected' : '' %>
+                                                    id="department-<%= td.teacher_id %>">
+                                                    <option value="" disabled <%= td.department ? 'selected' : '' %>
                                                         >Choose an option</option>
                                                     <% for (let department of departments) { %>
                                                         <option value="<%= department.department %>"
@@ -284,40 +284,40 @@
                                         <!-- Right side of the modal -->
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="firstname-<%= td.id %>" class="form-label">First
+                                                <label for="firstname-<%= td.teacher_id %>" class="form-label">First
                                                     Name</label>
                                                 <input type="text" class="form-control" name="firstname"
-                                                    id="firstname-<%= td.id %>" value="<%= td.firstname %>">
+                                                    id="firstname-<%= td.teacher_id %>" value="<%= td.firstname %>">
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="middlename<%= td.id %>" class="form-label">Middle
+                                                <label for="middlename<%= td.teacher_id %>" class="form-label">Middle
                                                     Name</label>
                                                 <input type="text" class="form-control" name="middlename"
-                                                    id="middlename-<%= td.id %>" value="<%= td.middlename %>">
+                                                    id="middlename-<%= td.teacher_id %>" value="<%= td.middlename %>">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="lastname<%= td.id %>" class="form-label">Last Name</label>
+                                                <label for="lastname<%= td.teacher_id %>" class="form-label">Last Name</label>
                                                 <input type="text" class="form-control" name="lastname"
-                                                    id="lastname-<%= td.id %>" value="<%= td.lastname %>">
+                                                    id="lastname-<%= td.teacher_id %>" value="<%= td.lastname %>">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="suffix" class="form-label">Suffix</label>
                                                 <select name="suffix" id="suffix" class="form-select">
                                                     <option value="" disabled selected>Choose an option</option>
-                                                    <option value="Sr." <%=teacherData.suffix==="Sr." ? 'selected' : ''
+                                                    <option value="Sr." <%=data.suffix==="Sr." ? 'selected' : ''
                                                         %>>Senior</option>
-                                                    <option value="Jr." <%=teacherData.suffix==="Jr." ? 'selected' : ''
+                                                    <option value="Jr." <%=data.suffix==="Jr." ? 'selected' : ''
                                                         %>>Junior</option>
-                                                    <option value="III" <%=teacherData.suffix==="III" ? 'selected' : ''
+                                                    <option value="III" <%=data.suffix==="III" ? 'selected' : ''
                                                         %>>III</option>
-                                                    <option value="IV" <%=teacherData.suffix==="IV" ? 'selected' : '' %>
+                                                    <option value="IV" <%=data.suffix==="IV" ? 'selected' : '' %>
                                                         >IV</option>
-                                                    <option value="V" <%=teacherData.suffix==="V" ? 'selected' : '' %>>V
+                                                    <option value="V" <%=data.suffix==="V" ? 'selected' : '' %>>V
                                                     </option>
-                                                    <option value="VI" <%=teacherData.suffix==="VI" ? 'selected' : '' %>
+                                                    <option value="VI" <%=data.suffix==="VI" ? 'selected' : '' %>
                                                         >VI</option>
-                                                    <option value="null" <%=teacherData.suffix===null ? 'selected' : ''
+                                                    <option value="" <%=data.suffix===null ? 'selected' : ''
                                                         %>>none</option>
                                                 </select>
                                             </div>
