@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 04:45 PM
+-- Generation Time: Nov 08, 2023 at 02:45 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -64,6 +64,46 @@ CREATE TABLE `adminlogins` (
 
 INSERT INTO `adminlogins` (`id`, `admin_id`, `username`, `userpassword`) VALUES
 (1, 'admin-10001', 'admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assessments`
+--
+
+CREATE TABLE `assessments` (
+  `id` int(11) NOT NULL,
+  `assessmenttype` varchar(20) NOT NULL,
+  `quarterperiod` varchar(20) DEFAULT NULL,
+  `studentID` varchar(25) DEFAULT NULL,
+  `sectionname` varchar(50) DEFAULT NULL,
+  `subjectname` varchar(25) DEFAULT NULL,
+  `teacherid` varchar(25) DEFAULT NULL,
+  `grade` int(10) DEFAULT NULL,
+  `total` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assessmenttype`
+--
+
+CREATE TABLE `assessmenttype` (
+  `id` int(11) NOT NULL,
+  `assessmenttype` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `assessmenttype`
+--
+
+INSERT INTO `assessmenttype` (`id`, `assessmenttype`) VALUES
+(1, 'Assignment'),
+(5, 'Periodical Exam'),
+(3, 'Quiz'),
+(2, 'Seatwork'),
+(4, 'Summative Exam');
 
 -- --------------------------------------------------------
 
@@ -262,11 +302,11 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`, `dateEnrolled`, `status`) VALUES
-(13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'X - St. Paul', '2023-11-04 21:54:33', 'Enrolled'),
+(13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'X - St. Paul', '2023-11-04 21:54:33', 'Unenrolled'),
 (14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'IX - St. Thomas', '2023-11-04 21:54:33', 'Unenrolled'),
-(15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'VIII', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'VIII', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Unenrolled'),
 (16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VIII - St. Elizabeth', '2023-11-04 21:54:33', 'Unenrolled'),
-(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Enrolled');
+(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Unenrolled');
 
 -- --------------------------------------------------------
 
@@ -388,6 +428,25 @@ ALTER TABLE `adminlogins`
   ADD KEY `admin_id_2` (`admin_id`);
 
 --
+-- Indexes for table `assessments`
+--
+ALTER TABLE `assessments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `quarterperiod` (`quarterperiod`),
+  ADD KEY `assessmenttype` (`assessmenttype`),
+  ADD KEY `studentID` (`studentID`),
+  ADD KEY `sectionname` (`sectionname`),
+  ADD KEY `subjectname` (`subjectname`),
+  ADD KEY `teacherid` (`teacherid`);
+
+--
+-- Indexes for table `assessmenttype`
+--
+ALTER TABLE `assessmenttype`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `assessmenttype` (`assessmenttype`);
+
+--
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
@@ -498,6 +557,18 @@ ALTER TABLE `adminlogins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `assessments`
+--
+ALTER TABLE `assessments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `assessmenttype`
+--
+ALTER TABLE `assessmenttype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
@@ -578,6 +649,17 @@ ALTER TABLE `admindetails`
 --
 ALTER TABLE `adminlogins`
   ADD CONSTRAINT `adminlogins_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admindetails` (`admin_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `assessments`
+--
+ALTER TABLE `assessments`
+  ADD CONSTRAINT `assessments_ibfk_1` FOREIGN KEY (`assessmenttype`) REFERENCES `assessmenttype` (`assessmenttype`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `students` (`studentID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_3` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_4` FOREIGN KEY (`quarterperiod`) REFERENCES `quarters` (`quarterperiod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_5` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_6` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lessons`
