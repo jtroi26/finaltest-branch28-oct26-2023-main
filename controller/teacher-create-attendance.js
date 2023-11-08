@@ -63,99 +63,6 @@ exports.getAttendancePage = (req, res) => {
         }
     });
 }
-
-// exports.postAttendancePage = (req, res) => {
-//     const currentDate = new Date();
-//     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-//     const formattedDate = currentDate.toLocaleDateString(undefined, options);
-
-//     const subjectname = req.session.subjectname;
-//     const sectionname = req.session.sectionname;
-//     const teacherid = req.session.teacherid;
-
-//     // Extract data from the request body
-//     const { studentID, quarterperiod, attendance } = req.body;
-
-//     // Ensure that all arrays have the same length
-//     if (studentID.length !== attendance.length) {
-//         // Handle the error (e.g., return an error response)
-//         return res.status(400).send('Mismatched data');
-//     }
-
-//     const connection = mysql.createConnection(conn);
-
-//     // Loop through the data and insert attendance for each student
-//     for (let i = 0; i < studentID.length; i++) {
-//         const sql = `INSERT INTO studentattendance (studentID, subjectname, sectionname, teacherid, date, quarterperiod, attendance) VALUES (?, ?, ?, ?, ?, ?, ?);`;
-//         const values = [studentID[i], subjectname, sectionname, teacherid, formattedDate, quarterperiod, attendance[i]];
-
-//         connection.query(sql, values, (err, results) => {
-//             if (err) {
-//                 console.error('Error inserting attendance:', err);
-//                 // Handle the error (e.g., return an error response)
-//                 res.status(500).send('Internal Server Error');
-//             }
-//         });
-//     }
-
-//     // Close the database connection after all insertions are complete
-//     connection.end();
-
-//     // Respond with a success message or redirect to another page
-//     // res.status(200).send('Attendance recorded successfully');
-//     res.redirect('/teacher/create/attendance');
-// };
-
-//working with 1 student
-// exports.postAttendancePage = (req, res) => {
-//     const currentDate = new Date();
-//     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-//     const formattedDate = currentDate.toLocaleDateString(undefined, options);
-
-//     const subjectname = req.session.subjectname;
-//     const sectionname = req.session.sectionname;
-//     const teacherid = req.session.teacherid;
-
-//     // Extract data from the request body
-//     let { studentID, quarterperiod, attendance } = req.body;
-
-//     // Ensure that studentID and attendance are arrays
-//     if (!Array.isArray(studentID)) {
-//         // If not an array, convert to an array with a single element
-//         studentID = [studentID];
-//         attendance = [attendance];
-//     }
-
-//     // Ensure that the arrays have the same length
-//     if (studentID.length !== attendance.length) {
-//         // Handle the error (e.g., return an error response)
-//         return res.status(400).send('Mismatched data');
-//     }
-
-//     const connection = mysql.createConnection(conn);
-
-//     // Loop through the data and insert attendance for each student
-//     for (let i = 0; i < studentID.length; i++) {
-//         const sql = `INSERT INTO studentattendance (studentID, subjectname, sectionname, teacherid, date, quarterperiod, attendance) VALUES (?, ?, ?, ?, ?, ?, ?);`;
-//         const values = [studentID[i], subjectname, sectionname, teacherid, formattedDate, quarterperiod, attendance[i]];
-
-//         connection.query(sql, values, (err, results) => {
-//             if (err) {
-//                 console.error('Error inserting attendance:', err);
-//                 // Handle the error (e.g., return an error response)
-//                 res.status(500).send('Internal Server Error');
-//             }
-//         });
-//     }
-
-//     // Close the database connection after all insertions are complete
-//     connection.end();
-
-//     // Respond with a success message or redirect to another page
-//     res.status(200).send('Attendance recorded successfully');
-// };
-
-
 exports.postAttendancePage = (req, res) => {
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -166,56 +73,47 @@ exports.postAttendancePage = (req, res) => {
     const teacherid = req.session.teacherid;
 
     // Extract data from the request body
-    const { studentID, attendance } = req.body;
+    let { studentID, quarterperiod, attendance } = req.body;
 
-    console.log(req.body);
-    // const connection = mysql.createConnection(conn);
+    // Ensure that studentID and attendance are arrays
+    if (!Array.isArray(studentID)) {
+        // If not an array, convert to an array with a single element
+        studentID = [studentID];
+        attendance = [attendance];
+    }
 
-    // // Create arrays to store data for perfect and false cases
-    // const perfectArray = [];
-    // const falseArray = [];
+    // Ensure that the arrays have the same length
+    if (studentID.length !== attendance.length) {
+        // Handle the error (e.g., return an error response)
+        return res.status(400).send('Mismatched data');
+    }
 
-    // // Loop through the data and compare both studentID and attendance
-    // for (let i = 0; i < studentID.length; i++) {
-    //     if (studentID[i] !== null && attendance[i] !== null) {
-    //         // Store data in the perfect array
-    //         perfectArray.push({
-    //             studentID: studentID[i],
-    //             attendance: attendance[i],
-    //         });
-    //     } else {
-    //         // Store data in the false array
-    //         falseArray.push({
-    //             studentID: studentID[i],
-    //             attendance: attendance[i],
-    //         });
-    //     }
-    // }
+    const connection = mysql.createConnection(conn);
 
-    // // Ensure there are students with valid attendance data
-    // if (perfectArray.length === 0) {
-    //     // Handle the case where no students have valid attendance data
-    //     return res.status(400).send('No valid attendance data provided');
-    // }
+    // Loop through the data and insert attendance for each student
+    for (let i = 0; i < studentID.length; i++) {
+        if (attendance[i] === 'NULL' || attendance[i] === null) {
+            // Skip this iteration of the loop if attendance is 'NULL' or null
+            continue;
+        }
 
-    // // Insert attendance for students from the perfect array
-    // perfectArray.forEach(student => {
-    //     const sql = `INSERT INTO studentattendance (studentID, subjectname, sectionname, teacherid, date, quarterperiod, attendance) VALUES (?, ?, ?, ?, ?, ?, ?);`;
-    //     const values = [student.studentID, subjectname, sectionname, teacherid, formattedDate, quarterperiod, student.attendance];
+        // If attendance is not 'NULL' or null, proceed to insert data
+        const sql = `INSERT INTO studentattendance (studentID, subjectname, sectionname, teacherid, date, quarterperiod, attendance) VALUES (?, ?, ?, ?, ?, ?, ?);`;
+        const values = [studentID[i], subjectname, sectionname, teacherid, formattedDate, quarterperiod, attendance[i]];
 
-    //     connection.query(sql, values, (err, results) => {
-    //         if (err) {
-    //             console.error('Error inserting attendance:', err);
-    //             // Handle the error (e.g., return an error response)
-    //             res.status(500).send('Internal Server Error');
-    //         }
-    //     });
-    // });
+        connection.query(sql, values, (err, results) => {
+            if (err) {
+                console.error('Error inserting attendance:', err);
+                // Handle the error (e.g., return an error response)
+                res.status(500).send('Internal Server Error');
+            }
+        });
+    }
 
-    // // Close the database connection after all insertions are complete
-    // connection.end();
+    // Close the database connection after all insertions are complete
+    connection.end();
 
-    // // Respond with a success message or redirect to another page
+    // Respond with a success message or redirect to another page
     // res.status(200).send('Attendance recorded successfully');
+    res.redirect('/teacher/students/attendance');
 };
-
