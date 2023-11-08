@@ -104,8 +104,10 @@
                     <div class="fw-bold"><%= lesson.subjectname %></div>
                     
                     <a href="/teacher/lesson/view-lesson/<%= lesson.id %>"><%= lesson.lessonTitle %></a>
+
                   </div>
-                  <span class="badge bg-primary rounded-pill">14</span>
+                  
+                  <a class="badge bg-primary rounded-pill btn btn-dark btn-rounded" href="/teacher/lesson/edit-lesson/<%= lesson.id %>">Edit</a>
                 </li>
                 <% }); %>
               </ol>
