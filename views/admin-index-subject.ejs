@@ -233,13 +233,13 @@
                             <div class="modal-body">
                                 <form action="/admin/edit-subject/<%= row.subjectid %>" method="post">
                                     <div class="mb-3">
-                                        <label for="subjectid<%= row.subjectid %>" class="form-label">Subject ID</label>
-                                        <input type="text" class="form-control" name="subjectname" id="subjectid<%= row.subjectid %>"
+                                        <label for="<%= row.subjectid %>" class="form-label">Subject ID</label>
+                                        <input type="text" class="form-control" name="subjectid" id="subjectid<%= row.subjectid %>"
                                             value="<%= row.subjectid %>" required placeholder="Science for example">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="subjectName<%= row.subjectid %>" class="form-label">Subject Name</label>
-                                        <input type="text" class="form-control" name="subjectname" id="subjectName<%= row.subjectid %>"
+                                        <label for="subjectName-<%= row.subjectid %>" class="form-label">Subject Name</label>
+                                        <input type="text" class="form-control" name="subjectname" id="subjectName-<%= row.subjectid %>"
                                             value="<%= row.subjectname %>" required placeholder="Science for example">
                                     </div>
                                     
@@ -256,7 +256,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="teacherId<%= row.subjectid %>" class="form-label">Teacher</label>
+                                        <label for="<%= row.subjectid %>" class="form-label">Teacher</label>
                                         <select name="teacherid" id="teacherId<%= row.subjectid %>" class="form-select">
                                             <% teachers.forEach((teacher) => { %>
                                                 <option value="<%= teacher.teacherid %>"
