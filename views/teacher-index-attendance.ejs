@@ -25,6 +25,8 @@
           <th>Section</th>
           <th>Subject</th>
           <th>Attendance</th>
+          <th>Quarter</th>
+          <th>Date</th>
           <th>Action</th>
       </tr>
       <% attendance.forEach(entry => { %>
@@ -34,7 +36,9 @@
           <td><%= entry.sectionname %></td>
           <td><%= entry.subjectname %></td>
           <td><%= entry.attendance %></td>
-          <td><button><a href="teacher/students/attendance/edit/<%= entry.id %>">Edit Attendance</a></button></td>
+          <td><%= entry.quarterperiod %></td>
+          <td><%= entry.date %></td>
+          <td><button><a href="/teacher/students/attendance/edit/<%= entry.id %>">Edit Attendance</a></button></td>
       </tr>
       <% }); %>
   </table>

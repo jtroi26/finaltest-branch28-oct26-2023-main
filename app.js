@@ -78,6 +78,7 @@ var studentClassmatesViewRouter = require('./routes/student-view-classmates');
 var teacherViewStudents = require('./routes/teacher-view-students');
 var teacherCreateStudentAttendance = require('./routes/teacher-create-attendance');
 var teacherIndexStudentAttendance = require('./routes/teacher-index-attendance');
+var teacherEditStudentAttendance = require('./routes/teacher-edit-attendance');
 
 var app = express();
 
@@ -180,7 +181,7 @@ app.use('/', studentClassmatesViewRouter);
 app.use('/', teacherViewStudents);
 app.use('/', teacherCreateStudentAttendance);
 app.use('/', teacherIndexStudentAttendance);
-
+app.use('/', teacherEditStudentAttendance);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
