@@ -1,0 +1,36 @@
+<h1>Edit Attendance for <%= attendance.full_name %>
+</h1>
+
+
+<form action="/teacher/students/attendance/edit/<%= attendance.id %> " method="post">
+      <label for="">Student ID</label>
+      <input type="text" name="" id="" value="<%= attendance.studentID %>" disabled>
+      <br>
+
+      <label for="">Student Full Name</label>
+      <input type="text" name="" id="" value="<%= attendance.full_name %>" disabled><br>
+
+      <label for="">Section</label>
+      <input type="text" name="" id="" value="<%= attendance.sectionname %>" disabled><br>
+
+      <label for="">Edit Date</label>
+      <input type="date" name="date" id="" value=""><br><br>
+
+      <label for="">Edit Quarter Period</label>
+      <select name="quarterperiod" id="quarterperiod">
+            <option value="NULL" selected disabled>Choose an option</option>
+            <option value="First Quarter">First Quarter</option>
+            <option value="Second Quarter">Second Quarter</option>
+            <option value="Third Quarter">Third Quarter</option>
+            <option value="Fourth Quarter">Fourth Quarter</option>
+      </select><br><br>
+
+      <label for="">Attendance status: </label>
+      <select name="attendance" id="attendance">
+            <option value="NULL" selected disabled>Choose an option</option>
+            <option value="Present">Present</option>
+            <option value="Late">Late</option>
+            <option value="Absent">Absent</option>
+      </select><br><br>
+      <button type="submit">Update Student Data</button>
+</form>

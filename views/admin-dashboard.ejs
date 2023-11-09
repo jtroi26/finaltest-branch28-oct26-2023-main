@@ -41,11 +41,12 @@
 
       <% if (admin_id) { %>
 
-        <form action="/admin-logout" method="post">
-
-          <a class="nav_link" type="submit"> <button class=""><i class='bx bx-log-out nav_icon'></i> <span
-                class="nav_name">SignOut</span></button> </a>
-        </form>
+        <form id="logoutForm" action="/admin-logout" method="post">
+          <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
+              <i class='bx bx-log-out nav_icon'></i>
+              <span class="nav_name">SignOut</span>
+          </a>
+      </form>
 
         <% } else { %>
           <a href="/admin" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>

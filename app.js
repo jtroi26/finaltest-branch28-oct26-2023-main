@@ -64,6 +64,12 @@ var teacherViewAnnouncement = require('./routes/teacher-view-announcement');
 var teacherEditAnnouncement = require('./routes/teacher-edit-announcement');
 var teacherDeleteAnnouncement = require('./routes/teacher-delete-announcement');
 
+//student attendance
+var teacherCreateStudentAttendance = require('./routes/teacher-create-attendance');
+var teacherIndexStudentAttendance = require('./routes/teacher-index-attendance');
+var teacherEditStudentAttendance = require('./routes/teacher-edit-attendance');
+var teacherCreateGrades = require('./routes/teacher-create-grades');
+
 var app = express();
 
 const oneDay = 1000 * 60 * 60 * 24;
@@ -151,6 +157,11 @@ app.use('/', teacherDeleteAnnouncement);
 app.use('/', teacherViewAnnouncement);
 app.use('/', teacherEditAnnouncement);
 
+// teacher attendance
+app.use('/', teacherCreateStudentAttendance);
+app.use('/', teacherIndexStudentAttendance);
+app.use('/', teacherEditStudentAttendance);
+app.use('/', teacherCreateGrades);
 
 
 // catch 404 and forward to error handler

@@ -1,0 +1,52 @@
+<h1>Class attendance</h1>
+
+
+<form action="/teacher/create/attendance" method="post">
+    <h2>Current Date: </h2>
+    <h2 id="currentDate"></h2>
+
+    <label for="">Attendance for Quarter: </label>
+    <select name="quarterperiod" id="quarterperiod">
+
+        <option value="" default selected disabled>Choose an option</option>
+        <% quarters.forEach(quarter => { %>
+            <option value="<%= quarter.quarterperiod %>"><%= quarter.quarterperiod %></option>
+        <% }); %>
+    </select><br><br>
+    
+
+    <button type="submit">Create Attendance Today</button>
+    <table border="1">
+        <tr>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Attendance</th>
+        </tr>
+        <% students.forEach(student => { %>
+        <tr>
+            <td hidden><input type="text" name="studentID" id="studentID" value="<%= student.studentID %>"></td>
+            <td><%= student.studentID %></td>
+            <td><%= student.full_name %></td>
+            <td>
+                <select name="attendance" id="attendance">
+                    <option value="NULL" selected >Choose an option</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Absent">Absent</option>
+                </select>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+
+</form>
+<script>
+    // JavaScript code to display the current date in Month Day, Year format
+    const currentDateElement = document.getElementById('currentDate');
+    const currentDate = new Date();
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = currentDate.toLocaleDateString(undefined, options);
+
+    currentDateElement.textContent = formattedDate;
+</script>

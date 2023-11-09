@@ -1,0 +1,52 @@
+<h1>All Attendance of : </h1>
+
+<h1><a href="/teacher/create/attendance">Create Attendance</a></h1>
+
+<form action="/teacher/students/attendance/" method="post">
+      <label for="">Select Date to view Attendance</label>
+      <input type="date" id="dateInput"><br>
+
+      <select name="quarterperiod" id="">
+            <option value="" default disabled>Choose an Option</option>
+            <option value="First Quarter">First Quarter</option>
+            <option value="Second Quarter">Second Quarter</option>
+            <option value="Third Quarter">Third Quarter</option>
+            <option value="Fourth Quarter">Fourth Quarter</option>
+      </select>
+
+      <button type="submit">Generate Attendance</button>
+</form>
+
+
+<table border="1">
+      <tr>
+          <th>Student ID</th>
+          <th>Student Name</th>
+          <th>Section</th>
+          <th>Subject</th>
+          <th>Attendance</th>
+          <th>Quarter</th>
+          <th>Date</th>
+          <th>Action</th>
+      </tr>
+      <% attendance.forEach(entry => { %>
+      <tr>
+          <td><%= entry.studentID %></td>
+          <td><%= entry.full_name %></td>
+          <td><%= entry.sectionname %></td>
+          <td><%= entry.subjectname %></td>
+          <td><%= entry.attendance %></td>
+          <td><%= entry.quarterperiod %></td>
+          <td><%= entry.date %></td>
+          <td><button><a href="/teacher/students/attendance/edit/<%= entry.id %>">Edit Attendance</a></button></td>
+      </tr>
+      <% }); %>
+  </table>
+
+<script>
+      // Get the current date in ISO format (YYYY-MM-DD)
+      const currentDate = new Date().toISOString().split('T')[0];
+    
+      // Set the current date as the default value for the input tag
+      document.getElementById('dateInput').value = currentDate;
+    </script>

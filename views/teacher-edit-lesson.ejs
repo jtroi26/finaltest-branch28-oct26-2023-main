@@ -74,6 +74,8 @@
 
     <% if (teacherid) { %>
 
+ 
+
   
     <section class="vh-100" >
 <div>
@@ -97,36 +99,92 @@
             <option value="Fourth Quarter" <%= lesson.quarterperiod === 'Fourth Quarter' ? 'selected' : '' %>>Fourth Quarter</option>
         </select><br>
 
+
+        <ul class="nav1 nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+              <b class="nav-link active" id="section1-tab" data-bs-toggle="tab" href="#section1" role="tab" aria-controls="section1" aria-selected="true">Section 1</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section2" role="tab" aria-controls="section2" aria-selected="false">Section 2</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section3-tab" data-bs-toggle="tab" href="#section3" role="tab" aria-controls="section3" aria-selected="false">Section 3</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section4-tab" data-bs-toggle="tab" href="#section4" role="tab" aria-controls="section4" aria-selected="false">Section 4</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section5-tab" data-bs-toggle="tab" href="#section5" role="tab" aria-controls="section5" aria-selected="false">Section 5</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section6-tab" data-bs-toggle="tab" href="#section6" role="tab" aria-controls="section6" aria-selected="false">Section 6</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section7-tab" data-bs-toggle="tab" href="#section7" role="tab" aria-controls="section7" aria-selected="false">Section 7</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section8-tab" data-bs-toggle="tab" href="#section8" role="tab" aria-controls="section8" aria-selected="false">Section 8</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section9-tab" data-bs-toggle="tab" href="#section9" role="tab" aria-controls="section9" aria-selected="false">Section 9</b>
+          </li>
+          <li class="nav-item" role="presentation">
+              <b class="nav-link" id="section10-tab" data-bs-toggle="tab" href="#section10" role="tab" aria-controls="section10" aria-selected="false">Section 10</b>
+          </li>
+      </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="section1" role="tabpanel" aria-labelledby="section1-tab">
         <label for="section1">Section 1</label><br>
         <textarea name="section1" id="section1" ><%= lesson.section1 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section2" role="tabpanel" aria-labelledby="section2-tab">
         <label for="">Section 2</label><br>
         <textarea name="section2" id="section2"><%= lesson.section2 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section3" role="tabpanel" aria-labelledby="section3-tab">
         <label for="">Section 3</label><br>
         <textarea name="section3" id="section3" ><%= lesson.section3 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section4" role="tabpanel" aria-labelledby="section4-tab">
         <label for="">Section 4</label><br>
         <textarea name="section4" id="section4" ><%= lesson.section4 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section5" role="tabpanel" aria-labelledby="section5-tab">
         <label for="">Section 5</label><br>
         <textarea name="section5" id="section5" ><%= lesson.section5 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section6" role="tabpanel" aria-labelledby="section6-tab">
         <label for="">Section 6</label><br>
         <textarea name="section6" id="section6" ><%= lesson.section6 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section7" role="tabpanel" aria-labelledby="section7-tab">
         <label for="">Section 7</label><br>
         <textarea name="section7" id="section7" ><%= lesson.section7 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section8" role="tabpanel" aria-labelledby="section8-tab">
         <label for="">Section 8</label><br>
         <textarea name="section8" id="section8" ><%= lesson.section8 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section9" role="tabpanel" aria-labelledby="section9-tab">
         <label for="">Section 9</label><br>
         <textarea name="section9" id="section9" ><%= lesson.section9 %></textarea><br>
+      </div>
 
+      <div class="tab-pane fade show " id="section10" role="tabpanel" aria-labelledby="section-tab">
         <label for="">Section 10</label><br>
         <textarea name="section10" id="section10" ><%= lesson.section10 %></textarea><br>
+      </div>
 
+    </div>
         <label for="">Lesson Visibility</label><br>
         <select name="visibility" id="visibility">
             <option value="" selected disabled>Select an Option</option>
@@ -137,7 +195,7 @@
 
 
 
-        <input type="submit" value="Update Lesson">
+        <input class="btn btn-primary btn-rounded" type="submit" value="Update Lesson">
 
     </form>
 </div>
@@ -169,6 +227,8 @@
 </body>
     <script src="/javascripts/dashboard.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
 </html>
