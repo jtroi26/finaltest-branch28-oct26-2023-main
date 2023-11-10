@@ -83,6 +83,9 @@ var teacherEditStudentAttendance = require('./routes/teacher-edit-attendance');
 
 //teacher create grades
 var teacherCreateGrades = require('./routes/teacher-create-grades');
+var teacherIndexGrades = require('./routes/teacher-index-grades');
+var teacherViewGradesAssessment = require('./routes/teacher-view-grade-per-assessment');
+var teacherEditGrade = require('./routes/teacher-edit-grade');
 
 
 var app = express();
@@ -191,7 +194,9 @@ app.use('/', teacherEditStudentAttendance);
 
 // teacher create grades
 app.use('/', teacherCreateGrades);
-
+app.use('/', teacherIndexGrades);
+app.use('/', teacherViewGradesAssessment);
+app.use('/', teacherEditGrade);
 
 
 // catch 404 and forward to error handler

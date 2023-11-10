@@ -1,0 +1,8 @@
+<h1>Index Grades</h1>
+<a href="/teacher/create/grades">Create Grades</a><br>
+
+<% results.forEach(result => { %>
+
+    <a href="/teacher/view/grades/<%= result.assessmenttype %>"><%= result.assessmenttype %></a><br>
+
+<% }); %>

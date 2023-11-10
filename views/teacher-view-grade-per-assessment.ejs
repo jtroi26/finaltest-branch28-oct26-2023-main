@@ -1,0 +1,142 @@
+<h1>Grades Per Assessment Per quarter</h1>
+
+<!-- Assuming your EJS template is 'teacher-view-grade-per-assessment.ejs' -->
+
+<!-- Results1 Table -->
+<!-- Assuming your EJS template is 'teacher-view-grade-per-assessment.ejs' -->
+
+<!-- Combined Results Table -->
+<!-- Assuming your EJS template is 'teacher-view-grade-per-assessment.ejs' -->
+
+<!-- Period 1 Table -->
+<h2>Period 1</h2>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>assessmentTitle</th>
+        <th>Quarter Period</th>
+        <th>Date</th>
+        <th>Student Full Name</th>
+        <th>Sectionname</th>
+        <th>subjectname</th>
+        <th>Achieved Grade</th>
+        <th>Assessment Overall Grade</th>
+        <th>Edit Grade</th>
+    </tr>
+    <% period1.forEach(result => { %>
+        <tr>
+            <td><%= result.id %></td>
+            <td><%= result.assessmentTitle %></td>
+            <td><%= result.quarterperiod %></td>
+            <td><%= result.dateGiven %></td>
+            <td><%= result.full_name %></td>
+            <td><%= result.sectionname %></td>
+            <td><%= result.subjectname %></td>
+            <td><%= result.grade %></td>
+            <td><%= result.total %></td>
+            <td><a href="/teacher/grades/update/<%= result.id %>">Edit Grade</a></td>
+        </tr>
+    <% }); %>
+</table>
+
+<!-- Period 2 Table -->
+<h2>Period 2</h2>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>assessmentTitle</th>
+        <th>Quarter Period</th>
+        <th>Date</th>
+        <th>Student Full Name</th>
+        <th>Sectionname</th>
+        <th>subjectname</th>
+        <th>Achieved Grade</th>
+        <th>Assessment Overall Grade</th>
+        <th>Edit Grade</th>
+    </tr>
+    <% period2.forEach(result => { %>
+        <tr>
+            <td><%= result.id %></td>
+            <td><%= result.assessmentTitle %></td>
+            <td><%= result.quarterperiod %></td>
+            <td><%= result.dateGiven %></td>
+            <td><%= result.full_name %></td>
+            <td><%= result.sectionname %></td>
+            <td><%= result.subjectname %></td>
+            <td><%= result.grade %></td>
+            <td><%= result.total %></td>
+            <td><a href="/teacher/grades/update/<%= result.id %>">Edit Grade</a></td>
+        </tr>
+    <% }); %>
+</table>
+
+<!-- Repeat for Period 3 and Period 4 -->
+<!-- Assuming your EJS template is 'teacher-view-grade-per-assessment.ejs' -->
+
+<!-- Period 1 Table -->
+<h2>Period 3</h2>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>assessmentTitle</th>
+        <th>Quarter Period</th>
+        <th>Date</th>
+        <th>Student Full Name</th>
+        <th>Sectionname</th>
+        <th>subjectname</th>
+        <th>Achieved Grade</th>
+        <th>Assessment Overall Grade</th>
+        <th>Edit Grade</th>
+    </tr>
+    <% period3.forEach(result => { %>
+        <tr>
+            <td><%= result.id %></td>
+            <td><%= result.assessmentTitle %></td>
+            <td><%= result.quarterperiod %></td>
+            <td><%= result.dateGiven %></td>
+            <td><%= result.full_name %></td>
+            <td><%= result.sectionname %></td>
+            <td><%= result.subjectname %></td>
+            <td><%= result.grade %></td>
+            <td><%= result.total %></td>
+            <td><a href="/teacher/grades/update/<%= result.id %>">Edit Grade</a></td>
+        </tr>
+    <% }); %>
+</table>
+
+<!-- Period 2 Table -->
+<h2>Period 2</h2>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>assessmentTitle</th>
+        <th>Quarter Period</th>
+        <th>Date</th>
+        <th>Student Full Name</th>
+        <th>Sectionname</th>
+        <th>subjectname</th>
+        <th>Achieved Grade</th>
+        <th>Assessment Overall Grade</th>
+        <th>Edit Grade</th>
+    </tr>
+    <% period4.forEach(result => { %>
+        <tr>
+            <td><%= result.id %></td>
+            <td><%= result.assessmentTitle %></td>
+            <td><%= result.quarterperiod %></td>
+            <td><%= result.dateGiven %></td>
+            <td><%= result.full_name %></td>
+            <td><%= result.sectionname %></td>
+            <td><%= result.subjectname %></td>
+            <td><%= result.grade %></td>
+            <td><%= result.total %></td>
+            <td><a href="/teacher/grades/update/<%= result.id %>">Edit Grade</a></td>
+        </tr>
+    <% }); %>
+</table>
+
+<!-- Repeat for Period 3 and Period 4 -->
+
+
+
+<!-- Repeat for Results3 and Results4 -->
