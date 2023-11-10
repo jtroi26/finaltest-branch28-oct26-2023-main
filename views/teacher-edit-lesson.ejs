@@ -85,20 +85,21 @@
     <form action="/teacher/lesson/edit-lesson/<%= lesson.id %>" method="post">
 
         <label for="">Lesson ID</label><br>
-        <input type="text" name="lessonID" id="lessonID" value="<%= lesson.lessonID %>"><br>
+        <input class="form-control" type="text" name="lessonID" id="lessonID" value="<%= lesson.lessonID %>"><br>
         
         <label for="">Lesson Title</label><br>
-        <input type="text" name="lessonTitle" id="lessonTitle" value="<%= lesson.lessonTitle %>"><br>
+        <input class="form-control" type="text" name="lessonTitle" id="lessonTitle" value="<%= lesson.lessonTitle %>"><br>
 
         <label for="">Quarter Period</label><br>
-        <select name="quarterperiod" id="quarterperiod">
+        <select name="quarterperiod" id="quarterperiod" class="btn btn-dark dropdown-toggle dropdown-toggle-split">
             <option value="" selected disabled>Choose an Option</option>
             <option value="First Quarter" <%= lesson.quarterperiod === 'First Quarter' ? 'selected' : '' %>>First Quarter</option>
             <option value="Second Quarter" <%= lesson.quarterperiod === 'Second Quarter' ? 'selected' : '' %>>Second Quarter</option>
             <option value="Third Quarter" <%= lesson.quarterperiod === 'Third Quarter' ? 'selected' : '' %>>Third Quarter</option>
             <option value="Fourth Quarter" <%= lesson.quarterperiod === 'Fourth Quarter' ? 'selected' : '' %>>Fourth Quarter</option>
-        </select><br>
+        </select>
 
+        <br><br>
 
         <ul class="nav1 nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
@@ -186,7 +187,7 @@
 
     </div>
         <label for="">Lesson Visibility</label><br>
-        <select name="visibility" id="visibility">
+        <select name="visibility" id="visibility" class="btn btn-dark dropdown-toggle dropdown-toggle-split">
             <option value="" selected disabled>Select an Option</option>
             <option value="Visible" <%= lesson.visibility === 'Visible' ? 'selected' : '' %>>Visible</option>
             <option value="Invisible" <%= lesson.visibility === 'Invisible' ? 'selected' : '' %>>Invisible</option>
@@ -199,7 +200,9 @@
 
     </form>
 </div>
+<br><br>
 </section>
+
 
 <% } else { %>
   <br><br><br><br><br><br><br><br><br><br>
@@ -207,6 +210,7 @@
   <% } %>  
 
 
+  
 <script>
     tinymce.init({
       selector: 'textarea',

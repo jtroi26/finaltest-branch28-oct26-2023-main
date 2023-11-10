@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const say = require('say');
 
 const conn = {
     host: 'localhost',
@@ -28,9 +29,8 @@ exports.getAnnouncementPageView = (req, res) => {
                 // Announcement data is available in 'results[0]'
                 const announcementData = results[0];
 
-                
                 // Render the 'teacher-view-announcement' template and pass the announcement data
-                res.render('teacher-view-announcement', { announcement: announcementData, teacherid: req.session.teacherid });
+                res.render('teacher-view-announcement', { announcement: announcementData, teacherid: req.session.teacherid});
                 console.log(announcementData);
                 // Close the database connection
                 connection.end();
@@ -38,3 +38,6 @@ exports.getAnnouncementPageView = (req, res) => {
         }
     });
 };
+
+
+
