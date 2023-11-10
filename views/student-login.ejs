@@ -2,116 +2,160 @@
 <html lang="en">
 
 <head>
-    <title>DAZSMA | Student-Login</title>
+    <title>Student-Login | DAZSMA </title>
+    <link rel="icon" href="/img/dazsma-logo.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">DAZSMA</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">
+                        <i class="fas fa-user"></i><span class="nav-text"> Admin</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacher">
+                        <i class="far fa-user"></i><span class="nav-text"> Teacher</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="fas fa-graduation-cap"></i><span class="nav-text"> Student</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
     <div class="login-page bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    <div class="bg-white shadow rounded">
+                    <div class="bg-form shadow rounded">
                         <div class="row">
                             <div class="col-md-7 pe-0">
-                                <h3 class="text-center my-4">Student Login</h3>
-                                <% if (typeof errorMessagemax !=='undefined' ) { %>
-                                    <div class="alert alert-danger alert-top-right" role="alert">
-                                        <%= errorMessagemax %>
-                                    </div>
-                                <% } %>
-                                <% if (typeof errorMessage !=='undefined' ) { %>
-                                    <div class="alert alert-danger alert-top-right" role="alert">
-                                        <%= errorMessage %>
-                                    </div>
-                                <% } %>                                 
-                                <div class="form-left h-100 py-5 px-5">
-                                    <form action="/" method="post" class="row g-4">
-                                        <div class="col-12">
-                                            <label>Student ID<span class="text-danger">*</span></label>
-                                            
-                                            <% if (typeof errorMessagemax !=='undefined' ) { %>
-                                                <div class="input-group">
-                                                    <div class="input-group-text"><i class="bi bi-person-badge"></i></div>
-                                                    <input type="text" name="studentID" id="studentID" class="form-control"
-                                                        placeholder="Enter Student ID" readonly>
+                                <h4 class="text-center my-4">Student</h4>
+                                <% if (typeof errorMessagemax !=='undefined' && errorMessagemax ) { %>
+                                    <script>
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: '<%= errorMessagemax %>',
+                                        });
+                                    </script>
+                                    <% } %>
+                                        <% if (typeof errorMessage !=='undefined' && errorMessage ) { %>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Oops...',
+                                                    text: '<%= errorMessage %>',
+                                                });
+                                            </script>
+                                            <% } %>
+                                                <div class="form-left h-100 py-4 px-5">
+                                                    <form id="login-form" action="/" method="post" class="row g-4">
+                                                        <div class="col-12">
+                                                            <label>Student ID<span class="text-danger">*</span></label>
+
+                                                            <% if (typeof errorMessagemax !=='undefined' ) { %>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-text"><i
+                                                                            class="fas fa-id-badge"></i></div>
+                                                                    <input type="text" name="studentID" id="studentID"
+                                                                        class="form-control"
+                                                                        placeholder="Enter Student ID" readonly>
+                                                                </div>
+                                                                <% } else { %>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-text"><i
+                                                                                class="fas fa-id-badge"></i></div>
+                                                                        <input type="text" name="studentID"
+                                                                            id="studentID" class="form-control"
+                                                                            placeholder="Enter Student ID" required>
+                                                                    </div>
+
+                                                                    <% } %>
+
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <% if (typeof errorMessagemax !=='undefined' ) { %>
+
+                                                                <label>Username<span
+                                                                        class="text-danger">*</span></label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-text"><i
+                                                                            class="fas fa-user"></i></div>
+                                                                    <input type="text" name="studentUserName"
+                                                                        id="studentUserName" class="form-control"
+                                                                        placeholder="Enter Username" readonly>
+                                                                </div>
+
+
+                                                                <% } else { %>
+
+                                                                    <label>Username<span
+                                                                            class="text-danger">*</span></label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-text"><i
+                                                                                class="fas fa-user"></i></div>
+                                                                        <input type="text" name="studentUserName"
+                                                                            id="studentUserName" class="form-control"
+                                                                            placeholder="Enter Username" required>
+                                                                    </div>
+
+                                                                    <% } %>
+                                                        </div>
+
+
+                                                        <div class="col-12">
+                                                            <% if (typeof errorMessagemax !=='undefined' ) { %>
+                                                                <label>Password<span
+                                                                        class="text-danger">*</span></label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-text"><i
+                                                                            class="fas fa-lock"></i></div>
+                                                                    <input type="password" name="studentPassword"
+                                                                        id="studentPassword" class="form-control"
+                                                                        placeholder="Enter Password" readonly>
+                                                                </div>
+                                                                <% } else { %>
+                                                                    <label>Password<span
+                                                                            class="text-danger">*</span></label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-text"><i
+                                                                                class="fas fa-lock"></i></div>
+                                                                        <input type="password" name="studentPassword"
+                                                                            id="studentPassword" class="form-control"
+                                                                            placeholder="Enter Password" required>
+                                                                    </div>
+                                                                    <% } %>
+
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <button type="submit"
+                                                                class="btn btn-custom-color px-5 float-end mt-4">Login</button>
+
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                            <% } else { %>
-                                                <div class="input-group">
-                                                    <div class="input-group-text"><i class="bi bi-person-badge"></i></div>
-                                                    <input type="text" name="studentID" id="studentID" class="form-control"
-                                                        placeholder="Enter Student ID">
-                                                </div>
-
-                                            <% }
-                                            %>  
-
-                                        </div>
-
-                                        <div class="col-12">
-                                        <% if (typeof errorMessagemax !=='undefined' ) { %>
-                                            
-                                                <label>Username<span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                                                    <input type="text" name="studentUserName" id="studentUserName"
-                                                        class="form-control" placeholder="Enter Username" readonly>
-                                                </div>
-                                            
-
-                                            <% } else { %>
-                                                
-                                                    <label>Username<span class="text-danger">*</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                                                        <input type="text" name="studentUserName" id="studentUserName"
-                                                            class="form-control" placeholder="Enter Username" required>
-                                                    </div>
-                                                
-                                            <% }
-                                            %> 
-                                        </div>
-
-
-                                        <div class="col-12">
-                                            <% if (typeof errorMessagemax !=='undefined' ) { %>
-                                                <label>Password<span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                    <input type="password" name="studentPassword" id="studentPassword"
-                                                        class="form-control" placeholder="Enter Password" readonly>
-                                                </div>
-                                                <% } else { %>
-                                                    <label>Password<span class="text-danger">*</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                        <input type="password" name="studentPassword" id="studentPassword"
-                                                            class="form-control" placeholder="Enter Password" required>
-                                                    </div>
-                                            <% }
-                                            %> 
-                                            
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button type="submit"
-                                                class="btn btn-custom-color px-4 float-end mt-4">Login</button>
-
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
                             <div class="form_right col-md-5 ps-0 d-none d-md-block">
-                                <div class="form-right h-100 text-white text-center pt-5">
-                                    <i class="bi bi-book"></i>
-                                    <h2 class="fs-1">DAZSMA</h2>
-                                    <a href="/teacher" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">teacher</span> </a>
-                                    <a href="/admin" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Admin</span> </a>
-                                
+                                <div class="form-right h-100 text-white text-center">
+                                    <img src="/img/dazsma-logo.png" alt="DAZSMA Logo" class="logo-image">
                                 </div>
                             </div>
                         </div>
@@ -120,8 +164,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
 
 </body>
 

@@ -30,7 +30,7 @@ exports.postAdminLogin = (req, res) => {
                 res.redirect('/admin/dashboard');
             } else {
                 // Login failed
-                return res.render('admin-login', {errorMessage: 'Invalid username or password for student.'});
+                res.render('admin-login', {errorMessage: 'Invalid username or password for admin.'});
             }
         }
         connection.end();
