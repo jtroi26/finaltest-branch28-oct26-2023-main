@@ -1,25 +1,352 @@
-<h1>index students</h1>
-<a href="/admin/create/student">Create Student Account</a>
-<table border="1">
-    <tr>
-        <th>Student ID</th>
-        <th>Student Name</th>
-        <th>Section</th>
-        <th>Date Enrolled</th>
-        <th>Enrolled || Unenrolled</th>
-        <th colspan="3">Actions</th>
-    </tr>
-    <% data.forEach(student => { %>
-    <tr>
-        <td><%= student.studentID %></td>
-        <td><%= student['Student Name'] %></td>
-        <td><%= student.sectionname %></td>
-        <td><%= student.dateEnrolled %></td>
-        <td><%= student.status %></td>
-        <td><a href="/admin/view/student/<%= student.id %>">View</a></td>
-        <td><a href="/admin/edit/student/<%= student.id %>">Edit</a></td>
-        <td><form action="/admin/delete/student/<%= student.id %>" method="post"><button type="submit">Delete</button></form></td>
-    </tr>
-    <% }); %>
-</table>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAZSMA | Admin-Student</title>
+    <link href="/stylesheets/style1.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class="fa-solid fa-bars" id="header-toggle"></i> </div>
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="/admin/dashboard" class="nav_logo">
+                    <i class='fas fa-graduation-cap nav_logo-icon'></i>
+                    <span class="nav_logo-name">DAZSMA</span>
+                </a>
+                <div class="nav_list">
+                    <a href="/admin/dashboard" class="nav_link ">
+                        <i class='fas fa-tachometer-alt nav_icon'></i>
+                        <span class="nav_name">Dashboard</span>
+                    </a>
+                    <a href="/admin/index-subject" class="nav_link">
+                        <i class='fas fa-book-open nav_icon'></i>
+                        <span class="nav_name">Subject</span>
+                    </a>
+                    <a href="/admin/index-section" class="nav_link">
+                        <i class='fas fa-users nav_icon'></i>
+                        <span class="nav_name">Section</span>
+                    </a>
+                    <a href="/admin/index-teacher" class="nav_link">
+                        <i class='fas fa-chalkboard-teacher nav_icon'></i>
+                        <span class="nav_name">Teacher</span>
+                    </a>
+                    <a href="/admin/index-student" class="nav_link active">
+                        <i class='fas fa-user-graduate nav_icon'></i>
+                        <span class="nav_name">Student</span>
+                    </a>
+                    <a href="/admin/index-department" class="nav_link">
+                        <i class='fas fa-building fa-lg nav_icon'></i>
+                        <span class="nav_name">Department</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="row my-4 align-items-center">
+        <div class="col-md-6">
+            <h1>Student</h1>
+        </div>
+        <div class="col-md-6 text-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createStudentModal">
+                Create Student Account
+            </button>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="createStudentModal" tabindex="-1" aria-labelledby="createStudentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createStudentModalLabel">Create Student Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- CSV Upload Section -->
+                    <div class="mb-4">
+                        <h6 class="mb-3">Create Student</h6>
+                        <form action="/upload" method="post" enctype="multipart/form-data" class="mb-4">
+                            <div class="input-group mb-3">
+                                <input class="form-control" type="file" id="csvfile" name="csvfile" accept=".csv"
+                                    aria-describedby="csvfileAddon">
+                                <button class="btn btn-outline-secondary" type="submit" id="csvfileAddon">Upload
+                                    CSV</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Divider -->
+                    <hr class="my-4">
+
+                    <!-- Student Form -->
+                    <div>
+                        <h6 class="mb-3">Create Student Manually</h6>
+                        <form action="/admin/create/student" method="post">
+                            <div class="row">
+                                <!-- Left side of the modal -->
+                                <div class="col-md-6">
+                                    <!-- Student ID -->
+                                    <div class="mb-3">
+                                        <label for="studentID" class="form-label">Student ID</label>
+                                        <input type="text" class="form-control" name="studentID" id="studentID"
+                                            required>
+                                    </div>
+                                    <!-- Section -->
+                                    <div class="mb-3">
+                                        <label for="sectionname" class="form-label">Section</label>
+                                        <select class="form-select" name="sectionname" id="sectionname">
+                                            <option value="" default selected disabled>Choose an Option</option>
+                                            <% section.forEach((section)=> { %>
+                                                <option value="<%= section.sectionname %>">
+                                                    <%= section.sectionname %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                    <!-- Enrollment Date -->
+                                    <div class="mb-3">
+                                        <label for="dateEnrolled" class="form-label">Enrollment Date</label>
+                                        <input type="datetime-local" class="form-control" name="dateEnrolled"
+                                            id="dateEnrolled">
+                                    </div>
+                                    <!-- Enrollment Status -->
+                                    <div class="mb-3">
+                                        <label for="status" class="form-label">Enrollment Status</label>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="" default selected disabled>Choose an Option</option>
+                                            <option value="Enrolled">Enrolled</option>
+                                            <option value="Unenrolled">Unenrolled</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Right side of the modal -->
+                                <div class="col-md-6">
+                                    <!-- First Name -->
+                                    <div class="mb-3">
+                                        <label for="firstname" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" name="firstname" id="firstname" required
+                                            oninput="generateUserLogin()">
+                                    </div>
+                                    <!-- Middle Name -->
+                                    <div class="mb-3">
+                                        <label for="middlename" class="form-label">Middle Name</label>
+                                        <input type="text" class="form-control" name="middlename" id="middlename"
+                                            oninput="generateUserLogin()">
+                                    </div>
+                                    <!-- Last Name -->
+                                    <div class="mb-3">
+                                        <label for="lastname" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" name="lastname" id="lastname" required
+                                            oninput="generateUserLogin()">
+                                    </div>
+                                    <!-- Suffix -->
+                                    <div class="mb-3">
+                                        <label for="suffix" class="form-label">Suffix</label>
+                                        <select name="suffix" id="suffix" class="form-select">
+                                            <option value="" default selected disabled>Choose an Option</option>
+                                            <option value="Sr.">Senior</option>
+                                            <option value="Jr.">Junior</option>
+                                            <option value="III">III</option>
+                                            <option value="IV">IV</option>
+                                            <option value="V">V</option>
+                                            <option value="VI">VI</option>
+                                            <option value="null">None</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Create Account</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Section</th>
+                <th>Date Enrolled</th>
+                <th>Status</th>
+                <th colspan="3" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(student=> { %>
+                <tr>
+                    <td>
+                        <%= student.studentID %>
+                    </td>
+                    <td>
+                        <%= student['Student Name'] %>
+                    </td>
+                    <td>
+                        <%= student.sectionname %>
+                    </td>
+                    <td>
+                        <%= student.dateEnrolled %>
+                    </td>
+                    <td>
+                        <%= student.status %>
+                    </td>
+                    <!-- <td><a href="/admin/view/student/<%= student.id %>">View</a></td> -->
+                    <td class="text-center">
+                        <button class="btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#viewStudentModal<%= student.id %>">View</button>
+                    </td>
+                    <!-- <td><a href="/admin/edit/student/<%= student.id %>">Edit</a></td> -->
+                    <td class="text-center">
+                        <button class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#editStudentModal<%= student.id %>">Edit</button>
+                    </td>
+                    <td class="text-center">
+                        <form action="/admin/delete/student/<%= student.id %>" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <!-- View Student Modal -->
+                <div class="modal fade" id="viewStudentModal<%= student.id %>" tabindex="-1"
+                    aria-labelledby="viewStudentModalLabel<%= student.id %>" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewStudentModalLabel<%= student.id %>">View</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <p><strong>Student Details</strong></p>
+                                    <p><strong>Student ID:</strong>
+                                        <%= student.studentID %>
+                                    </p>
+                                    <p><strong>Student Name: </strong>
+                                        <%= student['Student Name'] %>
+                                    </p>
+                                    <p><strong>Student Section: </strong>
+                                        <%= student.sectionname %>
+                                    </p>
+                                    <p><strong>Date Enrolled:</strong>
+                                        <%= student.dateEnrolled %>
+                                    </p>
+                                    <p><strong>Enrollment Status:</strong>
+                                        <%= student.status %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit Student Modal -->
+                <div class="modal fade" id="editStudentModal<%= student.id %>" tabindex="-1"
+                    aria-labelledby="editStudentModalLabel<%= student.id %>" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editStudentModalLabel<%= student.id %>">Edit Student Details
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/admin/edit/student/<%= student.id %>" method="post">
+                                    <div class="mb-3">
+                                        <label for="studentID" class="form-label">Student ID</label>
+                                        <input type="text" class="form-control" name="studentID" id="studentID"
+                                            value="<%= student.studentID %>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="firstname" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" name="firstname" id="firstname"
+                                            value="<%= student.firstname %>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="middlename" class="form-label">Middle Name</label>
+                                        <input type="text" class="form-control" name="middlename" id="middlename"
+                                            value="<%= student.middlename %>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lastname" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" name="lastname" id="lastname"
+                                            value="<%= student.lastname %>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="suffix" class="form-label">Suffix</label>
+                                        <select name="suffix" id="suffix" class="form-select">
+                                            <option value="" disabled>Select an option</option>
+                                            <option value="" disabled>Select an option</option>
+                                            <option value="Sr." <%=student.suffix==='Sr.' ? 'selected' : '' %>>Senior
+                                            </option>
+                                            <option value="Jr." <%=student.suffix==='Jr.' ? 'selected' : '' %>>Junior
+                                            </option>
+                                            <option value="III" <%=student.suffix==='III' ? 'selected' : '' %>>III
+                                            </option>
+                                            <option value="IV" <%=student.suffix==='IV' ? 'selected' : '' %>>IV</option>
+                                            <option value="V" <%=student.suffix==='V' ? 'selected' : '' %>>V</option>
+                                            <option value="VI" <%=student.suffix==='VI' ? 'selected' : '' %>>VI</option>
+                                            <option value="none" <%=student.suffix==='none' ? 'selected' : '' %>>none
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="sectionname" class="form-label">Section Name</label>
+                                        <select name="sectionname" id="sectionname" class="form-select" required>
+                                            <option value="" disabled>Select a section</option>
+                                            <% section.forEach(section=> { %>
+                                                <option value="<%= section.sectionname %>"
+                                                    <%= student.sectionname === section.sectionname ? 'selected' : '' %>>
+                                                    <%= section.sectionname %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="status" class="form-label">Enrollment Status</label>
+                                        <select name="status" id="status" class="form-select">
+                                            <option value="" disabled>Select an option</option>
+                                            <option value="Enrolled" <%=student.status==='Enrolled' ? 'selected' : '' %>
+                                                >Enrolled</option>
+                                            <option value="Unenrolled" <%=student.status==='Unenrolled' ? 'selected'
+                                                : '' %>>Unenrolled</option>
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <% }); %>
+
+        </tbody>
+    </table>
+
+    <script src="/javascripts/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+
+</html>

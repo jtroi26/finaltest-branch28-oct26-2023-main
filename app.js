@@ -73,6 +73,8 @@ var studentSubjectViewRouter = require('./routes/student-view-subject');
 var studentLessonsViewRouter = require('./routes/student-view-lessons');
 var studentLessonViewRouter = require('./routes/student-view-lesson');
 var studentClassmatesViewRouter = require('./routes/student-view-classmates');
+var studentAnnouncementViewRouter = require('./routes/student-view-announcement');
+var studentAnnouncementPageViewRouter = require('./routes/student-view-announcementpage');
 
 // teacher view students
 var teacherViewStudents = require('./routes/teacher-view-students');
@@ -180,6 +182,8 @@ app.use('/', studentSubjectViewRouter);
 app.use('/', studentLessonsViewRouter);
 app.use('/', studentLessonViewRouter);
 app.use('/', studentClassmatesViewRouter);
+app.use('/', studentAnnouncementViewRouter);
+app.use('/', studentAnnouncementPageViewRouter);
 
 // teacher view students and attendance
 app.use('/', teacherViewStudents);

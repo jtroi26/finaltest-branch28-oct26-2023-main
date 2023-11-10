@@ -1,11 +1,4 @@
-<!-- <h1> <%= subjectData.subjectname %> - <%= subjectData.sectionname %> > Home</h1>
 
-<h1>Announcements</h1>
-<a href="/student/view/classmates"><h1>Classmates</h1></a>
-<h1>Classmates</h1>
-<h1>Assignments</h1>
-<a href="/student/view/lessons">View Lessons</a>
-<h1>Lessons</h1> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +18,7 @@
         
         <!-- Navbar items -->
         <nav class="header_nav">
-          <a href="/student/view/announcement" class="nav_item">Announcements</a>
+          <a href="/student/view/announcement" class="nav_item active">Announcements</a>
           <a href="/student/view/lessons" class="nav_item">Lessons</a>
           <a href="#" class="nav_item">Assignments</a>
           <a href="/student/view/classmates" class="nav_item">Classmates</a>
@@ -55,8 +48,9 @@
 
         </nav>
     </div>
-
-
+    <h1>Announcement</h1>
+    <h1><%= announcement.announcementTitle %></h1>
+    <h2><%= announcement.announcement %></h2>
 
     <script src="/javascripts/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>

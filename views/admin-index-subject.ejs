@@ -4,62 +4,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>DAZSMA | Admin-Subject</title>
     <link href="/stylesheets/style1.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" />
 
 </head>
 
 <body id="body-pd">
     <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="header_notify"> <i class='bx bx-bell' id="header-notify"></i> </div>
+        <div class="header_toggle"> <i class="fa-solid fa-bars" id="header-toggle"></i> </div>
     </header>
 
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="/admin/dashboard" class="nav_logo"> <i class='bx bx-book-reader nav_logo-icon'></i> <span
-                        class="nav_logo-name">E-learn</span> </a>
+                <a href="/admin/dashboard" class="nav_logo">
+                    <i class='fas fa-graduation-cap nav_logo-icon'></i>
+                    <span class="nav_logo-name">DAZSMA</span>
+                </a>
                 <div class="nav_list">
-                    <a href="/admin/dashboard" class="nav_link "> <i class='bx bx-grid-alt nav_icon'></i> <span
-                            class="nav_name">Dashboard</span> </a>
-                    <a href="/admin/index-subject" class="nav_link active"> <i class='bx bx-book nav_icon'></i> <span
-                            class="nav_name">Subject</span></a>
-                    <a href="/admin/index-section" class="nav_link "> <i class='bx bx-calendar nav_icon'></i> <span
-                            class="nav_name">Section</span></a>
-                    <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
-                            class="nav_name">Achievements</span></a>
-                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">
-
-                        </span> </a>
+                    <a href="/admin/dashboard" class="nav_link">
+                        <i class='fas fa-tachometer-alt nav_icon'></i>
+                        <span class="nav_name">Dashboard</span>
+                    </a>
+                    <a href="/admin/index-subject" class="nav_link active">
+                        <i class='fas fa-book-open nav_icon'></i>
+                        <span class="nav_name">Subject</span>
+                    </a>
+                    <a href="/admin/index-section" class="nav_link">
+                        <i class='fas fa-users nav_icon'></i>
+                        <span class="nav_name">Section</span>
+                    </a>
+                    <a href="/admin/index-teacher" class="nav_link ">
+                        <i class='fas fa-chalkboard-teacher nav_icon'></i>
+                        <span class="nav_name">Teacher</span>
+                    </a>
+                    <a href="/admin/index-student" class="nav_link">
+                        <i class='fas fa-user-graduate nav_icon'></i>
+                        <span class="nav_name">Student</span>
+                    </a>
+                    <a href="/admin/index-department" class="nav_link">
+                        <i class='fas fa-building fa-lg nav_icon'></i>
+                        <span class="nav_name">Department</span>
+                    </a>
                 </div>
             </div>
-
             <% if (admin_id) { %>
-
                 <form action="/logout" method="post">
+                    <a class="nav_link" type="submit">
+                        <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+                        <span class="nav_name">Logout</span>
 
-                    <a class="nav_link" type="submit"> <button><i class='bx bx-log-out nav_icon'></i> <span
-                                class="nav_name">SignOut</span></button> </a>
+                    </a>
                 </form>
-
                 <% } else { %>
-                    <a href="/admin/login" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
-                            class="nav_name">Login</span> </a>
+                    <a href="/admin/login" class="nav_link">
+                        <i class="fa-solid fa-arrow-right-to-bracket fa-lg"></i>
+                        <span class="nav_name">Login</span>
+                    </a>
                     <% } %>
-
-
         </nav>
     </div>
 
-    <h1 class="my-4 text-center">All Subjects</h1>
-    <div class="text-center mb-3">
-        <a href="/admin/dashboard" class="btn btn-secondary me-2">Admin Dashboard</a>
-        <a href="/admin/create-subject" class="btn btn-primary">Create Subject</a>
+    <div class="row my-4 align-items-center">
+        <div class="col-md-6">
+            <h1>All Subject</h1>
+        </div>
+        <div class="col-md-6 text-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createSubjectModal">
+                Create Subject
+            </button>
+        </div>
     </div>
+    <div class="modal fade" id="createSubjectModal" tabindex="-1" aria-labelledby="createSubjectModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createSubjectModalLabel">Create Subject</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/create-subject" method="post">
+                        <div class="mb-3">
+                            <label for="subjectid" class="form-label">Subject ID:</label>
+                            <input type="text" class="form-control" id="subjectid" name="subjectid" required
+                                placeholder="SubjectID must be unique">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Subject Name</label>
+                            <input type="text" class="form-control" name="subjectname" id="subjectname" required
+                                placeholder="Science for example">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Section:</label>
+                            <select name="sectionname" id="sectionname" class="form-select" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <% section.forEach((section)=> { %>
+                                    <option value="<%= section.sectionname %>">
+                                        <%= section.sectionname %>
+                                    </option>
+                                    <% }); %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Teacher:</label>
+                            <select name="teacherid" id="teacherid" class="form-select" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <% teacher.forEach((teacher)=> { %>
+                                    <option value="<%= teacher.teacherid %>">
+                                        <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
+                                    </option>
+                                    <% }); %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="visibility">Visibility</label>
+                            <select name="visibility" id="visibility" class="form-select" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="Visible">Visible</option>
+                                <option value="Invisible">Invisible</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create Subject</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -93,21 +170,139 @@
                     <td>
                         <%= row.visibility %>
                     </td>
-                    <td class="text-center"><a href="/admin/view-subject/<%= row.subjectid %>" class="btn btn-info">View</a></td>
-                    <td class="text-center"><a href="/admin/edit-subject/<%= row.subjectid %>" class="btn btn-warning">Edit</a></td>
+                    <td class="text-center">
+                        <button class="btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#viewSubjectModal<%= row.subjectid %>">View</button>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#editSubjectModal<%= row.subjectid %>">Edit</button>
+                    </td>
                     <td class="text-center">
                         <form action="/admin/delete-subject/<%= row.subjectid %>" method="post">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
-            <% }); %>
+                <!-- View Modal -->
+                <div class="modal fade" id="viewSubjectModal<%= row.subjectid %>" tabindex="-1"
+                    aria-labelledby="viewSubjectModalLabel<%= row.subjectid %>" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewModalLabel<%= row.subjectid %>">View
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Subject ID:</strong>
+                                    <%= row.subjectid %>
+                                </p>
+                                <p><strong>Subject Name:</strong>
+                                    <%= row.subjectname %>
+                                </p>
+                                <p><strong>Section Name:</strong>
+                                    <%= row.sectionname %>
+                                </p>
+                                <p><strong>Teacher ID:</strong>
+                                    <%= row.teacherid %>
+                                </p>
+                                <p><strong>Assigned Teacher:</strong>
+                                    <%= row.teacher_fullname %>
+                                </p>
+                                <p><strong>Visibility:</strong>
+                                    <%= row.visibility %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editSubjectModal<%= row.subjectid %>" tabindex="-1"
+                    aria-labelledby="editSubjectModalLabel<%= row.subjectid %>" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalSubjectLabel<%= row.subjectid %>">Edit
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/admin/edit-subject/<%= row.id %>" method="post">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Subject ID</label>
+                                        <input type="text" class="form-control" name="subjectid"
+                                            id="subjectid" value="<%= row.subjectid %>" required
+                                            placeholder="Science for example">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="subjectName" class="form-label">Subject
+                                            Name</label>
+                                        <input type="text" class="form-control" name="subjectname"
+                                            id="subjectname" value="<%= row.subjectname %>" required
+                                            placeholder="Science for example">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="sectionName" class="form-label">Section</label>
+                                        <select name="sectionname" id="sectionName"
+                                            class="form-select" required>
+                                            <% section.forEach((section)=> { %>
+                                                <option value="<%= section.sectionname %>"
+                                                    <%=section.sectionname=== row.sectionname ? 'selected' : '' %>>
+                                                    <%= section.sectionname %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="<%= row.subjectid %>" class="form-label">Teacher</label>
+                                        <select name="teacherid" id="teacherId" class="form-select">
+                                            <% teacher.forEach((teacher)=> { %>
+                                                <option value="<%= teacher.teacherid %>"
+                                                    <%=teacher.teacherid=== row.teacherid ? 'selected' : '' %>>
+                                                    <%= teacher.firstname + ' ' + teacher.middlename + ' ' +
+                                                        teacher.lastname %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="visibility"
+                                            class="form-label">Visibility</label>
+                                        <select name="visibility" id="visibility"
+                                            class="form-select">
+                                            <option value="Visible" <%= row.visibility==="Visible" ? 'selected' : '' %>
+                                                >Visible</option>
+                                            <option value="Invisible" <%=row.visibility==="Invisible" ? 'selected' : ''
+                                                %>>Invisible</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-warning">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <% }); %>
+
         </tbody>
+
     </table>
 
 </body>
 
 <script src="/javascripts/dashboard.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>

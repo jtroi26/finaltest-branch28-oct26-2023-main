@@ -7,38 +7,61 @@ const conn = {
     password: ''
 };
 
+// Consider using a connection pool
+const pool = mysql.createPool(conn);
+
 exports.getIndexTeacherPage = (req, res) => {
-    const connection = mysql.createConnection(conn);
-
-    const sql = `SELECT id, teacherid, firstname, middlename, lastname, suffix, department, visibility FROM teacherdetails`;
-
-    connection.query(sql, (err, results) => {
+    // Use the pool to handle your connections
+    pool.getConnection((err, connection) => {
         if (err) {
-            console.error("Error retrieving teacher details:", err);
-            connection.end(); // Close the database connection
-            // Handle the error, e.g., by sending an error response
-            res.status(500).json({ error: "An error occurred while retrieving data." });
-        } else {
-            const teacherData = results.map((td) => {
-                // Construct the teacher name as per your requirements
-                const suffix = td.suffix === 'null' || td.suffix === null ? '' : td.suffix;
-                const teacherName = `${td.firstname} ${td.middlename || ''} ${td.lastname} ${suffix}`.trim();
-
-                // Return the formatted data
-                return {
-                    id: td.id,
-                    teacherid: td.teacherid,
-                    teachername: teacherName,
-                    department: td.department,
-                    visibility: td.visibility,
-                };
-            });
-
-            connection.end(); // Close the database connection
-
-            // Render the HTML page with the teacher data
-            res.render('admin-index-teacher', { teacherData });
+            console.error("Error getting connection:", err);
+            return res.status(500).json({ error: "Database connection failed." });
         }
+
+        const sql =
+            `SELECT
+            td.id AS teacher_id,
+            td.teacherid,
+            td.firstname,
+            td.middlename,
+            td.lastname,
+            IFNULL(td.suffix, ' ') AS suffix,
+                td.department,
+                td.visibility,
+                tl.userlogin,
+                tl.userpassword,
+                CONCAT(
+                    td.firstname,
+                    ' ',
+                    IFNULL(td.middlename, ''),
+                    ' ',
+                    td.lastname,
+                    ' ',
+                    IFNULL(td.suffix, '')
+                ) AS teachername
+            FROM teacherdetails AS td
+            INNER JOIN teacherlogins AS tl ON tl.teacherid = td.teacherid`;
+
+        const sqlDepartment = `SELECT id, department from departments WHERE visibility = 'Visible';`;
+
+        connection.query(sql, (err, results) => {
+            if (err) {
+                console.error("Error retrieving teacher details:", err);
+                connection.release(); // Release the connection back to the pool
+                return res.status(500).json({ error: "An error occurred while retrieving teacher data." });
+            }
+
+
+            connection.query(sqlDepartment, (err, departmentResults) => {
+                connection.release(); // Always release the connection back to the pool
+
+                if (err) {
+                    console.error("Error retrieving departments:", err);
+                    return res.status(500).json({ error: "An error occurred while retrieving department data." });
+                }
+
+                res.render('admin-index-teacher', { data: results, departments: departmentResults });
+            });
+        });
     });
 };
-

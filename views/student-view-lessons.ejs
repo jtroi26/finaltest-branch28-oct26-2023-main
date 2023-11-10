@@ -1,20 +1,115 @@
-<h1> <%= lessonsData[0].sectionname %> - <%= lessonsData[0].subjectname %> > Lessons</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<table border="1">
-    <tr>
-        <th>Lesson ID</th>
-        <th>Lesson Title</th>
-        <th>Quarter Period</th>
-        <th>Action</th>
-    </tr>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAZSMA | Student-Dashboard</title>
+    <link href="/stylesheets/style1.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class="fa-solid fa-bars" id="header-toggle"></i> </div>
+
+        <!-- Navbar items -->
+        <nav class="header_nav">
+            <a href="/student/view/announcement" class="nav_item ">Announcements</a>
+            <a href="/student/view/lessons" class="nav_item active">Lessons</a>
+            <a href="#" class="nav_item">Assignments</a>
+            <a href="/student/view/classmates" class="nav_item">Classmates</a>
+
+        </nav>
+
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="/student/dashboard" class="nav_logo">
+                    <i class='fas fa-graduation-cap nav_logo-icon'></i>
+                    <span class="nav_logo-name">DAZSMA</span>
+                </a>
+                <div class="nav_list">
+                    <a href="/student/dashboard" class="nav_link ">
+                        <i class='fas fa-tachometer-alt nav_icon'></i>
+                        <span class="nav_name">Dashboard</span>
+                    </a>
+                    <a href="/student/view/subject" class="nav_link active">
+                        <i class='fas fa-book-open nav_icon'></i>
+                        <span class="nav_name">Subject</span>
+                    </a>
+                    <a href="/student/view/classmates" class="nav_link">
+                        <i class='fas fa-users nav_icon'></i>
+                        <span class="nav_name">Section</span>
+                    </a>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+    <div class="title">
+        <h3>
+            <%= lessonsData[0].sectionname %> - <%= lessonsData[0].subjectname %>
+        </h3>
+    </div>
     <% lessonsData.forEach(function(lesson) { %>
-        <tr>
-            <td><%= lesson.lessonID %></td>
-            <td><%= lesson.lessonTitle %></td>
-            <td><%= lesson.quarterperiod %></td>
-            <td>
-                <a href="/student/view/lesson/<%= lesson.id %>">View Lesson</a>
-            </td>
-        </tr>
-    <% }); %>
-</table>
+        <div class="accordions">
+            <ul class="accordion">
+                <li class="accordion-item">
+                    <a class="accordion-link" onclick="toggleAccordion(event)">
+                        <span>
+                            <%= lesson.quarterperiod %>
+                        </span>
+                        <span class="accordion-icon">&#9660;</span>
+                    </a>
+                    <div class="accordion-content">
+
+                        <a href="/student/view/lesson/<%= lesson.id %>" class="accordion-link">
+                            <%= lesson.lessonTitle %>
+                        </a>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <% }); %>
+            <script>
+                function toggleAccordion(e) {
+                    e.preventDefault();
+                    const item = e.target.closest('.accordion-link');
+                    const content = item.nextElementSibling;
+                    const icon = item.children[1];
+
+                    // Toggle active class on the accordion link
+                    item.classList.toggle('active');
+
+                    // Toggle icon rotation
+                    icon.classList.toggle('icon-rotate');
+
+                    // Toggle accordion content
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+
+                    // Close other accordion items
+                    document.querySelectorAll(".accordion-link").forEach(function (otherItem) {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.nextElementSibling.style.maxHeight = null;
+                            otherItem.children[1].classList.remove('icon-rotate');
+                        }
+                    });
+                }
+            </script>
+            <script src="/javascripts/dashboard.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+
+</html>

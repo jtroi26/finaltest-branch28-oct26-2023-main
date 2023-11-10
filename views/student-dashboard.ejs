@@ -1,104 +1,87 @@
-<h1>Student Dashboard</h1>
-<h2>Welcome <%= studentfullname %>
-
-</h2>
-
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="/stylesheets/student-dashboard.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAZSMA | Student-Dashboard</title>
+  <link href="/stylesheets/style1.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" />
+</head>
 
-  </head>
+<body id="body-pd">
+  <header class="header" id="header">
+    <div class="header_toggle"> <i class="fa-solid fa-bars" id="header-toggle"></i> </div>
+  </header>
 
-  <body id="body-pd">
-    <header class="header" id="header">
-      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-      <div class="header_notify"> <i class='bx bx-bell' id="header-notify"></i> </div>
-    </header>
-
-    <div class="l-navbar" id="nav-bar">
-      <nav class="nav">
-        <div>
-          <a href="/student/dashboard" class="nav_logo"> <i class='bx bx-book-reader nav_logo-icon'></i> <span
-              class="nav_logo-name">E-learn</span> </a>
-          <div class="nav_list">
-            <a href="/student/dashboard" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                class="nav_name">Dashboard</span> </a>
-            <a href="#" class="nav_link"> <i class='bx bx-book nav_icon'></i> <span class="nav_name">Subject</span></a>
-            <a href="#" class="nav_link"> <i class='bx bx-calendar nav_icon'></i> <span
-                class="nav_name">Calendar</span></a>
-            <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
-                class="nav_name">Achievements</span></a>
-            <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">
-                <%= studentfirstname %>
-              </span> </a>
-          </div>
+  <div class="l-navbar" id="nav-bar">
+    <nav class="nav">
+      <div>
+        <a href="/student/dashboard" class="nav_logo">
+          <i class='fas fa-graduation-cap nav_logo-icon'></i>
+          <span class="nav_logo-name">DAZSMA</span>
+        </a>
+        <div class="nav_list">
+          <a href="/student/dashboard" class="nav_link active">
+            <i class='fas fa-tachometer-alt nav_icon'></i>
+            <span class="nav_name">Dashboard</span>
+          </a>
+          <a href="/student/view/classmates" class="nav_link">
+            <i class='fas fa-users nav_icon'></i>
+            <span class="nav_name">Classmates</span>
+          </a>
         </div>
+      </div>
+      <% if (studentid) { %>
+        <form action="/logout" method="post">
+          <a class="nav_link" type="submit">
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+            <span class="nav_name">Logout</span>
 
-        <% if (studentid) { %>
-
-          <form action="/logout" method="post">
-
-            <a class="nav_link" type="submit"><button><i class='bx bx-log-out nav_icon'></i></button> <span
-                class="nav_name">SignOut</span> </a>
-          </form>
-
-          <% } else { %>
-            <a href="/" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span>
-            </a>
-            <% } %>
-
-
-      </nav>
-    </div>
-
-    <% if (studentid) { %>
-
-      <table class="table table-striped table-bordered">
-        <tr>
-          <th>Subject ID</th>
-          <th>Subject Name</th>
-          <th>Teacher ID</th>
-          <th>Action</th>
-        </tr>
-        <% for (let i=0; i < studentData.length; i++) { %>
-          <tr>
-            <td>
-              <%= studentData[i].subjectid %>
-            </td>
-            <td>
-              <%= studentData[i].subjectname %>
-            </td>
-            <td>
-              <%= studentData[i].teacherid %>
-            </td>
-            <td>
-              <a href="/student/view/subject/<%= studentData[i].id %>"><button>View Subject</button></a>
-            </td>
-          </tr>
+          </a>
+        </form>
+        <% } else { %>
+          <a href="/" class="nav_link">
+            <i class="fa-solid fa-arrow-right-to-bracket fa-lg"></i>
+            <span class="nav_name">Login</span>
+          </a>
           <% } %>
-      </table>
+    </nav>
+  </div>
 
-      <% } else { %>
-        <br><br><br><br><br><br>
-        <h1>Cookies Required :(</h1>
-        <% } %>
+  <% if (studentid) { %>
 
-
-
+    <div class="container py-4">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% for (let i = 0; i < studentData.length; i++) { %>
+          <div class="col">
+            <div class="card h-100">
+              <img src="https://media.istockphoto.com/id/698733848/photo/books.webp?b=1&s=170667a&w=0&k=20&c=FJlz7IhWsOAFLpKMpBP1r0j9_NA6H9w9PX-1IJ85r6A=" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= studentData[i].subjectid %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= studentData[i].subjectname %></h6>
+                <p class="card-text"><%= studentData[i].teacherid %></p>
+              </div>
+              <div class="card-footer">
+                <a href="/student/view/subject/<%= studentData[i].id %>" class="bn47">View Subject</a>
+              </div>
+            </div>
           </div>
+        <% } %>
+      </div>
+    </div>
+    
 
+    <% } else { %>
+      <br><br><br><br><br><br>
+      <h1>Cookies Required :(</h1>
+      <% } %>
 
-  </body>
+        <script src="/javascripts/dashboard.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script src="/javascript/dashboard.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
+</body>
 
 </html>
