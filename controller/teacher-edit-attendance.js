@@ -41,7 +41,7 @@ exports.getEditAttendancePage = (req, res) => {
             connection.end();
 
             // Render the 'teacher-edit-attendance' template and pass the attendance data
-            res.render('teacher-edit-attendance', { attendance: attendanceData });
+            res.render('teacher-edit-attendance', { attendance: attendanceData, teacherid: req.session.teacherid });
         }
     });
 };

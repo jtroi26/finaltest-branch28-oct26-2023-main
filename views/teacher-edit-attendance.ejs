@@ -1,36 +1,141 @@
-<h1>Edit Attendance for <%= attendance.full_name %>
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Edit Attendance</title>
+
+      <link href="/stylesheets/teacher-edit-attendance.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <!-- Include Bootstrap CSS -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+      <!-- Font Awesome -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+      <!-- Google Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+      <!-- MDB -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
+
+</head>
+<body id="body-pd">
+
+      <header class="header" id="header">
+            <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+            <div class="header_notify"> <i class='bx bx-bell' id="header-notify"></i> </div>
+        </header> 
+    
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+              <div>
+                <a href="/teacher/dashboard" class="nav_logo"> <i class='bx bx-book-reader nav_logo-icon'></i> <span
+                    class="nav_logo-name">E-learn</span> </a>
+                <div class="nav_list">
+                  <a href="/teacher/dashboard" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
+                      class="nav_name">Dashboard</span> </a>
+                  <a href="#" class="nav_link"> <i class='bx bx-book nav_icon'></i> <span
+                      class="nav_name">Subject</span></a>
+                  <a href="#" class="nav_link"> <i class='bx bx-calendar nav_icon'></i> <span
+                      class="nav_name">Calendar</span></a>
+                  <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
+                      class="nav_name">Achievements</span></a>
+                  <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">
+                      
+                    </span> </a>
+                </div>
+              </div>
+        
+              <% if (teacherid) { %>
+        
+                <form id="logoutForm" action="/teacher-logout" method="post">
+                    <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
+                        <i class='bx bx-log-out nav_icon'></i>
+                        <span class="nav_name">SignOut</span>
+                    </a>
+                </form>
+        
+                <% } else { %>
+                  <a href="/teacher" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
+                  <% } %>
+        
+        
+            </nav>
+          </div>  
 
 
-<form action="/teacher/students/attendance/edit/<%= attendance.id %> " method="post">
-      <label for="">Student ID</label>
-      <input type="text" name="" id="" value="<%= attendance.studentID %>" disabled>
-      <br>
+          <% if (teacherid) { %>
 
-      <label for="">Student Full Name</label>
-      <input type="text" name="" id="" value="<%= attendance.full_name %>" disabled><br>
+            <section class="vh-auto" style="background-color: white;">
+                  <div class="container h-100" style="background-color: white;">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="col-lg-12 col-xl-11">
+                        <div class="card text-black" style="border-radius: 25px;">
+                              <div class="card-body p-md-5 text-center">
+                            <div class="row justify-content-center">
+                              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Attendance for: <%= attendance.full_name %></p>
+                                
+          
+                              </div>
+                            </div>
+                            <hr>
+                            <!-- To add content -->
+                            <form action="/teacher/students/attendance/edit/<%= attendance.id %> " method="post">
+                              <label for="">Student ID</label>
+                              <input type="text" name="" id="" value="<%= attendance.studentID %>" disabled>
+                              <br>
+                              <br>
+                              <label for="">Student Full Name</label>
+                              <input type="text" name="" id="" value="<%= attendance.full_name %>" disabled><br>
+                              <br>
+                              <label for="">Section</label>
+                              <input type="text" name="" id="" value="<%= attendance.sectionname %>" disabled><br>
+                              <br>
+                              <label for="">Edit Date</label>
+                              <input type="date" name="date" id="" value=""><br><br>
+                        
+                              <label for="">Edit Quarter Period</label>
+                              <select name="quarterperiod" id="quarterperiod" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
+                                    <option value="NULL" selected disabled>Choose an option</option>
+                                    <option value="First Quarter">First Quarter</option>
+                                    <option value="Second Quarter">Second Quarter</option>
+                                    <option value="Third Quarter">Third Quarter</option>
+                                    <option value="Fourth Quarter">Fourth Quarter</option>
+                              </select><br><br>
+                        
+                              <label for="">Attendance status: </label>
+                              <select name="attendance" id="attendance" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
+                                    <option value="NULL" selected disabled>Choose an option</option>
+                                    <option value="Present">Present</option>
+                                    <option value="Late">Late</option>
+                                    <option value="Absent">Absent</option>
+                              </select><br><br>
+                              <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #4A55A2; border-color: #4A55A2;">Update Student Data</button>
+                        </form>
 
-      <label for="">Section</label>
-      <input type="text" name="" id="" value="<%= attendance.sectionname %>" disabled><br>
+                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
-      <label for="">Edit Date</label>
-      <input type="date" name="date" id="" value=""><br><br>
+      
+      
+      
 
-      <label for="">Edit Quarter Period</label>
-      <select name="quarterperiod" id="quarterperiod">
-            <option value="NULL" selected disabled>Choose an option</option>
-            <option value="First Quarter">First Quarter</option>
-            <option value="Second Quarter">Second Quarter</option>
-            <option value="Third Quarter">Third Quarter</option>
-            <option value="Fourth Quarter">Fourth Quarter</option>
-      </select><br><br>
 
-      <label for="">Attendance status: </label>
-      <select name="attendance" id="attendance">
-            <option value="NULL" selected disabled>Choose an option</option>
-            <option value="Present">Present</option>
-            <option value="Late">Late</option>
-            <option value="Absent">Absent</option>
-      </select><br><br>
-      <button type="submit">Update Student Data</button>
-</form>
+      <% } else { %>
+            <h1>Cookies Required</h1>
+            <% } %>
+</body>
+</html>
+

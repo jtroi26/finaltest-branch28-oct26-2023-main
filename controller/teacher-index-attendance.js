@@ -51,7 +51,7 @@ exports.getAttendanceIndexPage = (req, res) => {
             console.log(attendanceData);
 
             // Render the 'teacher-index-attendance' template and pass the attendance data
-            res.render('teacher-index-attendance', { attendance: attendanceData });
+            res.render('teacher-index-attendance', { attendance: attendanceData, teacherid: teacherid, subjectname: subjectname, sectionname: sectionname });
 
             // Close the database connection
             connection.end();
@@ -62,7 +62,7 @@ exports.getAttendanceIndexPage = (req, res) => {
 exports.postAttendanceIndexPage = (req, res) => {
     const teacherid = req.session.teacherid;
     const subjectname = req.session.subjectname;
-    const sectionname = req.session.sectionname;
+    const sectionname = req.session.subjectname;
 
     const {date, quarterperiod} = req.body;
 
