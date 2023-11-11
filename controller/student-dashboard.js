@@ -47,9 +47,9 @@ exports.getStudentDashboard = (req, res) => {
                         return {
                             ...result,
                             dateCreated: new Date(result.dateCreated).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
+                                year: '2-digit',
+                                month: '2-digit',
+                                day: '2-digit',
                             }),
                         };
                     });
