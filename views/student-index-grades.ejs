@@ -1,0 +1,84 @@
+<h1>Grades of : for each quarter</h1>
+<!-- First Quarter Table -->
+<h1>First Quarter Grades</h1>
+<table border="1">
+    <tr>
+        <th>Assessment Title</th>
+        <th>Date Given</th>
+        <th>Quarter Period</th>
+        <th>Grade</th>
+        <th>Total</th>
+    </tr>
+    <% assessmentData1.forEach(assessment => { %>
+        <tr>
+            <td><%= assessment.assessmentTitle %></td>
+            <td><%= assessment.dateGiven %></td>
+            <td><%= assessment.quarterperiod %></td>
+            <td><%= assessment.grade %></td>
+            <td><%= assessment.total %></td>
+        </tr>
+    <% }); %>
+</table>
+
+<!-- Second Quarter Table -->
+<h1>Second Quarter Grades</h1>
+<table border="1">
+    <tr>
+        <th>Assessment Title</th>
+        <th>Date Given</th>
+        <th>Quarter Period</th>
+        <th>Grade</th>
+        <th>Total</th>
+    </tr>
+    <% assessmentData2.forEach(assessment => { %>
+        <tr>
+            <td><%= assessment.assessmentTitle %></td>
+            <td><%= assessment.dateGiven %></td>
+            <td><%= assessment.quarterperiod %></td>
+            <td><%= assessment.grade %></td>
+            <td><%= assessment.total %></td>
+        </tr>
+    <% }); %>
+</table>
+
+<!-- Third Quarter Table -->
+<h1>Third Quarter Grades</h1>
+<table border="1">
+    <tr>
+        <th>Assessment Title</th>
+        <th>Date Given</th>
+        <th>Quarter Period</th>
+        <th>Grade</th>
+        <th>Total</th>
+    </tr>
+    <% assessmentData3.forEach(assessment => { %>
+        <tr>
+            <td><%= assessment.assessmentTitle %></td>
+            <td><%= assessment.dateGiven %></td>
+            <td><%= assessment.quarterperiod %></td>
+            <td><%= assessment.grade %></td>
+            <td><%= assessment.total %></td>
+        </tr>
+    <% }); %>
+</table>
+
+<!-- Fourth Quarter Table -->
+<h1>Fourth Quarter Grades</h1>
+<table border="1">
+    <tr>
+        <th>Assessment Title</th>
+        <th>Date Given</th>
+        <th>Quarter Period</th>
+        <th>Grade</th>
+        <th>Total</th>
+    </tr>
+    <% assessmentData4.forEach(assessment => { %>
+        <tr>
+            <td><%= assessment.assessmentTitle %></td>
+            <td><%= assessment.dateGiven %></td>
+            <td><%= assessment.quarterperiod %></td>
+            <td><%= assessment.grade %></td>
+            <td><%= assessment.total %></td>
+        </tr>
+    <% }); %>
+</table>

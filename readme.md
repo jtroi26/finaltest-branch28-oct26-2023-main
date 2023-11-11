@@ -124,3 +124,4 @@ branch 71 - attendance now working
 branch 72 - edit attendance now working, updated create grades, and index attendance
 branch 73 - working create grades, but does not work when grades[i] === null
 branch 74 - created index, view, edit grades for teacher
+branch 75 - view grades per quarter for student
