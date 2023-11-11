@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 02:45 PM
+-- Generation Time: Nov 11, 2023 at 04:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -73,8 +73,10 @@ INSERT INTO `adminlogins` (`id`, `admin_id`, `username`, `userpassword`) VALUES
 
 CREATE TABLE `assessments` (
   `id` int(11) NOT NULL,
+  `assessmentTitle` varchar(30) DEFAULT NULL,
   `assessmenttype` varchar(20) NOT NULL,
   `quarterperiod` varchar(20) DEFAULT NULL,
+  `dateGiven` date NOT NULL,
   `studentID` varchar(25) DEFAULT NULL,
   `sectionname` varchar(50) DEFAULT NULL,
   `subjectname` varchar(25) DEFAULT NULL,
@@ -82,6 +84,30 @@ CREATE TABLE `assessments` (
   `grade` int(10) DEFAULT NULL,
   `total` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `assessments`
+--
+
+INSERT INTO `assessments` (`id`, `assessmentTitle`, `assessmenttype`, `quarterperiod`, `dateGiven`, `studentID`, `sectionname`, `subjectname`, `teacherid`, `grade`, `total`) VALUES
+(119, 'Recitation for November 10, 20', 'Recitation', 'Fourth Quarter', '0000-00-00', 'DAZ20171525', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 14, 25),
+(120, 'Recitation for November 10, 20', 'Recitation', 'Fourth Quarter', '0000-00-00', 'DAZ20181005', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 13, 25),
+(121, 'Recitation for November 10, 20', 'Recitation', 'Fourth Quarter', '0000-00-00', 'DAZ11111111', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 12, 25),
+(122, 'Test Quiz 1 - Nov 8, 2023', 'Quiz', 'Fourth Quarter', '0000-00-00', 'DAZ20171525', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 14, 30),
+(123, 'Test Quiz 1 - Nov 8, 2023', 'Quiz', 'Fourth Quarter', '0000-00-00', 'DAZ20230015', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 13, 30),
+(124, 'Test Quiz 1 - Nov 8, 2023', 'Quiz', 'Fourth Quarter', '0000-00-00', 'DAZ20181005', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 15, 30),
+(125, 'Test Quiz 1 - Nov 8, 2023', 'Quiz', 'Fourth Quarter', '0000-00-00', 'DAZ20201015', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 20, 30),
+(126, 'Test Quiz 1 - Nov 8, 2023', 'Quiz', 'Fourth Quarter', '0000-00-00', 'DAZ11111111', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 13, 30),
+(127, 'Ass 1', 'Assignment', 'First Quarter', '0000-00-00', 'DAZ20171525', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 20, 25),
+(128, 'Ass 1', 'Assignment', 'First Quarter', '0000-00-00', 'DAZ20230015', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 20, 25),
+(129, 'Ass 1', 'Assignment', 'First Quarter', '0000-00-00', 'DAZ20181005', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 19, 25),
+(130, 'Ass 1', 'Assignment', 'First Quarter', '0000-00-00', 'DAZ20201015', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 18, 25),
+(131, 'Ass 1', 'Assignment', 'First Quarter', '0000-00-00', 'DAZ11111111', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 21, 25),
+(132, 'Summative Exam', 'Summative Exam', 'Fourth Quarter', '0000-00-00', 'DAZ20171525', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 80, 100),
+(133, 'Summative Exam', 'Summative Exam', 'Fourth Quarter', '0000-00-00', 'DAZ20230015', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 90, 100),
+(134, 'Summative Exam', 'Summative Exam', 'Fourth Quarter', '0000-00-00', 'DAZ20181005', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 75, 100),
+(135, 'Summative Exam', 'Summative Exam', 'Fourth Quarter', '0000-00-00', 'DAZ20201015', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 69, 100),
+(136, 'Summative Exam', 'Summative Exam', 'Fourth Quarter', '0000-00-00', 'DAZ11111111', 'VII - St. Lorenzo', 'MATHTEST', '10420012023', 72, 100);
 
 -- --------------------------------------------------------
 
@@ -102,6 +128,7 @@ INSERT INTO `assessmenttype` (`id`, `assessmenttype`) VALUES
 (1, 'Assignment'),
 (5, 'Periodical Exam'),
 (3, 'Quiz'),
+(6, 'Recitation'),
 (2, 'Seatwork'),
 (4, 'Summative Exam');
 
@@ -251,9 +278,11 @@ CREATE TABLE `studentattendance` (
 
 INSERT INTO `studentattendance` (`id`, `studentID`, `subjectname`, `sectionname`, `teacherid`, `date`, `quarterperiod`, `attendance`) VALUES
 (19, 'DAZ20201015', 'MATHTEST', 'VII - St. Lorenzo', '10420012023', 'November 7, 2023', 'First Quarter', 'P'),
-(20, 'DAZ11111111', 'MATHTEST', 'VII - St. Lorenzo', '10420012023', 'November 7, 2023', 'First Quarter', 'r'),
+(20, 'DAZ11111111', 'MATHTEST', 'VII - St. Lorenzo', '10420012023', 'November 8, 2023', 'First Quarter', 'Present'),
 (21, 'DAZ20201015', NULL, NULL, NULL, 'November 7, 2023', 'First Quarter', 'P'),
-(22, 'DAZ11111111', NULL, NULL, NULL, 'November 7, 2023', 'First Quarter', 'r');
+(22, 'DAZ11111111', NULL, NULL, NULL, 'November 7, 2023', 'First Quarter', 'r'),
+(23, 'DAZ20181005', 'MATHTEST', 'VII - St. Lorenzo', '10420012023', 'November 8, 2023', 'First Quarter', 'Present'),
+(24, 'DAZ20230015', 'MATHTEST', 'VII - St. Lorenzo', '10420012023', 'November 9, 2023', 'First Quarter', 'Present');
 
 -- --------------------------------------------------------
 
@@ -302,11 +331,11 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`, `dateEnrolled`, `status`) VALUES
-(13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'X - St. Paul', '2023-11-04 21:54:33', 'Unenrolled'),
-(14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'IX - St. Thomas', '2023-11-04 21:54:33', 'Unenrolled'),
-(15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'VIII', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Unenrolled'),
-(16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VIII - St. Elizabeth', '2023-11-04 21:54:33', 'Unenrolled'),
-(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Unenrolled');
+(13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'Sr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Enrolled');
 
 -- --------------------------------------------------------
 
@@ -560,13 +589,13 @@ ALTER TABLE `adminlogins`
 -- AUTO_INCREMENT for table `assessments`
 --
 ALTER TABLE `assessments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `assessmenttype`
 --
 ALTER TABLE `assessmenttype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -596,7 +625,7 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `studentattendance`
 --
 ALTER TABLE `studentattendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `studentlogins`
