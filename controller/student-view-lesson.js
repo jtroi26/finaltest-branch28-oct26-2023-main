@@ -10,6 +10,7 @@ const conn = {
 exports.getLessonPage = (req, res) => {
     const { id } = req.params;
 
+    const studentid = req.session.studentID;
     const sql = `SELECT * FROM lessons WHERE id = ?;`;
     const connection = mysql.createConnection(conn); // Create a new connection
     connection.query(sql, id, (err, results) => {
@@ -21,7 +22,7 @@ exports.getLessonPage = (req, res) => {
             if (results.length === 1) {
                 // Successfully fetched the lesson data
                 // Pass the single result (row) to the template
-                res.render('student-view-lesson', { lessonData: results[0] });
+                res.render('student-view-lesson', { lessonData: results[0] , studentid: studentid});
             } else {
                 res.status(404).send('Lesson not found'); // Handle the case where no or multiple rows are found
             }

@@ -11,6 +11,7 @@ exports.getLessonsView = (req, res) => {
     const subjectname = req.session.subjectname;
     const sectionname = req.session.sectionname;
     const teacherid = req.session.teacherid;
+    const studentid = req.session.studentID;
     console.log('in lessons view');
 
     console.log(subjectname);
@@ -30,7 +31,7 @@ exports.getLessonsView = (req, res) => {
         } else {
             // Successfully fetched the lessons data
             // Pass the results to the template
-            res.render('student-view-lessons', { lessonsData: results });
+            res.render('student-view-lessons', { lessonsData: results , studentid:studentid });
 
             connection.end(); // Close the database connection after rendering the template
         }
