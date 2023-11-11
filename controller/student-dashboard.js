@@ -36,24 +36,34 @@ exports.getStudentDashboard = (req, res) => {
             connection.end();
             res.status(500).send('Internal Server Error');
         } else {
-            // Execute the second query after the first one
             connection.query(sqlannouncement, announcementvalues, (announcementError, announcementResults) => {
                 if (announcementError) {
                     console.error(announcementError);
                     connection.end();
                     res.status(500).send('Internal Server Error');
                 } else {
+                    // Modify the date format in announcementResults
+                    announcementResults = announcementResults.map(result => {
+                        return {
+                            ...result,
+                            dateCreated: new Date(result.dateCreated).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                            }),
+                        };
+                    });
+
                     console.log(studentResults);
                     console.log(announcementResults);
                     res.render('student-dashboard', {
                         studentfullname,
                         studentfirstname: req.session.studentfirstname,
                         studentid,
-                        studentData: studentResults, // Pass the results of the first query
-                        announcementData: announcementResults, // Pass the results of the second query
+                        studentData: studentResults,
+                        announcementData: announcementResults,
                     });
 
-                    // Close the database connection after rendering the template
                     connection.end();
                 }
             });
