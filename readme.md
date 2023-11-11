@@ -30,14 +30,6 @@ localhost:3000/teacher/view-subject/:id = subject view teacher side
 
 mga wala pang design
 
-/admin/view-subject/:id
-/admin/edit-subject/:id
-/admin/edit-section/:id
-/admin/index-teacher
-/admin/create-teacher-account
-/admin/edit/teacher-account/:id
-/admin/index-department
-/admin/edit-department/:id
 /teacher/view-subject/:id
 /teacher/announcement/
 /teacher/announcement/view/:id
@@ -45,10 +37,6 @@ mga wala pang design
 /teacher/lesson/modules
 /teacher/lesson/view-lesson/:id
 /teacher/lesson/edit-lesson/:id
-localhost:3000/admin/create/student 
-localhost:3000/admin/index/student 
-localhost:3000/admin/view/student/:id
-localhost:3000/admin/edit/student/:id
 
 branch 1  - created admin login and dashboard
 branch 2  - created student login and dashboard
@@ -123,3 +111,6 @@ branch 70 - created students attendance for teacher
 branch 71 - attendance now working
 branch 72 - edit attendance now working, updated create grades, and index attendance
 branch 73 - working create grades, but does not work when grades[i] === null
+
+
+branchdesign_18 - done designing student module and done putting error pages for student and admin
