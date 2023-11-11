@@ -33,20 +33,21 @@ const conn = {
 exports.getAnnouncementPage = (req, res) => {
     const connection = mysql.createConnection(conn);
   
+    const studentid = req.session.studentID;
     const subjectname = req.session.subjectname;
     const sectionname = req.session.sectionname;
     const teacherid = req.session.teacherid;
   
     const sql = `
-      SELECT id,
-             teacherid,
-             announcementTitle,
-             announcement
-      FROM teacherannouncements
-      WHERE teacherid = ?
-            AND subjectname = ?
-            AND sectionname = ?;
-    `;
+    SELECT id,
+    teacherid,
+    announcementTitle,
+    announcement
+FROM teacherannouncements
+WHERE teacherid = ?
+   AND subjectname = ?
+   AND sectionname = ?
+ORDER BY dateCreated DESC`;
   
     connection.query(sql, [teacherid, subjectname, sectionname], (err, results) => {
       if (err) {
@@ -59,7 +60,7 @@ exports.getAnnouncementPage = (req, res) => {
       // Process the 'announcements' array to prepare it for rendering the template
       // ...
   
-      res.render('student-view-announcement', { announcements }); // Pass the announcements data to the template
+      res.render('student-view-announcement', { announcements, studentid:studentid}); // Pass the announcements data to the template
     });
   };
   

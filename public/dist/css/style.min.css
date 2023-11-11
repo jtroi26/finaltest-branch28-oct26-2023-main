@@ -15227,3 +15227,72 @@ label {
     left: -19px
   }
 }
+.accordions {
+  max-width: 1200px;
+  margin: 15px auto;
+  padding: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+} 
+
+.accordion {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.accordion-link {
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #333333;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
+  font-family: var(--body-font);
+}
+
+.accordion-link:hover,
+.accordion-link.active {
+  background-color: #f4f4f4;
+}
+
+.accordion-title {
+  font-weight: 600;
+  margin: 0;
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  
+}
+
+.accordion-text {
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #333333;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
+}
+.title h3 {
+  font-family: var(--body-font);
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+  font-size: 1.5em; 
+}
