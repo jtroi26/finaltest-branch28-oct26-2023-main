@@ -11,376 +11,392 @@
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <link href="../dist/css/style.min.css" rel="stylesheet" />
 </head>
+<% if (admin_id) { %>
 
-<body>
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
-    </div>
-    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin5">
-                    <a class="navbar-brand" href="/admin/dashboard">
-                        <b class="logo-icon ps-2">
-                            <img src="../assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
-                        </b>
-                        <span class="logo-text ms-2">
-                            <span>DAZSMA</span>
-                        </span>
-                    </a>
-                    <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
-                            class="ti-menu ti-close"></i></a>
-                </div>
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                    <ul class="navbar-nav float-start me-auto">
-                        <li class="nav-item d-none d-lg-block">
-                            <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                                data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-            <div class="scroll-sidebar">
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav" class="pt-4">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/dashboard"
-                                aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                                    class="hide-menu">Dashboard</span></a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-subject"
-                                aria-expanded="false"><i class="mdi mdi-book"></i><span
-                                    class="hide-menu">Subject</span></a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-section"
-                                aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
-                                    class="hide-menu">Section</span></a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-student"
-                                aria-expanded="false"><i class="mdi mdi-account"></i><span
-                                    class="hide-menu">Student</span></a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-teacher"
-                                aria-expanded="false"><i class="mdi mdi-account-outline"></i><span
-                                    class="hide-menu">Teacher</span></a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 300px;"
-                                href="/admin/index-department" aria-expanded="false"><i class="mdi mdi-home"></i><span
-                                    class="hide-menu">Department</span></a>
-                        </li>
-                        <% if (admin_id) { %>
-                            <form id="logoutForm" action="/admin-logout" method="post">
-                                <li class="sidebar-item">
-                                    <a href="javascript:void(0);"
-                                        class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        onclick="document.getElementById('logoutForm').submit();"
-                                        aria-expanded="false"><i class="mdi mdi-logout"></i><span
-                                            class="hide-menu">Logout</span></a>
-                                </li>
-                            </form>
-                            <% } else { %>
-                                <li class="sidebar-item">
-                                    <a href="/admin" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        style="margin-top: auto;" aria-expanded="false"><i
-                                            class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                                </li>
-                                <% } %>
-                    </ul>
-                </nav>
+    <body>
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
             </div>
-        </aside>
-        <div class="page-wrapper">
-            <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Subject</h4>
-                        <div class="ms-auto text-end">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        Subject
+        </div>
+        <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+            data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+            <header class="topbar" data-navbarbg="skin5">
+                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                    <div class="navbar-header" data-logobg="skin5">
+                        <a class="navbar-brand" href="/admin/dashboard">
+                            <b class="logo-icon ps-2">
+                                <img src="../assets/images/dazsma-logo.png" alt="homepage" class="light-logo"
+                                    width="25" />
+                            </b>
+                            <span class="logo-text ms-2">
+                                <span>DAZSMA</span>
+                            </span>
+                        </a>
+                        <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
+                                class="ti-menu ti-close"></i></a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                        <ul class="navbar-nav float-start me-auto">
+                            <li class="nav-item d-none d-lg-block">
+                                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                                    data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside class="left-sidebar" data-sidebarbg="skin5">
+                <div class="scroll-sidebar">
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav" class="pt-4">
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/dashboard"
+                                    aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                        class="hide-menu">Dashboard</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-subject"
+                                    aria-expanded="false"><i class="mdi mdi-book"></i><span
+                                        class="hide-menu">Subject</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-section"
+                                    aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                                        class="hide-menu">Section</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-student"
+                                    aria-expanded="false"><i class="mdi mdi-account"></i><span
+                                        class="hide-menu">Student</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-teacher"
+                                    aria-expanded="false"><i class="mdi mdi-account-outline"></i><span
+                                        class="hide-menu">Teacher</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    style="margin-bottom: 300px;" href="/admin/index-department"
+                                    aria-expanded="false"><i class="mdi mdi-home"></i><span
+                                        class="hide-menu">Department</span></a>
+                            </li>
+                            <% if (admin_id) { %>
+                                <form id="logoutForm" action="/admin-logout" method="post">
+                                    <li class="sidebar-item">
+                                        <a href="javascript:void(0);"
+                                            class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            onclick="document.getElementById('logoutForm').submit();"
+                                            aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                                                class="hide-menu">Logout</span></a>
                                     </li>
-                                </ol>
-                            </nav>
+                                </form>
+                                <% } else { %>
+                                    <li class="sidebar-item">
+                                        <a href="/admin" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            style="margin-top: auto;" aria-expanded="false"><i
+                                                class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
+                                    </li>
+                                    <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <div class="page-wrapper">
+                <div class="page-breadcrumb">
+                    <div class="row">
+                        <div class="col-12 d-flex no-block align-items-center">
+                            <h4 class="page-title">Subject</h4>
+                            <div class="ms-auto text-end">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            Subject
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="right-align">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#createSubjectModal">
-                                        Create Subject
-                                    </button>
-                                </div>
-                                <!-- Create Modal -->
-                                <div class="modal fade" id="createSubjectModal" tabindex="-1"
-                                    aria-labelledby="createSubjectModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="createSubjectModalLabel">Create Subject</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="/admin/create-subject" method="post">
-                                                    <div class="mb-3">
-                                                        <label for="subjectid" class="form-label">Subject ID:</label>
-                                                        <input type="text" class="form-control" id="subjectid"
-                                                            name="subjectid" required
-                                                            placeholder="SubjectID must be unique">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label">Subject Name</label>
-                                                        <input type="text" class="form-control" name="subjectname"
-                                                            id="subjectname" required placeholder="Science for example">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label">Section:</label>
-                                                        <select name="sectionname" id="sectionname" class="form-select"
-                                                            required>
-                                                            <option value="" disabled selected>Choose an option</option>
-                                                            <% section.forEach((section)=> { %>
-                                                                <option value="<%= section.sectionname %>">
-                                                                    <%= section.sectionname %>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="right-align">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#createSubjectModal">
+                                            Create Subject
+                                        </button>
+                                    </div>
+                                    <!-- Create Modal -->
+                                    <div class="modal fade" id="createSubjectModal" tabindex="-1"
+                                        aria-labelledby="createSubjectModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="createSubjectModalLabel">Create Subject
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/admin/create-subject" method="post">
+                                                        <div class="mb-3">
+                                                            <label for="subjectid" class="form-label">Subject
+                                                                ID:</label>
+                                                            <input type="text" class="form-control" id="subjectid"
+                                                                name="subjectid" required
+                                                                placeholder="SubjectID must be unique">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Subject Name</label>
+                                                            <input type="text" class="form-control" name="subjectname"
+                                                                id="subjectname" required
+                                                                placeholder="Science for example">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Section:</label>
+                                                            <select name="sectionname" id="sectionname"
+                                                                class="form-select" required>
+                                                                <option value="" disabled selected>Choose an option
                                                                 </option>
-                                                                <% }); %>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label">Teacher:</label>
-                                                        <select name="teacherid" id="teacherid" class="form-select"
-                                                            required>
-                                                            <option value="" disabled selected>Choose an option</option>
-                                                            <% teacher.forEach((teacher)=> { %>
-                                                                <option value="<%= teacher.teacherid %>">
-                                                                    <%= teacher.firstname + ' ' + teacher.middlename
-                                                                        + ' ' + teacher.lastname %>
+                                                                <% section.forEach((section)=> { %>
+                                                                    <option value="<%= section.sectionname %>">
+                                                                        <%= section.sectionname %>
+                                                                    </option>
+                                                                    <% }); %>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Teacher:</label>
+                                                            <select name="teacherid" id="teacherid" class="form-select"
+                                                                required>
+                                                                <option value="" disabled selected>Choose an option
                                                                 </option>
-                                                                <% }); %>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="visibility">Visibility</label>
-                                                        <select name="visibility" id="visibility" class="form-select"
-                                                            required>
-                                                            <option value="" disabled selected>Choose an option</option>
-                                                            <option value="Visible">Visible</option>
-                                                            <option value="Invisible">Invisible</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Create
-                                                            Subject</button>
-                                                    </div>
-                                                </form>
+                                                                <% teacher.forEach((teacher)=> { %>
+                                                                    <option value="<%= teacher.teacherid %>">
+                                                                        <%= teacher.firstname + ' ' + teacher.middlename
+                                                                            + ' ' + teacher.lastname %>
+                                                                    </option>
+                                                                    <% }); %>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="visibility">Visibility</label>
+                                                            <select name="visibility" id="visibility"
+                                                                class="form-select" required>
+                                                                <option value="" disabled selected>Choose an option
+                                                                </option>
+                                                                <option value="Visible">Visible</option>
+                                                                <option value="Invisible">Invisible</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Create
+                                                                Subject</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
 
-                                <div class="table-responsive">
-                                    <table id="zero_config" class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Subject ID</th>
-                                                <th>Subject Name</th>
-                                                <th>Section Name</th>
-                                                <th>Teacher ID</th>
-                                                <th>Assigned Teacher</th>
-                                                <th>Status</th>
-                                                <th class="text-center">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <% data.forEach((row)=> { %>
+                                    <div class="table-responsive">
+                                        <table id="zero_config" class="table table-striped table-bordered">
+                                            <thead>
                                                 <tr>
-                                                    <td>
-                                                        <%= row.subjectid %>
-                                                    </td>
-                                                    <td>
-                                                        <%= row.subjectname %>
-                                                    </td>
-                                                    <td>
-                                                        <%= row.sectionname %>
-                                                    </td>
-                                                    <td>
-                                                        <%= row.teacherid %>
-                                                    </td>
-                                                    <td>
-                                                        <%= row.teacher_fullname %>
-                                                    </td>
-                                                    <td>
-                                                        <%= row.visibility %>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-outline-info" data-bs-toggle="modal"
-                                                            data-bs-target="#viewSubjectModal<%= row.subjectid %>"><i
-                                                                class="mdi mdi-eye"></i></button>
-                                                        <button class="btn btn-outline-warning" data-bs-toggle="modal"
-                                                            data-bs-target="#editSubjectModal<%= row.subjectid %>"><i
-                                                                class="mdi mdi-pencil"></i></button>
-                                                        <form action="/admin/delete-subject/<%= row.subjectid %>"
-                                                            method="post" style="display: inline;">
-                                                            <button type="submit" class="btn btn-outline-danger"><i
-                                                                    class="mdi mdi-delete"></i></button>
-                                                        </form>
-                                                    </td>
+                                                    <th>Subject ID</th>
+                                                    <th>Subject Name</th>
+                                                    <th>Section Name</th>
+                                                    <th>Teacher ID</th>
+                                                    <th>Assigned Teacher</th>
+                                                    <th>Status</th>
+                                                    <th class="text-center">Action</th>
                                                 </tr>
-                                                <!-- View Modal -->
-                                                <div class="modal fade" id="viewSubjectModal<%= row.subjectid %>"
-                                                    tabindex="-1"
-                                                    aria-labelledby="viewSubjectModalLabel<%= row.subjectid %>"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title"
-                                                                    id="viewModalLabel<%= row.subjectid %>">View Subject
-                                                                </h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p><strong>Subject ID:</strong>
-                                                                    <%= row.subjectid %>
-                                                                </p>
-                                                                <p><strong>Subject Name:</strong>
-                                                                    <%= row.subjectname %>
-                                                                </p>
-                                                                <p><strong>Section Name:</strong>
-                                                                    <%= row.sectionname %>
-                                                                </p>
-                                                                <p><strong>Teacher ID:</strong>
-                                                                    <%= row.teacherid %>
-                                                                </p>
-                                                                <p><strong>Assigned Teacher:</strong>
-                                                                    <%= row.teacher_fullname %>
-                                                                </p>
-                                                                <p><strong>Visibility:</strong>
-                                                                    <%= row.visibility %>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Edit Modal -->
-                                                <div class="modal fade" id="editSubjectModal<%= row.subjectid %>"
-                                                    tabindex="-1"
-                                                    aria-labelledby="editSubjectModalLabel<%= row.subjectid %>"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title"
-                                                                    id="editModalSubjectLabel<%= row.subjectid %>">
-                                                                    Edit Subject
-                                                                </h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="/admin/edit-subject/<%= row.id %>"
-                                                                    method="post">
-                                                                    <div class="mb-3">
-                                                                        <label for="" class="form-label">Subject
-                                                                            ID</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="subjectid" id="subjectid"
-                                                                            value="<%= row.subjectid %>" required
-                                                                            placeholder="Science for example">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="subjectName"
-                                                                            class="form-label">Subject
-                                                                            Name</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="subjectname" id="subjectname"
-                                                                            value="<%= row.subjectname %>" required
-                                                                            placeholder="Science for example">
-                                                                    </div>
-
-                                                                    <div class="mb-3">
-                                                                        <label for="sectionName"
-                                                                            class="form-label">Section</label>
-                                                                        <select name="sectionname" id="sectionName"
-                                                                            class="form-select" required>
-                                                                            <% section.forEach((section)=> { %>
-                                                                                <option
-                                                                                    value="<%= section.sectionname %>"
-                                                                                    <%=section.sectionname===row.sectionname
-                                                                                    ? 'selected' : '' %>>
-                                                                                    <%= section.sectionname %>
-                                                                                </option>
-                                                                                <% }); %>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="mb-3">
-                                                                        <label for="<%= row.subjectid %>"
-                                                                            class="form-label">Teacher</label>
-                                                                        <select name="teacherid" id="teacherId"
-                                                                            class="form-select">
-                                                                            <% teacher.forEach((teacher)=> { %>
-                                                                                <option value="<%= teacher.teacherid %>"
-                                                                                    <%=teacher.teacherid===row.teacherid
-                                                                                    ? 'selected' : '' %>>
-                                                                                    <%= teacher.firstname + ' ' +
-                                                                                        teacher.middlename + ' ' +
-                                                                                        teacher.lastname %>
-                                                                                </option>
-                                                                                <% }); %>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="mb-3">
-                                                                        <label for="visibility"
-                                                                            class="form-label">Visibility</label>
-                                                                        <select name="visibility" id="visibility"
-                                                                            class="form-select">
-                                                                            <option value="Visible"
-                                                                                <%=row.visibility==="Visible"
-                                                                                ? 'selected' : '' %>
-                                                                                >Visible</option>
-                                                                            <option value="Invisible"
-                                                                                <%=row.visibility==="Invisible"
-                                                                                ? 'selected' : '' %>>Invisible</option>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="submit"
-                                                                            class="btn btn-warning">Update</button>
-                                                                    </div>
-                                                                </form>
+                                            </thead>
+                                            <tbody>
+                                                <% data.forEach((row)=> { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= row.subjectid %>
+                                                        </td>
+                                                        <td>
+                                                            <%= row.subjectname %>
+                                                        </td>
+                                                        <td>
+                                                            <%= row.sectionname %>
+                                                        </td>
+                                                        <td>
+                                                            <%= row.teacherid %>
+                                                        </td>
+                                                        <td>
+                                                            <%= row.teacher_fullname %>
+                                                        </td>
+                                                        <td>
+                                                            <%= row.visibility %>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-outline-info" data-bs-toggle="modal"
+                                                                data-bs-target="#viewSubjectModal<%= row.subjectid %>"><i
+                                                                    class="mdi mdi-eye"></i></button>
+                                                            <button class="btn btn-outline-warning"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#editSubjectModal<%= row.subjectid %>"><i
+                                                                    class="mdi mdi-pencil"></i></button>
+                                                            <form action="/admin/delete-subject/<%= row.subjectid %>"
+                                                                method="post" style="display: inline;">
+                                                                <button type="submit" class="btn btn-outline-danger"><i
+                                                                        class="mdi mdi-delete"></i></button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- View Modal -->
+                                                    <div class="modal fade" id="viewSubjectModal<%= row.subjectid %>"
+                                                        tabindex="-1"
+                                                        aria-labelledby="viewSubjectModalLabel<%= row.subjectid %>"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title"
+                                                                        id="viewModalLabel<%= row.subjectid %>">View
+                                                                        Subject
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p><strong>Subject ID:</strong>
+                                                                        <%= row.subjectid %>
+                                                                    </p>
+                                                                    <p><strong>Subject Name:</strong>
+                                                                        <%= row.subjectname %>
+                                                                    </p>
+                                                                    <p><strong>Section Name:</strong>
+                                                                        <%= row.sectionname %>
+                                                                    </p>
+                                                                    <p><strong>Teacher ID:</strong>
+                                                                        <%= row.teacherid %>
+                                                                    </p>
+                                                                    <p><strong>Assigned Teacher:</strong>
+                                                                        <%= row.teacher_fullname %>
+                                                                    </p>
+                                                                    <p><strong>Visibility:</strong>
+                                                                        <%= row.visibility %>
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <% }); %>
-                                        </tbody>
-                                    </table>
+
+                                                    <!-- Edit Modal -->
+                                                    <div class="modal fade" id="editSubjectModal<%= row.subjectid %>"
+                                                        tabindex="-1"
+                                                        aria-labelledby="editSubjectModalLabel<%= row.subjectid %>"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title"
+                                                                        id="editModalSubjectLabel<%= row.subjectid %>">
+                                                                        Edit Subject
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="/admin/edit-subject/<%= row.id %>"
+                                                                        method="post">
+                                                                        <div class="mb-3">
+                                                                            <label for="" class="form-label">Subject
+                                                                                ID</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="subjectid" id="subjectid"
+                                                                                value="<%= row.subjectid %>" required
+                                                                                placeholder="Science for example">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="subjectName"
+                                                                                class="form-label">Subject
+                                                                                Name</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="subjectname" id="subjectname"
+                                                                                value="<%= row.subjectname %>" required
+                                                                                placeholder="Science for example">
+                                                                        </div>
+
+                                                                        <div class="mb-3">
+                                                                            <label for="sectionName"
+                                                                                class="form-label">Section</label>
+                                                                            <select name="sectionname" id="sectionName"
+                                                                                class="form-select" required>
+                                                                                <% section.forEach((section)=> { %>
+                                                                                    <option
+                                                                                        value="<%= section.sectionname %>"
+                                                                                        <%=section.sectionname===row.sectionname
+                                                                                        ? 'selected' : '' %>>
+                                                                                        <%= section.sectionname %>
+                                                                                    </option>
+                                                                                    <% }); %>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="mb-3">
+                                                                            <label for="<%= row.subjectid %>"
+                                                                                class="form-label">Teacher</label>
+                                                                            <select name="teacherid" id="teacherId"
+                                                                                class="form-select">
+                                                                                <% teacher.forEach((teacher)=> { %>
+                                                                                    <option
+                                                                                        value="<%= teacher.teacherid %>"
+                                                                                        <%=teacher.teacherid===row.teacherid
+                                                                                        ? 'selected' : '' %>>
+                                                                                        <%= teacher.firstname + ' ' +
+                                                                                            teacher.middlename + ' ' +
+                                                                                            teacher.lastname %>
+                                                                                    </option>
+                                                                                    <% }); %>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="mb-3">
+                                                                            <label for="visibility"
+                                                                                class="form-label">Visibility</label>
+                                                                            <select name="visibility" id="visibility"
+                                                                                class="form-select">
+                                                                                <option value="Visible"
+                                                                                    <%=row.visibility==="Visible"
+                                                                                    ? 'selected' : '' %>
+                                                                                    >Visible</option>
+                                                                                <option value="Invisible"
+                                                                                    <%=row.visibility==="Invisible"
+                                                                                    ? 'selected' : '' %>>Invisible
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit"
+                                                                                class="btn btn-warning">Update</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% }); %>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -388,29 +404,45 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="../dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="../dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="../dist/js/custom.min.js"></script>
-    <!-- this page js -->
-    <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-    <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
-    <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        $("#zero_config").DataTable();
-    </script>
-</body>
+        <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+        <!--Wave Effects -->
+        <script src="../dist/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="../dist/js/sidebarmenu.js"></script>
+        <!--Custom JavaScript -->
+        <script src="../dist/js/custom.min.js"></script>
+        <!-- this page js -->
+        <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+        <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+        <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
+        <script>
+            /****************************************
+             *       Basic Table                   *
+             ****************************************/
+            $("#zero_config").DataTable();
+        </script>
+    </body>
+    <% } else { %>
+        <div class="error-box">
+          <div class="error-body text-center">
+            <h1 class="error-title text-info">403</h1>
+            <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+            <p class="text-muted mt-4 mb-4">
+              YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+            </p>
+            <a href="/" class="
+          btn btn-info btn-rounded
+          waves-effect waves-light
+          mb-5
+          text-white
+        ">Back to home</a>
+          </div>
+        </div>
+        <% } %>
 
 </html>

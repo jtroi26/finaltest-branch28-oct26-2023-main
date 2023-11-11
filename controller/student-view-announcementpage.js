@@ -9,6 +9,7 @@ const conn = {
 
 exports.getAnnouncement = (req, res) => {
   const { id } = req.params;
+  const studentid = req.session.studentID;
   const connection = mysql.createConnection(conn); // Assuming 'conn' is your MySQL connection configuration
 
   const sql = `
@@ -38,7 +39,7 @@ exports.getAnnouncement = (req, res) => {
     connection.end();
 
     // Render the announcement page with the announcement data
-    res.render('student-view-announcementpage', { announcement });
+    res.render('student-view-announcementpage', { announcement, studentid });
   });
 };
 

@@ -4690,12 +4690,13 @@ fieldset:disabled .btn {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  min-width: auto;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
+  max-width: 1245px;
   border: 0px solid transparent;
-  border-radius: 0px
+  border-radius: 0px;
 }
 
 .card>hr {
@@ -4718,6 +4719,7 @@ fieldset:disabled .btn {
   border-bottom-width: 0;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px
+  
 }
 
 .card>.card-header+.list-group,
@@ -11252,7 +11254,7 @@ html[dir=ltr] body .p-l-0 {
 }
 
 .footer {
-  padding: 15px 20px
+  padding: 34px 20px
 }
 
 #main-wrapper {}
@@ -11598,7 +11600,8 @@ ul.list-style-none li a:hover {
 }
 
 .card {
-  margin-bottom: 20px
+  margin-bottom: 0px;
+  margin-left: 10px;
 }
 
 .card .card-subtitle {

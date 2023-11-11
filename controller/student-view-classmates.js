@@ -9,6 +9,7 @@ const conn = {
 
 exports.getClassmatesPage = (req, res) => {
       const pool = mysql.createPool(conn);
+      const studentid  = req.session.studentID;
       // Extract the sectionname from the session
     const sectionname = req.session.sectionname;
 
@@ -36,7 +37,7 @@ exports.getClassmatesPage = (req, res) => {
         } else {
             console.log(results);
             // Render the 'student-view-classmates' page with the query results
-            res.render('student-view-classmates', { sectionname, classmates: results });
+            res.render('student-view-classmates', { sectionname, studentid, classmates: results });
         }
     });
 };

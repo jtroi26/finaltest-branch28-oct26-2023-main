@@ -9,6 +9,7 @@ const conn = {
 
 exports.getSubjectView = (req, res) => {
     const { id } = req.params;
+    const studentid = req.session.studentID;
     const sql = `SELECT subjects.id, subjects.subjectid, subjects.subjectname, subjects.teacherid, subjects.sectionname,teacherdetails.firstname, teacherdetails.middlename, teacherdetails.lastname, teacherdetails.suffix
     FROM subjects 
     INNER JOIN teacherdetails ON teacherdetails.teacherid = subjects.teacherid
@@ -44,7 +45,7 @@ exports.getSubjectView = (req, res) => {
             console.log(req.session.sectionname);
             console.log(req.session.teacherid);
 
-            res.render('student-view-subject', { subjectData: result[0] });
+            res.render('student-view-subject', { subjectData: result[0] ,studentid});
 
             connection.end(); // Close the database connection after rendering the template
         }

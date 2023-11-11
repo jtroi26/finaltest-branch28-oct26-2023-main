@@ -11,7 +11,7 @@
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <link href="../dist/css/style.min.css" rel="stylesheet" />
 </head>
-
+<% if (admin_id) { %>
 <body>
     <div class="preloader">
         <div class="lds-ripple">
@@ -449,5 +449,21 @@
         $("#zero_config").DataTable();
     </script>
 </body>
-
+<% } else { %>
+    <div class="error-box">
+      <div class="error-body text-center">
+        <h1 class="error-title text-info">403</h1>
+        <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+        <p class="text-muted mt-4 mb-4">
+          YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+        </p>
+        <a href="/" class="
+      btn btn-info btn-rounded
+      waves-effect waves-light
+      mb-5
+      text-white
+    ">Back to home</a>
+      </div>
+    </div>
+    <% } %>
 </html>
