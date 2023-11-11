@@ -50,12 +50,13 @@
 
         </nav>
     </div>
+    <% lessonsData.forEach(function(lesson) { %>    
     <div class="title">
         <h3>
             <%= lessonsData[0].sectionname %> - <%= lessonsData[0].subjectname %>
         </h3>
     </div>
-    <% lessonsData.forEach(function(lesson) { %>
+    
         <div class="accordions">
             <ul class="accordion">
                 <li class="accordion-item">
