@@ -60,7 +60,7 @@ exports.getIndexTeacherPage = (req, res) => {
                     return res.status(500).json({ error: "An error occurred while retrieving department data." });
                 }
 
-                res.render('admin-index-teacher', { data: results, departments: departmentResults });
+                res.render('admin-index-teacher', { data: results, departments: departmentResults ,admin_id: req.session.admin_id });
             });
         });
     });

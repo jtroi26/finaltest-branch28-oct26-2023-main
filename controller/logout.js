@@ -41,3 +41,58 @@ exports.postteacherlogout = async (req, res) => {
         }
     });
 }
+
+
+// ////////////////////////////////////////////////
+
+// Admin Logout
+
+//       <% if (admin_id) { %>
+
+//         <form id="logoutForm" action="/admin-logout" method="post">
+//           <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
+//               <i class='bx bx-log-out nav_icon'></i>
+//               <span class="nav_name">SignOut</span>
+//           </a>
+//       </form>
+
+//         <% } else { %>
+//           <a href="/admin" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
+//           <% } %>
+
+
+// ////////////////////////////////////////////////
+
+// Student logout
+
+//       <% if (studentID) { %>
+
+//         <form id="logoutForm" action="/logout" method="post">
+//           <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
+//               <i class='bx bx-log-out nav_icon'></i>
+//               <span class="nav_name">SignOut</span>
+//           </a>
+//       </form>
+      
+//         <% } else { %>
+//           <a href="/" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
+//           <% } %>
+
+
+// ///////////////////////////////////////////////
+
+// Teacher Logout
+
+//       <% if (teacherid) { %>
+
+//         <form id="logoutForm" action="/teacher-logout" method="post">
+//           <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
+//               <i class='bx bx-log-out nav_icon'></i>
+//               <span class="nav_name">SignOut</span>
+//           </a>
+//       </form>
+      
+
+//         <% } else { %>
+//           <a href="/teacher" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
+//           <% } %>
