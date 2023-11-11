@@ -37,7 +37,7 @@ WHERE sub.teacherid = ?
     AND s.sectionname = ?  
     AND s.status = 'Enrolled'
 ORDER BY full_name ASC, s.status ASC;`;
-    const assessmenttypesql = `SELECT assessmenttype FROM assessmenttype ORDER BY assessmenttype ASC`;
+    const assessmenttypesql = `SELECT assessmenttype FROM assessmenttype ORDER BY id ASC`;
     const quarterperiodsql = `SELECT quarterperiod FROM quarters ORDER BY id`;
 
     const values = [teacherid, subjectid, sectionname];
