@@ -162,11 +162,15 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="/teacher/announcement/create" method="post">
-                                                <div class="mb-3"><label class="form-label" for="">Announcement title</label>
-                                                    <input type="text"  class="form-control" name="announcementTitle" id=""><br>
+                                                <div class="mb-3"><label class="form-label" for="">Announcement
+                                                        title</label>
+                                                    <input type="text" class="form-control" name="announcementTitle"
+                                                        id=""><br>
                                                 </div>
-                                                <div class="mb-3"><label class="form-label" for="">Annoucement Content</label>
-                                                    <textarea type="text" class="form-control" name="announcement" id=""></textarea><br>
+                                                <div class="mb-3"><label class="form-label" for="">Annoucement
+                                                        Content</label>
+                                                    <textarea type="text" class="form-control" name="announcement"
+                                                        id=""></textarea><br>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="" class="form-label">Visibility</label>
@@ -179,8 +183,8 @@
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div>
-                                                
-                                                
+
+
                                             </form>
                                         </div>
                                     </div>
@@ -204,15 +208,16 @@
                                                             <span class="text-muted float-end">
                                                                 <%= announcement.visibility %>
                                                             </span>
-                                                            <button type="button" class="btn btn-info btn-sm text-white"
+                                                            <button type="button"
+                                                                class="btn btn-info btn-sm text-white"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#viewAnnounceModal">
+                                                                data-bs-target="#viewAnnounceModal_<%= announcement.id %>">
                                                                 View
                                                             </button>
                                                             <button type="button"
                                                                 class="btn btn-warning btn-sm text-white"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#editAnnounceModal">
+                                                                data-bs-target="#editAnnounceModal_<%= announcement.id %>">
                                                                 Edit
                                                             </button>
                                                             <form
@@ -225,8 +230,8 @@
                                                             </form>
 
                                                         </div>
-                                                        <div class="modal fade" id="editAnnounceModal" tabindex="-1"
-                                                            aria-labelledby="editAnnounceModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="editAnnounceModal_<%= announcement.id %>" tabindex="-1"
+                                                            aria-labelledby="editAnnounceModalLabel_<%= announcement.id %>" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -239,7 +244,8 @@
                                                                             aria-label="Close"></button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <form action="/teacher/announcement/edit/<%= announcement.id %>"
+                                                                        <form
+                                                                            action="/teacher/announcement/edit/<%= announcement.id %>"
                                                                             method="post">
                                                                             <div class="mb-3">
                                                                                 <label for="sectionname"
@@ -257,8 +263,7 @@
                                                                                 <textarea type="text"
                                                                                     class="form-control"
                                                                                     id="announcement"
-                                                                                    name="announcement"
-                                                                                >
+                                                                                    name="announcement">
                                                                                     <%- announcement.announcement %>
                                                                                 </textarea>
                                                                             </div>
@@ -288,8 +293,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="modal fade" id="viewAnnounceModal" tabindex="-1"
-                                                            aria-labelledby="viewAnnounceModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="viewAnnounceModal_<%= announcement.id %>" tabindex="-1"
+                                                            aria-labelledby="viewAnnounceModalLabel_<%= announcement.id %>" aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
