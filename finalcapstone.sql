@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 02:45 PM
+-- Generation Time: Nov 12, 2023 at 08:08 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -302,11 +302,32 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`, `dateEnrolled`, `status`) VALUES
-(13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'X - St. Paul', '2023-11-04 21:54:33', 'Unenrolled'),
-(14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'IX - St. Thomas', '2023-11-04 21:54:33', 'Unenrolled'),
-(15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'VIII', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Unenrolled'),
-(16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VIII - St. Elizabeth', '2023-11-04 21:54:33', 'Unenrolled'),
-(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Unenrolled');
+(13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'X - St. Paul', '2023-11-04 21:54:33', 'Enrolled'),
+(14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'IX - St. Thomas', '2023-11-04 21:54:33', 'Enrolled'),
+(15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'VIII', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
+(16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VIII - St. Elizabeth', '2023-11-04 21:54:33', 'Enrolled'),
+(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Enrolled');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjectoverview`
+--
+
+CREATE TABLE `subjectoverview` (
+  `id` int(11) NOT NULL,
+  `teacherid` varchar(25) DEFAULT NULL,
+  `subjectname` varchar(25) DEFAULT NULL,
+  `sectionname` varchar(50) DEFAULT NULL,
+  `overview` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subjectoverview`
+--
+
+INSERT INTO `subjectoverview` (`id`, `teacherid`, `subjectname`, `sectionname`, `overview`) VALUES
+(1, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'hehehe');
 
 -- --------------------------------------------------------
 
@@ -358,7 +379,12 @@ CREATE TABLE `teacherannouncements` (
 --
 
 INSERT INTO `teacherannouncements` (`id`, `teacherid`, `subjectname`, `sectionname`, `announcementTitle`, `announcement`, `visibility`, `dateCreated`, `dateUpdated`) VALUES
-(8, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'sex ed 1', 'Seeeex', 'Visible', '2023-11-03 23:09:51', '2023-11-03 23:09:51');
+(8, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'sex ed 1', 'Seeeex', 'Visible', '2023-11-03 23:09:51', '2023-11-03 23:09:51'),
+(9, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'Announcement 11-11-2023', 'Gawa kayo gc guys', 'Visible', '2023-11-11 15:34:25', '2023-11-11 15:34:25'),
+(10, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'Assignment 1 - November 11, 20', 'Good morning class, you need to pass your assignments on monday.', 'Visible', '2023-11-11 15:35:16', '2023-11-11 15:35:16'),
+(11, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'Announcement for tomorrow\'s Ac', 'Bring your own books, and five pieces of 1/8 index cards.', 'Visible', '2023-11-11 15:35:16', '2023-11-11 15:35:16'),
+(12, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'Assignment 1 - November 11, 20', 'Good morning class, you need to pass your assignments on monday.', 'Visible', '2023-11-11 15:35:16', '2023-11-11 15:35:16'),
+(13, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'Announcement for tomorrow\'s Ac', 'Bring your own books, and five pieces of 1/8 index cards.', 'Visible', '2023-11-11 15:35:16', '2023-11-11 15:35:16');
 
 -- --------------------------------------------------------
 
@@ -507,6 +533,15 @@ ALTER TABLE `students`
   ADD KEY `sectionname` (`sectionname`);
 
 --
+-- Indexes for table `subjectoverview`
+--
+ALTER TABLE `subjectoverview`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `teacherid` (`teacherid`),
+  ADD KEY `subjectname` (`subjectname`),
+  ADD KEY `sectionname` (`sectionname`);
+
+--
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
@@ -611,6 +646,12 @@ ALTER TABLE `students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT for table `subjectoverview`
+--
+ALTER TABLE `subjectoverview`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
@@ -620,7 +661,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `teacherannouncements`
 --
 ALTER TABLE `teacherannouncements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `teacherdetails`
@@ -691,6 +732,14 @@ ALTER TABLE `studentlogins`
 --
 ALTER TABLE `students`
   ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `subjectoverview`
+--
+ALTER TABLE `subjectoverview`
+  ADD CONSTRAINT `subjectoverview_ibfk_1` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `subjectoverview_ibfk_2` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `subjectoverview_ibfk_3` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subjects`
