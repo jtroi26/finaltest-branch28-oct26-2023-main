@@ -1,0 +1,12 @@
+<!-- student-index-announcements.ejs -->
+
+<h1>Announcements</h1>
+
+<% for (let i = 0; i < announcements.length; i++) { %>
+  <div class="announcement">
+    <h1><%= announcements[i].announcementTitle %></h1>
+    <h1><%= announcements[i].subjectname %></h1>
+    <h2><%= announcements[i].announcement %></h2>
+    <h3><%= announcements[i].dateCreated %></h3>
+  </div>
+<% } %>
