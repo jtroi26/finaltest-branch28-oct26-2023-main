@@ -94,17 +94,14 @@
           <input type="text" name="lessonTitle" id="lessonTitle"><br>
       
           <label for="">Quarter Period</label><br>
-          <select name="quarterperiod" id="quarterperiod">
+          <select name="quarterperiod" id="quarterperiod" style="border-radius: 5px; background-color: #4A55A2; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false" >
               <option value="" selected disabled> Choose an Option</option>
               <option value="First Quarter">First Quarter</option>
               <option value="Second Quarter">Second Quarter</option>
               <option value="Third Quarter">Third Quarter</option>
               <option value="Fourth Quarter">Fourth Quarter</option>
           </select><br>
-
-          <div id="div_editor1">
-            <p>This is a default toolbar demo of Rich text editor.</p>
-        </div>
+          <br>
 
 
         <ul class="nav1 nav-tabs" id="myTab" role="tablist">
@@ -144,7 +141,7 @@
 
       
 <div class="tab-content" id="myTabContent">    
-      <div class="tab-pane fade show " id="section1" role="tabpanel" aria-labelledby="section1-tab">
+      <div class="tab-pane fade show active" id="section1" role="tabpanel" aria-labelledby="section1-tab">
           <label for="">Section 1</label><br>
           <textarea type="text" name="section1" id="section1"></textarea><br>
         </div>
@@ -196,13 +193,17 @@
 </div>
       
           <label for="">Lesson Visibility</label><br>
-          <select name="visibility" id="visibility">
+          <select name="visibility" id="visibility" style="border-radius: 5px; background-color: #4A55A2; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false" >
               <option value="" selected disabled>Select an Option</option>
               <option value="Visible">Visible</option>
               <option value="Invisible">Invisible</option>
           </select><br>
           <br>
-          <button class="btn btn-primary btn-rounded" type="submit" value="Create Lesson">Create LEsson</button>
+
+          <div style="text-align: center;">
+            <button class="btn btn-primary btn-rounded" type="submit" value="Create Lesson" >Create LEsson</button>
+          </div>
+
       </form>
         <% } else { %>
           <br><br><br><br><br><br><br><br><br><br>
