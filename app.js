@@ -73,8 +73,7 @@ var studentSubjectViewRouter = require('./routes/student-view-subject');
 var studentLessonsViewRouter = require('./routes/student-view-lessons');
 var studentLessonViewRouter = require('./routes/student-view-lesson');
 var studentClassmatesViewRouter = require('./routes/student-view-classmates');
-var studentAnnouncementViewRouter = require('./routes/student-view-announcement');
-var studentAnnouncementPageViewRouter = require('./routes/student-view-announcementpage');
+var studentAnnouncementsViewRouter = require('./routes/student-view-announcement');
 
 // teacher view students
 var teacherViewStudents = require('./routes/teacher-view-students');
@@ -84,6 +83,9 @@ var teacherEditStudentAttendance = require('./routes/teacher-edit-attendance');
 
 //teacher create grades
 var teacherCreateGrades = require('./routes/teacher-create-grades');
+var teacherIndexGrades = require('./routes/teacher-index-grades');
+var teacherViewGradesAssessment = require('./routes/teacher-view-grade-per-assessment');
+var teacherEditGrade = require('./routes/teacher-edit-grade');
 
 
 var app = express();
@@ -182,8 +184,7 @@ app.use('/', studentSubjectViewRouter);
 app.use('/', studentLessonsViewRouter);
 app.use('/', studentLessonViewRouter);
 app.use('/', studentClassmatesViewRouter);
-app.use('/', studentAnnouncementViewRouter);
-app.use('/', studentAnnouncementPageViewRouter);
+app.use('/', studentAnnouncementsViewRouter);
 
 // teacher view students and attendance
 app.use('/', teacherViewStudents);
@@ -193,7 +194,9 @@ app.use('/', teacherEditStudentAttendance);
 
 // teacher create grades
 app.use('/', teacherCreateGrades);
-
+app.use('/', teacherIndexGrades);
+app.use('/', teacherViewGradesAssessment);
+app.use('/', teacherEditGrade);
 
 
 // catch 404 and forward to error handler

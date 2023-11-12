@@ -44,7 +44,7 @@ exports.getStudentsPageView = (req, res) => {
                 const studentData = results;
                 console.log(studentData);
                 // Render the 'teacher-view-lesson' template and pass the student data
-                res.render('teacher-view-students', { students: studentData , subjectname, sectionname});
+                res.render('teacher-view-students', { students: studentData , subjectname, sectionname, teacherid: teacherid});
 
                 // Close the database connection
                 connection.end();

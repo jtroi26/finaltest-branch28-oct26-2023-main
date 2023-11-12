@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,37 +74,30 @@
               <div class="card-body p-md-5">
                 <div class="row justify-content-center">
                   <div class="col-md-10 col-lg-6 col-xl-12 order-2 order-lg-1">
-    
-                    <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Subject</p>
-                      <h1><%= sectionname %> - <%= subjectname %></h1>
-                    <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Teacher: </p>
-                      <h1><%= firstname %> <%= middlename %> <%= lastname %></h1>
-
-                    
 
 
+                        <p style="font-size: 80px; text-align: center;">Grades</p>
+                        <hr>
+
+                        <div class="button-container">
+                        <a href="/teacher/create/grades" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center; margin-bottom: 30px; margin-top: 40px;">Create Grades</a><br>
+                        </div>
+                        
                     <div class="button-container">
-                    <a href="/teacher/announcement/" class="ghost-button" style="width: 20%; text-align: center;">Announcements</a>
-                    <br><br>
-                    <a href="/teacher/lesson/modules" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Lesson Modules</a>
+                        <a href="/teacher/view/grades/Assignment" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Assignment</a><br>
+                        <a href="/teacher/view/grades/Seatwork" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Seatwork</a><br>
+                        <a href="/teacher/view/grades/Quiz" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Quiz</a><br>
                     </div>
-                        <br>
-                    <div class="button-container">
-                        <a href="/teacher/view/students" class="ghost-button" style="width: 20%; text-align: center;">Students</a>
-                        <a href="/teacher/students/attendance/" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Attendance</a>
-                        <a href="/teacher/index/grades" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Grades</a>
-
+                        <div class="button-container" style="margin-top: 20px;">    
+                        <a href="/teacher/view/grades/Summative%20Exam" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Summative</a><br>
+                        <a href="/teacher/view/grades/Periodical%20Exam" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Periodical</a><br>
+                        <a href="/teacher/view/grades/Recitation" class="ghost-button" style="margin-left: 20px; width: 20%; text-align: center;">Recitation</a><br>
                     </div>
 
                   </div>
-
-
                 </div>
-
-                
-              
                         <br><br>
-                      <a href="/teacher/announcement" class="btn btn-dark btn-rounded">Back</a>
+                      <a href="/teacher/dashboard" class="btn btn-dark btn-rounded">Back</a>
               </div>
             </div>
           </div>

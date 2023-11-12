@@ -37,7 +37,7 @@ WHERE sub.teacherid = ?
     AND s.sectionname = ?  
     AND s.status = 'Enrolled'
 ORDER BY full_name ASC, s.status ASC;`;
-    const assessmenttypesql = `SELECT assessmenttype FROM assessmenttype ORDER BY id ASC`;
+    const assessmenttypesql = `SELECT assessmenttype FROM assessmenttype ORDER BY assessmenttype ASC`;
     const quarterperiodsql = `SELECT quarterperiod FROM quarters ORDER BY id`;
 
     const values = [teacherid, subjectid, sectionname];
@@ -72,6 +72,7 @@ ORDER BY full_name ASC, s.status ASC;`;
                                 sectionname: sectionname,
                                 assessmentTypes: assessmentTypeResults,
                                 quarterPeriods: quarterPeriodResults,
+                                teacherid: req.session.teacherid,
                             });
                         }
                     });
@@ -98,6 +99,9 @@ exports.postGradesPage = (req, res) => {
 
     // Ensure that the arrays have the same length
     if (!Array.isArray(studentID) || !Array.isArray(grade) || studentID.length !== grade.length) {
+
+        studentID = [studentID];
+        grade = [grade];
         // Handle the error (e.g., return an error response)
         return res.status(400).send('Mismatched data');
     }
@@ -106,7 +110,7 @@ exports.postGradesPage = (req, res) => {
 
     // Loop through the data and insert assessments for each student
     for (let i = 0; i < studentID.length; i++) {
-        if (grade[i] === 'NULL' || grade[i] === null) {
+        if (grade[i] === '' || grade[i] === null) {
             // Skip this iteration of the loop if grade is 'NULL' or null
             continue;
         }

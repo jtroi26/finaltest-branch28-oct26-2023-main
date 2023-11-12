@@ -1,73 +1,56 @@
-<h1>Grades of <%= sectionname %>
-</h1>
+<h1>Grades of <%= sectionname %></h1>
 
 <form action="/teacher/create/grades" method="post">
 
-  <label for="">Assessment Title</label>
-  <input type="text" name="assessmentTitle" id=""><br><br>
+    <label for="">Assessment Title</label>
+    <input type="text" name="assessmentTitle" id=""><br><br>
 
-  <label for="assessmenttype">Assessment Type</label>
-  <select name="assessmenttype" id="assessmenttype">
-    <% for (const type of assessmentTypes) { %>
-      <option value="<%= type.assessmenttype %>">
-        <%= type.assessmenttype %>
-      </option>
-      <% } %>
-  </select><br><br>
+    <label for="">Assessment Type</label>
+    <select name="assessmenttype" id="">
+        <option value="Quiz">Quiz</option>
+        <option value="Assignment">Assignment</option>
+        <option value="Seatwork">Seatwork</option>
+        <option value="Recitation">Recitation</option>
+    </select><br><br>
 
-  <label for="">Assessment Date</label>
-  <input type="date" name="dateGiven" id=""><br><br>
+    <label for="">Assessment Date</label>
+    <input type="date" name="dateGiven" id=""><br><br>
 
-  <label for="quarterperiod">Quarter Period</label>
-  <select name="quarterperiod" id="quarterperiod">
-    <% for (const period of quarterPeriods) { %>
-      <option value="<%= period.quarterperiod %>">
-        <%= period.quarterperiod %>
-      </option>
-      <% } %>
-  </select><br><br>
+    <label for="">Quarter Period</label>
+    <select name="quarterperiod" id="">
+        <option value="First Quarter">First Quarter</option>
+        <option value="Second Quarter">Second Quarter</option>
+        <option value="Third Quarter">Third Quarter</option>
+        <option value="Fourth Quarter">Fourth Quarter</option>
+    </select><br><br>
 
 
-  <label for="total">Total Score for given assessment</label>
-  <input type="number" name="total" id="total" min="1" max="100" oninput="updateGradeMax()"><br><br>
+    <label for="">Total Score for given assessment</label>
+    <input type="number" name="total" id="" min="1" max="100"><br><br>
 
-  <table border="1">
-    <tr>
-      <th>Student ID</th>
-      <th>Student Name</th>
-      <th>Section</th>
-      <th>Subject</th>
-      <th>Grade</th>
-    </tr>
-    <% for (const student of students) { %>
-      <tr>
-        <td hidden><input type="text" name="studentID" id="" value="<%= student.studentID %>" readonly></td>
-        <td>
-          <%= student.studentID %>
-        </td>
-        <td>
-          <%= student.full_name %>
-        </td>
-        <td>
-          <%= student.sectionname %>
-        </td>
-        <td>
-          <%= subjectname %>
-        </td>
-        <td>
-          <input type="number" name="grade" id="grade" min="0" max="100"><br><br>
-        </td>
-      </tr>
-      <% } %>
-  </table>
-  <button type="submit">Create Grades</button>
+
+
+
+    <table border="1">
+        <tr>
+          <th>Student ID</th>
+          <th>Student Name</th>
+          <th>Section</th>
+          <th>Subject</th>
+          <th>Grade</th>
+        </tr>
+        <% for (const student of students) { %>
+          <tr>
+            <td hidden><input type="text" name="studentID" id="" value="<%= student.id %>" readonly></td>
+            <td><%= student.studentID %></td>
+            <td><%= student.full_name %></td>
+            <td><%= student.sectionname %></td>
+            <td><%= subjectname %></td>
+            <td>
+              <input type="text" name="grade" />
+            </td>
+          </tr>
+        <% } %>
+      </table>
+      <button type="submit">Create Grades</button>
 </form>
-
-<script>
-  function updateGradeMax() {
-    const totalInput = document.getElementById('total');
-    const gradeInput = document.getElementById('grade');
-    // Set the max attribute of the grade input based on the value entered in the total input
-    gradeInput.max = totalInput.value;
-  }
-</script>

@@ -9,7 +9,7 @@ const conn = {
 
 exports.getCreateAnnouncementPage = (req, res) => {
     console.log("teacher Session in get create: " + req.session.teacherid);
-    res.render('teacher-create-announcement');
+    res.render('teacher-create-announcement', {teacherid: req.session.teacherid});
 };
 
 exports.postCreateAnnouncementPage = (req, res) => {
@@ -25,7 +25,7 @@ exports.postCreateAnnouncementPage = (req, res) => {
     VALUES (?,?,?,?,?,?,?,?);`;
 
     const values = [req.session.teacherid, req.session.subjectname, req.session.sectionname, announcementTitle, announcement, visibility, updatedDate, updatedDate];
-
+    
     connection.query(sql, values, (err, result) => {
         if (err) {
             console.error('Error creating announcement:', err);

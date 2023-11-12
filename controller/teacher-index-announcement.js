@@ -21,7 +21,7 @@ exports.getAnnouncementIndexPage = (req, res) => {
         } else {
             // Successfully fetched announcements, you can now pass them to your view
             const announcements = results;
-            res.render('teacher-index-announcement', { announcements , subjectname:req.session.subjectname,sectionname: req.session.sectionname});
+            res.render('teacher-index-announcement', { announcements , subjectname:req.session.subjectname,sectionname: req.session.sectionname, teacherid: req.session.teacherid});
             console.log(announcements);
             connection.end(); // Close the database connection
         }

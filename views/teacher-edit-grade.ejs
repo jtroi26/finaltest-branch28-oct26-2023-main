@@ -1,0 +1,12 @@
+<h1>edit grade</h1>
+
+<!-- Assuming your EJS template is 'teacher-edit-grade.ejs' -->
+<form action="/teacher/grades/update/<%= id %>" method="post">
+    <label for="grade">Grade</label><br>
+    <input type="number" name="grade" id="grade" value="<%= grade %>"><br>
+
+    <label for="total">Assessment Total</label><br>
+    <input type="number" name="total" id="total" value="<%= total %>"><br><br>
+
+    <button type="submit">Update Data</button>
+</form>

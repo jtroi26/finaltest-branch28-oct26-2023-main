@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Grades per assessment</title>
+
+    <link href="/stylesheets/teacher-view-grade-per-assessment.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  
+    
+    <!-- Include Bootstrap CSS -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+      <!-- Font Awesome -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+      <!-- Google Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+      <!-- MDB -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
+
+</head>
+<body id="body-pd">
+
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="header_notify"> <i class='bx bx-bell' id="header-notify"></i> </div>
+    </header> 
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+          <div>
+            <a href="/teacher/dashboard" class="nav_logo"> <i class='bx bx-book-reader nav_logo-icon'></i> <span
+                class="nav_logo-name">E-learn</span> </a>
+            <div class="nav_list">
+              <a href="/teacher/dashboard" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
+                  class="nav_name">Dashboard</span> </a>
+              <a href="#" class="nav_link"> <i class='bx bx-book nav_icon'></i> <span
+                  class="nav_name">Subject</span></a>
+              <a href="#" class="nav_link"> <i class='bx bx-calendar nav_icon'></i> <span
+                  class="nav_name">Calendar</span></a>
+              <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
+                  class="nav_name">Achievements</span></a>
+              <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">
+                  
+                </span> </a>
+            </div>
+          </div>
+    
+          <% if (teacherid) { %>
+    
+            <form id="logoutForm" action="/teacher-logout" method="post">
+                <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
+                    <i class='bx bx-log-out nav_icon'></i>
+                    <span class="nav_name">SignOut</span>
+                </a>
+            </form>
+    
+            <% } else { %>
+              <a href="/teacher" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
+              <% } %>
+    
+    
+        </nav>
+      </div>  
+
+    <% if (teacherid) { %>
+
+        <a class="btn btn-primary btn-rounded" style="background-color: #7895CB; border-color: #7895CB;" href="/teacher/index/grades">Go Back</a>
+
+        <h1 style="text-align: center;"><%= assessmenttype %></h1>
+        <hr>
+
+
+
+        <div class="seperate" id="seperate-id">
+            <ul class="nav1 nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <b class="nav-link active" id="first-quarter-tab" data-bs-toggle="tab" href="#first-quarter" role="tab" aria-controls="first-quarter" aria-selected="true">First Quarter</b>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <b class="nav-link" id="second-quarter-tab" data-bs-toggle="tab" href="#second-quarter" role="tab" aria-controls="second-quarter" aria-selected="false">Second Quarter</b>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <b class="nav-link" id="third-quarter-tab" data-bs-toggle="tab" href="#third-quarter" role="tab" aria-controls="third-quarter" aria-selected="false">Third Quarter</b>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <b class="nav-link" id="fourth-quarter-tab" data-bs-toggle="tab" href="#fourth-quarter" role="tab" aria-controls="fourth-quarter" aria-selected="false">Fourth Quarter</b>
+                </li>
+            </ul>
+
+
+            <div class="tab-content" id="myTabContent">
+        <div class="tab-pane show1 active" id="first-quarter" role="tabpanel" aria-labelledby="first-quarter-tab">
+            
+            <!-- Period 1 Table -->
+            <table border="1">
+                
+                <tr>
+
+                    <th>assessmentTitle</th>
+                    <th>Quarter Period</th>
+                    <th>Date</th>
+                    <th>Student Full Name</th>
+                    <th>Sectionname</th>
+                    <th>subjectname</th>
+                    <th>Achieved Grade</th>
+                    <th>Assessment Overall Grade</th>
+                    <th>Edit Grade</th>
+                </tr>
+                <% period1.forEach(result => { %>
+                    <tr>
+                        <td><%= result.assessmentTitle %></td>
+                        <td><%= result.quarterperiod %></td>
+                        <td><%= result.dateGiven %></td>
+                        <td><%= result.full_name %></td>
+                        <td><%= result.sectionname %></td>
+                        <td><%= result.subjectname %></td>
+                        <td><%= result.grade %></td>
+                        <td><%= result.total %></td>
+                        <td><a href="/teacher/grades/update/<%= result.id %>">Edit Grade</a></td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="second-quarter" role="tabpanel" aria-labelledby="second-quarter-tab">
+            <!-- Period 2 Table -->
+            <table border="1">
+                <tr>
+                    <th>assessmentTitle</th>
+                    <th>Quarter Period</th>
+                    <th>Date</th>
+                    <th>Student Full Name</th>
+                    <th>Sectionname</th>
+                    <th>subjectname</th>
+                    <th>Achieved Grade</th>
+                    <th>Assessment Overall Grade</th>
+                    <th>Edit Grade</th>
+                </tr>
+                <% period2.forEach(result => { %>
+                    <tr>
+                        <td><%= result.assessmentTitle %></td>
+                        <td><%= result.quarterperiod %></td>
+                        <td><%= result.dateGiven %></td>
+                        <td><%= result.full_name %></td>
+                        <td><%= result.sectionname %></td>
+                        <td><%= result.subjectname %></td>
+                        <td><%= result.grade %></td>
+                        <td><%= result.total %></td>
+                        <td><a href="/teacher/grades/update/<%= result.id %>">Edit Grade</a></td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
+
+
+        <div class="tab-pane fade" id="third-quarter" role="tabpanel" aria-labelledby="third-quarter-tab">
+                    <table border="1">
+                        <tr>
+                            <th>assessmentTitle</th>
+                            <th>Quarter Period</th>
+                            <th>Date</th>
+                            <th>Student Full Name</th>
+                            <th>Sectionname</th>
+                            <th>subjectname</th>
+                            <th>Achieved Grade</th>
+                            <th>Assessment Overall Grade</th>
+                            <th>Edit Grade</th>
+                        </tr>
+                        <% period3.forEach(result => { %>
+                            <tr>
+                                <td><%= result.id %></td>
+                                <td><%= result.assessmentTitle %></td>
+                                <td><%= result.quarterperiod %></td>
+                                <td><%= result.dateGiven %></td>
+                                <td><%= result.full_name %></td>
+                                <td><%= result.sectionname %></td>
+                                <td><%= result.subjectname %></td>
+                                <td><%= result.grade %></td>
+                                <td><%= result.total %></td>
+                                <td><a href="/teacher/grades/update/<%= result.id %>">Edit Grade</a></td>
+                            </tr>
+                        <% }); %>
+                    </table>
+                </div>
+
+        <div class="tab-pane fade" id="fourth-quarter" role="tabpanel" aria-labelledby="fourth-quarter-tab">
+            <table border="1">
+                <tr>
+                    <th>assessmentTitle</th>
+                    <th>Quarter Period</th>
+                    <th>Date</th>
+                    <th>Student Full Name</th>
+                    <th>Sectionname</th>
+                    <th>subjectname</th>
+                    <th>Achieved Grade</th>
+                    <th>Assessment Overall Grade</th>
+                    <th>Edit Grade</th>
+                </tr>
+                <% period4.forEach(result => { %>
+                    <tr>
+                        <td><%= result.assessmentTitle %></td>
+                        <td><%= result.quarterperiod %></td>
+                        <td><%= result.dateGiven %></td>
+                        <td><%= result.full_name %></td>
+                        <td><%= result.sectionname %></td>
+                        <td><%= result.subjectname %></td>
+                        <td><%= result.grade %></td>
+                        <td><%= result.total %></td>
+                        <td><a type="submit" class="btn btn-primary btn-rounded" style="background-color: #4A55A2; border-color: #7895CB;" href="/teacher/grades/update/<%= result.id %>">Edit Grade</a></td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
+    </div>
+</div>
+    
+<% } else { %>
+    <br><br><br><br><br><br><br><br><br><br>
+    <h1 style="text-align: center;">Cookies Required :(</h1>
+    <% } %>  
+
+<!-- Repeat for Period 3 and Period 4 -->
+
+
+
+<!-- Repeat for Results3 and Results4 -->
+
+</body>
+
+<script src="/javascripts/teacher-lesson-modules.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</html>

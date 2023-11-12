@@ -32,7 +32,7 @@ exports.getEditLesson = (req, res) => {
                 const lessonData = results[0]; // Retrieve the first result
 
                 // Render the 'teacher-edit-lesson' template and pass the lesson data
-                res.render('teacher-edit-lesson', { lesson: lessonData });
+                res.render('teacher-edit-lesson', { lesson: lessonData, teacherid: req.session.teacherid });
 
                 // Close the database connection
                 connection.end();

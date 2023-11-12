@@ -1,0 +1,25 @@
+/* Add custom CSS for your table */
+.wide-table {
+  width: 100%; /* Set the table width to 100% to make it responsive */
+  border-collapse: collapse; /* Remove the default spacing between table cells */
+}
+
+.wide-table th, .wide-table td {
+  border: 1px solid #ccc; /* Add a border to table cells */
+  padding: 8px; /* Add padding to cells for spacing */
+  text-align: center; /* Center align text within cells */
+}
+
+.wide-table th {
+  background-color: #007BFF; /* Change the background color of header cells */
+  color: white; /* Set text color for header cells */
+}
+
+.wide-table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Add a background color to alternate rows for better readability */
+}
+
+.wide-table tr:hover {
+  background-color: #007BFF; /* Change the background color of rows on hover */
+  color: white; /* Set text color on hover */
+}
