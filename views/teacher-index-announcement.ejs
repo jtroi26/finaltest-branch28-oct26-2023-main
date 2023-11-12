@@ -1,122 +1,361 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <link href="/stylesheets/teacher-index-announcement.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
- 
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
-
-        <!-- Font Awesome -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
-        <!-- MDB -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
-  
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teacher-Dashboard | DAZSMA </title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
+    <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+    <link href="/dist/css/style.min.css" rel="stylesheet" />
+    <script src="https://cdn.tiny.cloud/1/ufj9weyctvgle49pehrx5fwaafhproh0juhfnn9hrb2i9leo/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
 </head>
-<body id="body-pd">
 
-    <header class="header" id="header">
-      <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-      <div class="header_notify"> <i class='bx bx-bell' id="header-notify"></i> </div>
-  </header> 
-  
-  <div class="l-navbar" id="nav-bar">
-      <nav class="nav">
-        <div>
-          <a href="/teacher/dashboard" class="nav_logo"> <i class='bx bx-book-reader nav_logo-icon'></i> <span
-              class="nav_logo-name">E-learn</span> </a>
-          <div class="nav_list">
-            <a href="/teacher/dashboard" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                class="nav_name">Dashboard</span> </a>
-            <a href="#" class="nav_link"> <i class='bx bx-book nav_icon'></i> <span
-                class="nav_name">Subject</span></a>
-            <a href="#" class="nav_link"> <i class='bx bx-calendar nav_icon'></i> <span
-                class="nav_name">Calendar</span></a>
-            <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
-                class="nav_name">Achievements</span></a>
-            <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">
-                
-              </span> </a>
-          </div>
+<% if (teacherid) { %>
+
+    <body>
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
         </div>
-  
-        <% if (teacherid) { %>
-  
-          <form id="logoutForm" action="/teacher-logout" method="post">
-            <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
-                <i class='bx bx-log-out nav_icon'></i>
-                <span class="nav_name">SignOut</span>
-            </a>
-        </form>
-  
-          <% } else { %>
-            <a href="/teacher" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
-            <% } %>
-  
-  
-      </nav>
-    </div>
+        <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+            data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+            <header class="topbar" data-navbarbg="skin5">
+                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                    <div class="navbar-header" data-logobg="skin5">
+                        <a class="navbar-brand" href="/teacher/dashboard">
+                            <b class="logo-icon ps-2">
+                                <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo"
+                                    width="25" />
+                            </b>
+                            <span class="logo-text ms-2">
+                                <span>DAZSMA</span>
+                            </span>
+                        </a>
+                        <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
+                                class="ti-menu ti-close"></i></a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                        <ul class="navbar-nav float-start me-auto">
+                            <li class="nav-item d-none d-lg-block">
+                                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                                    data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside class="left-sidebar" data-sidebarbg="skin5">
+                <div class="scroll-sidebar">
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav" class="pt-4">
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/dashboard"
+                                    aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                        class="hide-menu">Dashboard</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="/teacher/announcement/" aria-expanded="false"><i
+                                        class="mdi mdi-bullhorn"></i><span class="hide-menu">Announcements</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="/teacher/subjectoverview" aria-expanded="false"><i
+                                        class="mdi mdi-account-multiple"></i><span class="hide-menu">Subject
+                                        Overview</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="/teacher/lesson/modules" aria-expanded="false"><i
+                                        class="mdi mdi-account-multiple"></i><span class="hide-menu">Lesson</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                                    aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Class
+                                        Menu </span></a>
+                                <ul aria-expanded="false" class="collapse first-level">
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/view/students" aria-expanded="false"><i
+                                                class="mdi mdi-account-multiple"></i><span
+                                                class="hide-menu">Students</span></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/students/attendance/" aria-expanded="false"><i
+                                                class="mdi mdi-account-multiple"></i><span
+                                                class="hide-menu">Attendance</span></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            style="margin-bottom: 462px;" href="/teacher/index/grades"
+                                            aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                                                class="hide-menu">Grades</span></a>
+                                    </li>
+                                </ul>
+                            </li>
 
-    <% if (teacherid) { %>
+                            <% if (teacherid) { %>
+                                <form id="logoutForm" action="/teacher-logout" method="post">
+                                    <li class="sidebar-item">
+                                        <a href="javascript:void(0);"
+                                            class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            onclick="document.getElementById('logoutForm').submit();"
+                                            aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                                                class="hide-menu">Logout</span></a>
+                                    </li>
+                                </form>
+                                <% } else { %>
+                                    <li class="sidebar-item">
+                                        <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            style="margin-top: auto;" aria-expanded="false"><i
+                                                class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
+                                    </li>
+                                    <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <div class="page-wrapper">
+                <div class="page-breadcrumb">
+                    <div class="row">
+                        <div class="col-12 d-flex no-block align-items-center">
+                            <h4 class="page-title">Announcements</h4>
+                            <div class="ms-auto text-end">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/teacher/dashboard">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Announcements</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% if (teacherid) { %>
+                    <div class="container-fluid">
+                        <div class="right-align">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#createAnnounceModal">
+                                Create Announcement
+                            </button>
+                        </div>
+                        <div class="modal fade" id="createAnnounceModal" tabindex="-1"
+                            aria-labelledby="createAnnounceModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="createAnnounceModalLabel">Create Announcement</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/teacher/announcement/create" method="post">
+                                            <div class="mb-3">
+                                                <label for="announcementTitle" class="form-label">Announcement
+                                                    Title</label>
+                                                <input type="text" class="form-control" id="announcementTitle"
+                                                    name="announcementTitle" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="announcement" class="form-label">Announcement
+                                                    Content</label>
+                                                <textarea type="text" class="form-control" id="announcement"
+                                                    name="announcement" required></textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="visibility">Visibility</label>
+                                                <select name="visibility" id="visibility" class="form-select" required>
+                                                    <option value="" disabled selected>Choose an option</option>
+                                                    <option value="Visible">Visible</option>
+                                                    <option value="Invisible">Invisible</option>
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Create</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-12">
+                                <div class="card">
 
+                                    <div class="comment-widgets scrollable">
+                                        <% announcements.forEach(function(announcement) { %>
+                                            <div class="d-flex flex-row comment-row mt-0">
+                                                <div class="comment-text w-100">
+                                                    <h6 class="font-medium">
+                                                        <%= announcement.announcementTitle %>
+                                                            <span class="text-muted float-end">
+                                                                <%= announcement.dateCreated%>
+                                                            </span>
+                                                    </h6>
+                                                    <div class="comment-footer">
+                                                        <span class="text-muted float-end">
+                                                            <%= announcement.visibility %>
+                                                        </span>
+                                                        <button type="button" class="btn btn-info btn-sm text-white"
+                                                            data-bs-toggle="modal" data-bs-target="#viewAnnounceModal">
+                                                            View
+                                                        </button>
+                                                        <button type="button" class="btn btn-warning btn-sm text-white"
+                                                            data-bs-toggle="modal" data-bs-target="#editAnnounceModal">
+                                                            Edit
+                                                        </button>
+                                                        <form
+                                                            action="/teacher/announcement/delete/<%= announcement.id %>"
+                                                            method="post" style="display: inline;">
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm text-white">
+                                                                Delete
+                                                            </button>
+                                                        </form>
 
-
-    <h1>All of the announcements for <%= sectionname %> <%= subjectname %></h1>
-<h1>Announcements</h1>
-
-<a class="btn btn-primary btn-rounded" href="/teacher/announcement/create">Create Announcement</a>
-<br><br>
-    <table border="0" style="width: 1400px; text-align: center;">
-        <tr>
-            <th>Announcement Title</th>
-            <th>Date Created </th>
-            <th colspan="3">Actions</th>
-        </tr>
-        <% announcements.forEach(function(announcement) { %>
-            <tr>
-                <td><%= announcement.announcementTitle %></td>
-
-                <td><%= announcement.dateCreated%></td>
-                <td><a class="btn btn-primary btn-rounded" href="/teacher/announcement/view/<%= announcement.id %>">View</a></td>
-                <td><a class="btn btn-primary btn-rounded" href="/teacher/announcement/edit/<%= announcement.id %>">Edit</a></td>
-                <td>
-                    <form action="/teacher/announcement/delete/<%= announcement.id %>" method="post">
-                        <button class="btn btn-primary btn-rounded" type="submit">Delete Announcement</button>
-                    </form>
-              </td>
-            </tr>
-        <% }); %>
-    </table>
-    <br>
-    <a href="/teacher/dashboard" class="btn btn-primary btn-rounded">Back</a>
-
+                                                    </div>
+                                                    <div class="modal fade" id="editAnnounceModal" tabindex="-1"
+                                                        aria-labelledby="editAnnounceModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="editAnnounceModalLabel">
+                                                                        Edit
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form
+                                                                        action="/teacher/announcement/edit/<%= announcement.id %>"
+                                                                        method="post">
+                                                                        <div class="mb-3">
+                                                                            <label for="sectionname"
+                                                                                class="form-label">Announcement
+                                                                                Title</label>
+                                                                            <input type="text" class="form-control"
+                                                                                value="<%= announcement.announcementTitle %>"
+                                                                                id="announcementTitle"
+                                                                                name="announcementTitle">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="announcement"
+                                                                                class="form-label">Announcement
+                                                                                Content</label>
+                                                                            <textarea type="text" class="form-control"
+                                                                                id="announcement"
+                                                                                name="announcement"><%= announcement.announcement %></textarea>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="visibility">Visibility</label>
+                                                                            <select name="visibility" id="visibility"
+                                                                                class="form-select">
+                                                                                <option value="" disabled selected>
+                                                                                    Choose an option</option>
+                                                                                <option value="Visible" <% if
+                                                                                    (announcement.visibility==='Visible'
+                                                                                    ) { %>selected<% } %>>Visible
+                                                                                </option>
+                                                                                <option value="Invisible" <% if
+                                                                                    (announcement.visibility==='Invisible'
+                                                                                    ) { %>selected<% } %>>Invisible
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary">Update</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal fade" id="viewAnnounceModal" tabindex="-1"
+                                                        aria-labelledby="viewAnnounceModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="viewAnnounceModalLabel">
+                                                                        View
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h1>
+                                                                        hi bitch
+                                                                    </h1>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% }); %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                tinycomments_mode: 'embedded',
+                tinycomments_author: 'Author name',
+                mergetags_list: [
+                    { value: 'First.Name', title: 'First Name' },
+                    { value: 'Email', title: 'Email' },
+                ],
+                ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+            });
+        </script>
+        <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="/assets/extra-libs/sparkline/sparkline.js"></script>
+        <script src="/dist/js/waves.js"></script>
+        <script src="/dist/js/sidebarmenu.js"></script>
+        <script src="/dist/js/custom.min.js"></script>
+        <script src="/assets/libs/flot/excanvas.js"></script>
+        <script src="/assets/libs/flot/jquery.flot.js"></script>
+        <script src="/assets/libs/flot/jquery.flot.pie.js"></script>
+        <script src="/assets/libs/flot/jquery.flot.time.js"></script>
+        <script src="/assets/libs/flot/jquery.flot.stack.js"></script>
+        <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
+        <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+        <script src="/dist/js/pages/chart/chart-page-init.js"></script>
+    </body>
 
     <% } else { %>
-        <br><br><br><br><br><br><br><br><br><br>
-        <h1 style="text-align: center;">Cookies Required :(</h1>
-        <% } %>  
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-<script src="/javascripts/dashboard.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <div class="error-box">
+            <div class="error-body text-center">
+                <h1 class="error-title text-info">403</h1>
+                <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+                <p class="text-muted mt-4 mb-4">
+                    YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+                </p>
+                <a href="/" class="
+      btn btn-info btn-rounded
+      waves-effect waves-light
+      mb-5
+      text-white
+    ">Back to home</a>
+            </div>
+        </div>
+        <% } %>
 
 </html>
