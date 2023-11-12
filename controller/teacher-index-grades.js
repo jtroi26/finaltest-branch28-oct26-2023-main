@@ -13,11 +13,11 @@ exports.getIndexPage = (req, res) => {
     const subjectname = req.session.subjectname;
     const teacherid = req.session.teacherid;
 
-    const sql = `SELECT id, assessmenttype FROM assessmenttype ORDER BY id ASC;`;
+    const sql1 = `SELECT id, assessmenttype FROM assessmenttype ORDER BY id ASC;`;
 
     const connection = mysql.createConnection(conn);
 
-    connection.query(sql, (error, results) => {
+    connection.query(sql1, (error, results) => {
         if (error) {
             throw error;
         }
@@ -28,6 +28,6 @@ exports.getIndexPage = (req, res) => {
         // Close the connection after handling the results
         connection.end();
 
-        res.render('teacher-index-grades', { results });
+        res.render('teacher-index-grades', { results, teacherid: req.session.teacherid });
     });
 };
