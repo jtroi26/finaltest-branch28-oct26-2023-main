@@ -27,7 +27,7 @@ exports.postCreateDepartmentPage = (req, res) => {
         } else {
             // Successfully inserted the new department
             // You can redirect to a success page or perform other actions
-            res.redirect('/admin/create-department');
+            res.redirect('/admin/index-department');
             return; // Add this return statement to prevent further code execution
         }
         // Close the database connection

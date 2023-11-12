@@ -31,7 +31,7 @@ exports.postCreateSection = (req, res) => {
               // Successfully inserted the new section
               // You can redirect to a success page or perform other actions
               
-              res.redirect('/admin/create-section');
+              res.redirect('/admin/index-section');
           }
   
           // Close the database connection
