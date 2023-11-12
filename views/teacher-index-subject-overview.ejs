@@ -1,30 +1,190 @@
-<!-- teacher-index-subject-overview.ejs -->
-
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Subject Overview</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher-Dashboard | DAZSMA </title>
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
+  <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+  <link href="/dist/css/style.min.css" rel="stylesheet" />
 </head>
-<body>
-    <h1>Subject Overview</h1>
-    
-    <% if (results.length > 0) { %>
-        <% results.forEach(result => { %>
-            <h2>Overview ID: <%= result.id %></h2>
-            <p>Teacher ID: <%= result.teacherid %></p>
-            <p>Subject Name: <%= result.subjectname %></p>
-            <p>Section Name: <%= result.sectionname %></p>
-            <p>Overview: <%= result.overview %></p>
-            <hr>
-            <!-- Pass the id to the edit link -->
-            <h1><a href="/teacher/subjectoverview/edit/<%= result.id %>">Edit Subject Overview</a></h1>
-        <% }); %>
-    <% } else { %>
-        <p>No subject overview available.</p>
-        <!-- Show the "Create Subject Overview" link only if there are no results -->
-        <h1><a href="/teacher/subjectoverview/create">Create Subject Overview</a></h1>
+
+<% if (teacherid) { %>
+
+  <body>
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+      <header class="topbar" data-navbarbg="skin5">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+          <div class="navbar-header" data-logobg="skin5">
+            <a class="navbar-brand" href="/teacher/dashboard">
+              <b class="logo-icon ps-2">
+                <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
+              </b>
+              <span class="logo-text ms-2">
+                <span>DAZSMA</span>
+              </span>
+            </a>
+            <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
+                class="ti-menu ti-close"></i></a>
+          </div>
+          <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+            <ul class="navbar-nav float-start me-auto">
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                  data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <aside class="left-sidebar" data-sidebarbg="skin5">
+        <div class="scroll-sidebar">
+          <nav class="sidebar-nav">
+            <ul id="sidebarnav" class="pt-4">
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/dashboard"
+                  aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                    class="hide-menu">Dashboard</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/announcement/"
+                  aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Announcements</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/subjectoverview"
+                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Subject
+                    Overview</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/lesson/modules"
+                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                    class="hide-menu">Lesson</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                  aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Class Menu </span></a>
+                <ul aria-expanded="false" class="collapse first-level">
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/students"
+                      aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                        class="hide-menu">Students</span></a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/students/attendance/"
+                      aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                        class="hide-menu">Attendance</span></a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 462px;"
+                      href="/teacher/index/grades" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                        class="hide-menu">Grades</span></a>
+                  </li>
+                </ul>
+              </li>
+
+              <% if (teacherid) { %>
+                <form id="logoutForm" action="/teacher-logout" method="post">
+                  <li class="sidebar-item">
+                    <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
+                      onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
+                        class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
+                  </li>
+                </form>
+                <% } else { %>
+                  <li class="sidebar-item">
+                    <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
+                      style="margin-top: auto;" aria-expanded="false"><i class="mdi mdi-login"></i><span
+                        class="hide-menu">Login</span></a>
+                  </li>
+                  <% } %>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <div class="page-wrapper">
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Subject >  > Overview</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/teacher/dashboard">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Subject</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row ">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                    <% if (results.length > 0) { %>
+                        <% results.forEach(result => { %>
+                            <h2>Overview ID: <%= result.id %></h2>
+                            <p>Teacher ID: <%= result.teacherid %></p>
+                            <p>Subject Name: <%= result.subjectname %></p>
+                            <p>Section Name: <%= result.sectionname %></p>
+                            <p>Overview: <%= result.overview %></p>
+                            <hr>
+                            <h1><a href="/teacher/subjectoverview/edit/<%= result.id %>">Edit Subject Overview</a></h1>
+                        <% }); %>
+                    <% } else { %>
+                        <p>No subject overview available.</p>
+                        <h1><a href="/teacher/subjectoverview/create">Create Subject Overview</a></h1>
+                    <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="/dist/js/waves.js"></script>
+    <script src="/dist/js/sidebarmenu.js"></script>
+    <script src="/dist/js/custom.min.js"></script>
+    <script src="/assets/libs/flot/excanvas.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="/dist/js/pages/chart/chart-page-init.js"></script>
+  </body>
+
+  <% } else { %>
+    <div class="error-box">
+      <div class="error-body text-center">
+        <h1 class="error-title text-info">403</h1>
+        <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+        <p class="text-muted mt-4 mb-4">
+          YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+        </p>
+        <a href="/" class="
+      btn btn-info btn-rounded
+      waves-effect waves-light
+      mb-5
+      text-white
+    ">Back to home</a>
+      </div>
+    </div>
     <% } %>
-</body>
+
 </html>

@@ -15300,3 +15300,35 @@ label {
   margin: 0;
   font-size: 1.5em; 
 }
+.nav1.nav-tabs {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  background: linear-gradient(to bottom, #f0f0f0, #d3d3d3);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 4px 4px;
+}
+
+.nav-link {
+  color: black; /* Change the default font color */
+  transition: color 0.3s; /* Add transition for font color change */
+}
+
+.nav-link:hover {
+  background-color: #007BFF;
+  color: white; /* Change font color to white on hover */
+}
+
+.nav1.nav-tabs li.nav-item:hover {
+  background-color: #007BFF;
+  color: white;
+} 
