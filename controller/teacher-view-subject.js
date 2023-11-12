@@ -80,8 +80,6 @@ exports.getSubjectPage = (req, res) => {
                         middlename: req.session.middlename,
                         lastname: req.session.lastname,
                         overview: overview,
-                        
-
                     });
                 } else {
                     res.render('teacher-view-subject', {
@@ -92,7 +90,8 @@ exports.getSubjectPage = (req, res) => {
                         firstname: req.session.firstname,
                         middlename: req.session.middlename,
                         lastname: req.session.lastname,
-                        overview: overviewResults.length > 0 ? overviewResults[0].overview : "Overview not yet set"
+                        // if overview = null
+                        overview: overviewResults.length > 0 ? overviewResults[0].overview : "Subject Overview has not been set by the teacher."
                     });
                 }
 

@@ -114,7 +114,7 @@
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Subject >  > Overview</h4>
+              <h4 class="page-title">Subject > Overview</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
@@ -133,9 +133,8 @@
                 <div class="card-body">
                     <% if (results.length > 0) { %>
                         <% results.forEach(result => { %>
-                            <h2>Overview ID: <%= result.id %></h2>
-                            <p>Teacher ID: <%= result.teacherid %></p>
-                            <p>Subject Name: <%= result.subjectname %></p>
+                      
+                            <h1><%= result.subjectname %></h1>
                             <p>Section Name: <%= result.sectionname %></p>
                             <p>Overview: <%= result.overview %></p>
                             <hr>
