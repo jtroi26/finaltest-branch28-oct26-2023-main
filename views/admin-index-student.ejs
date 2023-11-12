@@ -522,27 +522,25 @@
         <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
         <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
         <script>
-            /****************************************
-             *       Basic Table                   *
-             ****************************************/
+
             $("#zero_config").DataTable();
         </script>
     </body>
     <% } else { %>
         <div class="error-box">
-          <div class="error-body text-center">
-            <h1 class="error-title text-info">403</h1>
-            <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
-            <p class="text-muted mt-4 mb-4">
-              YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
-            </p>
-            <a href="/" class="
+            <div class="error-body text-center">
+                <h1 class="error-title text-info">403</h1>
+                <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+                <p class="text-muted mt-4 mb-4">
+                    YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+                </p>
+                <a href="/" class="
           btn btn-info btn-rounded
           waves-effect waves-light
           mb-5
           text-white
         ">Back to home</a>
-          </div>
+            </div>
         </div>
         <% } %>
 
