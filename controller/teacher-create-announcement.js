@@ -16,7 +16,8 @@ exports.postCreateAnnouncementPage = (req, res) => {
     const connection = mysql.createConnection(conn);
 
     const { announcementTitle, announcement, visibility} = req.body;
-
+    console.log('Post Create data')
+    console.log(req.body)
     const dateCreated = new Date();
     const formattedDate = formatCustomDateTime(dateCreated);
     const updatedDate = formattedDate;

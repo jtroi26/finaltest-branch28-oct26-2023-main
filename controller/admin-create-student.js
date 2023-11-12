@@ -106,7 +106,7 @@ exports.postCreateStudentManual = (req, res) => {
                 }
 
                 // Both queries were successful, so redirect the user to a success page or take further action
-                res.redirect('/admin/index/student'); // Change this URL to your desired success page
+                res.redirect('/admin/index-student'); // Change this URL to your desired success page
 
                 connection.end(); // Close the database connection
             });
