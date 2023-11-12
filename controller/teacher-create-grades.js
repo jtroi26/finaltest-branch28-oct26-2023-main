@@ -72,6 +72,7 @@ ORDER BY full_name ASC, s.status ASC;`;
                                 sectionname: sectionname,
                                 assessmentTypes: assessmentTypeResults,
                                 quarterPeriods: quarterPeriodResults,
+                                teacherid: req.session.teacherid,
                             });
                         }
                     });

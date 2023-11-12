@@ -148,7 +148,7 @@ exports.getAssessmentGrades = (req, res) => {
 
                     // Combine the results as needed and render the page
                     // const combinedResults = [results1, results2, results3, results4];
-                    res.render('teacher-view-grade-per-assessment', { period1:results1, period2:results2, period3:results3, period4:results4 });
+                    res.render('teacher-view-grade-per-assessment', { period1:results1, period2:results2, period3:results3, period4:results4, teacherid: req.session.teacherid });
                 });
             });
         });
