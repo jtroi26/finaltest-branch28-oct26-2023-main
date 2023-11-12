@@ -116,16 +116,14 @@
                             <div class="card">
                                 <% for (let i=1; i <=10; i++) { %>
                                     <div class="card-body">
-                                        <h5 class="card-title">
-                                            <%= lessonData.lessonTitle %>
-                                        </h5>
+
 
                                         <p>
-                                            <%= lessonData['section' + i] %>
+                                            <%- lessonData['section' + i] %>
                                         </p>
 
                                     </div>
-                                    <hr>
+                                    <!-- <hr> -->
                                     <% } %>
                             </div>
                         </div>
