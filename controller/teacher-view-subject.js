@@ -78,11 +78,19 @@ exports.getSubjectPage = (req, res) => {
                         firstname: req.session.firstname,
                         middlename: req.session.middlename,
                         lastname: req.session.lastname,
-                        overview: overviewResults.length > 0 ? overviewResults[0].overview : "Overview not yet set"
+                        overview: overviewResults
                     });
                 } else {
-                    console.error('No results found for overview');
-                    res.status(404).send('Overview not found');
+                    res.render('teacher-view-subject', {
+                        sectionname: req.session.sectionname,
+                        subjectname: req.session.subjectname,
+                        subjectid: req.session.subjectid,
+                        teacherid: req.session.teacherid,
+                        firstname: req.session.firstname,
+                        middlename: req.session.middlename,
+                        lastname: req.session.lastname,
+                        overview: overviewResults.length > 0 ? overviewResults[0].overview : "Overview not yet set"
+                    });
                 }
 
                 connection.end(); // Close the connection after rendering the page
