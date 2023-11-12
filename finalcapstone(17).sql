@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2023 at 02:09 PM
+-- Generation Time: Nov 12, 2023 at 05:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -25,8 +25,6 @@ SET time_zone = "+00:00";
 
 --
 -- Table structure for table `admindetails`
---
--- Creation: Nov 12, 2023 at 12:39 PM
 --
 
 CREATE TABLE `admindetails` (
@@ -52,8 +50,6 @@ INSERT INTO `admindetails` (`id`, `admin_id`, `firstname`, `middlename`, `lastna
 --
 -- Table structure for table `adminlogins`
 --
--- Creation: Nov 12, 2023 at 12:39 PM
---
 
 CREATE TABLE `adminlogins` (
   `id` int(11) NOT NULL,
@@ -73,9 +69,6 @@ INSERT INTO `adminlogins` (`id`, `admin_id`, `username`, `userpassword`) VALUES
 
 --
 -- Table structure for table `assessments`
---
--- Creation: Nov 12, 2023 at 12:39 PM
--- Last update: Nov 12, 2023 at 01:07 PM
 --
 
 CREATE TABLE `assessments` (
@@ -121,8 +114,6 @@ INSERT INTO `assessments` (`id`, `assessmentTitle`, `assessmenttype`, `quarterpe
 --
 -- Table structure for table `assessmenttype`
 --
--- Creation: Nov 12, 2023 at 12:30 PM
---
 
 CREATE TABLE `assessmenttype` (
   `id` int(11) NOT NULL,
@@ -146,8 +137,6 @@ INSERT INTO `assessmenttype` (`id`, `assessmenttype`) VALUES
 --
 -- Table structure for table `departments`
 --
--- Creation: Nov 12, 2023 at 12:39 PM
---
 
 CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
@@ -167,14 +156,13 @@ INSERT INTO `departments` (`id`, `department`, `visibility`) VALUES
 (5, 'CLE Department', 'Visible'),
 (6, 'HeKaSi Department', 'Visible'),
 (7, 'Uwian Department', 'Invisible'),
-(8, 'Mathematics Department', 'Visible');
+(8, 'Mathematics Department', 'Visible'),
+(9, 'MAPEHeh Department', 'Invisible');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `lessons`
---
--- Creation: Nov 12, 2023 at 12:39 PM
 --
 
 CREATE TABLE `lessons` (
@@ -214,8 +202,6 @@ INSERT INTO `lessons` (`id`, `lessonID`, `lessonTitle`, `subjectname`, `teacheri
 --
 -- Table structure for table `quarters`
 --
--- Creation: Nov 12, 2023 at 12:40 PM
---
 
 CREATE TABLE `quarters` (
   `id` int(11) NOT NULL,
@@ -236,8 +222,6 @@ INSERT INTO `quarters` (`id`, `quarterperiod`) VALUES
 
 --
 -- Table structure for table `sections`
---
--- Creation: Nov 12, 2023 at 12:40 PM
 --
 
 CREATE TABLE `sections` (
@@ -270,14 +254,14 @@ INSERT INTO `sections` (`id`, `sectionname`, `visibility`) VALUES
 (21, 'X - John B.', 'Visible'),
 (22, 'X - Clement', 'Visible'),
 (23, 'X - St. Peter', 'Visible'),
-(24, 'X - St. Paul', 'Visible');
+(24, 'X - St. Paul', 'Visible'),
+(25, 'XI', 'Visible'),
+(26, 'xii', 'Visible');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `studentattendance`
---
--- Creation: Nov 12, 2023 at 12:40 PM
 --
 
 CREATE TABLE `studentattendance` (
@@ -308,8 +292,6 @@ INSERT INTO `studentattendance` (`id`, `studentID`, `subjectname`, `sectionname`
 --
 -- Table structure for table `studentlogins`
 --
--- Creation: Nov 12, 2023 at 12:40 PM
---
 
 CREATE TABLE `studentlogins` (
   `id` int(11) NOT NULL,
@@ -327,14 +309,13 @@ INSERT INTO `studentlogins` (`id`, `studentID`, `studentUserName`, `studentPassw
 (8, 'DAZ20230015', 'DAZSMA-ceapastrana', '9lvlIY9BMfQP'),
 (9, 'DAZ20201015', 'DAZSMA-jcrico', 'r?!M0BUWxsjj'),
 (10, 'DAZ20181005', 'DAZSMA-mcramos', 'VXhvn%w#jWIb'),
-(11, 'DAZ11111111', 'DAZSMA-jlsupra', 'xiz7HL6CK4E&');
+(11, 'DAZ11111111', 'DAZSMA-jlsupra', 'xiz7HL6CK4E&'),
+(12, 'DAZ11111112', 'DAZSMA-jdki', '4XhOX60mX3TL');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `students`
---
--- Creation: Nov 12, 2023 at 12:40 PM
 --
 
 CREATE TABLE `students` (
@@ -358,22 +339,21 @@ INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`
 (14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
 (15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'Sr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
 (16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Jr.', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
-(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Enrolled');
+(18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VII - St. Lorenzo', '2023-11-06 04:22:00', 'Enrolled'),
+(19, 'DAZ11111112', 'JOHN', 'Doe', 'Ki', 'none', 'X - St. Joseph', '2023-11-12 15:41:00', 'Enrolled');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `subjectoverview`
 --
--- Creation: Nov 12, 2023 at 01:04 PM
---
 
 CREATE TABLE `subjectoverview` (
   `id` int(11) NOT NULL,
-  `teacherid` varchar(25) DEFAULT NULL,
-  `subjectname` varchar(25) DEFAULT NULL,
-  `sectionname` varchar(50) DEFAULT NULL,
-  `overview` text DEFAULT NULL
+  `teacherid` varchar(25) NOT NULL,
+  `subjectname` varchar(25) NOT NULL,
+  `sectionname` varchar(50) NOT NULL,
+  `overview` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -381,14 +361,13 @@ CREATE TABLE `subjectoverview` (
 --
 
 INSERT INTO `subjectoverview` (`id`, `teacherid`, `subjectname`, `sectionname`, `overview`) VALUES
-(1, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'hehehe');
+(1, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'hehehe'),
+(2, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'Subject Overview of sex ed');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `subjects`
---
--- Creation: Nov 12, 2023 at 12:42 PM
 --
 
 CREATE TABLE `subjects` (
@@ -417,8 +396,6 @@ INSERT INTO `subjects` (`id`, `subjectid`, `subjectname`, `teacherid`, `sectionn
 --
 -- Table structure for table `teacherannouncements`
 --
--- Creation: Nov 12, 2023 at 12:43 PM
---
 
 CREATE TABLE `teacherannouncements` (
   `id` int(11) NOT NULL,
@@ -437,14 +414,14 @@ CREATE TABLE `teacherannouncements` (
 --
 
 INSERT INTO `teacherannouncements` (`id`, `teacherid`, `subjectname`, `sectionname`, `announcementTitle`, `announcement`, `visibility`, `dateCreated`, `dateUpdated`) VALUES
-(8, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'sex ed 1', 'Seeeex', 'Visible', '2023-11-03 23:09:51', '2023-11-03 23:09:51');
+(8, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'sex ed 1', 'Seeeex', 'Visible', '2023-11-03 23:09:51', '2023-11-03 23:09:51'),
+(9, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'HEHE', '<p><span style=\"text-decoration: underline;\"><em><strong>hehehehehedadada</strong></em></span></p>', 'Visible', '2023-11-12 16:49:52', '2023-11-13 00:00:08'),
+(10, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'Test Announcement 2', 'test announcement2', 'Visible', '2023-11-13 16:49:52', '2023-11-13 16:49:52');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `teacherdetails`
---
--- Creation: Nov 12, 2023 at 12:45 PM
 --
 
 CREATE TABLE `teacherdetails` (
@@ -465,19 +442,18 @@ CREATE TABLE `teacherdetails` (
 INSERT INTO `teacherdetails` (`id`, `teacherid`, `firstname`, `middlename`, `lastname`, `suffix`, `department`, `visibility`) VALUES
 (1, '2013-023', 'Alexandra', 'Echevaria', 'San Jose', 'null', 'Araling Panlipunan Department', 'Visible'),
 (2, '2020-069', 'Hanz Angelo', 'Viterbo', 'Bernababe', NULL, 'Mathematics Department', 'Visible'),
-(3, '10420012023', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'null', 'Uwian Department', 'Visible');
+(3, '10420012023', 'Christian Emmanuel', 'Avecilla', 'Pastrana', NULL, 'Mathematics Department', 'Visible'),
+(4, '104200120232', 'Marc', 'Casupang', 'Ramos', '', 'Science Department', 'Visible');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `teacherlogins`
 --
--- Creation: Nov 12, 2023 at 12:46 PM
---
 
 CREATE TABLE `teacherlogins` (
   `id` int(11) NOT NULL,
-  `teacherid` varchar(25) DEFAULT NULL,
+  `teacherid` varchar(25) NOT NULL,
   `userlogin` varchar(25) DEFAULT NULL,
   `userpassword` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -488,7 +464,8 @@ CREATE TABLE `teacherlogins` (
 
 INSERT INTO `teacherlogins` (`id`, `teacherid`, `userlogin`, `userpassword`) VALUES
 (1, '2020-069', 'havb-069', 'havb-069'),
-(2, '10420012023', 't-ceapastrana', 'P!*10v@5shsu');
+(2, '10420012023', 't-ceapastrana', 'P!*10v@5shsu'),
+(3, '104200120232', 't-mcramos', 'Dksx$*^?4KU+');
 
 --
 -- Indexes for dumped tables
@@ -499,6 +476,7 @@ INSERT INTO `teacherlogins` (`id`, `teacherid`, `userlogin`, `userpassword`) VAL
 --
 ALTER TABLE `admindetails`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_id_2` (`admin_id`),
   ADD KEY `admin_id` (`admin_id`),
   ADD KEY `department` (`department`);
 
@@ -507,15 +485,15 @@ ALTER TABLE `admindetails`
 --
 ALTER TABLE `adminlogins`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `admin_id` (`admin_id`);
+  ADD KEY `admin_id_2` (`admin_id`);
 
 --
 -- Indexes for table `assessments`
 --
 ALTER TABLE `assessments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `assessmenttype` (`assessmenttype`),
   ADD KEY `quarterperiod` (`quarterperiod`),
+  ADD KEY `assessmenttype` (`assessmenttype`),
   ADD KEY `studentID` (`studentID`),
   ADD KEY `sectionname` (`sectionname`),
   ADD KEY `subjectname` (`subjectname`),
@@ -533,23 +511,25 @@ ALTER TABLE `assessmenttype`
 --
 ALTER TABLE `departments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `department` (`department`);
+  ADD UNIQUE KEY `department` (`department`),
+  ADD KEY `department_2` (`department`);
 
 --
 -- Indexes for table `lessons`
 --
 ALTER TABLE `lessons`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `subjectname` (`subjectname`),
-  ADD KEY `teacherid` (`teacherid`),
   ADD KEY `quarterperiod` (`quarterperiod`),
-  ADD KEY `sectionname` (`sectionname`);
+  ADD KEY `subjectname` (`subjectname`) USING BTREE,
+  ADD KEY `sectionname` (`sectionname`),
+  ADD KEY `teacherid` (`teacherid`);
 
 --
 -- Indexes for table `quarters`
 --
 ALTER TABLE `quarters`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `quarterperiod_2` (`quarterperiod`),
   ADD KEY `quarterperiod` (`quarterperiod`);
 
 --
@@ -557,6 +537,7 @@ ALTER TABLE `quarters`
 --
 ALTER TABLE `sections`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `sectionname_2` (`sectionname`),
   ADD KEY `sectionname` (`sectionname`);
 
 --
@@ -582,7 +563,7 @@ ALTER TABLE `studentlogins`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `studentID` (`studentID`),
+  ADD UNIQUE KEY `studentID` (`studentID`),
   ADD KEY `sectionname` (`sectionname`);
 
 --
@@ -598,9 +579,9 @@ ALTER TABLE `subjectoverview`
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
-  ADD KEY `subjectname` (`subjectname`),
-  ADD KEY `subjectid` (`subjectid`),
-  ADD KEY `teacherid` (`teacherid`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `subjectname` (`subjectname`),
+  ADD KEY `teacherid` (`teacherid`) USING BTREE,
   ADD KEY `sectionname` (`sectionname`);
 
 --
@@ -608,18 +589,18 @@ ALTER TABLE `subjects`
 --
 ALTER TABLE `teacherannouncements`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `teacherid` (`teacherid`),
-  ADD KEY `subjectname` (`subjectname`),
-  ADD KEY `sectionname` (`sectionname`);
+  ADD KEY `teacherid` (`teacherid`,`subjectname`,`sectionname`),
+  ADD KEY `sectionname` (`sectionname`),
+  ADD KEY `subjectname` (`subjectname`);
 
 --
 -- Indexes for table `teacherdetails`
 --
 ALTER TABLE `teacherdetails`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `teacherid_2` (`teacherid`),
-  ADD KEY `teacherid` (`teacherid`),
-  ADD KEY `department` (`department`);
+  ADD UNIQUE KEY `teacherid` (`teacherid`),
+  ADD KEY `department` (`department`),
+  ADD KEY `teacherid_2` (`teacherid`);
 
 --
 -- Indexes for table `teacherlogins`
@@ -639,10 +620,94 @@ ALTER TABLE `admindetails`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `adminlogins`
+--
+ALTER TABLE `adminlogins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `assessments`
+--
+ALTER TABLE `assessments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+
+--
 -- AUTO_INCREMENT for table `assessmenttype`
 --
 ALTER TABLE `assessmenttype`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `lessons`
+--
+ALTER TABLE `lessons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `quarters`
+--
+ALTER TABLE `quarters`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `sections`
+--
+ALTER TABLE `sections`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `studentattendance`
+--
+ALTER TABLE `studentattendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `studentlogins`
+--
+ALTER TABLE `studentlogins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `subjectoverview`
+--
+ALTER TABLE `subjectoverview`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `teacherannouncements`
+--
+ALTER TABLE `teacherannouncements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `teacherdetails`
+--
+ALTER TABLE `teacherdetails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `teacherlogins`
+--
+ALTER TABLE `teacherlogins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -658,18 +723,18 @@ ALTER TABLE `admindetails`
 -- Constraints for table `adminlogins`
 --
 ALTER TABLE `adminlogins`
-  ADD CONSTRAINT `adminlogins_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admindetails` (`admin_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `adminlogins_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admindetails` (`admin_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `assessments`
 --
 ALTER TABLE `assessments`
   ADD CONSTRAINT `assessments_ibfk_1` FOREIGN KEY (`assessmenttype`) REFERENCES `assessmenttype` (`assessmenttype`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `assessments_ibfk_2` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `assessments_ibfk_3` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `assessments_ibfk_4` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `assessments_ibfk_5` FOREIGN KEY (`quarterperiod`) REFERENCES `quarters` (`quarterperiod`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `assessments_ibfk_6` FOREIGN KEY (`studentID`) REFERENCES `students` (`studentID`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `assessments_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `students` (`studentID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_3` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_4` FOREIGN KEY (`quarterperiod`) REFERENCES `quarters` (`quarterperiod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_5` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `assessments_ibfk_6` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lessons`
@@ -685,10 +750,10 @@ ALTER TABLE `lessons`
 --
 ALTER TABLE `studentattendance`
   ADD CONSTRAINT `studentattendance_ibfk_1` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `studentattendance_ibfk_2` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `studentattendance_ibfk_3` FOREIGN KEY (`quarterperiod`) REFERENCES `quarters` (`quarterperiod`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `studentattendance_ibfk_4` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `studentattendance_ibfk_5` FOREIGN KEY (`studentID`) REFERENCES `students` (`studentID`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `studentattendance_ibfk_2` FOREIGN KEY (`quarterperiod`) REFERENCES `quarters` (`quarterperiod`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `studentattendance_ibfk_3` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `studentattendance_ibfk_4` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `studentattendance_ibfk_5` FOREIGN KEY (`studentID`) REFERENCES `students` (`studentID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `studentlogins`
@@ -706,24 +771,24 @@ ALTER TABLE `students`
 -- Constraints for table `subjectoverview`
 --
 ALTER TABLE `subjectoverview`
-  ADD CONSTRAINT `subjectoverview_ibfk_1` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `subjectoverview_ibfk_2` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `subjectoverview_ibfk_3` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `subjectoverview_ibfk_1` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subjectoverview_ibfk_2` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subjectoverview_ibfk_3` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subjects`
 --
 ALTER TABLE `subjects`
-  ADD CONSTRAINT `subjects_ibfk_1` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `subjects_ibfk_2` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `subjects_ibfk_1` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `subjects_ibfk_2` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacherannouncements`
 --
 ALTER TABLE `teacherannouncements`
-  ADD CONSTRAINT `teacherannouncements_ibfk_1` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `teacherannouncements_ibfk_2` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `teacherannouncements_ibfk_3` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `teacherannouncements_ibfk_1` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `teacherannouncements_ibfk_2` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `teacherannouncements_ibfk_3` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacherdetails`
@@ -735,7 +800,7 @@ ALTER TABLE `teacherdetails`
 -- Constraints for table `teacherlogins`
 --
 ALTER TABLE `teacherlogins`
-  ADD CONSTRAINT `teacherlogins_ibfk_1` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `teacherlogins_ibfk_1` FOREIGN KEY (`teacherid`) REFERENCES `teacherdetails` (`teacherid`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
