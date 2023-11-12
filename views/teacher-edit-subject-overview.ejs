@@ -10,11 +10,12 @@
         </head>
 
         <body>
-                <form action="/teacher/subjectoverview/create" method="post">
-                    <label for="">Update Subject Overview</label>
+                <form action="/teacher/subjectoverview/edit/<%= id %>" method="post">
+                        <label for="overview">Update Subject Overview</label>
                         <textarea type="text" name="overview" id="overview"><%= overview %></textarea>
                         <button type="submit">Update Subject Overview</button>
-                </form>
+                    </form>
+                    
                 <script>
                         tinymce.init({
                                 selector: 'textarea',

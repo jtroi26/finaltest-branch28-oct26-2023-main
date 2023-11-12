@@ -8,7 +8,7 @@ const conn = {
 };
 exports.getSubjectOverview = (req, res) => {
     const { id } = req.params;
-    const sql = `SELECT overview FROM subjectoverview WHERE id = ?`;
+    const sql = `SELECT id, overview FROM subjectoverview WHERE id = ?`;
 
     const connection = mysql.createConnection(conn);
 
@@ -27,12 +27,14 @@ exports.getSubjectOverview = (req, res) => {
         // Assuming 'overview' is a column in your database results
         const overview = results[0].overview;
         console.log(overview);
+
         // Render the template with the fetched overview
-        res.render('teacher-edit-subject-overview', { overview });
+        res.render('teacher-edit-subject-overview', { id, overview });
     });
 
     connection.end();
 };
+
 
 exports.postSubjectOverview = (req, res) => {
     const { id } = req.params;
