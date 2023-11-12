@@ -9,7 +9,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/dazsma-logo.ico" />
     <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css" />
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+    <link href="/stylesheets/admin-index-student.css" rel="stylesheet">
     <link href="../dist/css/style.min.css" rel="stylesheet" />
+
 </head>
 <% if (admin_id) { %>
 
@@ -304,7 +307,10 @@
                                                             <%= student.dateEnrolled %>
                                                         </td>
                                                         <td>
-                                                            <%= student.status %>
+                                                            <div class="badge rounded-pill <%= student.status === 'Unenrolled' ? 'bg-danger' : 'bg-success' %>" style="font-size: 100%;">
+                                                                <%= student.status %>
+                                                            </div>
+                                                            
                                                         </td>
                                                         <td class="text-center">
                                                             <button class="btn btn-outline-info" data-bs-toggle="modal"

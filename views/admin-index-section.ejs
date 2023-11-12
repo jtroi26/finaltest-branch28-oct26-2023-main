@@ -175,7 +175,10 @@
                               <%= section.sectionname %>
                             </td>
                             <td>
-                              <%= section.visibility %>
+                              <div class="badge rounded-pill <%= section.visibility === 'Invisible' ? 'bg-danger' : 'bg-success' %>" style="font-size: 100%;">
+                                <%= section.visibility %>
+                              </div>
+                              
                             </td>
                             <td class="text-center">
                               <a href="/admin/view-section/<%= section.id %>" class="btn btn-outline-info"><i

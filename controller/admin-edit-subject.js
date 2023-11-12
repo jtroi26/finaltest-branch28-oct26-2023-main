@@ -98,7 +98,7 @@ exports.postEditSubjectPage = (req, res) => {
             res.status(500).send('Internal Server Error');
         } else {
             // Successfully updated the subject
-            res.redirect('/admin/index-subject');
+            res.redirect('/admin/index/subject');
         }
 
         // Close the database connection

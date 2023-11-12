@@ -252,7 +252,10 @@
                                                         <%= td.department %>
                                                     </td>
                                                     <td>
-                                                        <%= td.visibility %>
+                                                        <div class="badge rounded-pill <%= td.visibility === 'Invisible' ? 'bg-danger' : 'bg-success' %>" style="font-size: 100%;">
+                                                            <%= td.visibility %>
+                                                        </div>
+                                                        
                                                     </td>
                                                     <td class="text-center">
                                                         <button class="btn btn-outline-info" data-bs-toggle="modal"

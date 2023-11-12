@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const { Configuration , OpenAIApi} = require("openai");
 
 //routes instantiation
 //login routes
@@ -88,6 +89,8 @@ var teacherIndexGrades = require('./routes/teacher-index-grades');
 var teacherViewGradesAssessment = require('./routes/teacher-view-grade-per-assessment');
 var teacherEditGrade = require('./routes/teacher-edit-grade');
 
+//Open AI
+var openaichatbot = require('./routes/openaichatbot');
 
 var app = express();
 
@@ -199,6 +202,9 @@ app.use('/', teacherCreateGrades);
 app.use('/', teacherIndexGrades);
 app.use('/', teacherViewGradesAssessment);
 app.use('/', teacherEditGrade);
+
+//open ai
+app.use('/', openaichatbot);
 
 
 // catch 404 and forward to error handler

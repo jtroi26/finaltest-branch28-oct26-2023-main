@@ -240,7 +240,10 @@
                                                             <%= row.teacher_fullname %>
                                                         </td>
                                                         <td>
-                                                            <%= row.visibility %>
+                                                            <div class="badge rounded-pill <%= row.visibility === 'Invisible' ? 'bg-danger' : 'bg-success' %>" style="font-size: 100%;">
+                                                                <%= row.visibility %>
+                                                            </div>
+                                                            
                                                         </td>
                                                         <td class="text-center">
                                                             <button class="btn btn-outline-info" data-bs-toggle="modal"
