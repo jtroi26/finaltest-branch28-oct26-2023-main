@@ -67,7 +67,7 @@ exports.postEditStudent = (req, res) => {
             res.status(500).send('Internal Server Error');
         } else {
             // Successfully updated the student
-            res.redirect('/admin/index/student');
+            res.redirect('/admin/index-student');
         }
         // Close the database connection
         connection.end();
