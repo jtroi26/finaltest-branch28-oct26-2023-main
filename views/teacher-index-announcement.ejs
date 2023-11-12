@@ -162,15 +162,24 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="/teacher/announcement/create" method="post">
-                                                <label for="">Announcement title</label>
-                                                <input type="text" name="announcementTitle" id=""><br>
-                                                <label for="">Annoucement Content</label>
-                                                <input type="text" name="announcement" id=""><br>
-                                                <select name="visibility" id="">
-                                                    <option value="Visible">Visible</option>
-                                                    <option value="Invisible">Invisible</option>
-                                                </select>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <div class="mb-3"><label class="form-label" for="">Announcement title</label>
+                                                    <input type="text"  class="form-control" name="announcementTitle" id=""><br>
+                                                </div>
+                                                <div class="mb-3"><label class="form-label" for="">Annoucement Content</label>
+                                                    <textarea type="text" class="form-control" name="announcement" id=""></textarea><br>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Visibility</label>
+                                                    <select name="visibility" id="" class="form-select">
+                                                        <option value="" disabled selected>Choose an option</option>
+                                                        <option value="Visible">Visible</option>
+                                                        <option value="Invisible">Invisible</option>
+                                                    </select>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                                
                                                 
                                             </form>
                                         </div>
