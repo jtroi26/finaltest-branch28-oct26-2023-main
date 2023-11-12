@@ -69,6 +69,7 @@ exports.getSubjectPage = (req, res) => {
                 console.log('Overview query result:', overviewResults);
 
                 if (overviewResults.length > 0) {
+                    const overview = overviewResults[0].overview;
                     // Render the page with both sets of results
                     res.render('teacher-view-subject', {
                         sectionname: req.session.sectionname,
@@ -78,7 +79,9 @@ exports.getSubjectPage = (req, res) => {
                         firstname: req.session.firstname,
                         middlename: req.session.middlename,
                         lastname: req.session.lastname,
-                        overview: overviewResults
+                        overview: overview,
+                        
+
                     });
                 } else {
                     res.render('teacher-view-subject', {
