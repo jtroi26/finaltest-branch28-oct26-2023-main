@@ -1,0 +1,30 @@
+<!-- teacher-index-subject-overview.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Subject Overview</title>
+</head>
+<body>
+    <h1>Subject Overview</h1>
+    
+    <% if (results.length > 0) { %>
+        <% results.forEach(result => { %>
+            <h2>Overview ID: <%= result.id %></h2>
+            <p>Teacher ID: <%= result.teacherid %></p>
+            <p>Subject Name: <%= result.subjectname %></p>
+            <p>Section Name: <%= result.sectionname %></p>
+            <p>Overview: <%= result.overview %></p>
+            <hr>
+            <!-- Pass the id to the edit link -->
+            <h1><a href="/teacher/subjectoverview/edit/<%= result.id %>">Edit Subject Overview</a></h1>
+        <% }); %>
+    <% } else { %>
+        <p>No subject overview available.</p>
+        <!-- Show the "Create Subject Overview" link only if there are no results -->
+        <h1><a href="/teacher/subjectoverview/create">Create Subject Overview</a></h1>
+    <% } %>
+</body>
+</html>
