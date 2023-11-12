@@ -117,10 +117,36 @@
                                 <% for (let i=1; i <=10; i++) { %>
                                     <div class="card-body">
 
-
+                                    <div id="announcementDiv">
                                         <p>
                                             <%- lessonData['section' + i] %>
                                         </p>
+                                    </div>
+
+                                    <button onclick="toggleSpeak()">Speak</button>
+
+                                            <script>
+                                                var synthesis = window.speechSynthesis;
+                                                var utterance;
+
+                                                function toggleSpeak() {
+                                                    var announcementText = document.getElementById('announcementDiv').innerText;
+
+                                                    // Check for browser support
+                                                    if ('speechSynthesis' in window) {
+                                                        if (synthesis.speaking || synthesis.paused) {
+                                                            // If speech is currently active or paused, stop it
+                                                            synthesis.cancel();
+                                                        } else {
+                                                            // If speech is not active, start it
+                                                            utterance = new SpeechSynthesisUtterance(announcementText);
+                                                            synthesis.speak(utterance);
+                                                        }
+                                                    } else {
+                                                        alert('Text-to-speech is not supported in this browser.');
+                                                    }
+                                                }
+                                            </script>
 
                                     </div>
                                     <!-- <hr> -->
