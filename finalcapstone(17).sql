@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2023 at 05:30 PM
+-- Generation Time: Nov 12, 2023 at 10:24 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -362,7 +362,7 @@ CREATE TABLE `subjectoverview` (
 
 INSERT INTO `subjectoverview` (`id`, `teacherid`, `subjectname`, `sectionname`, `overview`) VALUES
 (1, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'hehehe'),
-(2, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'Subject Overview of sex ed');
+(3, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'test subject overview');
 
 -- --------------------------------------------------------
 
@@ -416,7 +416,14 @@ CREATE TABLE `teacherannouncements` (
 INSERT INTO `teacherannouncements` (`id`, `teacherid`, `subjectname`, `sectionname`, `announcementTitle`, `announcement`, `visibility`, `dateCreated`, `dateUpdated`) VALUES
 (8, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'sex ed 1', 'Seeeex', 'Visible', '2023-11-03 23:09:51', '2023-11-03 23:09:51'),
 (9, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'HEHE', '<p><span style=\"text-decoration: underline;\"><em><strong>hehehehehedadada</strong></em></span></p>', 'Visible', '2023-11-12 16:49:52', '2023-11-13 00:00:08'),
-(10, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'Test Announcement 2', 'test announcement2', 'Visible', '2023-11-13 16:49:52', '2023-11-13 16:49:52');
+(10, '10420012023', 'MATHTEST', 'VII - St. Lorenzo', 'Test Announcement 2', 'test announcement2', 'Visible', '2023-11-13 16:49:52', '2023-11-13 16:49:52'),
+(11, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'dede', 'dede', NULL, '2023-11-13 00:41:20', '2023-11-13 00:41:20'),
+(12, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'haha', 'gumana', NULL, '2023-11-13 00:41:45', '2023-11-13 00:41:45'),
+(13, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'haha', 'hahaaa', 'Visible', '2023-11-13 00:43:46', '2023-11-13 00:43:46'),
+(14, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'hahahaha', '<p><strong>hahahhahahdasdasdasd</strong></p>', 'Visible', '2023-11-13 00:53:02', '2023-11-13 00:53:02'),
+(15, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'will it work', '<p>will it work</p>', 'Visible', '2023-11-13 00:54:03', '2023-11-13 00:54:03'),
+(16, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'dedo', '<p>dedo</p>', 'Visible', '2023-11-13 00:54:50', '2023-11-13 00:54:50'),
+(17, '10420012023', 'Sex Education for Teens', 'X - St. Paul', 'gegege edited', '<p>asdasda edited</p>', 'Visible', '2023-11-13 00:55:28', '2023-11-13 01:15:08');
 
 -- --------------------------------------------------------
 
@@ -683,7 +690,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `subjectoverview`
 --
 ALTER TABLE `subjectoverview`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -695,7 +702,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `teacherannouncements`
 --
 ALTER TABLE `teacherannouncements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `teacherdetails`
