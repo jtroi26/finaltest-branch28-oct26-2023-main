@@ -113,26 +113,29 @@
                         </div>
                     </div>
                     <div class="container-fluid">
-                        <div class="row ">
+                        <div class="row">
                             <div class="accordions">
                                 <ul class="accordion">
-                                    <li class="accordion-item">
-                                        <a class="accordion-link" onclick="toggleAccordion(event)">
-                                            <span>
-                                                <%= lesson.quarterperiod %>
-                                            </span>
-                                            <span class="accordion-icon">&#9660;</span>
-                                        </a>
-                                        <div class="accordion-content">
-                                            <a href="/student/view/lesson/<%= lesson.id %>" class="accordion-link">
-                                                <%= lesson.lessonTitle %>
+                                    <% lessonsData.forEach(function(lesson) { %>
+                                        <li class="accordion-item">
+                                            <a class="accordion-link" onclick="toggleAccordion(event)">
+                                                <span>
+                                                    <%= lesson.quarterperiod %>
+                                                </span>
+                                                <span class="accordion-icon">&#9660;</span>
                                             </a>
-                                        </div>
-                                    </li>
+                                            <div class="accordion-content">
+                                                <a href="/student/view/lesson/<%= lesson.id %>" class="accordion-link">
+                                                    <%= lesson.lessonTitle %>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    <% }); %>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    
                     <% }); %>
                 </div>
                 <script>
