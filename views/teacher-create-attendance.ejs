@@ -140,53 +140,56 @@
                     <h1 style="text-align: center;">Class Attendance</h1>
     <hr>
 
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="card">
 
-<form action="/teacher/create/attendance" method="post">
-    <div style=" font-size: 20px; text-align: center;"> Date Today: <span id="currentDate" style=" font-size: 23px;"></span></div>
-    
+                        <form action="/teacher/create/attendance" method="post">
+                            <div style=" font-size: 20px; text-align: center;"> Date Today: <span id="currentDate" style=" font-size: 23px;"></span></div>
+                            
 
 
-    <div class="box" style="text-align: center;">
-        <label for="">Attendance for Quarter: </label>
-        <select name="quarterperiod" id="quarterperiod" style="border-radius: 5px; background-color: #4A55A2; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <div class="box" style="text-align: center;">
+                                <label for="">Attendance for Quarter: </label>
+                                <select name="quarterperiod" id="quarterperiod" style="border-radius: 5px; background-color: #4A55A2; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
 
-            <option value="" default selected disabled>Choose an option</option>
-            <% quarters.forEach(quarter => { %>
-                <option value="<%= quarter.quarterperiod %>"><%= quarter.quarterperiod %></option>
-            <% }); %>
-        </select><br><br>
-    </div>
-    
+                                    <option value="" default selected disabled>Choose an option</option>
+                                    <% quarters.forEach(quarter => { %>
+                                        <option value="<%= quarter.quarterperiod %>"><%= quarter.quarterperiod %></option>
+                                    <% }); %>
+                                </select><br><br>
+                            </div>
+                            
 
-    <table border="1" align="center">
-        <tr>
-            <th>Student ID</th>
-            <th>Student Name</th>
-            <th>Attendance</th>
-        </tr>
-        <% students.forEach(student => { %>
-        <tr>
-            <td hidden><input type="text" name="studentID" id="studentID" value="<%= student.studentID %>"></td>
-            <td><%= student.studentID %></td>
-            <td><%= student.full_name %></td>
-            <td>
-                <select name="attendance" id="attendance" style="border-radius: 5px; background-color: #7895CB; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
-                    <option value="NULL" selected >Choose an option</option>
-                    <option value="Present">Present</option>
-                    <option value="Late">Late</option>
-                    <option value="Absent">Absent</option>
-                </select>
-            </td>
-        </tr>
-        <% }); %>
-    </table>
+                            <table border="1" align="center">
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Attendance</th>
+                                </tr>
+                                <% students.forEach(student => { %>
+                                <tr>
+                                    <td hidden><input type="text" name="studentID" id="studentID" value="<%= student.studentID %>"></td>
+                                    <td><%= student.studentID %></td>
+                                    <td><%= student.full_name %></td>
+                                    <td>
+                                        <select name="attendance" id="attendance" style="border-radius: 5px; background-color: #7895CB; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
+                                            <option value="NULL" selected >Choose an option</option>
+                                            <option value="Present">Present</option>
+                                            <option value="Late">Late</option>
+                                            <option value="Absent">Absent</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                            </table>
 
-    <br>
-    <div style="text-align: center;">
-        <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #4A55A2; border-color: #7895CB;">Create Attendance Today</button>
-    </div>
+                            <br>
+                            <div style="text-align: center;">
+                                <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #4A55A2; border-color: #7895CB;">Create Attendance Today</button>
+                            </div>
 
-</form>
+                        </form>
                 </div>
             </div>
         </div>
