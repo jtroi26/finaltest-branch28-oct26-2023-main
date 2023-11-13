@@ -29,7 +29,7 @@ exports.getSubjectOverview = (req, res) => {
         console.log(overview);
 
         // Render the template with the fetched overview
-        res.render('teacher-edit-subject-overview', { id, overview });
+        res.render('teacher-edit-subject-overview', { id, overview , teacherid: req.session.teacherid});
     });
 
     connection.end();
