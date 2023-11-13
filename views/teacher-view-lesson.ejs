@@ -97,7 +97,7 @@
                                 </ul>
                             </li>
 
-
+                            <% if (teacherid) { %>
                             <form id="logoutForm" action="/teacher-logout" method="post">
                                 <li class="sidebar-item">
                                     <a href="javascript:void(0);"
@@ -107,13 +107,13 @@
                                             class="hide-menu">Logout</span></a>
                                 </li>
                             </form>
-
+                            <% } else { %>
                             <li class="sidebar-item">
                                 <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
                                     style="margin-top: auto;" aria-expanded="false"><i class="mdi mdi-login"></i><span
                                         class="hide-menu">Login</span></a>
                             </li>
-
+                            <% } %>
                         </ul>
                     </nav>
                 </div>
@@ -136,8 +136,9 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="container">
+                    
+                <div class="container" style="background-color: white;">
+                    <br>
                     <ul class="nav1 nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <b class="nav-link active" id="section1-tab" data-bs-toggle="tab" href="#section1" role="tab" aria-controls="section1" aria-selected="true">Section 1</b>
@@ -230,7 +231,8 @@
                     
                     <br><br>
                     <a class="btn btn-dark btn-rounded" href="/teacher/lesson/modules">Back</a>
-                </diva>
+                    <br><br>
+                </div>
             </div>
         </div>
     
