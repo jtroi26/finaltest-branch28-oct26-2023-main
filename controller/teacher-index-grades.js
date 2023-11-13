@@ -28,6 +28,6 @@ exports.getIndexPage = (req, res) => {
         // Close the connection after handling the results
         connection.end();
 
-        res.render('teacher-index-grades', { results, teacherid: teacherid });
+        res.render('teacher-index-grades', { results, teacherid: teacherid , sectionname: sectionname , subjectname: subjectname});
     });
 };
