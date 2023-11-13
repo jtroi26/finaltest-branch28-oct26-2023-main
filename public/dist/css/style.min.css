@@ -148,7 +148,9 @@ h3 {
 
   .h3,
   h3 {
-    font-size: 1.5rem
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 10px;
   }
 }
 
@@ -2864,8 +2866,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #7460ee;
-  border-color: #7460ee
+  background-color: #4A55A2;
+  border-color: #4A55A2
 }
 
 .btn-primary:hover {
@@ -7631,7 +7633,8 @@ fieldset:disabled .btn {
 }
 
 .me-auto {
-  margin-right: auto !important
+  margin-right: auto !important;
+  font-size: 16px;
 }
 
 .mb-0 {
@@ -15300,15 +15303,12 @@ label {
   margin: 0;
   font-size: 1.5em; 
 }
-.nav1.nav-tabs {
+.nav .nav-tabs {
   display: flex;
   justify-content: space-between;
   list-style: none;
   padding: 0;
-  background: linear-gradient(to bottom, #f0f0f0, #d3d3d3);
-  border: 1px solid #ccc;
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .nav-item {
@@ -15320,15 +15320,33 @@ label {
 
 .nav-link {
   color: black; /* Change the default font color */
-  transition: color 0.3s; /* Add transition for font color change */
+  transition: color 0.1s; /* Add transition for font color change */
 }
+.nav-link.active {
+  background-color: #4A55A2;
+  color: white;
+}
+.nav-item a.nav-link.active {
+  background-color: #4A55A2;
+  color: white;
+} 
 
 .nav-link:hover {
-  background-color: #007BFF;
+  background-color: #4A55A2;
   color: white; /* Change font color to white on hover */
 }
 
 .nav1.nav-tabs li.nav-item:hover {
-  background-color: #007BFF;
+  background-color: #4A55A2;
   color: white;
 } 
+/* CSS class for the links */
+.lesson-link {
+  color: black; /* Normal state color */
+  text-decoration: none; /* Optional: Removes underline */
+}
+
+.lesson-link:hover {
+  color: #4A55A2; /* Color on hover - you can choose any color */
+  text-decoration: underline; /* Optional: Underline on hover */
+}

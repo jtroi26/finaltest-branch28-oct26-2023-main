@@ -75,17 +75,17 @@
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/students"
-                      aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                      aria-expanded="false"><i class="mdi mdi-checkbox-blank-circle-outline"></i><span
                         class="hide-menu">Students</span></a>
                   </li>
                   <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/students/attendance/"
-                      aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                      aria-expanded="false"><i class="mdi mdi-checkbox-blank-circle-outline"></i><span
                         class="hide-menu">Attendance</span></a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 462px;"
-                      href="/teacher/index/grades" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" 
+                      href="/teacher/index/grades" aria-expanded="false"><i class="mdi mdi-checkbox-blank-circle-outline"></i><span
                         class="hide-menu">Grades</span></a>
                   </li>
                 </ul>
@@ -94,7 +94,7 @@
               <% if (teacherid) { %>
                 <form id="logoutForm" action="/teacher-logout" method="post">
                   <li class="sidebar-item">
-                    <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
+                    <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-top: 100%;"
                       onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
                         class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
                   </li>
