@@ -36,7 +36,7 @@ exports.getLessonPageView = (req, res) => {
                 console.log(lessonData);
                 // Render the 'teacher-view-lesson' template and pass the lesson data
                 res.render('teacher-view-lesson', { lesson: lessonData, teacherid: req.session.teacherid });
-
+                // res.render('teacher-view-lesson', { lesson: lessonData });
                 // Close the database connection
                 connection.end();
             }
