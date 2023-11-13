@@ -11,13 +11,13 @@ const conn = {
 const pool = mysql.createPool(conn);
 
 exports.getAnnouncementIndexPage = (req, res) => {
-        console.log(req.session.studentID);
+        const studentid = req.session.studentID;
         console.log(req.session.sectionname);
     
         const sectionname = req.session.sectionname; // Assuming sectionname is stored in the session
     
         const sql = `
-            SELECT ta.announcementTitle, ta.subjectname, ta.announcement, ta.dateCreated
+            SELECT ta.id, ta.announcementTitle, ta.subjectname, ta.announcement, ta.dateCreated
             FROM sections AS s
             INNER JOIN teacherannouncements AS ta ON s.sectionname = ta.sectionname
             WHERE s.sectionname = ?
@@ -54,7 +54,7 @@ exports.getAnnouncementIndexPage = (req, res) => {
     
                 console.log(results);
                 // Assuming you have a template engine (like EJS) for rendering
-                res.render('student-index-announcements', { announcements: results });
+                res.render('student-index-announcements', { announcements: results , studentid: studentid});
             });
         });
     };
