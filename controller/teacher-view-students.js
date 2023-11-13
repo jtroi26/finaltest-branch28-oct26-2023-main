@@ -14,7 +14,7 @@ exports.getStudentsPageView = (req, res) => {
 
     const sql = `SELECT 
     s.studentID,
-    CONCAT(s.firstname, ' ', s.suffix) AS full_name,
+    CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname, ' ', s.suffix) AS full_name,
     s.sectionname
     FROM students AS s
     INNER JOIN subjects AS sub ON sub.sectionname = s.sectionname

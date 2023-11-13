@@ -1,108 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Students</title>
+<html dir="ltr" lang="en">
 
-    <link href="/stylesheets/teacher-view-students.css" rel="stylesheet">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Students | DAZSMA </title>
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
+        <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+        <link href="/dist/css/style.min.css" rel="stylesheet" />
+    </head>
 
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
-      <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <!-- Include Bootstrap CSS -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-
-        <!-- Font Awesome -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
-        <!-- MDB -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
-  
-</head>
-<body id="body-pd">
-    
-    <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="header_notify"> <i class='bx bx-bell' id="header-notify"></i> </div>
-    </header> 
-
-    <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-          <div>
-            <a href="/teacher/dashboard" class="nav_logo"> <i class='bx bx-book-reader nav_logo-icon'></i> <span
-                class="nav_logo-name">E-learn</span> </a>
-            <div class="nav_list">
-              <a href="/teacher/dashboard" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                  class="nav_name">Dashboard</span> </a>
-              <a href="#" class="nav_link"> <i class='bx bx-book nav_icon'></i> <span
-                  class="nav_name">Subject</span></a>
-              <a href="#" class="nav_link"> <i class='bx bx-calendar nav_icon'></i> <span
-                  class="nav_name">Calendar</span></a>
-              <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
-                  class="nav_name">Achievements</span></a>
-              <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">
-                  
-                </span> </a>
+    <body>
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
             </div>
-          </div>
-    
-          <% if (teacherid) { %>
-    
-            <form id="logoutForm" action="/teacher-logout" method="post">
-                <a href="javascript:void(0);" class="nav_link" onclick="document.getElementById('logoutForm').submit();">
-                    <i class='bx bx-log-out nav_icon'></i>
-                    <span class="nav_name">SignOut</span>
-                </a>
-            </form>
-    
-            <% } else { %>
-              <a href="/teacher" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Login</span> </a>
-              <% } %>
-    
-    
-        </nav>
-      </div> 
+        </div>
+        <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+            data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+            <header class="topbar" data-navbarbg="skin5">
+                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                    <div class="navbar-header" data-logobg="skin5">
+                        <a class="navbar-brand" href="/student/dashboard">
+                            <b class="logo-icon ps-2">
+                                <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo"
+                                    width="25" />
+                            </b>
+                            <span class="logo-text ms-2">
+                                <span>DAZSMA</span>
+                            </span>
+                        </a>
+                        <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
+                                class="ti-menu ti-close"></i></a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                        <ul class="navbar-nav float-start me-auto">
+                            <li class="nav-item d-none d-lg-block">
+                                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                                    data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside class="left-sidebar" data-sidebarbg="skin5">
+                <div class="scroll-sidebar">
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav" class="pt-4">
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/dashboard"
+                                    aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                        class="hide-menu">Dashboard</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="/teacher/announcement/" aria-expanded="false"><i
+                                        class="mdi mdi-bullhorn"></i><span class="hide-menu">Announcements</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="/teacher/subjectoverview" aria-expanded="false"><i
+                                        class="mdi mdi-account-multiple"></i><span class="hide-menu">Subject
+                                        Overview</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="/teacher/lesson/modules" aria-expanded="false"><i
+                                        class="mdi mdi-account-multiple"></i><span class="hide-menu">Lesson</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                                    aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Class
+                                        Menu </span></a>
+                                <ul aria-expanded="false" class="collapse first-level">
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/view/students" aria-expanded="false"><i
+                                                class="mdi mdi-account-multiple"></i><span
+                                                class="hide-menu">Students</span></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/students/attendance/" aria-expanded="false"><i
+                                                class="mdi mdi-account-multiple"></i><span
+                                                class="hide-menu">Attendance</span></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            style="margin-bottom: 462px;" href="/teacher/index/grades"
+                                            aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                                                class="hide-menu">Grades</span></a>
+                                    </li>
+                                </ul>
+                            </li>
 
-    <h1 style="text-align: center;">Students of: <%= sectionname %> - <%= subjectname %> </h1>
-    <hr>
-    <% const totalStudents = students.length; %>
 
-    <!-- Display the total number of students above the table -->
-    <h3 style="background-color: #7895CB; color: #fff; padding: 10px; border-radius: 20px; width: fit-content; text-align: center; ">
-        Total Number of Students: <%= totalStudents %>
-    </h3>
-    
-    
-    <table border="1" style="width: 100%;">
-        <tr>
-            <th>Student ID</th>
-            <th>Student Full Name</th>
-            <th>Section Name</th>
-        </tr>
-        <% students.forEach(function(student) { %>
-            <tr>
-                <td> <%= student.studentID %></td>
-                <td> <%= student.full_name %></td>
-                <td> <%= student.sectionname %></td>
-            </tr>
-        <% }) %>
-    </table>
-    
-    
+                            <form id="logoutForm" action="/teacher-logout" method="post">
+                                <li class="sidebar-item">
+                                    <a href="javascript:void(0);"
+                                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        onclick="document.getElementById('logoutForm').submit();"
+                                        aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                                            class="hide-menu">Logout</span></a>
+                                </li>
+                            </form>
 
+                            <li class="sidebar-item">
+                                <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    style="margin-top: auto;" aria-expanded="false"><i class="mdi mdi-login"></i><span
+                                        class="hide-menu">Login</span></a>
+                            </li>
 
-</body>
-<script src="/javascripts/teacher-lesson-modules.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet"></script>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+            <div class="page-wrapper">
+                <div class="page-breadcrumb">
+                    <div class="row">
+                        <div class="col-12 d-flex no-block align-items-center">
+                            <h4 class="page-title">Students > <%= sectionname %>
+                            </h4>
+                            <div class="ms-auto text-end">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/student/dashboard">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Announcement</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row ">
+                        <div class="card">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Student Full Name</th>
+                                        <th>Section Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% students.forEach(function(student) { %>
+                                        <tr>
+                                            <td>
+                                                <%= student.studentID %>
+                                            </td>
+                                            <td>
+                                                <%= student.full_name %>
+                                            </td>
+                                            <td>
+                                                <%= student.sectionname %>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     
+                            
+    </body>
+    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="/dist/js/waves.js"></script>
+    <script src="/dist/js/sidebarmenu.js"></script>
+    <script src="/dist/js/custom.min.js"></script>
+    <script src="/assets/libs/flot/excanvas.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="/dist/js/pages/chart/chart-page-init.js"></script>
 </html>
