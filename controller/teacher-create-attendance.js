@@ -56,7 +56,7 @@ exports.getAttendancePage = (req, res) => {
                         const quartersData = quarters;
                         
                         // Render the 'teacher-index-attendance' template and pass both student and quarter data
-                        res.render('teacher-create-attendance', { students: studentData, quarters: quartersData, teacherid: req.session.teacherid });
+                        res.render('teacher-create-attendance', { students: studentData, quarters: quartersData, teacherid: req.session.teacherid , sectionname: sectionname, subjectname: subjectname});
                     }
                 });
             }
