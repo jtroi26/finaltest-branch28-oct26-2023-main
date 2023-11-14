@@ -59,7 +59,7 @@ exports.postCreateStudentUpload = (req, res) => {
     const filePath = req.file.path;
 
     const uploadCallback = () => {
-        res.redirect('/admin/create/student');
+        res.redirect('/admin/index-student');
     };
 
     uploadCsv(filePath, uploadCallback);
