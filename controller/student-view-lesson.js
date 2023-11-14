@@ -55,7 +55,7 @@ exports.postOpenAI = async (req, res) => {
             { role: 'bot', content: response.choices[0].message.content }
         ];
 
-        res.render('student-view-lessons');
+        res.redirect('/student/view/lessons')
     } catch (error) {
         console.error('Error fetching chat response:', error);
         res.status(500).send('Internal Server Error');

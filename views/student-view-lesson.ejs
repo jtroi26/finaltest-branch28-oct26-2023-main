@@ -244,14 +244,17 @@
                 <% }); %>
             <% } %>
         </div>
-    
-        <form action="/student/view/lesson/ai" method="post" class="form-container">
+
+
+        
+        <form action="/student/view/lesson/<%= lessonData.id %>" method="post" class="form-container">
             <label for="userInput">Enter your message:</label>
             <input type="text" id="userInput" name="userInput" required>
             <button type="submit">Submit</button>
 
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </form>
+
     </div>
 
 
