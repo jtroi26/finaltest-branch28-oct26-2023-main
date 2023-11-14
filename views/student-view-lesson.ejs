@@ -307,35 +307,44 @@
             <!-- To Prevent the page from loading. -->
         <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const form = document.querySelector('.form-container');
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent default form submission
+    const form = document.querySelector('.form-container');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission
 
-            const userInput = document.getElementById('userInput').value;
+        const userInput = document.getElementById('userInput').value;
 
-            try {
-                const response = await fetch('/student/view/lesson/<%= lessonData.id %>', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ userInput }) // Send user input as JSON
-                });
+        try {
+            const response = await fetch('/student/view/lesson/<%= lessonData.id %>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userInput }) // Send user input as JSON
+            });
 
-                if (response.ok) {
-                    // Handle successful response, maybe update chat UI
-                    // For example:
-                    const responseData = await response.json();
-                    // Update chat UI or perform other actions with responseData
-                } else {
-                    // Handle error response
-                    console.error('Error:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error fetching:', error);
+            if (response.ok) {
+                // Handle successful response, maybe update chat UI
+                const responseData = await response.json();
+
+                // Update the chat UI with the responseData
+                const chatContainer = document.getElementById('chatContainer');
+                const newChatMessage = document.createElement('div');
+                newChatMessage.classList.add('chat-message');
+                newChatMessage.textContent = responseData.message; // Assuming responseData has a 'message' property
+
+                chatContainer.appendChild(newChatMessage); // Append the new message to the chat container
+
+                // Additionally, you can perform other actions based on the responseData if needed
+            } else {
+                // Handle error response
+                console.error('Error:', response.statusText);
             }
-        });
+        } catch (error) {
+            console.error('Error fetching:', error);
+        }
     });
+});
+
 </script>
     
 
