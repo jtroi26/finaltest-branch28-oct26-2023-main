@@ -30,7 +30,7 @@ exports.postSetStatus = (req, res) => {
             res.status(500).send('Internal Server Error');
         } else {
             // Redirect to a page or send a response indicating success
-            res.redirect('/admin/index/student'); // Change the URL to the appropriate success page
+            res.redirect('/admin/index-student'); // Change the URL to the appropriate success page
         }
     });
 };
