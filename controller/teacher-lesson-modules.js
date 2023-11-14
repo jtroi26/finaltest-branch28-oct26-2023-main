@@ -34,11 +34,10 @@ exports.getSubjectModules = (req, res) => {
     // Define placeholders for sectionname and subjectname
     const values = [sectionname, subjectname];
 
-    const firstquartersql = `SELECT id, lessonID, lessonTitle, quarterperiod, subjectname FROM lessons WHERE quarterperiod = 'First Quarter' AND sectionname = ? AND subjectname = ? ORDER BY lessonID ASC`;
-    const secondquartersql = `SELECT id, lessonID, lessonTitle, quarterperiod, subjectname FROM lessons WHERE quarterperiod = 'Second Quarter' AND sectionname = ? AND subjectname = ? ORDER BY lessonID ASC`;
-    const thirdquartersql = `SELECT id, lessonID, lessonTitle, quarterperiod, subjectname FROM lessons WHERE quarterperiod = 'Third Quarter' AND sectionname = ? AND subjectname = ? ORDER BY lessonID ASC`;
-    const fourthquartersql = `SELECT id, lessonID, lessonTitle, quarterperiod, subjectname FROM lessons WHERE quarterperiod = 'Fourth Quarter' AND sectionname = ? AND subjectname = ? ORDER BY lessonID ASC`;
-
+    const firstquartersql = `SELECT id, lessonID, lessonTitle, quarterperiod, subjectname FROM lessons WHERE quarterperiod = 'First Quarter' AND sectionname = ? AND subjectname = ?  AND Visibility = 'Visible' ORDER BY lessonID ASC;`
+    const secondquartersql = `SELECT id, lessonID, lessonTitle, quarterperiod, subjectname FROM lessons WHERE quarterperiod = 'Second Quarter' AND sectionname = ? AND subjectname = ? AND Visibility = 'Visible' ORDER BY lessonID ASC;`
+    const thirdquartersql = `SELECT id, lessonID, lessonTitle, quarterperiod, subjectname FROM lessons WHERE quarterperiod = 'Third Quarter' AND sectionname = ? AND subjectname = ? AND Visibility = 'Visible' ORDER BY lessonID ASC;`
+    const fourthquartersql = `SELECT id, lessonID, lessonTitle, quarterperiod, subjectname FROM lessons WHERE quarterperiod = 'Fourth Quarter' AND sectionname = ? AND subjectname = ? AND Visibility = 'Visible' ORDER BY lessonID ASC;`
     // Execute SQL queries
     connection.query(firstquartersql, values, (err, firstQuarterResults) => {
         if (err) {

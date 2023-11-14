@@ -12244,7 +12244,7 @@ select.form-select.form-control-line {
 .right-align {
   text-align: right;
   margin-bottom: 10px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .sidebar-nav>#sidebarnav>.sidebar-item>.sidebar-link:hover {}

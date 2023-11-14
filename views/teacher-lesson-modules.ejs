@@ -64,31 +64,31 @@
               </li>
               <li class="sidebar-item">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/subjectoverview"
-                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Subject
+                  aria-expanded="false"><i class="mdi mdi-eye"></i><span class="hide-menu">Subject
                     Overview</span></a>
               </li>
               <li class="sidebar-item">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/lesson/modules"
-                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
-                    class="hide-menu">Lesson</span></a>
+                  aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">Lesson</span></a>
               </li>
               <li class="sidebar-item">
                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                  aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Class Menu </span></a>
+                  aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Class </span></a>
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/students"
-                      aria-expanded="false"><i class="mdi mdi-checkbox-blank-circle-outline"></i><span
+                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
                         class="hide-menu">Students</span></a>
                   </li>
                   <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/students/attendance/"
-                      aria-expanded="false"><i class="mdi mdi-checkbox-blank-circle-outline"></i><span
+                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
                         class="hide-menu">Attendance</span></a>
                   </li>
                   <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 462px;"
-                      href="/teacher/index/grades" aria-expanded="false"><i class="mdi mdi-checkbox-blank-circle-outline"></i><span
+                      href="/teacher/index/grades" aria-expanded="false"><i
+                        class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
                         class="hide-menu">Grades</span></a>
                   </li>
                 </ul>
@@ -133,140 +133,9 @@
         <% if (teacherid) { %>
           <div class="container-fluid">
             <div class="right-align">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLessonModal">
+              <a href="/teacher/lesson/create" type="button" class="btn btn-primary">
                 Create Lesson
-                <!-- <a class="btn btn-dark btn-rounded" href="/teacher/lesson/create">Create Lesson</a> -->
-              </button>
-            </div>
-            <div class="modal fade" id="createLessonModal" tabindex="-1" aria-labelledby="createLessonModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="createLessonModalLabel">Create Announcement</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form action="/teacher/lesson/create" method="post">
-                      <div class="mb-3">
-                        <label class="form-label" for="lessonID">Lesson ID</label>
-                        <input type="text" class="form-control" name="lessonID" id="lessonID">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="lessonTitle">Lesson Title</label>
-                        <input type="text" class="form-control" name="lessonTitle" id="lessonTitle">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="quarterperiod">Quarter Period</label>
-                        <select class="form-select" name="quarterperiod" id="quarterperiod">
-                          <option value="" selected disabled> Choose an Option</option>
-                          <option value="First Quarter">First Quarter</option>
-                          <option value="Second Quarter">Second Quarter</option>
-                          <option value="Third Quarter">Third Quarter</option>
-                          <option value="Fourth Quarter">Fourth Quarter</option>
-                        </select>
-                      </div>
-                      <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link active" id="section1-tab" data-bs-toggle="tab" href="#section1" role="tab"
-                            aria-controls="section1" aria-selected="true">Sec 1</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section2" role="tab"
-                            aria-controls="section2" aria-selected="false">Sec 2</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section3-tab" data-bs-toggle="tab" href="#section3" role="tab"
-                            aria-controls="section3" aria-selected="false">Sec 3</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section4-tab" data-bs-toggle="tab" href="#section4" role="tab"
-                            aria-controls="section4" aria-selected="false">Sec 4</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section5-tab" data-bs-toggle="tab" href="#section5" role="tab"
-                            aria-controls="section5" aria-selected="false">Sec 5</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section6-tab" data-bs-toggle="tab" href="#section6" role="tab"
-                            aria-controls="section6" aria-selected="false">Sec 6</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section7-tab" data-bs-toggle="tab" href="#section7" role="tab"
-                            aria-controls="section7" aria-selected="false">Sec 7</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section8-tab" data-bs-toggle="tab" href="#section8" role="tab"
-                            aria-controls="section8" aria-selected="false">Sec 8</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section9-tab" data-bs-toggle="tab" href="#section9" role="tab"
-                            aria-controls="section9" aria-selected="false">Sec 9</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="section10-tab" data-bs-toggle="tab" href="#section10" role="tab"
-                            aria-controls="section10" aria-selected="false">Sec 10</a>
-                        </li>
-                      </ul>
-                      <div class="tab-content" id="myTabContent">
-
-                        <div class="tab-pane fade show active" id="section1" role="tabpanel"
-                          aria-labelledby="section1-tab">
-                          <textarea type="text" name="section1" id="section1"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section2" role="tabpanel" aria-labelledby="section2-tab">
-                          <textarea type="text" name="section2" id="section2"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section3" role="tabpanel" aria-labelledby="section3-tab">
-                          <textarea type="text" name="section3" id="section3"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section4" role="tabpanel" aria-labelledby="section4-tab">
-                          <textarea type="text" name="section4" id="section4"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section5" role="tabpanel" aria-labelledby="section5-tab">
-                          <textarea type="text" name="section5" id="section5"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section6" role="tabpanel" aria-labelledby="section6-tab">
-                          <textarea type="text" name="section6" id="section6"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section7" role="tabpanel" aria-labelledby="section7-tab">
-                          <textarea type="text" name="section7" id="section7"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section8" role="tabpanel" aria-labelledby="section8-tab">
-                          <textarea type="text" name="section8" id="section8"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section9" role="tabpanel" aria-labelledby="section9-tab">
-                          <textarea type="text" name="section9" id="section9"></textarea>
-                        </div>
-
-                        <div class="tab-pane fade show " id="section10" role="tabpanel" aria-labelledby="section10-tab">
-                          <textarea type="text" name="section10" id="section10"></textarea>
-                        </div>
-
-                      </div>
-                      <div class="mb-3">
-                        <label for="visibility">Lesson Visibility</label>
-                        <select name="visibility" id="visibility" class="form-select">
-                          <option value="" selected disabled>Select an Option</option>
-                          <option value="Visible">Visible</option>
-                          <option value="Invisible">Invisible</option>
-                        </select>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+              </a>
             </div>
             <div class="row ">
               <div class="col-12">
@@ -294,687 +163,41 @@
                       </li>
                     </ul>
 
-
-
                     <div class="tab-content" id="myTabContent">
-
                       <div class="tab-pane show1 active" id="first-quarter" role="tabpanel"
                         aria-labelledby="first-quarter-tab">
                         <h3>First Quarter Lessons</h3>
-                        <ol class="list-group">
-                          <% firstQuarterLessons.forEach(lesson=> { %>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                              <div class="ms-10 me-auto" style="flex-grow: 1;">
-                                <a href="/teacher/lesson/view-lesson/<%= lesson.id %>" class="lesson-link">
-                                  <i class="mdi mdi-checkbox-blank-circle"></i>
-                                  <%= lesson.lessonTitle %>
-                                </a>
+                        <div class="row">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th class="text-center">Lesson Title</th>
+                                      <th class="text-center">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% firstQuarterLessons.forEach(lesson=> { %>
+                                      <tr>
+                                        <td class="text-center">
+                                          <%= lesson.lessonTitle %>
+                                        </td>
+                                        <td class="text-center">
+                                          <a href="/teacher/lesson/view-lesson/<%= lesson.id %>" type="button"
+                                            class="btn btn-outline-success"><i class="mdi mdi-pencil"></i>
+                                          </a>
+                                        </td>
+                                        <% }); %>
+                                      </tr>
+                                  </tbody>
+                                </table>
                               </div>
-                              <a class="btn btn-outline-warning" data-bs-toggle="modal"
-                                data-bs-target="#editLessonModal_<%= lesson.id %>">
-                                <i class="mdi mdi-pencil"></i>
-                              </a>
-                              <div class="modal fade" id="editLessonModal_<%= lesson.id %>" tabindex="-1"
-                                aria-labelledby="editLessonModalLabel_<%= lesson.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editLessonModalLabel<%= lesson.id %>">
-                                        Edit
-                                      </h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form action="/teacher/lesson/edit-lesson/<%= lesson.id %>" method="post">
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Lesson ID</label>
-                                          <input type="text" class="form-control" name="lessonID" id="lessonID"
-                                            value="<%= lesson.lessonID %>">
-                                        </div>
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Lesson Title</label>
-                                          <input type="text" class="form-control" name="lessonTitle" id="lessonTitle"
-                                            value="<%= lesson.lessonTitle %>">
-                                        </div>
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Quarter Period</label>
-                                          <select class="form-select" name="quarterperiod" id="quarterperiod"
-                                            type="button" class="btn btn-primary dropdown-toggle"
-                                            data-mdb-toggle="dropdown" aria-expanded="false">
-                                            <option value="" selected disabled>Choose an Option</option>
-                                            <option value="First Quarter" <%=lesson.quarterperiod==='First Quarter'
-                                              ? 'selected' : '' %>>First Quarter</option>
-                                            <option value="Second Quarter" <%=lesson.quarterperiod==='Second Quarter'
-                                              ? 'selected' : '' %>>Second Quarter</option>
-                                            <option value="Third Quarter" <%=lesson.quarterperiod==='Third Quarter'
-                                              ? 'selected' : '' %>>Third Quarter</option>
-                                            <option value="Fourth Quarter" <%=lesson.quarterperiod==='Fourth Quarter'
-                                              ? 'selected' : '' %>>Fourth Quarter</option>
-                                          </select>
-                                        </div>
+                            </div>
+                          </div>
+                        </div>
 
-                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link active" id="section1-tab" data-bs-toggle="tab"
-                                              href="#section1" role="tab" aria-controls="section1"
-                                              aria-selected="true">Sec 1</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section2"
-                                              role="tab" aria-controls="section2" aria-selected="false">Sec 2</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section3-tab" data-bs-toggle="tab" href="#section3"
-                                              role="tab" aria-controls="section3" aria-selected="false">Sec 3</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section4-tab" data-bs-toggle="tab" href="#section4"
-                                              role="tab" aria-controls="section4" aria-selected="false">Sec 4</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section5-tab" data-bs-toggle="tab" href="#section5"
-                                              role="tab" aria-controls="section5" aria-selected="false">Sec 5</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section6-tab" data-bs-toggle="tab" href="#section6"
-                                              role="tab" aria-controls="section6" aria-selected="false">Sec 6</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section7-tab" data-bs-toggle="tab" href="#section7"
-                                              role="tab" aria-controls="section7" aria-selected="false">Sec 7</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section8-tab" data-bs-toggle="tab" href="#section8"
-                                              role="tab" aria-controls="section8" aria-selected="false">Sec 8</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section9-tab" data-bs-toggle="tab" href="#section9"
-                                              role="tab" aria-controls="section9" aria-selected="false">Sec 9</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section10-tab" data-bs-toggle="tab"
-                                              href="#section10" role="tab" aria-controls="section10"
-                                              aria-selected="false">Sec 10</a>
-                                          </li>
-                                        </ul>
-                                        <div class="tab-content" id="myTabContent">
-                                          <div class="tab-pane fade show active" id="section1" role="tabpanel"
-                                            aria-labelledby="section1-tab">
-                                            <textarea name="section1" id="section1"><%= lesson.section1 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section2" role="tabpanel"
-                                            aria-labelledby="section2-tab">
-                                            <textarea name="section2" id="section2"><%= lesson.section2 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section3" role="tabpanel"
-                                            aria-labelledby="section3-tab">
-                                            <textarea name="section3" id="section3"><%= lesson.section3 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section4" role="tabpanel"
-                                            aria-labelledby="section4-tab">
-                                            <textarea name="section4" id="section4"><%= lesson.section4 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section5" role="tabpanel"
-                                            aria-labelledby="section5-tab">
-                                            <textarea name="section5" id="section5"><%= lesson.section5 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section6" role="tabpanel"
-                                            aria-labelledby="section6-tab">
-                                            <textarea name="section6" id="section6"><%= lesson.section6 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section7" role="tabpanel"
-                                            aria-labelledby="section7-tab">
-                                            <textarea name="section7" id="section7"><%= lesson.section7 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section8" role="tabpanel"
-                                            aria-labelledby="section8-tab">
-                                            <textarea name="section8" id="section8"><%= lesson.section8 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section9" role="tabpanel"
-                                            aria-labelledby="section9-tab">
-                                            <textarea name="section9" id="section9"><%= lesson.section9 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section10" role="tabpanel"
-                                            aria-labelledby="section-tab">
-                                            <textarea name="section10" id="section10"><%= lesson.section10 %></textarea>
-                                          </div>
-                                        </div>
-                                        <label for="" class="form-control">Lesson Visibility</label>
-                                        <select name="visibility" id="visibility" class="form-select">
-                                          <option value="" selected disabled>Select an Option</option>
-                                          <option value="Visible">Visible</option>
-                                          <option value="Invisible">Invisible</option>
-                                        </select>
-                                        <div class="modal-footer">
-                                          <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <% }); %>
-                        </ol>
-                      </div>
-
-                      <div class="tab-pane fade" id="second-quarter" role="tabpanel"
-                        aria-labelledby="second-quarter-tab">
-                        <h3>Second Quarter Lessons</h3>
-                        <ol class="list-group">
-                          <% secondQuarterLessons.forEach(lesson=> { %>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                              <div class="ms-10 me-auto" style="flex-grow: 1;">
-                                <a href="/teacher/lesson/view-lesson/<%= lesson.id %>" class="lesson-link">
-                                  <i class="mdi mdi-checkbox-blank-circle"></i>
-                                  <%= lesson.lessonTitle %>
-                                </a>
-                              </div>
-                              <a class="btn btn-outline-warning" data-bs-toggle="modal"
-                                data-bs-target="#editLessonModal_<%= lesson.id %>">
-                                <i class="mdi mdi-pencil"></i>
-                              </a>
-                              <div class="modal fade" id="editLessonModal_<%= lesson.id %>" tabindex="-1"
-                                aria-labelledby="editLessonModalLabel_<%= lesson.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editLessonModalLabel<%= lesson.id %>">
-                                        Edit
-                                      </h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form action="/teacher/lesson/edit-lesson/<%= lesson.id %>" method="post">
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Lesson ID</label>
-                                          <input type="text" class="form-control" name="lessonID" id="lessonID"
-                                            value="<%= lesson.lessonID %>">
-                                        </div>
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Lesson Title</label>
-                                          <input type="text" class="form-control" name="lessonTitle" id="lessonTitle"
-                                            value="<%= lesson.lessonTitle %>">
-                                        </div>
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Quarter Period</label>
-                                          <select class="form-select" name="quarterperiod" id="quarterperiod"
-                                            type="button" class="btn btn-primary dropdown-toggle"
-                                            data-mdb-toggle="dropdown" aria-expanded="false">
-                                            <option value="" selected disabled>Choose an Option</option>
-                                            <option value="First Quarter" <%=lesson.quarterperiod==='First Quarter'
-                                              ? 'selected' : '' %>>First Quarter</option>
-                                            <option value="Second Quarter" <%=lesson.quarterperiod==='Second Quarter'
-                                              ? 'selected' : '' %>>Second Quarter</option>
-                                            <option value="Third Quarter" <%=lesson.quarterperiod==='Third Quarter'
-                                              ? 'selected' : '' %>>Third Quarter</option>
-                                            <option value="Fourth Quarter" <%=lesson.quarterperiod==='Fourth Quarter'
-                                              ? 'selected' : '' %>>Fourth Quarter</option>
-                                          </select>
-                                        </div>
-
-                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link active" id="section1-tab" data-bs-toggle="tab"
-                                              href="#section1" role="tab" aria-controls="section1"
-                                              aria-selected="true">Sec 1</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section2"
-                                              role="tab" aria-controls="section2" aria-selected="false">Sec 2</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section3-tab" data-bs-toggle="tab" href="#section3"
-                                              role="tab" aria-controls="section3" aria-selected="false">Sec 3</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section4-tab" data-bs-toggle="tab" href="#section4"
-                                              role="tab" aria-controls="section4" aria-selected="false">Sec 4</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section5-tab" data-bs-toggle="tab" href="#section5"
-                                              role="tab" aria-controls="section5" aria-selected="false">Sec 5</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section6-tab" data-bs-toggle="tab" href="#section6"
-                                              role="tab" aria-controls="section6" aria-selected="false">Sec 6</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section7-tab" data-bs-toggle="tab" href="#section7"
-                                              role="tab" aria-controls="section7" aria-selected="false">Sec 7</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section8-tab" data-bs-toggle="tab" href="#section8"
-                                              role="tab" aria-controls="section8" aria-selected="false">Sec 8</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section9-tab" data-bs-toggle="tab" href="#section9"
-                                              role="tab" aria-controls="section9" aria-selected="false">Sec 9</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section10-tab" data-bs-toggle="tab"
-                                              href="#section10" role="tab" aria-controls="section10"
-                                              aria-selected="false">Sec 10</a>
-                                          </li>
-                                        </ul>
-                                        <div class="tab-content" id="myTabContent">
-                                          <div class="tab-pane fade show active" id="section1" role="tabpanel"
-                                            aria-labelledby="section1-tab">
-                                            <textarea name="section1" id="section1"><%= lesson.section1 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section2" role="tabpanel"
-                                            aria-labelledby="section2-tab">
-                                            <textarea name="section2" id="section2"><%= lesson.section2 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section3" role="tabpanel"
-                                            aria-labelledby="section3-tab">
-                                            <textarea name="section3" id="section3"><%= lesson.section3 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section4" role="tabpanel"
-                                            aria-labelledby="section4-tab">
-                                            <textarea name="section4" id="section4"><%= lesson.section4 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section5" role="tabpanel"
-                                            aria-labelledby="section5-tab">
-                                            <textarea name="section5" id="section5"><%= lesson.section5 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section6" role="tabpanel"
-                                            aria-labelledby="section6-tab">
-                                            <textarea name="section6" id="section6"><%= lesson.section6 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section7" role="tabpanel"
-                                            aria-labelledby="section7-tab">
-                                            <textarea name="section7" id="section7"><%= lesson.section7 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section8" role="tabpanel"
-                                            aria-labelledby="section8-tab">
-                                            <textarea name="section8" id="section8"><%= lesson.section8 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section9" role="tabpanel"
-                                            aria-labelledby="section9-tab">
-                                            <textarea name="section9" id="section9"><%= lesson.section9 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section10" role="tabpanel"
-                                            aria-labelledby="section-tab">
-                                            <textarea name="section10" id="section10"><%= lesson.section10 %></textarea>
-                                          </div>
-                                        </div>
-                                        <label for="" class="form-control">Lesson Visibility</label>
-                                        <select name="visibility" id="visibility" class="form-select">
-                                          <option value="" selected disabled>Select an Option</option>
-                                          <option value="Visible">Visible</option>
-                                          <option value="Invisible">Invisible</option>
-                                        </select>
-                                        <div class="modal-footer">
-                                          <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <% }); %>
-                        </ol>
-                      </div>
-
-                      <div class="tab-pane fade" id="third-quarter" role="tabpanel" aria-labelledby="third-quarter-tab">
-                        <h3>Third Quarter Lessons</h3>
-                        <ol class="list-group">
-                          <% thirdQuarterLessons.forEach(lesson=> { %>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                              <div class="ms-10 me-auto" style="flex-grow: 1;">
-                                <a href="/teacher/lesson/view-lesson/<%= lesson.id %>" class="lesson-link">
-                                  <i class="mdi mdi-checkbox-blank-circle"></i>
-                                  <%= lesson.lessonTitle %>
-                                </a>
-                              </div>
-                              <a class="btn btn-outline-warning" data-bs-toggle="modal"
-                                data-bs-target="#editLessonModal_<%= lesson.id %>">
-                                <i class="mdi mdi-pencil"></i>
-                              </a>
-                              <div class="modal fade" id="editLessonModal_<%= lesson.id %>" tabindex="-1"
-                                aria-labelledby="editLessonModalLabel_<%= lesson.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editLessonModalLabel<%= lesson.id %>">
-                                        Edit
-                                      </h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form action="/teacher/lesson/edit-lesson/<%= lesson.id %>" method="post">
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Lesson ID</label>
-                                          <input type="text" class="form-control" name="lessonID" id="lessonID"
-                                            value="<%= lesson.lessonID %>">
-                                        </div>
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Lesson Title</label>
-                                          <input type="text" class="form-control" name="lessonTitle" id="lessonTitle"
-                                            value="<%= lesson.lessonTitle %>">
-                                        </div>
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Quarter Period</label>
-                                          <select class="form-select" name="quarterperiod" id="quarterperiod"
-                                            type="button" class="btn btn-primary dropdown-toggle"
-                                            data-mdb-toggle="dropdown" aria-expanded="false">
-                                            <option value="" selected disabled>Choose an Option</option>
-                                            <option value="First Quarter" <%=lesson.quarterperiod==='First Quarter'
-                                              ? 'selected' : '' %>>First Quarter</option>
-                                            <option value="Second Quarter" <%=lesson.quarterperiod==='Second Quarter'
-                                              ? 'selected' : '' %>>Second Quarter</option>
-                                            <option value="Third Quarter" <%=lesson.quarterperiod==='Third Quarter'
-                                              ? 'selected' : '' %>>Third Quarter</option>
-                                            <option value="Fourth Quarter" <%=lesson.quarterperiod==='Fourth Quarter'
-                                              ? 'selected' : '' %>>Fourth Quarter</option>
-                                          </select>
-                                        </div>
-
-                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link active" id="section1-tab" data-bs-toggle="tab"
-                                              href="#section1" role="tab" aria-controls="section1"
-                                              aria-selected="true">Sec 1</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section2"
-                                              role="tab" aria-controls="section2" aria-selected="false">Sec 2</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section3-tab" data-bs-toggle="tab" href="#section3"
-                                              role="tab" aria-controls="section3" aria-selected="false">Sec 3</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section4-tab" data-bs-toggle="tab" href="#section4"
-                                              role="tab" aria-controls="section4" aria-selected="false">Sec 4</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section5-tab" data-bs-toggle="tab" href="#section5"
-                                              role="tab" aria-controls="section5" aria-selected="false">Sec 5</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section6-tab" data-bs-toggle="tab" href="#section6"
-                                              role="tab" aria-controls="section6" aria-selected="false">Sec 6</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section7-tab" data-bs-toggle="tab" href="#section7"
-                                              role="tab" aria-controls="section7" aria-selected="false">Sec 7</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section8-tab" data-bs-toggle="tab" href="#section8"
-                                              role="tab" aria-controls="section8" aria-selected="false">Sec 8</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section9-tab" data-bs-toggle="tab" href="#section9"
-                                              role="tab" aria-controls="section9" aria-selected="false">Sec 9</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section10-tab" data-bs-toggle="tab"
-                                              href="#section10" role="tab" aria-controls="section10"
-                                              aria-selected="false">Sec 10</a>
-                                          </li>
-                                        </ul>
-                                        <div class="tab-content" id="myTabContent">
-                                          <div class="tab-pane fade show active" id="section1" role="tabpanel"
-                                            aria-labelledby="section1-tab">
-                                            <textarea name="section1" id="section1"><%= lesson.section1 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section2" role="tabpanel"
-                                            aria-labelledby="section2-tab">
-                                            <textarea name="section2" id="section2"><%= lesson.section2 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section3" role="tabpanel"
-                                            aria-labelledby="section3-tab">
-                                            <textarea name="section3" id="section3"><%= lesson.section3 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section4" role="tabpanel"
-                                            aria-labelledby="section4-tab">
-                                            <textarea name="section4" id="section4"><%= lesson.section4 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section5" role="tabpanel"
-                                            aria-labelledby="section5-tab">
-                                            <textarea name="section5" id="section5"><%= lesson.section5 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section6" role="tabpanel"
-                                            aria-labelledby="section6-tab">
-                                            <textarea name="section6" id="section6"><%= lesson.section6 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section7" role="tabpanel"
-                                            aria-labelledby="section7-tab">
-                                            <textarea name="section7" id="section7"><%= lesson.section7 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section8" role="tabpanel"
-                                            aria-labelledby="section8-tab">
-                                            <textarea name="section8" id="section8"><%= lesson.section8 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section9" role="tabpanel"
-                                            aria-labelledby="section9-tab">
-                                            <textarea name="section9" id="section9"><%= lesson.section9 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section10" role="tabpanel"
-                                            aria-labelledby="section-tab">
-                                            <textarea name="section10" id="section10"><%= lesson.section10 %></textarea>
-                                          </div>
-                                        </div>
-                                        <label for="" class="form-control">Lesson Visibility</label>
-                                        <select name="visibility" id="visibility" class="form-select">
-                                          <option value="" selected disabled>Select an Option</option>
-                                          <option value="Visible">Visible</option>
-                                          <option value="Invisible">Invisible</option>
-                                        </select>
-                                        <div class="modal-footer">
-                                          <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <% }); %>
-                        </ol>
-                      </div>
-
-                      <div class="tab-pane fade" id="fourth-quarter" role="tabpanel"
-                        aria-labelledby="fourth-quarter-tab">
-                        <h3>Fourth Quarter Lessons</h3>
-                        <ol class="list-group">
-                          <% fourthQuarterLessons.forEach(lesson=> { %>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                              <div class="ms-10 me-auto" style="flex-grow: 1;">
-                                <a href="/teacher/lesson/view-lesson/<%= lesson.id %>" class="lesson-link">
-                                  <i class="mdi mdi-checkbox-blank-circle"></i>
-                                  <%= lesson.lessonTitle %>
-                                </a>
-                              </div>
-                              <a class="btn btn-outline-warning" data-bs-toggle="modal"
-                                data-bs-target="#editLessonModal_<%= lesson.id %>">
-                                <i class="mdi mdi-pencil"></i>
-                              </a>
-                              <div class="modal fade" id="editLessonModal_<%= lesson.id %>" tabindex="-1"
-                                aria-labelledby="editLessonModalLabel_<%= lesson.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editLessonModalLabel<%= lesson.id %>">
-                                        Edit
-                                      </h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form action="/teacher/lesson/edit-lesson/<%= lesson.id %>" method="post">
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Lesson ID</label>
-                                          <input type="text" class="form-control" name="lessonID" id="lessonID"
-                                            value="<%= lesson.lessonID %>">
-                                        </div>
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Lesson Title</label>
-                                          <input type="text" class="form-control" name="lessonTitle" id="lessonTitle"
-                                            value="<%= lesson.lessonTitle %>">
-                                        </div>
-                                        <div class="mb-3">
-                                          <label class="form-label" for="">Quarter Period</label>
-                                          <select class="form-select" name="quarterperiod" id="quarterperiod"
-                                            type="button" class="btn btn-primary dropdown-toggle"
-                                            data-mdb-toggle="dropdown" aria-expanded="false">
-                                            <option value="" selected disabled>Choose an Option</option>
-                                            <option value="First Quarter" <%=lesson.quarterperiod==='First Quarter'
-                                              ? 'selected' : '' %>>First Quarter</option>
-                                            <option value="Second Quarter" <%=lesson.quarterperiod==='Second Quarter'
-                                              ? 'selected' : '' %>>Second Quarter</option>
-                                            <option value="Third Quarter" <%=lesson.quarterperiod==='Third Quarter'
-                                              ? 'selected' : '' %>>Third Quarter</option>
-                                            <option value="Fourth Quarter" <%=lesson.quarterperiod==='Fourth Quarter'
-                                              ? 'selected' : '' %>>Fourth Quarter</option>
-                                          </select>
-                                        </div>
-
-                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link active" id="section1-tab" data-bs-toggle="tab"
-                                              href="#section1" role="tab" aria-controls="section1"
-                                              aria-selected="true">Sec 1</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section2"
-                                              role="tab" aria-controls="section2" aria-selected="false">Sec 2</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section3-tab" data-bs-toggle="tab" href="#section3"
-                                              role="tab" aria-controls="section3" aria-selected="false">Sec 3</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section4-tab" data-bs-toggle="tab" href="#section4"
-                                              role="tab" aria-controls="section4" aria-selected="false">Sec 4</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section5-tab" data-bs-toggle="tab" href="#section5"
-                                              role="tab" aria-controls="section5" aria-selected="false">Sec 5</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section6-tab" data-bs-toggle="tab" href="#section6"
-                                              role="tab" aria-controls="section6" aria-selected="false">Sec 6</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section7-tab" data-bs-toggle="tab" href="#section7"
-                                              role="tab" aria-controls="section7" aria-selected="false">Sec 7</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section8-tab" data-bs-toggle="tab" href="#section8"
-                                              role="tab" aria-controls="section8" aria-selected="false">Sec 8</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section9-tab" data-bs-toggle="tab" href="#section9"
-                                              role="tab" aria-controls="section9" aria-selected="false">Sec 9</a>
-                                          </li>
-                                          <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="section10-tab" data-bs-toggle="tab"
-                                              href="#section10" role="tab" aria-controls="section10"
-                                              aria-selected="false">Sec 10</a>
-                                          </li>
-                                        </ul>
-                                        <div class="tab-content" id="myTabContent">
-                                          <div class="tab-pane fade show active" id="section1" role="tabpanel"
-                                            aria-labelledby="section1-tab">
-                                            <textarea name="section1" id="section1"><%= lesson.section1 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section2" role="tabpanel"
-                                            aria-labelledby="section2-tab">
-                                            <textarea name="section2" id="section2"><%= lesson.section2 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section3" role="tabpanel"
-                                            aria-labelledby="section3-tab">
-                                            <textarea name="section3" id="section3"><%= lesson.section3 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section4" role="tabpanel"
-                                            aria-labelledby="section4-tab">
-                                            <textarea name="section4" id="section4"><%= lesson.section4 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section5" role="tabpanel"
-                                            aria-labelledby="section5-tab">
-                                            <textarea name="section5" id="section5"><%= lesson.section5 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section6" role="tabpanel"
-                                            aria-labelledby="section6-tab">
-                                            <textarea name="section6" id="section6"><%= lesson.section6 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section7" role="tabpanel"
-                                            aria-labelledby="section7-tab">
-                                            <textarea name="section7" id="section7"><%= lesson.section7 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section8" role="tabpanel"
-                                            aria-labelledby="section8-tab">
-                                            <textarea name="section8" id="section8"><%= lesson.section8 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section9" role="tabpanel"
-                                            aria-labelledby="section9-tab">
-                                            <textarea name="section9" id="section9"><%= lesson.section9 %></textarea>
-                                          </div>
-
-                                          <div class="tab-pane fade show " id="section10" role="tabpanel"
-                                            aria-labelledby="section-tab">
-                                            <textarea name="section10" id="section10"><%= lesson.section10 %></textarea>
-                                          </div>
-                                        </div>
-                                        <label for="" class="form-control">Lesson Visibility</label>
-                                        <select name="visibility" id="visibility" class="form-select">
-                                          <option value="" selected disabled>Select an Option</option>
-                                          <option value="Visible">Visible</option>
-                                          <option value="Invisible">Invisible</option>
-                                        </select>
-                                        <div class="modal-footer">
-                                          <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <% }); %>
-                        </ol>
                       </div>
                     </div>
                   </div>
@@ -1016,6 +239,8 @@
     <script src="/dist/js/pages/chart/chart-page-init.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>
+
   </body>
 
   <% } else { %>
@@ -1026,7 +251,7 @@
         <p class="text-muted mt-4 mb-4">
           YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
         </p>
-        <a href="/" class="
+        <a href="/teacher" class="
       btn btn-info btn-rounded
       waves-effect waves-light
       mb-5
