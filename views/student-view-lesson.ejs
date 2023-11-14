@@ -9,6 +9,109 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
     <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <link href="/dist/css/style.min.css" rel="stylesheet" />
+
+    <style>
+             
+
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+        background-color: #555;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.8;
+        position: fixed;
+        bottom: 23px;
+        right: 28px;
+        width: 280px;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
+        }
+
+        /* Full-width input fields */
+        .form-container input[type=text], .form-container input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+        }
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom:10px;
+        opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+        background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+        opacity: 1;
+        }
+
+        .chat-container {
+            max-width: 80%;
+            margin: auto;
+            overflow-y: auto;
+            max-height: 300px; /* Adjust the height or remove for unlimited scroll */
+        }
+
+        .user-message {
+            background-color: #e6f7ff;
+            width: 150px;
+            float: right;
+            clear: both;
+            margin-bottom: 10px;
+        }
+
+        .bot-message {
+            background-color: #d9f5d9;
+            width: 150px;
+            float: left;
+            clear: both;
+            margin-bottom: 10px;
+            
+        }
+
+        .message {
+            padding: 8px;
+            border-radius: 5px;
+            word-wrap: break-word; /* To wrap long messages */
+        }
+    </style>
+
 </head>
 <% if (studentid) { %> 
 
@@ -126,6 +229,32 @@
 
                                     <button onclick="toggleSpeak()">Speak</button>
 
+                                        <button class="open-button" onclick="openForm()">Open Form</button>
+
+    <div class="form-popup" id="myForm">
+        
+        <h1 style="margin-left: 10px;">Trivia</h1>
+
+        <div class="chat-container">
+            <% if (chatHistory && chatHistory.length > 0) { %>
+                <% chatHistory.forEach(message => { %>
+                    <div class="message <%= message.role === 'user' ? 'user-message' : 'bot-message' %>">
+                        <%= message.content %>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+    
+        <form action="/student/view/lesson/ai" method="post" class="form-container">
+            <label for="userInput">Enter your message:</label>
+            <input type="text" id="userInput" name="userInput" required>
+            <button type="submit">Submit</button>
+
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+
+
                                     <script>
                                         var synthesis = window.speechSynthesis;
                                         var utterance;
@@ -161,6 +290,16 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function openForm() {
+              document.getElementById("myForm").style.display = "block";
+            }
+            
+            function closeForm() {
+              document.getElementById("myForm").style.display = "none";
+            }
+            </script>
 
         <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

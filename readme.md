@@ -9,6 +9,9 @@ npm i express-rate-limit
 npm i multer
 npm i fs
 npm i fast-csv
+npm i openai
+npm i dotenv
+
 import finalcapstone.sql
 
 
