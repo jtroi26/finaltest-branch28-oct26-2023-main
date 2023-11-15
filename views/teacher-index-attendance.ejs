@@ -76,7 +76,8 @@
                             </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                                    aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Class</span></a>
+                                    aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                                        class="hide-menu">Class</span></a>
                                 <ul aria-expanded="false" class="collapse first-level">
                                     <li class="sidebar-item">
                                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -140,7 +141,7 @@
                 </div>
                 <div class="container-fluid">
                     <div class="right-align">
-                        <a href="/teacher/create/attendance" type="button" class="btn btn-primary" >Create Attendance
+                        <a href="/teacher/create/attendance" type="button" class="btn btn-primary">Create Attendance
                         </a>
                     </div>
                     <div class="row ">
@@ -186,10 +187,6 @@
                                                         <%= entry.date %>
                                                     </td>
                                                     <td>
-                                                        <!-- <a class="btn btn-outline-success"
-                                                            href="/teacher/students/attendance/edit/<%= entry.id %>">
-                                                            <i class="mdi mdi-check"></i>
-                                                        </a> -->
                                                         <button type="button" class="btn btn-outline-success"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#editAttendanceModal_<%= entry.id %>"><i
@@ -243,9 +240,9 @@
                                                                                 <label for="">Attendance Date</label>
                                                                                 <!-- <input type="date" name="" id=""
                                                                                     class="form-control"> -->
-                                                                                <p>
+                                                                                <h4 style="text-align: center;">
                                                                                     <%= entry.date %>
-                                                                                </p>
+                                                                                </h4>
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="" class="form-label">Edit
@@ -257,14 +254,22 @@
                                                                                     <option value="NULL" selected
                                                                                         disabled>
                                                                                         Choose an option</option>
-                                                                                    <option value="First Quarter">First
+                                                                                    <option value="First Quarter"
+                                                                                        <%=entry.quarterperiod==="First Quarter"
+                                                                                        ? 'selected' : '' %>>First
                                                                                         Quarter</option>
-                                                                                    <option value="Second Quarter">
+                                                                                    <option value="Second Quarter"
+                                                                                        <%=entry.quarterperiod==="Second Quarter"
+                                                                                        ? 'selected' : '' %>>
                                                                                         Second
                                                                                         Quarter</option>
-                                                                                    <option value="Third Quarter">Third
+                                                                                    <option value="Third Quarter"
+                                                                                        <%=entry.quarterperiod==="Third Quarter"
+                                                                                        ? 'selected' : '' %>>Third
                                                                                         Quarter</option>
-                                                                                    <option value="Fourth Quarter">
+                                                                                    <option value="Fourth Quarter"
+                                                                                        <%=entry.quarterperiod==="Fourth Quarter"
+                                                                                        ? 'selected' : '' %>>
                                                                                         Fourth
                                                                                         Quarter</option>
                                                                                 </select>
@@ -278,10 +283,17 @@
                                                                                     <option value="NULL" selected
                                                                                         disabled>Choose an option
                                                                                     </option>
-                                                                                    <option value="Present">Present
+                                                                                    <option value="Present"
+                                                                                        <%=entry.attendance==="Present"
+                                                                                        ? 'selected' : '' %>>Present
                                                                                     </option>
-                                                                                    <option value="Late">Late</option>
-                                                                                    <option value="Absent">Absent
+                                                                                    <option value="Late"
+                                                                                        <%=entry.attendance==="Late"
+                                                                                        ? 'selected' : '' %>>Late
+                                                                                    </option>
+                                                                                    <option value="Absent"
+                                                                                        <%=entry.attendance==="Absent"
+                                                                                        ? 'selected' : '' %>>Absent
                                                                                     </option>
                                                                                 </select>
                                                                             </div>

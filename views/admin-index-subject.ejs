@@ -244,13 +244,13 @@
                                                         </td>
                                                         <td class="text-center">
                                                             <button class="btn btn-outline-info" data-bs-toggle="modal"
-                                                                data-bs-target="#viewSubjectModal<%= row.subjectid %>"><i
+                                                                data-bs-target="#viewSubjectModal<%= row.id %>"><i
                                                                     class="mdi mdi-eye"></i></button>
                                                             <button class="btn btn-outline-warning"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#editSubjectModal<%= row.subjectid %>"><i
+                                                                data-bs-target="#editSubjectModal<%= row.id %>"><i
                                                                     class="mdi mdi-pencil"></i></button>
-                                                            <form action="/admin/delete-subject/<%= row.subjectid %>"
+                                                            <form action="/admin/delete-subject/<%= row.id %>"
                                                                 method="post" style="display: inline;">
                                                                 <button type="submit" class="btn btn-outline-danger"><i
                                                                         class="mdi mdi-delete"></i></button>
@@ -258,15 +258,15 @@
                                                         </td>
                                                     </tr>
                                                     <!-- View Modal -->
-                                                    <div class="modal fade" id="viewSubjectModal<%= row.subjectid %>"
+                                                    <div class="modal fade" id="viewSubjectModal<%= row.id %>"
                                                         tabindex="-1"
-                                                        aria-labelledby="viewSubjectModalLabel<%= row.subjectid %>"
+                                                        aria-labelledby="viewSubjectModalLabel<%= row.id %>"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title"
-                                                                        id="viewModalLabel<%= row.subjectid %>">View
+                                                                        id="viewModalLabel<%= row.id %>">View
                                                                         Subject
                                                                     </h5>
                                                                     <button type="button" class="btn-close"
@@ -298,15 +298,15 @@
                                                     </div>
 
                                                     <!-- Edit Modal -->
-                                                    <div class="modal fade" id="editSubjectModal<%= row.subjectid %>"
+                                                    <div class="modal fade" id="editSubjectModal<%= row.id %>"
                                                         tabindex="-1"
-                                                        aria-labelledby="editSubjectModalLabel<%= row.subjectid %>"
+                                                        aria-labelledby="editSubjectModalLabel<%= row.id %>"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title"
-                                                                        id="editModalSubjectLabel<%= row.subjectid %>">
+                                                                        id="editModalSubjectLabel<%= row.id %>">
                                                                         Edit Subject
                                                                     </h5>
                                                                     <button type="button" class="btn-close"
@@ -322,7 +322,7 @@
                                                                             <input type="text" class="form-control"
                                                                                 name="subjectid" id="subjectid"
                                                                                 value="<%= row.subjectid %>" required
-                                                                                placeholder="Science for example">
+                                                                                placeholder="SubjectID">
                                                                         </div>
                                                                         <div class="mb-3">
                                                                             <label for="subjectName"
@@ -351,7 +351,7 @@
                                                                         </div>
 
                                                                         <div class="mb-3">
-                                                                            <label for="<%= row.subjectid %>"
+                                                                            <label for=""
                                                                                 class="form-label">Teacher</label>
                                                                             <select name="teacherid" id="teacherId"
                                                                                 class="form-select">
@@ -429,19 +429,19 @@
     </body>
     <% } else { %>
         <div class="error-box">
-          <div class="error-body text-center">
-            <h1 class="error-title text-info">403</h1>
-            <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
-            <p class="text-muted mt-4 mb-4">
-              YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
-            </p>
-            <a href="/" class="
+            <div class="error-body text-center">
+                <h1 class="error-title text-info">403</h1>
+                <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+                <p class="text-muted mt-4 mb-4">
+                    YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+                </p>
+                <a href="/" class="
           btn btn-info btn-rounded
           waves-effect waves-light
           mb-5
           text-white
         ">Back to home</a>
-          </div>
+            </div>
         </div>
         <% } %>
 

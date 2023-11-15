@@ -70,7 +70,7 @@
               </li>
               <li class="sidebar-item">
                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                  aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Class</span></a>
+                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Class</span></a>
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/students"
@@ -133,18 +133,31 @@
                 <div class="card-body">
                   <% if (results.length> 0) { %>
                     <% results.forEach(result=> { %>
-                      <h1>
+                      <h2>
                         <%= result.subjectname %>
-                      </h1>
-                      <p>Section Name: <%= result.sectionname %>
+                      </h2>
+                      <p>
+                        Section Name: <%= result.sectionname %>
                       </p>
-                      <p>Overview: <%- result.overview %></p>
+                      <p>
+                        Overview: <%- result.overview %>
+                      </p>
                       <hr>
-                      <h1><a href="/teacher/subjectoverview/edit/<%= result.id %>">Edit Subject Overview</a></h1>
+                      <div class="right-align">
+                        <a href="/teacher/subjectoverview/edit/<%= result.id %>" type="button" class="btn btn-primary">
+                          Edit Overview
+                        </a>
+                      </div>
                       <% }); %>
+
                         <% } else { %>
+                          <h2s>
+                            Unavailable.
+                          </h2s>
                           <p>No subject overview available.</p>
-                          <h1><a href="/teacher/subjectoverview/create">Create Subject Overview</a></h1>
+                          <div class="right-align">
+                            <a href="/teacher/subjectoverview/create">Create Subject Overview</a>
+                          </div>
                           <% } %>
                 </div>
               </div>

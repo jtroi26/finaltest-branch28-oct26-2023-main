@@ -24,7 +24,7 @@ exports.getAnnouncementIndexPage = (req, res) => {
             ORDER BY ta.dateCreated DESC;`;
     
         // Use the connection pool to get a connection
-        pool.getConnection((err, connection) => {
+        exports.getConnection((err, connection) => {
             if (err) {
                 console.error('Error getting database connection:', err);
                 res.status(500).send('Internal Server Error');

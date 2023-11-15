@@ -114,46 +114,47 @@
                     <div class="row ">
                         <div class="col-12">
                             <div class="card">
-                                <% for (let i=1; i <=10; i++) { %>
-                                    <div class="card-body">
+                                    <% for (let i=1; i <=10; i++) { %>
+                                        <div class="card-body">
 
-                                        <div id="announcementDiv<%= i %>">
-                                            <p>
-                                                <%- lessonData['section' + i] %>
-                                            </p>
-                                        </div>
+                                            <div id="announcementDiv<%= i %>">
+                                                <p>
+                                                    <%- lessonData['section' + i] %>
+                                                </p>
+                                            </div>
+                                        
+
+                                            <% if (lessonData['section' + i]) { %>
+                                                <button onclick="toggleSpeak()">Speak</button>
+                                            <% } %>
+                                        <script>
+                                            var synthesis = window.speechSynthesis;
+                                            var utterance;
                                     
-
-                                    <button onclick="toggleSpeak()">Speak</button>
-
-                                    <script>
-                                        var synthesis = window.speechSynthesis;
-                                        var utterance;
-                                
-                                        function toggleSpeak() {
-                                            // Modify this to get the currently displayed section (e.g., section 1, section 2, etc.)
-                                            var currentSection = 1; // Replace this with your logic to determine the current section
-                                            var announcementText = document.getElementById('announcementDiv' + currentSection).innerText;
-                                
-                                            // Check for browser support
-                                            if ('speechSynthesis' in window) {
-                                                if (synthesis.speaking || synthesis.paused) {
-                                                    // If speech is currently active or paused, stop it
-                                                    synthesis.cancel();
+                                            function toggleSpeak() {
+                                                // Modify this to get the currently displayed section (e.g., section 1, section 2, etc.)
+                                                var currentSection = 1; // Replace this with your logic to determine the current section
+                                                var announcementText = document.getElementById('announcementDiv' + currentSection).innerText;
+                                    
+                                                // Check for browser support
+                                                if ('speechSynthesis' in window) {
+                                                    if (synthesis.speaking || synthesis.paused) {
+                                                        // If speech is currently active or paused, stop it
+                                                        synthesis.cancel();
+                                                    } else {
+                                                        // If speech is not active, start it
+                                                        utterance = new SpeechSynthesisUtterance(announcementText);
+                                                        synthesis.speak(utterance);
+                                                    }
                                                 } else {
-                                                    // If speech is not active, start it
-                                                    utterance = new SpeechSynthesisUtterance(announcementText);
-                                                    synthesis.speak(utterance);
+                                                    alert('Text-to-speech is not supported in this browser.');
                                                 }
-                                            } else {
-                                                alert('Text-to-speech is not supported in this browser.');
                                             }
-                                        }
-                                    </script>
+                                        </script>
 
-                                    </div>
-                                    <!-- <hr> -->
-                                    <% } %>
+                                        </div>
+                                        <!-- <hr> -->
+                                        <% } %>
                             </div>
                         </div>
 
