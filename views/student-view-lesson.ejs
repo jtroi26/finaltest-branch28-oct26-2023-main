@@ -281,20 +281,37 @@
                                             }
                                         </script>
 
-<script>
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-    }
-    
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    }
 
-    // Use an event listener to handle form submission
-    document.getElementById('messageForm').addEventListener('submit', async function(event) {
+
+                                        </div>
+                                        <!-- <hr> -->
+                                        <% } %>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openForm() {
+              document.getElementById("myForm").style.display = "block";
+            }
+            
+            function closeForm() {
+              document.getElementById("myForm").style.display = "none";
+            }
+        
+            
+            </script>
+        
+        <script>
+        // Use an event listener to handle form submission
+        document.getElementById('messageForm').addEventListener('submit', async function(event) {
         event.preventDefault();
         const userInput = document.getElementById('userInput').value;
-
+        
         try {
             const response = await fetch('/student/view/lesson/postOpenAI', {
                 method: 'POST',
@@ -303,12 +320,13 @@
                 },
                 body: JSON.stringify({ userInput })
             });
-
+        
             if (response.ok) {
                 const { chatHistory } = await response.json();
-
-                // Append new messages to the chat UI
+        
+                // Update the chat UI with the new messages
                 const chatContainer = document.getElementById('chatContainer');
+                chatContainer.innerHTML = '';
                 chatHistory.forEach(message => {
                     const div = document.createElement('div');
                     div.classList.add('message', message.role === 'user' ? 'user-message' : 'bot-message');
@@ -321,19 +339,8 @@
         } catch (error) {
             console.error('Error submitting message:', error);
         }
-    });
-</script>
-
-                                        </div>
-                                        <!-- <hr> -->
-                                        <% } %>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        });
+        </script>
 
         <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
