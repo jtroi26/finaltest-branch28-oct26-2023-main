@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Teacher-Dashboard | DAZSMA </title>
+  <title>Teacher-Subject Overview | DAZSMA </title>
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
   <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
   <link href="/dist/css/style.min.css" rel="stylesheet" />
@@ -66,8 +66,7 @@
               </li>
               <li class="sidebar-item">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/lesson/modules"
-                  aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span
-                    class="hide-menu">Lesson</span></a>
+                  aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">Lesson</span></a>
               </li>
               <li class="sidebar-item">
                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
@@ -85,7 +84,8 @@
                   </li>
                   <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 462px;"
-                      href="/teacher/index/grades" aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                      href="/teacher/index/grades" aria-expanded="false"><i
+                        class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
                         class="hide-menu">Grades</span></a>
                   </li>
                 </ul>
@@ -131,18 +131,21 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                    <% if (results.length > 0) { %>
-                        <% results.forEach(result => { %>
-                            <h1><%= result.subjectname %></h1>
-                            <p>Section Name: <%= result.sectionname %></p>
-                            <p>Overview: <%- result.overview %></p>
-                            <hr>
-                            <h1><a href="/teacher/subjectoverview/edit/<%= result.id %>">Edit Subject Overview</a></h1>
-                        <% }); %>
-                    <% } else { %>
-                        <p>No subject overview available.</p>
-                        <h1><a href="/teacher/subjectoverview/create">Create Subject Overview</a></h1>
-                    <% } %>
+                  <% if (results.length> 0) { %>
+                    <% results.forEach(result=> { %>
+                      <h1>
+                        <%= result.subjectname %>
+                      </h1>
+                      <p>Section Name: <%= result.sectionname %>
+                      </p>
+                      <p>Overview: <%- result.overview %></p>
+                      <hr>
+                      <h1><a href="/teacher/subjectoverview/edit/<%= result.id %>">Edit Subject Overview</a></h1>
+                      <% }); %>
+                        <% } else { %>
+                          <p>No subject overview available.</p>
+                          <h1><a href="/teacher/subjectoverview/create">Create Subject Overview</a></h1>
+                          <% } %>
                 </div>
               </div>
             </div>
