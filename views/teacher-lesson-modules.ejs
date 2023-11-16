@@ -201,6 +201,125 @@
                           </div>
                         </div>
                       </div>
+
+                      <!-- Second Quarter -->
+                      <div class="tab-pane show1" id="second-quarter" role="tabpanel"
+                        aria-labelledby="second-quarter-tab">
+                        <h3>Second Quarter Lessons</h3>
+                        <div class="row">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th class="text-center">Lesson Title</th>
+                                      <th class="text-center">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% secondQuarterLessons.forEach(lesson=> { %>
+                                      <tr>
+                                        <td class="text-center">
+                                          <%= lesson.lessonTitle %>
+                                        </td>
+                                        <td class="text-center">
+                                          <a href="/teacher/lesson/view-lesson/<%= lesson.id %>" type="button"
+                                            class="btn btn-outline-info"><i class="mdi mdi-eye"></i>
+                                          </a>
+                                          <a href="/teacher/lesson/edit-lesson/<%= lesson.id %>" type="button"
+                                            class="btn btn-outline-warning"><i class="mdi mdi-pencil"></i>
+                                          </a>
+                                        </td>
+                                        <% }); %>
+                                      </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Third Quarter -->
+                      <div class="tab-pane show1" id="third-quarter" role="tabpanel"
+                        aria-labelledby="third-quarter-tab">
+                        <h3>Third Quarter Lessons</h3>
+                        <div class="row">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th class="text-center">Lesson Title</th>
+                                      <th class="text-center">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% thirdQuarterLessons.forEach(lesson=> { %>
+                                      <tr>
+                                        <td class="text-center">
+                                          <%= lesson.lessonTitle %>
+                                        </td>
+                                        <td class="text-center">
+                                          <a href="/teacher/lesson/view-lesson/<%= lesson.id %>" type="button"
+                                            class="btn btn-outline-info"><i class="mdi mdi-eye"></i>
+                                          </a>
+                                          <a href="/teacher/lesson/edit-lesson/<%= lesson.id %>" type="button"
+                                            class="btn btn-outline-warning"><i class="mdi mdi-pencil"></i>
+                                          </a>
+                                        </td>
+                                        <% }); %>
+                                      </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Fourth Quarter -->
+                      <div class="tab-pane show1" id="fourth-quarter" role="tabpanel"
+                        aria-labelledby="fourth-quarter-tab">
+                        <h3>Fourth Quarter Lessons</h3>
+                        <div class="row">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th class="text-center">Lesson Title</th>
+                                      <th class="text-center">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% fourthQuarterLessons.forEach(lesson=> { %>
+                                      <tr>
+                                        <td class="text-center">
+                                          <%= lesson.lessonTitle %>
+                                        </td>
+                                        <td class="text-center">
+                                          <a href="/teacher/lesson/view-lesson/<%= lesson.id %>" type="button"
+                                            class="btn btn-outline-info"><i class="mdi mdi-eye"></i>
+                                          </a>
+                                          <a href="/teacher/lesson/edit-lesson/<%= lesson.id %>" type="button"
+                                            class="btn btn-outline-warning"><i class="mdi mdi-pencil"></i>
+                                          </a>
+                                        </td>
+                                        <% }); %>
+                                      </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- End of tab -->
+                      
                     </div>
                   </div>
                 </div>
