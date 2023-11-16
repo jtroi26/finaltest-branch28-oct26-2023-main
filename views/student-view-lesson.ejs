@@ -247,7 +247,8 @@
                                                     <% } %>
                                                 </div>
 
-                                                <form action="/student/view/lesson/<%= lessonData.id %>/postOpenAI" method="post" id="messageForm" class="form-container">
+                                                <form action="/student/view/lesson/<%= lessonData.id %>/" method="post" id="messageForm" class="form-container">
+                                                    <input type="text" id="lesson_ID" name="lesson_ID" value="<%= lessonData.id %>" hidden>
                                                     <label for="userInput">Enter your message:</label>
                                                     <input type="text" id="userInput" name="userInput" required>
                                                     <button type="submit" class="btn btn-info">Submit</button>

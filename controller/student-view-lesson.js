@@ -37,6 +37,7 @@ exports.getLessonPage = (req, res) => {
 };
 
 exports.postOpenAI = async (req, res) => {
+    const {lesson_ID} = req.body;
     const responseCache = new Map();
     try {
         const userInput = req.body.userInput || 'Hi! How can I help you today?';
@@ -76,6 +77,7 @@ exports.postOpenAI = async (req, res) => {
         ];
 
         console.log(req.session.chatHistory);
+        console.log(lesson_ID);
         res.json({ message: 'Successfully submitted the form', data: response.choices[0].message.content });
     } catch (error) {
         console.error('Error fetching chat response:', error);
