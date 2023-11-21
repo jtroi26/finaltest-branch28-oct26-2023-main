@@ -9,6 +9,36 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/dazsma-logo.ico" />
   <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
   <link href="../dist/css/style.min.css" rel="stylesheet" />
+
+  <style>
+    .chat-container {
+  width: 300px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.chat-box {
+  height: 300px;
+  overflow-y: scroll;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+#user-input {
+  width: calc(100% - 70px);
+  padding: 5px;
+}
+
+button {
+  width: 60px;
+  padding: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+  </style>
 </head>
 <% if (studentid) { %>
 
@@ -154,8 +184,11 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
+
+
 
         <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

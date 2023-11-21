@@ -10,6 +10,7 @@
     <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <link href="/dist/css/style.min.css" rel="stylesheet" />
 
+
     
     <style>
          /* Button used to open the contact form - fixed at the bottom of the page */
@@ -110,6 +111,21 @@
             border-radius: 5px;
             word-wrap: break-word; /* To wrap long messages */
         }
+
+        
+        /* For the AI */
+
+
+.chat-box {
+  height: 320px;
+  overflow-y: scroll;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+
+
     </style>
 
 </head>
@@ -236,26 +252,19 @@
                                             <!-- Chatgpt -->
                                             <div class="form-popup" id="myForm" style="display: none;">
                                                 <h1 style="margin-left: 10px;">Trivia</h1>
-                                            
+
                                                 <div class="chat-container" id="chatContainer">
-                                                    <% if (chatHistory && chatHistory.length > 0) { %>
-                                                        <% chatHistory.forEach(message => { %>
-                                                            <div class="message <%= message.role === 'user' ? 'user-message' : 'bot-message' %>">
-                                                                <%= message.content %>
-                                                            </div>
-                                                        <% }); %>
-                                                    <% } %>
+                                                    <div class="chat-box" id="chat-box"></div>
                                                 </div>
 
-                                                <form action="/student/view/lesson/<%= lessonData.id %>/" method="post" id="messageForm" class="form-container">
-                                                    <input type="text" id="lesson_ID" name="lesson_ID" value="<%= lessonData.id %>" hidden>
-                                                    <label for="userInput">Enter your message:</label>
-                                                    <input type="text" id="userInput" name="userInput" required>
-                                                    <button type="submit" class="btn btn-info">Submit</button>
+                                                  <div id="messageForm" class="form-container">
+                                                    <input type="text" id="userInput" placeholder="Type a message...">
+                                                    <button type="button" class="btn btn-info" onclick="sendMessage()">Send</button>
                                                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                                                </form>
-                                            </div>
+                                                  </div>
 
+                                            </div>
+                                            
 
                                         <script>
                                             var synthesis = window.speechSynthesis;
@@ -308,40 +317,43 @@
             </script>
         
         <script>
-        // Use an event listener to handle form submission
-        document.getElementById('messageForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const userInput = document.getElementById('userInput').value;
-        
-        try {
-            const response = await fetch('/student/view/lesson/postOpenAI', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ userInput })
-            });
-        
-            if (response.ok) {
-                const { chatHistory } = await response.json();
-        
-                // Update the chat UI with the new messages
-                const chatContainer = document.getElementById('chatContainer');
-                chatContainer.innerHTML = '';
-                chatHistory.forEach(message => {
-                    const div = document.createElement('div');
-                    div.classList.add('message', message.role === 'user' ? 'user-message' : 'bot-message');
-                    div.textContent = message.content;
-                    chatContainer.appendChild(div);
+            function sendMessage() {
+              var userInput = document.getElementById("userInput");
+              var message = userInput.value;
+          
+              if (message.trim() !== "") {
+                displayMessage(message, true);
+                userInput.value = "";
+          
+                // Send the message to the server-side
+                fetch('/student/view/lesson/<%= lessonData.id %>', { // Replace with your server endpoint
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ userInput: message }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                  displayMessage(data.response, false);
+                })
+                .catch(error => {
+                  console.error('Error:', error);
                 });
-            } else {
-                console.error('Failed to update chat history');
+              }
             }
-        } catch (error) {
-            console.error('Error submitting message:', error);
-        }
-        });
-        </script>
+          
+            function displayMessage(message, isUser) {
+              var chatBox = document.getElementById("chat-box");
+              var messageDiv = document.createElement("div");
+              messageDiv.classList.add(isUser ? "user-message" : "bot-message");
+              messageDiv.innerHTML = message;
+              chatBox.appendChild(messageDiv);
+          
+              // Scroll to the bottom of chat box
+              chatBox.scrollTop = chatBox.scrollHeight;
+            }
+          </script>
 
         <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
