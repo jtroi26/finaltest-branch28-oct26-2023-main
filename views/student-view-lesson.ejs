@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
     <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <link href="/dist/css/style.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     
     <style>
@@ -64,7 +64,7 @@
         .form-container .btn {
         background-color: #0380c3;
         color: white;
-        padding: 16px 20px;
+        padding: 10px 10px;
         border: none;
         cursor: pointer;
         width: 100%;
@@ -244,9 +244,13 @@
                                         
 
                                             <% if (lessonData['section' + i]) { %>
-                                                <button onclick="toggleSpeak()">Speak</button>
+                                                <div class="button-container" style="border: 1px solid #ccc; padding: 1px; display: inline-block;">
+                                                    <button type="button" class="btn fa-solid fa-play fa-2x" onclick="speakText('announcementDiv<%= i %>')"></button>
+                                                    <button type="button" class="btn fa-solid fa-stop fa-2x" onclick="stopSpeech()"></button>
+                                                    <button type="button" class="btn fa-solid fa-pause fa-2x" onclick="pauseSpeech()"></button>
+                                                    <button type="button" class="btn fa-regular fa-circle-play fa-2x" onclick="resumeSpeech()"></button>
+                                                </div>
                                             <% } %>
-
                                             <button class="open-button" onclick="openForm()" style="width: 150px;">Generate A Trivia</button>
 
                                             <!-- Chatgpt -->
@@ -259,7 +263,7 @@
                                                 </div>
 
                                                   <div id="messageForm" class="form-container">
-                                                    <input type="text" id="userInput" name="userInput" placeholder="Type a message..." value="">
+                                                    <input type="text" id="userInput" name="userInput" placeholder="Type a message..." value="Give me one sentence trivia about <%= lessonData.lessonTitle %>" hidden>
                                                     <button type="button" class="btn btn-info" onclick="sendMessage()">Generate</button>
                                                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                                                   </div>
@@ -267,30 +271,41 @@
                                             </div>
                                             
 
-                                        <script>
-                                            var synthesis = window.speechSynthesis;
-                                            var utterance;
-                                    
-                                            function toggleSpeak() {
-                                                // Modify this to get the currently displayed section (e.g., section 1, section 2, etc.)
-                                                var currentSection = 1; // Replace this with your logic to determine the current section
-                                                var announcementText = document.getElementById('announcementDiv' + currentSection).innerText;
-                                    
-                                                // Check for browser support
-                                                if ('speechSynthesis' in window) {
-                                                    if (synthesis.speaking || synthesis.paused) {
-                                                        // If speech is currently active or paused, stop it
-                                                        synthesis.cancel();
-                                                    } else {
-                                                        // If speech is not active, start it
-                                                        utterance = new SpeechSynthesisUtterance(announcementText);
-                                                        synthesis.speak(utterance);
+                                            <script>
+                                                let synth = window.speechSynthesis;
+                                                let currentlySpeaking = null;
+                                            
+                                                function speakText(divId) {
+                                                    if (currentlySpeaking) {
+                                                        currentlySpeaking.pause();
+                                                        currentlySpeaking = null;
                                                     }
-                                                } else {
-                                                    alert('Text-to-speech is not supported in this browser.');
+                                            
+                                                    let text = document.getElementById(divId).innerText;
+                                                    let utterance = new SpeechSynthesisUtterance(text);
+                                                    synth.speak(utterance);
+                                                    currentlySpeaking = utterance;
                                                 }
-                                            }
-                                        </script>
+                                            
+                                                function pauseSpeech() {
+                                                    if (currentlySpeaking) {
+                                                        synth.pause();
+                                                    }
+                                                }
+                                            
+                                                function resumeSpeech() {
+                                                    if (currentlySpeaking) {
+                                                        synth.resume();
+                                                    }
+                                                }
+
+                                                function stopSpeech() {
+                                                    if (currentlySpeaking) {
+                                                        synth.cancel();
+                                                        currentlySpeaking = null;
+                                                    }
+                                                }
+                                            </script>
 
 
 
@@ -334,14 +349,29 @@
                   },
                   body: JSON.stringify({ userInput: message }),
                 })
-                .then(response => response.json())
-                .then(data => {
-                  displayMessage(data.response, false);
-                })
-                .catch(error => {
-                  console.error('Error:', error);
-                });
+                  .then(response => response.json())
+                  .then(data => {
+                    displayMessage(data.response, false);
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+          
+                generateTrivia(); // Call the function to generate trivia after sending the message
               }
+            }
+          
+            function generateTrivia() {
+              const trivia = [
+                "Another trivia about <%= lessonData.lessonTitle %> in once sentence",
+                "Another trivia about <%= lessonData.lessonTitle %> in once sentence",
+                "Another trivia about <%= lessonData.lessonTitle %> in once sentence"
+              ];
+          
+              const randomIndex = Math.floor(Math.random() * trivia.length);
+              const randomTrivia = trivia[randomIndex];
+          
+              document.getElementById('userInput').value = randomTrivia;
             }
           
             function displayMessage(message, isUser) {
@@ -355,6 +385,7 @@
               chatBox.scrollTop = chatBox.scrollHeight;
             }
           </script>
+          
 
         <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
