@@ -16,6 +16,7 @@ exports.getAssessmentGrades = (req, res) => {
     const teacherid = req.session.teacherid;
     const assessmenttype = id;
 
+    // const sqltest = `select assessmenttype, grade, total from assessments where assessmenttype = 'Recitation'`;
     const sqlquarterperiod1 = `
     SELECT
         ass.id,
