@@ -2,7 +2,6 @@ const mysql = require("mysql");
 require('dotenv').config();
 const OpenAI = require('openai').OpenAI;
 const openai = new OpenAI;
-const axios = require('axios');
 
 const conn = {
     host: 'localhost',
