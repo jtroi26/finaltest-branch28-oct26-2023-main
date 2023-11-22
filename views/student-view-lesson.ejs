@@ -118,7 +118,7 @@
 
 .chat-box {
   height: 320px;
-  overflow-y: scroll;
+
   border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
   padding-bottom: 10px;
@@ -250,16 +250,17 @@
                                             <button class="open-button" onclick="openForm()" style="width: 150px;">Generate A Trivia</button>
 
                                             <!-- Chatgpt -->
-                                            <div class="form-popup" id="myForm" style="display: none;">
+                                            <div class="form-popup" id="myForm" style="display: none; width: 300px;" >
                                                 <h1 style="margin-left: 10px;">Trivia</h1>
 
-                                                <div class="chat-container" id="chatContainer">
+                                                <div class="message">
                                                     <div class="chat-box" id="chat-box"></div>
+                                                    
                                                 </div>
 
                                                   <div id="messageForm" class="form-container">
-                                                    <input type="text" id="userInput" placeholder="Type a message...">
-                                                    <button type="button" class="btn btn-info" onclick="sendMessage()">Send</button>
+                                                    <input type="text" id="userInput" name="userInput" placeholder="Type a message..." value="">
+                                                    <button type="button" class="btn btn-info" onclick="sendMessage()">Generate</button>
                                                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                                                   </div>
 

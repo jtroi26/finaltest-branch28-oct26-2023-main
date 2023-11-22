@@ -50,7 +50,6 @@ exports.postOpenAI = async (req, res) => {
             ],
         });
 
-        // Update the chat history in the session
 
         res.json({ response: response.choices[0].message.content });
     } catch (error) {
