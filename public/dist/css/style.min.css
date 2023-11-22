@@ -15348,3 +15348,7 @@ label {
   margin-bottom: 10px;
   margin-right: 10px;
 }
+strong {
+  font-weight: bolder;
+  padding-left: 60px;
+}

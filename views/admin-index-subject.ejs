@@ -135,7 +135,7 @@
                                     <!-- Create Modal -->
                                     <div class="modal fade" id="createSubjectModal" tabindex="-1"
                                         aria-labelledby="createSubjectModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="createSubjectModalLabel">Create Subject
@@ -196,8 +196,6 @@
                                                             </select>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
                                                             <button type="submit" class="btn btn-primary">Create
                                                                 Subject</button>
                                                         </div>
@@ -262,7 +260,7 @@
                                                         tabindex="-1"
                                                         aria-labelledby="viewSubjectModalLabel<%= row.id %>"
                                                         aria-hidden="true">
-                                                        <div class="modal-dialog">
+                                                        <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title"
@@ -274,22 +272,22 @@
                                                                         aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <p><strong>Subject ID:</strong>
+                                                                    <p><strong style="padding-right: 74px;">Subject ID:</strong>
                                                                         <%= row.subjectid %>
                                                                     </p>
-                                                                    <p><strong>Subject Name:</strong>
+                                                                    <p><strong style="padding-right: 50px;">Subject Name:</strong>
                                                                         <%= row.subjectname %>
                                                                     </p>
-                                                                    <p><strong>Section Name:</strong>
+                                                                    <p><strong style="padding-right: 50px;">Section Name:</strong>
                                                                         <%= row.sectionname %>
                                                                     </p>
-                                                                    <p><strong>Teacher ID:</strong>
+                                                                    <p><strong style="padding-right: 70px;">Teacher ID:</strong>
                                                                         <%= row.teacherid %>
                                                                     </p>
-                                                                    <p><strong>Assigned Teacher:</strong>
+                                                                    <p><strong style="padding-right: 25px;">Assigned Teacher:</strong>
                                                                         <%= row.teacher_fullname %>
                                                                     </p>
-                                                                    <p><strong>Visibility:</strong>
+                                                                    <p><strong style="padding-right: 84px;">Visibility:</strong>
                                                                         <%= row.visibility %>
                                                                     </p>
                                                                 </div>
@@ -302,7 +300,7 @@
                                                         tabindex="-1"
                                                         aria-labelledby="editSubjectModalLabel<%= row.id %>"
                                                         aria-hidden="true">
-                                                        <div class="modal-dialog">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title"
