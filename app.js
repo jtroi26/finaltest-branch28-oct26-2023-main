@@ -76,6 +76,7 @@ var studentClassmatesViewRouter = require('./routes/student-view-classmates');
 var studentAnnouncementsViewRouter = require('./routes/student-view-announcement');
 var studentAnnouncementPageViewRouter = require('./routes/student-view-announcementpage');
 var studentAnnouncementIndexPageViewRouter = require('./routes/student-index-announcements');
+var studentIndexGradesViewRouter = require('./routes/student-index-grades');
 
 // teacher view students
 var teacherViewStudents = require('./routes/teacher-view-students');
@@ -192,6 +193,7 @@ app.use('/', studentClassmatesViewRouter);
 app.use('/', studentAnnouncementsViewRouter);
 app.use('/', studentAnnouncementPageViewRouter);
 app.use('/', studentAnnouncementIndexPageViewRouter);
+app.use('/', studentIndexGradesViewRouter);
 
 // teacher view students and attendance
 app.use('/', teacherViewStudents);
