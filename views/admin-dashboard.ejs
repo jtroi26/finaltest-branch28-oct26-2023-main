@@ -1,87 +1,87 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Admin-Dashboard | DAZSMA </title>
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/dazsma-logo.ico" />
-    <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
-    <link href="../dist/css/style.min.css" rel="stylesheet" />
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-  </head>
-  <% if (admin_id) { %>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin-Dashboard | DAZSMA </title>
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/dazsma-logo.ico" />
+  <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+  <link href="../dist/css/style.min.css" rel="stylesheet" />
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/data.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<% if (admin_id) { %>
 
-    <body>
-      <div class="preloader">
-        <div class="lds-ripple">
-          <div class="lds-pos"></div>
-          <div class="lds-pos"></div>
-        </div>
+  <body>
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
       </div>
-      <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        <header class="topbar" data-navbarbg="skin5">
-          <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-            <div class="navbar-header" data-logobg="skin5">
-              <a class="navbar-brand" href="/admin/dashboard">
-                <b class="logo-icon ps-2">
-                  <img src="../assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
-                </b>
-                <span class="logo-text ms-2">
-                  <span>DAZSMA</span>
-                </span>
-              </a>
-              <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
-                  class="ti-menu ti-close"></i></a>
-            </div>
-            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-              <ul class="navbar-nav float-start me-auto">
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                    data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-          <div class="scroll-sidebar">
-            <nav class="sidebar-nav">
-              <ul id="sidebarnav" class="pt-4">
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/dashboard"
-                    aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                      class="hide-menu">Dashboard</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-subject"
-                    aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Subject</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-section"
-                    aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
-                      class="hide-menu">Section</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-student"
-                    aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Student</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-teacher"
-                    aria-expanded="false"><i class="mdi mdi-account-outline"></i><span
-                      class="hide-menu">Teacher</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 300px;"
-                    href="/admin/index-department" aria-expanded="false"><i class="mdi mdi-home"></i><span
-                      class="hide-menu">Department</span></a>
-                </li>
-                <% if (admin_id) { %>
+    </div>
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+      <header class="topbar" data-navbarbg="skin5">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+          <div class="navbar-header" data-logobg="skin5">
+            <a class="navbar-brand" href="/admin/dashboard">
+              <b class="logo-icon ps-2">
+                <img src="../assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
+              </b>
+              <span class="logo-text ms-2">
+                <span>DAZSMA</span>
+              </span>
+            </a>
+            <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
+                class="ti-menu ti-close"></i></a>
+          </div>
+          <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+            <ul class="navbar-nav float-start me-auto">
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                  data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <aside class="left-sidebar" data-sidebarbg="skin5">
+        <div class="scroll-sidebar">
+          <nav class="sidebar-nav">
+            <ul id="sidebarnav" class="pt-4">
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/dashboard"
+                  aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                    class="hide-menu">Dashboard</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-subject"
+                  aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Subject</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-section"
+                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                    class="hide-menu">Section</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-student"
+                  aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Student</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-teacher"
+                  aria-expanded="false"><i class="mdi mdi-account-outline"></i><span
+                    class="hide-menu">Teacher</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-department"
+                  aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Department</span></a>
+              </li>
+              <% if (admin_id) { %>
+                <div class="logout-button-container">
                   <form id="logoutForm" action="/admin-logout" method="post">
                     <li class="sidebar-item">
                       <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -89,162 +89,174 @@
                           class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
                     </li>
                   </form>
-                  <% } else { %>
+                </div>
+                <% } else { %>
+                  <div class="logout-button-container">
                     <li class="sidebar-item">
                       <a href="/admin" class="sidebar-link waves-effect waves-dark sidebar-link"
-                        style="margin-top: auto;" aria-expanded="false"><i class="mdi mdi-login"></i><span
-                          class="hide-menu">Login</span></a>
+                        aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
                     </li>
-                    <% } %>
-              </ul>
-            </nav>
-          </div>
-        </aside>
-        <div class="page-wrapper">
-          <div class="page-breadcrumb">
-            <div class="row">
-              <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Dashboard</h4>
-                <div class="ms-auto text-end">
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                    </ol>
-                  </nav>
-                </div>
+                  </div>
+                  <% } %>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <div class="page-wrapper">
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Dashboard</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                  </ol>
+                </nav>
               </div>
             </div>
           </div>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-body">
-                    <!-- teacher chart -->
-
-                    <figure class="highcharts-figure">
-                      <div id="teachercharts"></div>
-                    </figure>
-
-                    <table id="datatableforteachers" hidden>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="teachercharts"></div>
+                  </figure>
+                  <table id="datatableforteachers" hidden>
+                    <tr>
+                      <th>Department</th>
+                      <th>Number of Teachers</th>
+                    </tr>
+                    <% departmentData.forEach(function(department) { %>
                       <tr>
-                        <th>Department</th>
-                        <th>Number of Teachers</th>
+                        <td>
+                          <%= department.department %>
+                        </td>
+                        <td>
+                          <%= department.department_count %>
+                        </td>
                       </tr>
-                      <% departmentData.forEach(function(department) { %>
+                      <% }); %>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="studentcharts"></div>
+                    <table id="datatableforstudents" hidden>
+                      <tr>
+                        <th>Section</th>
+                        <th>Number of Students</th>
+                      </tr>
+                      <% studentData.forEach(function(section) { %>
                         <tr>
                           <td>
-                            <%= department.department %>
+                            <%= section.sectionname %>
                           </td>
                           <td>
-                            <%= department.department_count %>
+                            <%= section.students_count %>
                           </td>
                         </tr>
                         <% }); %>
                     </table>
-                    <!-- students per section chart -->
-                    <figure class="highcharts-figure">
-                      <div id="studentcharts"></div>
-                      <table id="datatableforstudents" hidden>
-                        <tr>
-                          <th>Section</th>
-                          <th>Number of Students</th>
-                        </tr>
-                        <% studentData.forEach(function(section) { %>
-                          <tr>
-                            <td><%= section.sectionname %></td>
-                            <td><%= section.students_count %></td>
-                          </tr>
-                        <% }); %>
-                      </table>
-                    </figure>
-                  </div>
+                  </figure>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-      <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-      <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
-      <script src="../dist/js/waves.js"></script>
-      <script src="../dist/js/sidebarmenu.js"></script>
-      <script src="../dist/js/custom.min.js"></script>
-      <script src="../assets/libs/flot/excanvas.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.pie.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.time.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.stack.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.crosshair.js"></script>
-      <script src="../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-      <script src="../dist/js/pages/chart/chart-page-init.js"></script>
-      <script>
-        Highcharts.chart('teachercharts', {
-          data: {
-            table: 'datatableforteachers'
-          },
-          chart: {
-            type: 'pie'
-          },
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="../dist/js/waves.js"></script>
+    <script src="../dist/js/sidebarmenu.js"></script>
+    <script src="../dist/js/custom.min.js"></script>
+    <script src="../assets/libs/flot/excanvas.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="../dist/js/pages/chart/chart-page-init.js"></script>
+    <script>
+      Highcharts.chart('teachercharts', {
+        data: {
+          table: 'datatableforteachers'
+        },
+        chart: {
+          type: 'pie'
+        },
+        title: {
+          text: 'Number of Teachers in each Department'
+        },
+
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          allowDecimals: false,
           title: {
-            text: 'Number of Teachers in each Department'
-          },
-
-          xAxis: {
-            type: 'category'
-          },
-          yAxis: {
-            allowDecimals: false,
-            title: {
-              text: 'Population'
-            }
+            text: 'Population'
           }
-        });
-      </script>
-      <script>
-        Highcharts.chart('studentcharts', {
-          data: {
-            table: 'datatableforstudents'
-          },
-          chart: {
-            type: 'bar'
-          },
+        }
+      });
+    </script>
+    <script>
+      Highcharts.chart('studentcharts', {
+        data: {
+          table: 'datatableforstudents'
+        },
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Number of Students per Section'
+        },
+
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          allowDecimals: false,
           title: {
-            text: 'Number of Students per Section'
-          },
-
-          xAxis: {
-            type: 'category'
-          },
-          yAxis: {
-            allowDecimals: false,
-            title: {
-              text: 'Population of Students'
-            }
+            text: 'Population of Students'
           }
-        });
-      </script>
-    </body>
+        }
+      });
+    </script>
+  </body>
 
-    <% } else { %>
-      <div class="error-box">
-        <div class="error-body text-center">
-          <h1 class="error-title text-info">403</h1>
-          <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
-          <p class="text-muted mt-4 mb-4">
-            YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
-          </p>
-          <a href="/" class="
+  <% } else { %>
+    <div class="error-box">
+      <div class="error-body text-center">
+        <h1 class="error-title text-info">403</h1>
+        <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+        <p class="text-muted mt-4 mb-4">
+          YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+        </p>
+        <a href="/" class="
       btn btn-info btn-rounded
       waves-effect waves-light
       mb-5
       text-white
     ">Back to home</a>
-        </div>
       </div>
-      <% } %>
+    </div>
+    <% } %>
 
 </html>

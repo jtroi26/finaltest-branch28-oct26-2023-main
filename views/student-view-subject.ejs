@@ -10,7 +10,7 @@
     <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <link href="/dist/css/style.min.css" rel="stylesheet" />
 </head>
-    
+
 <% if (studentid) { %>
 
     <body>
@@ -79,21 +79,25 @@
                                         class="mdi mdi-file-check"></i><span class="hide-menu">Grades</span></a>
                             </li>
                             <% if (studentid) { %>
-                                <form id="logoutForm" action="/logout" method="post">
-                                    <li class="sidebar-item">
-                                        <a href="javascript:void(0);"
-                                            class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            onclick="document.getElementById('logoutForm').submit();"
-                                            aria-expanded="false"><i class="mdi mdi-logout"></i><span
-                                                class="hide-menu">Logout</span></a>
-                                    </li>
-                                </form>
+                                <div class="logout-button-container">
+                                    <form id="logoutForm" action="/logout" method="post">
+                                        <li class="sidebar-item">
+                                            <a href="javascript:void(0);"
+                                                class="sidebar-link waves-effect waves-dark sidebar-link"
+                                                onclick="document.getElementById('logoutForm').submit();"
+                                                aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                                                    class="hide-menu">Logout</span></a>
+                                        </li>
+                                    </form>
+                                </div>
                                 <% } else { %>
-                                    <li class="sidebar-item">
-                                        <a href="/" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            style="margin-top: auto;" aria-expanded="false"><i
-                                                class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                                    </li>
+                                    <div class="logout-button-container">
+                                        <li class="sidebar-item">
+                                            <a href="/" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                                style="margin-top: auto;" aria-expanded="false"><i
+                                                    class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
+                                        </li>
+                                    </div>
                                     <% } %>
                         </ul>
                     </nav>
@@ -121,7 +125,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    
+
                                     <p>
                                         <%- overview %>
                                     </p>
@@ -153,19 +157,19 @@
 
     <% } else { %>
         <div class="error-box">
-          <div class="error-body text-center">
-            <h1 class="error-title text-info">403</h1>
-            <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
-            <p class="text-muted mt-4 mb-4">
-              YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
-            </p>
-            <a href="/" class="
+            <div class="error-body text-center">
+                <h1 class="error-title text-info">403</h1>
+                <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+                <p class="text-muted mt-4 mb-4">
+                    YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+                </p>
+                <a href="/" class="
           btn btn-info btn-rounded
           waves-effect waves-light
           mb-5
           text-white
         ">Back to home</a>
-          </div>
+            </div>
         </div>
         <% } %>
 
