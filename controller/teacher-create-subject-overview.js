@@ -16,7 +16,7 @@ exports.getSubjectOverviewForm = (req, res) => {
     console.log(subjectname);
     console.log(sectionname);
     
-   res.render('teacher-create-subject-overview');
+   res.render('teacher-create-subject-overview', {teacherid: req.session.teacherid});
 };
 
 exports.postSubjectOverviewForm= (req, res) => {
