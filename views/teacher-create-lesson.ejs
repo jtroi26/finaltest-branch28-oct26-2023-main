@@ -144,19 +144,19 @@
                     <div class="row">
                         <div class="card">
                             <div class="card-body">
-                                <form action="/teacher/lesson/create" method="post">
+                                <form action="/teacher/lesson/create" method="post" id="myForm">
                                     <div class="row">
                                         <div class="col-3 mb-3">
                                             <label class="form-label" for="lessonID">Lesson ID</label>
-                                            <input type="text" class="form-control" name="lessonID" id="lessonID">
+                                            <input type="text" class="form-control" name="lessonID" id="lessonID" required>
                                         </div>
                                         <div class="col-3 mb-3">
                                             <label class="form-label" for="lessonTitle">Lesson Title</label>
-                                            <input type="text" class="form-control" name="lessonTitle" id="lessonTitle">
+                                            <input type="text" class="form-control" name="lessonTitle" id="lessonTitle" required>
                                         </div>
                                         <div class="col-3 mb-3">
                                             <label class="form-label" for="quarterperiod">Quarter Period</label>
-                                            <select class="form-select" name="quarterperiod" id="quarterperiod">
+                                            <select class="form-select" name="quarterperiod" id="quarterperiod" required>
                                                 <option value="" selected disabled> Choose an Option</option>
                                                 <option value="First Quarter">First Quarter</option>
                                                 <option value="Second Quarter">Second Quarter</option>
@@ -166,7 +166,7 @@
                                         </div>
                                         <div class="col-3 mb-3">
                                             <label for="visibility">Lesson Visibility</label>
-                                            <select name="visibility" id="visibility" class="form-select">
+                                            <select name="visibility" id="visibility" class="form-select" required>
                                                 <option value="" selected disabled>Select an Option</option>
                                                 <option value="Visible">Visible</option>
                                                 <option value="Invisible">Invisible</option>
@@ -228,7 +228,7 @@
 
                                             <div class="tab-pane fade show active" id="section1" role="tabpanel"
                                                 aria-labelledby="section1-tab">
-                                                <textarea type="text" name="section1" id="section1"></textarea>
+                                                <textarea type="text" name="section1" id="section1" required></textarea>
                                             </div>
 
                                             <div class="tab-pane fade show " id="section2" role="tabpanel"
@@ -279,7 +279,7 @@
                                         </div>
 
                                         <div class="right-align" style="margin-top: 20px;">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 </form>
@@ -296,6 +296,43 @@
               toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
             });
           </script>
+
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get the textarea content
+        let textareaContent = document.getElementById('section1').value;
+
+        // Check if the textarea is empty
+        if (textareaContent.trim() === '') {
+            // Send the data to the database using AJAX
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', '/your-database-endpoint', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            // Your data to be sent
+            let data = { content: textareaContent }; // Replace 'content' with your database field name
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log('Data sent to the database successfully');
+                        // Optionally, you can reload the page or perform other actions here
+                    } else {
+                        console.error('Error sending data to the database');
+                    }
+                }
+            };
+
+            // Send the request with the data
+            xhr.send(JSON.stringify(data));
+        } else {
+            // If textarea is not empty, proceed with the form submission
+            this.submit();
+        }
+    });
+</script>
         <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
