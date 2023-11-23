@@ -135,7 +135,7 @@
                                     <!-- Create Modal -->
                                     <div class="modal fade" id="createStudentModal" tabindex="-1"
                                         aria-labelledby="createStudentModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="createStudentModalLabel">Create Student
@@ -326,11 +326,12 @@
                                                         tabindex="-1"
                                                         aria-labelledby="viewStudentModalLabel<%= student.id %>"
                                                         aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg">
+                                                        <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title"
-                                                                        id="viewStudentModalLabel<%= student.id %>">View
+                                                                        id="viewStudentModalLabel<%= student.id %>">
+                                                                        Student Details
                                                                     </h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal"
@@ -338,20 +339,24 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="mb-3">
-                                                                        <p><strong>Student Details</strong></p>
-                                                                        <p><strong>Student ID:</strong>
+                                                                        <p><strong style="padding-right: 70px;">Student
+                                                                                ID:</strong>
                                                                             <%= student.studentID %>
                                                                         </p>
-                                                                        <p><strong>Student Name: </strong>
+                                                                        <p><strong style="padding-right: 47px;">Student
+                                                                                Name:</strong>
                                                                             <%= student['Student Name'] %>
                                                                         </p>
-                                                                        <p><strong>Student Section: </strong>
+                                                                        <p><strong style="padding-right: 37px;">Student
+                                                                                Section:</strong>
                                                                             <%= student.sectionname %>
                                                                         </p>
-                                                                        <p><strong>Date Enrolled:</strong>
+                                                                        <p><strong style="padding-right: 50px;">Date
+                                                                                Enrolled:</strong>
                                                                             <%= student.dateEnrolled %>
                                                                         </p>
-                                                                        <p><strong>Status:</strong>
+                                                                        <p><strong
+                                                                                style="padding-right: 98px;">Status:</strong>
                                                                             <%= student.status %>
                                                                         </p>
                                                                     </div>
@@ -364,7 +369,7 @@
                                                         tabindex="-1"
                                                         aria-labelledby="editStudentModalLabel<%= student.id %>"
                                                         aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title"
@@ -378,111 +383,138 @@
                                                                 <div class="modal-body">
                                                                     <form action="/admin/edit/student/<%= student.id %>"
                                                                         method="post">
-                                                                        <div class="mb-3">
-                                                                            <label for="studentID"
-                                                                                class="form-label">Student ID</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="studentID" id="studentID"
-                                                                                value="<%= student.studentID %>">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="mb-3">
+                                                                                    <label for="studentID"
+                                                                                        class="form-label">Student
+                                                                                        ID</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="studentID" id="studentID"
+                                                                                        value="<%= student.studentID %>">
+                                                                                </div>
+
+                                                                                <div class="mb-3">
+                                                                                    <label for="sectionname"
+                                                                                        class="form-label">Section
+                                                                                        Name</label>
+                                                                                    <select name="sectionname"
+                                                                                        id="sectionname"
+                                                                                        class="form-select" required>
+                                                                                        <option value="" disabled>Select
+                                                                                            a
+                                                                                            section
+                                                                                        </option>
+                                                                                        <% section.forEach(section=> {
+                                                                                            %>
+                                                                                            <option
+                                                                                                value="<%= section.sectionname %>"
+                                                                                                <%=student.sectionname===section.sectionname
+                                                                                                ? 'selected' : '' %>>
+                                                                                                <%= section.sectionname
+                                                                                                    %>
+                                                                                            </option>
+                                                                                            <% }); %>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="status"
+                                                                                        class="form-label">Enrollment
+                                                                                        Status</label>
+                                                                                    <select name="status" id="status"
+                                                                                        class="form-select">
+                                                                                        <option value="" disabled>Select
+                                                                                            an
+                                                                                            option
+                                                                                        </option>
+                                                                                        <option value="Enrolled"
+                                                                                            <%=student.status==='Enrolled'
+                                                                                            ? 'selected' : '' %>
+                                                                                            >Enrolled</option>
+                                                                                        <option value="Unenrolled"
+                                                                                            <%=student.status==='Unenrolled'
+                                                                                            ? 'selected' : '' %>
+                                                                                            >Unenrolled
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="mb-3">
+                                                                                    <label for="firstname"
+                                                                                        class="form-label">First
+                                                                                        Name</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="firstname" id="firstname"
+                                                                                        value="<%= student.firstname %>">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="middlename"
+                                                                                        class="form-label">Middle
+                                                                                        Name</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="middlename"
+                                                                                        id="middlename"
+                                                                                        value="<%= student.middlename %>">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="lastname"
+                                                                                        class="form-label">Last
+                                                                                        Name</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="lastname" id="lastname"
+                                                                                        value="<%= student.lastname %>">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="suffix"
+                                                                                        class="form-label">Suffix</label>
+                                                                                    <select name="suffix" id="suffix"
+                                                                                        class="form-select">
+                                                                                        <option value="" disabled>Select
+                                                                                            an
+                                                                                            option
+                                                                                        </option>
+                                                                                        <option value="" disabled>Select
+                                                                                            an
+                                                                                            option
+                                                                                        </option>
+                                                                                        <option value="Sr."
+                                                                                            <%=student.suffix==='Sr.'
+                                                                                            ? 'selected' : '' %>>Senior
+                                                                                        </option>
+                                                                                        <option value="Jr."
+                                                                                            <%=student.suffix==='Jr.'
+                                                                                            ? 'selected' : '' %>>Junior
+                                                                                        </option>
+                                                                                        <option value="III"
+                                                                                            <%=student.suffix==='III'
+                                                                                            ? 'selected' : '' %>>III
+                                                                                        </option>
+                                                                                        <option value="IV"
+                                                                                            <%=student.suffix==='IV'
+                                                                                            ? 'selected' : '' %>>IV
+                                                                                        </option>
+                                                                                        <option value="V"
+                                                                                            <%=student.suffix==='V'
+                                                                                            ? 'selected' : '' %>>V
+                                                                                        </option>
+                                                                                        <option value="VI"
+                                                                                            <%=student.suffix==='VI'
+                                                                                            ? 'selected' : '' %>>VI
+                                                                                        </option>
+                                                                                        <option value="none"
+                                                                                            <%=student.suffix==='none'
+                                                                                            ? 'selected' : '' %>>none
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="firstname"
-                                                                                class="form-label">First
-                                                                                Name</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="firstname" id="firstname"
-                                                                                value="<%= student.firstname %>">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="middlename"
-                                                                                class="form-label">Middle Name</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="middlename" id="middlename"
-                                                                                value="<%= student.middlename %>">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="lastname"
-                                                                                class="form-label">Last
-                                                                                Name</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="lastname" id="lastname"
-                                                                                value="<%= student.lastname %>">
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="suffix"
-                                                                                class="form-label">Suffix</label>
-                                                                            <select name="suffix" id="suffix"
-                                                                                class="form-select">
-                                                                                <option value="" disabled>Select an
-                                                                                    option
-                                                                                </option>
-                                                                                <option value="" disabled>Select an
-                                                                                    option
-                                                                                </option>
-                                                                                <option value="Sr."
-                                                                                    <%=student.suffix==='Sr.'
-                                                                                    ? 'selected' : '' %>>Senior
-                                                                                </option>
-                                                                                <option value="Jr."
-                                                                                    <%=student.suffix==='Jr.'
-                                                                                    ? 'selected' : '' %>>Junior
-                                                                                </option>
-                                                                                <option value="III"
-                                                                                    <%=student.suffix==='III'
-                                                                                    ? 'selected' : '' %>>III
-                                                                                </option>
-                                                                                <option value="IV"
-                                                                                    <%=student.suffix==='IV'
-                                                                                    ? 'selected' : '' %>>IV</option>
-                                                                                <option value="V"
-                                                                                    <%=student.suffix==='V' ? 'selected'
-                                                                                    : '' %>>V</option>
-                                                                                <option value="VI"
-                                                                                    <%=student.suffix==='VI'
-                                                                                    ? 'selected' : '' %>>VI</option>
-                                                                                <option value="none"
-                                                                                    <%=student.suffix==='none'
-                                                                                    ? 'selected' : '' %>>none
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="sectionname"
-                                                                                class="form-label">Section Name</label>
-                                                                            <select name="sectionname" id="sectionname"
-                                                                                class="form-select" required>
-                                                                                <option value="" disabled>Select a
-                                                                                    section
-                                                                                </option>
-                                                                                <% section.forEach(section=> { %>
-                                                                                    <option
-                                                                                        value="<%= section.sectionname %>"
-                                                                                        <%=student.sectionname===section.sectionname
-                                                                                        ? 'selected' : '' %>>
-                                                                                        <%= section.sectionname %>
-                                                                                    </option>
-                                                                                    <% }); %>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="status"
-                                                                                class="form-label">Enrollment
-                                                                                Status</label>
-                                                                            <select name="status" id="status"
-                                                                                class="form-select">
-                                                                                <option value="" disabled>Select an
-                                                                                    option
-                                                                                </option>
-                                                                                <option value="Enrolled"
-                                                                                    <%=student.status==='Enrolled'
-                                                                                    ? 'selected' : '' %>
-                                                                                    >Enrolled</option>
-                                                                                <option value="Unenrolled"
-                                                                                    <%=student.status==='Unenrolled'
-                                                                                    ? 'selected' : '' %>>Unenrolled
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
+
                                                                         <div class="modal-footer">
                                                                             <button type="submit"
                                                                                 class="btn btn-primary">Update</button>

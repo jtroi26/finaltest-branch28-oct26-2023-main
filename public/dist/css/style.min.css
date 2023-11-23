@@ -114,7 +114,7 @@ h6 {
 }
 
 .h1,
-h1 {  
+h1 {
   font-size: calc(1.35rem + 1.2vw)
 }
 
@@ -148,9 +148,7 @@ h3 {
 
   .h3,
   h3 {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-top: 10px;
+    font-size: 1.5rem
   }
 }
 
@@ -171,8 +169,7 @@ h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 16px;
+  margin-bottom: 1rem
 }
 
 abbr[data-bs-original-title],
@@ -2866,8 +2863,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #4A55A2;
-  border-color: #4A55A2
+  background-color: #7460ee;
+  border-color: #7460ee
 }
 
 .btn-primary:hover {
@@ -4693,13 +4690,12 @@ fieldset:disabled .btn {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: auto;
+  min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  max-width: 1245px;
   border: 0px solid transparent;
-  border-radius: 0px;
+  border-radius: 0px
 }
 
 .card>hr {
@@ -4722,7 +4718,6 @@ fieldset:disabled .btn {
   border-bottom-width: 0;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px
-  
 }
 
 .card>.card-header+.list-group,
@@ -7633,8 +7628,7 @@ fieldset:disabled .btn {
 }
 
 .me-auto {
-  margin-right: auto !important;
-  font-size: 16px;
+  margin-right: auto !important
 }
 
 .mb-0 {
@@ -11237,6 +11231,11 @@ html[dir=ltr] body .p-l-0 {
   background: #4A55A2
 }
 
+#main-wrapper .left-sidebar[data-sidebarbg=skin5] .create-btn,
+#main-wrapper .left-sidebar[data-sidebarbg=skin5] ul .create-btn {
+  background: #4A55A2
+}
+
 #main-wrapper {
   width: 100%;
   overflow: hidden
@@ -11258,7 +11257,7 @@ html[dir=ltr] body .p-l-0 {
 }
 
 .footer {
-  padding: 34px 20px
+  padding: 15px 20px
 }
 
 #main-wrapper {}
@@ -11604,8 +11603,7 @@ ul.list-style-none li a:hover {
 }
 
 .card {
-  margin-bottom: 0px;
-  margin-left: 10px;
+  margin-bottom: 20px
 }
 
 .card .card-subtitle {
@@ -12240,11 +12238,6 @@ select.form-select.form-control-line {
 .sidebar-nav ul .nav-small-cap i {
   line-height: 30px;
   margin: 0 5px
-}
-.right-align {
-  text-align: right;
-  margin-bottom: 10px;
-  margin-right: 10px;
 }
 
 .sidebar-nav>#sidebarnav>.sidebar-item>.sidebar-link:hover {}
@@ -15349,4 +15342,13 @@ label {
 .lesson-link:hover {
   color: #4A55A2; /* Color on hover - you can choose any color */
   text-decoration: underline; /* Optional: Underline on hover */
+}
+.right-align {
+  text-align: right;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+strong {
+  font-weight: bolder;
+  padding-left: 60px;
 }

@@ -128,7 +128,7 @@
                   <!-- Create Section Modal -->
                   <div class="modal fade" id="createSectionModal" tabindex="-1"
                     aria-labelledby="createSectionModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="createSectionModalLabel">Create New Section</h5>
@@ -149,7 +149,6 @@
                               </select>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                               <button type="submit" class="btn btn-primary">Create Section</button>
                             </div>
                           </form>
@@ -178,8 +177,8 @@
                               <%= section.visibility %>
                             </td>
                             <td class="text-center">
-                              <a href="/admin/view-section/<%= section.id %>" class="btn btn-outline-info"><i
-                                  class="mdi mdi-eye"></i></a>
+                              <!-- <a href="/admin/view-section/<%= section.id %>" class="btn btn-outline-info"><i
+                                  class="mdi mdi-eye"></i></a> -->
                               <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
                                 data-bs-target="#editSectionModal-<%= section.id %>">
                                 <i class="mdi mdi-pencil"></i>
@@ -194,7 +193,7 @@
                           <!-- Edit Section Modal -->
                           <div class="modal fade" id="editSectionModal-<%= section.id %>" tabindex="-1"
                             aria-labelledby="editSectionModalLabel-<%= section.id %>" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered">
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <h5 class="modal-title" id="editSectionModalLabel-<%= section.id %>">Edit Section</h5>
