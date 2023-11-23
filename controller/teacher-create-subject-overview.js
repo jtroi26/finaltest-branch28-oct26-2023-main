@@ -16,7 +16,8 @@ exports.getSubjectOverviewForm = (req, res) => {
     console.log(subjectname);
     console.log(sectionname);
     
-   res.render('teacher-create-subject-overview', {teacherid: req.session.teacherid});
+
+    res.render('teacher-create-subject-overview', {teacherid: req.session.teacherid});
 };
 
 exports.postSubjectOverviewForm= (req, res) => {
@@ -56,4 +57,3 @@ function formatCustomDateTime(date) {
   
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
   }
-  
