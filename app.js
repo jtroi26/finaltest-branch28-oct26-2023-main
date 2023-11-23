@@ -74,8 +74,7 @@ var studentLessonsViewRouter = require('./routes/student-view-lessons');
 var studentLessonViewRouter = require('./routes/student-view-lesson');
 var studentClassmatesViewRouter = require('./routes/student-view-classmates');
 var studentAnnouncementsViewRouter = require('./routes/student-view-announcement');
-var studentAnnouncementPageViewRouter = require('./routes/student-view-announcementpage');
-var studentAnnouncementIndexPageViewRouter = require('./routes/student-index-announcements');
+var studentIndexGradesViewRouter = require('./routes/student-index-grades');
 
 // teacher view students
 var teacherViewStudents = require('./routes/teacher-view-students');
@@ -87,12 +86,9 @@ var teacherEditStudentAttendance = require('./routes/teacher-edit-attendance');
 var teacherCreateGrades = require('./routes/teacher-create-grades');
 var teacherIndexGrades = require('./routes/teacher-index-grades');
 var teacherViewGradesAssessment = require('./routes/teacher-view-grade-per-assessment');
-var teacherEditGrade = require('./routes/teacher-create-subject-overview');
+var teacherEditGrade = require('./routes/teacher-edit-grade');
 
-// teacher create subject overview
-var subjectOverview = require('./routes/teacher-create-subject-overview');
-var subjectOverviewIndex = require('./routes/teacher-index-subject-overview');
-var subjectOverviewEdit = require('./routes/teacher-edit-subject-overview');
+
 var app = express();
 
 const oneDay = 1000 * 60 * 60 * 24;
@@ -190,8 +186,7 @@ app.use('/', studentLessonsViewRouter);
 app.use('/', studentLessonViewRouter);
 app.use('/', studentClassmatesViewRouter);
 app.use('/', studentAnnouncementsViewRouter);
-app.use('/', studentAnnouncementPageViewRouter);
-app.use('/', studentAnnouncementIndexPageViewRouter);
+app.use('/', studentIndexGradesViewRouter);
 
 // teacher view students and attendance
 app.use('/', teacherViewStudents);
@@ -203,11 +198,8 @@ app.use('/', teacherEditStudentAttendance);
 app.use('/', teacherCreateGrades);
 app.use('/', teacherIndexGrades);
 app.use('/', teacherViewGradesAssessment);
-app.use('/', subjectOverview);
-app.use('/', subjectOverviewIndex);
-app.use('/', subjectOverviewEdit);
+app.use('/', teacherEditGrade);
 
-// teacher create subject overview
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

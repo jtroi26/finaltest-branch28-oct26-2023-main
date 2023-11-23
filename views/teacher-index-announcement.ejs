@@ -9,7 +9,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
     <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <link href="/dist/css/style.min.css" rel="stylesheet" />
-    <script src="https://cdn.tiny.cloud/1/ufj9weyctvgle49pehrx5fwaafhproh0juhfnn9hrb2i9leo/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/ufj9weyctvgle49pehrx5fwaafhproh0juhfnn9hrb2i9leo/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
 
 </head>
 
@@ -102,21 +103,25 @@
                             </li>
 
                             <% if (teacherid) { %>
-                                <form id="logoutForm" action="/teacher-logout" method="post">
-                                    <li class="sidebar-item">
-                                        <a href="javascript:void(0);"
-                                            class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            onclick="document.getElementById('logoutForm').submit();"
-                                            aria-expanded="false"><i class="mdi mdi-logout"></i><span
-                                                class="hide-menu">Logout</span></a>
-                                    </li>
-                                </form>
+                                <div class="logout-button-container">
+                                    <form id="logoutForm" action="/teacher-logout" method="post">
+                                        <li class="sidebar-item">
+                                            <a href="javascript:void(0);"
+                                                class="sidebar-link waves-effect waves-dark sidebar-link"
+                                                onclick="document.getElementById('logoutForm').submit();"
+                                                aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                                                    class="hide-menu">Logout</span></a>
+                                        </li>
+                                    </form>
+                                </div>
                                 <% } else { %>
-                                    <li class="sidebar-item">
-                                        <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            style="margin-top: auto;" aria-expanded="false"><i
-                                                class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                                    </li>
+                                    <div class="logout-button-container">
+                                        <li class="sidebar-item">
+                                            <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                                aria-expanded="false"><i class="mdi mdi-login"></i><span
+                                                    class="hide-menu">Login</span></a>
+                                        </li>
+                                    </div>
                                     <% } %>
                         </ul>
                     </nav>
@@ -148,7 +153,7 @@
                         </div>
                         <div class="modal fade" id="createAnnounceModal" tabindex="-1"
                             aria-labelledby="createAnnounceModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="createAnnounceModalLabel">Create Announcement
@@ -158,24 +163,27 @@
                                     </div>
                                     <div class="modal-body">
                                         <form action="/teacher/announcement/create" method="post">
-                                            <div class="mb-3"><label class="form-label" for="">Announcement
-                                                    title</label>
-                                                <input type="text" class="form-control" name="announcementTitle"
-                                                    id=""><br>
+                                            <div class="row">
+                                                <div class=" col-6 mb-3"><label class="form-label" for="">Announcement
+                                                        title</label>
+                                                    <input type="text" class="form-control" name="announcementTitle"
+                                                        id="">
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <label for="" class="form-label">Visibility</label>
+                                                    <select name="visibility" id="" class="form-select">
+                                                        <option value="" disabled selected>Choose an option</option>
+                                                        <option value="Visible">Visible</option>
+                                                        <option value="Invisible">Invisible</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="mb-3"><label class="form-label" for="">Annoucement
                                                     Content</label>
                                                 <textarea type="text" class="form-control" name="announcement"
-                                                    id=""></textarea><br>
+                                                    id=""></textarea>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="" class="form-label">Visibility</label>
-                                                <select name="visibility" id="" class="form-select">
-                                                    <option value="" disabled selected>Choose an option</option>
-                                                    <option value="Visible">Visible</option>
-                                                    <option value="Invisible">Invisible</option>
-                                                </select>
-                                            </div>
+
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
@@ -227,7 +235,7 @@
                                                         id="editAnnounceModal_<%= announcement.id %>" tabindex="-1"
                                                         aria-labelledby="editAnnounceModalLabel_<%= announcement.id %>"
                                                         aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="editAnnounceModalLabel">
@@ -241,7 +249,8 @@
                                                                     <form
                                                                         action="/teacher/announcement/edit/<%= announcement.id %>"
                                                                         method="post">
-                                                                        <div class="mb-3">
+                                                                        <div class="row">
+                                                                        <div class="col-6 mb-3">
                                                                             <label for="sectionname"
                                                                                 class="form-label">Announcement
                                                                                 Title</label>
@@ -250,16 +259,7 @@
                                                                                 id="announcementTitle"
                                                                                 name="announcementTitle">
                                                                         </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="announcement"
-                                                                                class="form-label">Announcement
-                                                                                Content</label>
-                                                                            <textarea type="text" class="form-control"
-                                                                                id="announcement" name="announcement">
-                                                                                    <%- announcement.announcement %>
-                                                                                </textarea>
-                                                                        </div>
-                                                                        <div class="mb-3">
+                                                                        <div class="col-6 mb-3">
                                                                             <label for="visibility">Visibility</label>
                                                                             <select name="visibility" id="visibility"
                                                                                 class="form-select">
@@ -275,6 +275,17 @@
                                                                                 </option>
                                                                             </select>
                                                                         </div>
+                                                                    </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="announcement"
+                                                                                class="form-label">Announcement
+                                                                                Content</label>
+                                                                            <textarea type="text" class="form-control"
+                                                                                id="announcement" name="announcement">
+                                                                                    <%- announcement.announcement %>
+                                                                                </textarea>
+                                                                        </div>
+                                                                        
                                                                         <div class="modal-footer">
                                                                             <button type="submit"
                                                                                 class="btn btn-primary">Update</button>
@@ -288,8 +299,8 @@
                                                         id="viewAnnounceModal_<%= announcement.id %>" tabindex="-1"
                                                         aria-labelledby="viewAnnounceModalLabel_<%= announcement.id %>"
                                                         aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                            <div class="modal-content"> 
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="viewAnnounceModalLabel">
                                                                         Announcement
@@ -323,11 +334,11 @@
         </div>
         <script>
             tinymce.init({
-              selector: 'textarea',
-              plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-              toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+                selector: 'textarea',
+                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
             });
-          </script>
+        </script>
         <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>

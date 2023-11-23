@@ -12169,7 +12169,8 @@ select.form-select.form-control-line {
 
 .scroll-sidebar {
   height: calc(100% - 20px);
-  position: relative
+  position: relative;
+  padding-bottom: 60px;
 }
 
 .sidebar-nav ul {}
@@ -15351,4 +15352,10 @@ label {
 strong {
   font-weight: bolder;
   padding-left: 60px;
+}
+.logout-button-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* This ensures it spans the full width of the sidebar */
 }
