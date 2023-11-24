@@ -27,7 +27,7 @@ exports.getLessonPage = (req, res) => {
             if (results.length === 1) {
                 // Successfully fetched the lesson data
                 // Pass the single result (row) to the template
-                res.render('student-view-lesson', { lessonData: results[0] , studentid: studentid});
+                res.render('student-view-lesson', { lessonData: results[0] , studentid: studentid, speech: null});
             } else {
                 res.status(404).send('Lesson not found'); // Handle the case where no or multiple rows are found
             }
@@ -56,3 +56,30 @@ exports.postOpenAI = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 };
+
+exports.generate = async (req, res) => {
+    const { textToConvert } = req.body;
+    try {
+      const response = await openai.apiCall({
+        endpoint: 'tts/engine/davinci',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        json: {
+          text: textToConvert,
+          voice: 'en',
+        },
+      });
+  
+      if (response && response.data && response.data.audio) {
+        const audio = response.data.audio;
+        res.json({ speech: audio });
+      } else {
+        res.status(500).json({ error: 'Failed to generate speech.' });
+      }
+    } catch (err) {
+      console.error('Error generating speech:', err);
+      res.status(500).json({ error: 'Error generating speech.' });
+    }
+}

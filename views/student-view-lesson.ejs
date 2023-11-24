@@ -41,7 +41,7 @@
 
         /* Add styles to the form container */
         .form-container {
-        max-width: 300px;
+        max-width: 100%;
         padding: 10px;
         background-color: white;
         }
@@ -92,15 +92,16 @@
 
         .user-message {
             background-color: #e6f7ff;
-            width: 150px;
+            width: 50;
             float: right;
             clear: both;
             margin-bottom: 10px;
+            
         }
 
         .bot-message {
             background-color: #d9f5d9;
-            width: 150px;
+            width: 50;
             float: left;
             clear: both;
             margin-bottom: 10px;
@@ -124,6 +125,8 @@
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
+
+
 
 
 
@@ -245,26 +248,32 @@
                                         
 
                                             <% if (lessonData['section' + i]) { %>
+                                                
                                                 <div class="button-container" style="border: 1px solid #ccc; padding: 1px; display: inline-block;">
                                                     <button type="button" class="btn fa-solid fa-play fa-2x" onclick="speakText('announcementDiv<%= i %>')"></button>
                                                     <button type="button" class="btn fa-solid fa-stop fa-2x" onclick="stopSpeech()"></button>
                                                     <button type="button" class="btn fa-solid fa-pause fa-2x" onclick="pauseSpeech()"></button>
                                                     <button type="button" class="btn fa-regular fa-circle-play fa-2x" onclick="resumeSpeech()"></button>
                                                 </div>
+                                                
+                                                <select class="form-select form-select-lg mb-3" id="voiceSelect" style="width: 20%;"></select>
+
+                                                
                                             <% } %>
                                             <img src="/Images/button_for_chat1.png" class="open-button" onclick="openForm()" style="width: 80px; cursor: pointer;" alt="Generate A Trivia">
 
                                             <!-- Chatgpt -->
-                                            <div class="form-popup" id="myForm" style="display: none; width: 300px;" >
+                                            <div class="form-popup" id="myForm" style="display: none; width: 35%;" >
                                                 <h1 style="margin-left: 10px; margin-top: 10px;">Trivia</h1>
                                                 <hr>
                                                 <div class="message">
                                                     <div class="chat-box" id="chat-box"></div>
                                                     
                                                 </div>
+                                                
 
                                                   <div id="messageForm" class="form-container">
-                                                    <input type="text" id="userInput" name="userInput" placeholder="Type a message..." value="Give me one sentence trivia about <%= lessonData.lessonTitle %>" hidden>
+                                                    <input type="text" id="userInput" name="userInput" placeholder="Type a message..." value="Magbigay ng Trivia patungkol sa <%= lessonData.lessonTitle %>" hidden>
                                                     <button type="button" class="btn btn-info" onclick="sendMessage()">Generate</button>
                                                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                                                   </div>
@@ -273,20 +282,36 @@
                                             
 
                                             <script>
-                                                let synth = window.speechSynthesis;
-                                                let currentlySpeaking = null;
-                                            
-                                                function speakText(divId) {
-                                                    if (currentlySpeaking) {
-                                                        currentlySpeaking.pause();
-                                                        currentlySpeaking = null;
-                                                    }
-                                            
-                                                    let text = document.getElementById(divId).innerText;
-                                                    let utterance = new SpeechSynthesisUtterance(text);
-                                                    synth.speak(utterance);
-                                                    currentlySpeaking = utterance;
-                                                }
+                                                   let synth = window.speechSynthesis;
+    let currentlySpeaking = null;
+
+    let speech = new SpeechSynthesisUtterance();
+    let voices = [];
+    let voicesSelect = document.querySelector('#voiceSelect'); // Target by ID
+
+    window.speechSynthesis.onvoiceschanged = () => {
+        voices = window.speechSynthesis.getVoices();
+        speech.voice = voices[0];
+
+        voices.forEach((voice, i) => (voicesSelect.options[i] = new Option(voice.name, i)));
+    };
+
+    voicesSelect.addEventListener("change", () => {
+        speech.voice = voices[voicesSelect.value];
+    });
+
+    function speakText(divId) {
+        if (currentlySpeaking) {
+            currentlySpeaking.pause();
+            currentlySpeaking = null;
+        }
+
+        let text = document.getElementById(divId).innerText;
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.voice = speech.voice; // Set the selected voice
+        synth.speak(utterance);
+        currentlySpeaking = utterance;
+    }
                                             
                                                 function pauseSpeech() {
                                                     if (currentlySpeaking) {
@@ -307,7 +332,6 @@
                                                     }
                                                 }
                                             </script>
-
 
 
                                         </div>
@@ -364,9 +388,9 @@
           
             function generateTrivia() {
               const trivia = [
-                "Another trivia about <%= lessonData.lessonTitle %> in once sentence",
-                "Another trivia about <%= lessonData.lessonTitle %> in once sentence",
-                "Another trivia about <%= lessonData.lessonTitle %> in once sentence"
+                "Magbigay pa ng trivia patungkol sa <%= lessonData.lessonTitle %> ",
+                "Magbigay pa ng karagdagang trivia patungkol sa <%= lessonData.lessonTitle %> ",
+                "Trivia patungkol sa <%= lessonData.lessonTitle %> "
               ];
           
               const randomIndex = Math.floor(Math.random() * trivia.length);

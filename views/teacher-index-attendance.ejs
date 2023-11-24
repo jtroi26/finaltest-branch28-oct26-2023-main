@@ -11,6 +11,18 @@
     <link rel="stylesheet" type="text/css" href="/assets/extra-libs/multicheck/multicheck.css" />
     <link href="/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <link href="/dist/css/style.min.css" rel="stylesheet" />
+
+                    <!-- For the show and hide button -->
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <style>
+    .hidden {
+        display: none;
+        }
+
+    </style>
+    
 </head>
 
 <% if (teacherid) { %>
@@ -304,6 +316,7 @@
                                                                             </div>
                                                                         </form>
                                                                     </div>
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -319,6 +332,7 @@
                 </div>
             </div>
         </div>
+
         <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
@@ -334,6 +348,7 @@
         <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
         <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
         <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>
+
         <script>
 
             $("#zero_config").DataTable();

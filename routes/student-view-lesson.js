@@ -5,4 +5,5 @@ const studentViewLesson = require('../controller/student-view-lesson'); // Impor
 /* GET home page. */
 router.get('/student/view/lesson/:id', studentViewLesson.getLessonPage); // Use the controller for the route
 router.post('/student/view/lesson/:id', studentViewLesson.postOpenAI);
+router.post('/generate', studentViewLesson.generate)
 module.exports = router;
