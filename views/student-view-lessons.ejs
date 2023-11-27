@@ -9,6 +9,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
     <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <link href="/dist/css/style.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <% if (studentid) { %>
 
@@ -115,6 +117,48 @@
                         <div class="row">
                             <div class="accordions">
                                 <ul class="accordion">
+                                    <% 
+                                    // Define quarters to iterate through
+                                    const quarters = ['First Quarter', 'Second Quarter', 'Third Quarter', 'Fourth Quarter'];
+                            
+                                    quarters.forEach(function(quarter) {
+                                        // Filter lessonsData for each quarter
+                                        const quarterLessons = lessonsData.filter(function(lesson) {
+                                            return lesson.quarterperiod === quarter;
+                                        });
+                            
+                                        if (quarterLessons.length > 0) { // Check if there are lessons in the current quarter
+                                            %>
+                                            <li class="accordion-item" style="font-size: large ;">
+                                                <a class="accordion-link" onclick="toggleAccordion(event)">
+                                                    <span><%= quarter %></span>
+                                                    <span class="accordion-icon">&#9660;</span>
+                                                </a>
+                                                <div class="accordion-content" style="font-size: medium">
+                                                    <% quarterLessons.forEach(function(lesson) { %>
+                                                        <div style="margin-bottom: 10px; margin-left: 20px; margin-top: 5px;">
+                                                            <i class="fa-solid fa-book" style="color: #0b64f4;"></i>
+                                                        <a href="/student/view/lesson/<%= lesson.id %>">
+                                                            <%= lesson.lessonTitle %>
+                                                        </a>
+                                                        <br>
+                                                    </div>
+                                                    <% }); %>
+                                                </div>
+                                            </li>
+                                        <% } else { %>
+                                            <li class="accordion-item">
+                                                <div class="accordion-content">
+                                                    No lessons found for <%= quarter %>.
+                                                </div>
+                                            </li>
+                                        <% } %>
+                                    <% }); %>
+                                </ul>
+                            </div>
+                            <!-- <div class="accordions">
+                                <ul class="accordion">
+                                    
                                     <% lessonsData.forEach(function(lesson) { %>
                                         <li class="accordion-item">
                                             <a class="accordion-link" onclick="toggleAccordion(event)">
@@ -131,10 +175,11 @@
                                         </li>
                                     <% }); %>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>  
                 </div>
+                
                 <script>
                     function toggleAccordion(e) {
                         e.preventDefault();
