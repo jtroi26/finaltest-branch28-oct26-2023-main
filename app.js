@@ -26,6 +26,9 @@ var adminViewSubjectRouter = require('./routes/admin-view-subject');
 var adminEditSubjectRouter = require('./routes/admin-edit-subject');
 var adminDeleteSubjectRouter = require('./routes/admin-delete-subject');
 
+// admin reset function routes
+var adminResetPasswordRouter = require('./routes/admin-reset-password');
+
 // admin section functions routes
 var adminIndexSectionRouter = require('./routes/admin-index-section');
 var adminCreateSectionRouter = require('./routes/admin-create-section');
@@ -156,6 +159,9 @@ app.use('/', adminCreateTeacherRouter);
 app.use('/', adminViewTeacherRouter);
 app.use('/', adminEditTeacherRouter);
 app.use('/', adminDeleteTeacherRouter);
+
+// admin reset password functions
+app.use('/', adminResetPasswordRouter);
 
 // admin create departments functions
 app.use('/', adminCreateDepartmentRouter);
