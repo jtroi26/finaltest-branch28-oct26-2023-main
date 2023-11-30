@@ -76,44 +76,44 @@ exports.postAttendancePage = (req, res) => {
     let { studentID, quarterperiod, attendance } = req.body;
     console.log(req.body);
     // Ensure that studentID and attendance are arrays
-    // if (!Array.isArray(studentID)) {
-    //     // If not an array, convert to an array with a single element
-    //     studentID = [studentID];
-    //     attendance = [attendance];
-    // }
+    if (!Array.isArray(studentID)) {
+        // If not an array, convert to an array with a single element
+        studentID = [studentID];
+        attendance = [attendance];
+    }
 
-    // // Ensure that the arrays have the same length
-    // if (studentID.length !== attendance.length) {
-    //     // Handle the error (e.g., return an error response)
-    //     return res.status(400).send('Mismatched data');
-    // }
+    // Ensure that the arrays have the same length
+    if (studentID.length !== attendance.length) {
+        // Handle the error (e.g., return an error response)
+        return res.status(400).send('Mismatched data');
+    }
 
-    // const connection = mysql.createConnection(conn);
+    const connection = mysql.createConnection(conn);
 
-    // // Loop through the data and insert attendance for each student
-    // for (let i = 0; i < studentID.length; i++) {
-    //     if (attendance[i] === 'NULL' || attendance[i] === null) {
-    //         // Skip this iteration of the loop if attendance is 'NULL' or null
-    //         continue;
-    //     }
+    // Loop through the data and insert attendance for each student
+    for (let i = 0; i < studentID.length; i++) {
+        if (attendance[i] === 'NULL' || attendance[i] === null) {
+            // Skip this iteration of the loop if attendance is 'NULL' or null
+            continue;
+        }
 
-    //     // If attendance is not 'NULL' or null, proceed to insert data
-    //     const sql = `INSERT INTO studentattendance (studentID, subjectname, sectionname, teacherid, date, quarterperiod, attendance) VALUES (?, ?, ?, ?, ?, ?, ?);`;
-    //     const values = [studentID[i], subjectname, sectionname, teacherid, formattedDate, quarterperiod, attendance[i]];
+        // If attendance is not 'NULL' or null, proceed to insert data
+        const sql = `INSERT INTO studentattendance (studentID, subjectname, sectionname, teacherid, date, quarterperiod, attendance) VALUES (?, ?, ?, ?, ?, ?, ?);`;
+        const values = [studentID[i], subjectname, sectionname, teacherid, formattedDate, quarterperiod, attendance[i]];
 
-    //     connection.query(sql, values, (err, results) => {
-    //         if (err) {
-    //             console.error('Error inserting attendance:', err);
-    //             // Handle the error (e.g., return an error response)
-    //             res.status(500).send('Internal Server Error');
-    //         }
-    //     });
-    // }
+        connection.query(sql, values, (err, results) => {
+            if (err) {
+                console.error('Error inserting attendance:', err);
+                // Handle the error (e.g., return an error response)
+                res.status(500).send('Internal Server Error');
+            }
+        });
+    }
 
-    // // Close the database connection after all insertions are complete
-    // connection.end();
+    // Close the database connection after all insertions are complete
+    connection.end();
 
-    // // Respond with a success message or redirect to another page
-    // // res.status(200).send('Attendance recorded successfully');
-    // res.redirect('/teacher/students/attendance');
+    // Respond with a success message or redirect to another page
+    // res.status(200).send('Attendance recorded successfully');
+    res.redirect('/teacher/students/attendance');
 };
