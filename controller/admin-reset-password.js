@@ -32,7 +32,7 @@ exports.getresetpassword = (req, res) => {
             }
 
             // Render your EJS template and pass the query results
-            res.render('admin-reset-password', { students: studentResults, teachers: teacherResults });
+            res.render('admin-reset-password', { students: studentResults, teachers: teacherResults, admin_id: req.session.admin_id });
         });
     });
     // res.render('admin-reset-password');
@@ -47,7 +47,7 @@ exports.postStudentResetPassword = (req, res) => {
     // Assuming your table name is `studentlogins`
     const sql = `UPDATE studentlogins SET studentPassword = ? WHERE studentID = ?`;
 
-    connection.query(sql, [newPassword, studentID], (err, results) => {
+    conn.query(sql, [newPassword, studentID], (err, results) => {
         if (err) {
             console.error('Error updating password:', err);
             res.render('admin-reset-password');
@@ -65,7 +65,7 @@ exports.postTeacherResetPassword = (req, res) => {
     // Assuming your table name is `studentlogins`
     const sql = `UPDATE teacherlogins SET userpassword = ? WHERE teacherid = ?`;
 
-    connection.query(sql, [newPassword, teacherid], (err, results) => {
+    conn.query(sql, [newPassword, teacherid], (err, results) => {
         if (err) {
             console.error('Error updating password:', err);
             res.render('admin-reset-password');
