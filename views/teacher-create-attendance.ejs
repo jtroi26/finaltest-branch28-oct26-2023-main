@@ -15,11 +15,30 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+
 
     <style>
     .hidden {
         display: none;
         }
+
+    /* FOr the MDI icons */
+    .red-icon {
+    color: red;
+}
+
+.green-icon {
+    color: green;
+}
+
+.orange-icon {
+    color: orange;
+}
+
+.blue-icon {
+    color: blue;
+}
 
     </style>
 
@@ -159,7 +178,7 @@
                                     <h4>Date Today: <span id="currentDate"></span></h4>
                                 
                                     <label for="quarterperiod">Attendance for Quarter:</label>
-                                    <select name="quarterperiod" id="quarterperiod" class="form-control" style="width: 20%;">
+                                    <select name="quarterperiod" id="quarterperiod" class="form-control" style="width: 20%;" required>
                                         <option value="" default selected disabled>Choose an option</option>
                                         <% quarters.forEach(quarter => { %>
                                             <option value="<%= quarter.quarterperiod %>"><%= quarter.quarterperiod %></option>
@@ -198,8 +217,10 @@
                                                         </td>
                                                         <td>
                                                             <input type="text" aria-hidden="true" name="attendance" id="attendanceInput_<%= student.studentID %>"
-                                                                class="attendance" value="Present" hidden>
-                                                            <cd onclick="changeAttendance(this, '<%= student.studentID %>')">Change Value</cd>
+                                                                class="attendance" value="Absent" hidden>
+                                                                <cd onclick="changeAttendance(this, '<%= student.studentID %>')">
+                                                                    <i class="mdi mdi-alpha-x-circle mdi-36px red-icon"></i>
+                                                                  </cd>
                                                         </td>
                                                     </tr>
                                                 <% }); %>
@@ -210,42 +231,42 @@
                                 
                                 <script>
                                     function changeAttendance(button, studentID) {
-                                        const inputField = document.getElementById(`attendanceInput_${studentID}`);
-                                        const values = ['Present', 'Late', 'Absent', 'Excuse'];
-                                        const iconClasses = [
-                                            'fa-solid fa-check',
-                                            'fa-solid fa-hourglass-start',
-                                            'fa-solid fa-circle-xmark',
-                                            'fa-brands fa-wordpress'
-                                        ];
-                                        const currentValue = inputField.value;
-                                
-                                        if (!currentValue) {
-                                            inputField.value = values[0];
-                                        } else {
-                                            const currentIndex = values.indexOf(currentValue);
-                                            const nextIndex = (currentIndex + 1) % values.length;
-                                            inputField.value = values[nextIndex];
-                                        }
-                                
-                                        // Update the icon classes based on the current value
-                                        const iconClass = iconClasses[values.indexOf(inputField.value)];
-                                        button.innerHTML = `<i class="${iconClass}"></i>`;
+                                    const inputField = document.getElementById(`attendanceInput_${studentID}`);
+                                    const values = ['Absent', 'Present', 'Late', 'Excuse'];
+                                    const iconClasses = [
+                                        'mdi mdi-alpha-x-circle mdi-36px red-icon',
+                                        'mdi mdi-check-circle mdi-36px green-icon',
+                                        'mdi mdi-clock-check mdi-36px orange-icon',
+                                        'mdi mdi-alpha-e-circle mdi-36px blue-icon'
+                                    ];
+                                    const currentValue = inputField.value;
+
+                                    if (!currentValue) {
+                                        inputField.value = values[0];
+                                    } else {
+                                        const currentIndex = values.indexOf(currentValue);
+                                        const nextIndex = (currentIndex + 1) % values.length;
+                                        inputField.value = values[nextIndex];
                                     }
-                                
-                                    // Function to mark all students as "Present"
-                                    function markAllPresent() {
-                                        const attendanceInputs = document.querySelectorAll('.attendance');
-                                        attendanceInputs.forEach(input => {
-                                            input.value = 'Present';
-                                        });
-                                
-                                        // Update the buttons to display the "Present" icon
-                                        const buttons = document.querySelectorAll('cd');
-                                        buttons.forEach(button => {
-                                            button.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                        });
-                                    }
+
+                                    // Update the icon classes based on the current value
+                                    const iconClass = iconClasses[values.indexOf(inputField.value)];
+                                    button.innerHTML = `<i class="${iconClass}"></i>`;
+                                }
+
+                                // Function to mark all students as "Present"
+                                function markAllPresent() {
+                                    const attendanceInputs = document.querySelectorAll('.attendance');
+                                    attendanceInputs.forEach(input => {
+                                        input.value = 'Present';
+                                    });
+
+                                    // Update the buttons to display the "Present" icon
+                                    const buttons = document.querySelectorAll('cd');
+                                    buttons.forEach(button => {
+                                        button.innerHTML = '<i class="mdi mdi-check-circle mdi-36px green-icon"></i>';
+                                    });
+                                }
                                 </script>
                                 
                                 
