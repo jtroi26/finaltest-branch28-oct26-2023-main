@@ -11,7 +11,6 @@
     <link href="/dist/css/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    
     <style>
          /* Button used to open the contact form - fixed at the bottom of the page */
          .open-button {
@@ -177,6 +176,21 @@
     margin-right: 5px;
 }
     
+    /* For the highlited text */
+    #highlightButton {
+            display: none;
+            position: absolute;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #highlightedText {
+            position: relative;
+        }
 
 
     </style>
@@ -287,6 +301,7 @@
                     <div class="row ">
                         <div class="col-12">
                             <div class="card">
+                                <div id="highlightedText" onmouseup="showButton()">
                                     <% for (let i=1; i <=10; i++) { %>
                                         <div class="card-body">
 
@@ -295,8 +310,8 @@
                                                     <%- lessonData['section' + i] %>
                                                 </p>
                                             </div>
-                                        
-
+                                            
+                                            <button id="highlightButton" onclick="copyHighlightedText()">Copy to Input</button>
                                             <% if (lessonData['section' + i]) { %>
                                                 
                                                 <div class="container">
@@ -311,6 +326,7 @@
                                                     </select>
                                                 </div>    
                                                     </select>
+                                                    
                                                     <hr>
                                                 
                                             <% } %>
@@ -328,6 +344,8 @@
 
                                                   <div id="messageForm" class="form-container">
                                                     <input type="text" id="userInput" name="userInput" placeholder="Type a message..." value="Magbigay ng Trivia patungkol sa <%= lessonData.lessonTitle %>" hidden>
+                                                    <input type="text" id="highlight_input" name="highlight_input" placeholder="Your Highlighted Text here..." readonly>
+                                                    <button type="button" class="btn btn-primary" onclick="sendhighlightedMessage()">Trivia about highlighted text</button>
                                                     <button type="button" class="btn btn-info" onclick="sendMessage()">Generate</button>
                                                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                                                   </div>
@@ -402,13 +420,65 @@
                                         </div>
                                         <!-- <hr> -->
                                         <% } %>
+                                    
+                                </div>
                             </div>
                         </div>
 
                     </div>
+                    
                 </div>
             </div>
         </div>
+
+        <!-- for the highlighted text -->
+        <script>
+            function showButton() {
+                var selectedText = getSelectedText();
+                var highlightButton = document.getElementById('highlightButton');
+        
+                if (selectedText !== '') {
+                    highlightButton.style.display = 'block';
+                    positionButton();
+                } else {
+                    highlightButton.style.display = 'none';
+                }
+            }
+        
+            function getSelectedText() {
+                var selectedText = '';
+                if (window.getSelection) {
+                    selectedText = window.getSelection().toString();
+                } else if (document.selection && document.selection.type !== 'Control') {
+                    selectedText = document.selection.createRange().text;
+                }
+                return selectedText;
+            }
+        
+            function positionButton() {
+                var highlightButton = document.getElementById('highlightButton');
+                var selectedText = getSelectedText();
+                var selection = window.getSelection();
+                var range = selection.getRangeAt(0);
+                var rect = range.getBoundingClientRect();
+        
+                var top = rect.top + window.scrollY - highlightButton.clientHeight - 5;
+                var left = rect.left + window.scrollX + rect.width / 2 - highlightButton.clientWidth / 2;
+        
+                highlightButton.style.top = top + 'px';
+                highlightButton.style.left = left + 'px';
+            }
+        
+            function copyHighlightedText() {
+                var selectedText = getSelectedText();
+                var highlightInput = document.getElementById('highlight_input');
+                highlightInput.value = selectedText;
+        
+                // You can add additional actions here if needed
+            }
+        </script>
+
+        <!-- End of highlighted text -->
 
         <script>
             function openForm() {
@@ -475,7 +545,53 @@
               chatBox.scrollTop = chatBox.scrollHeight;
             }
           </script>
-          
+
+<script>
+    function sendhighlightedMessage() {
+      var userInput = document.getElementById("highlight_input");
+      var message = userInput.value;
+  
+      if (message.trim() !== "") {
+        // Add additional text before the user input
+        var additionalText = "Magbigay ng Trivia patungkol sa ";
+        var fullMessage = additionalText + message;
+
+        displayMessage(fullMessage, true);
+        userInput.value = "";
+  
+        // Send the message to the server-side
+        fetch('/student/view/lesson/<%= lessonData.id %>', { // Replace with your server endpoint
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userInput: message }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            displayMessage(data.response, false);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+    }
+  
+    function displayMessage(message, isUser) {
+      var chatBox = document.getElementById("chat-box");
+      var messageDiv = document.createElement("div");
+      messageDiv.classList.add(isUser ? "user-message" : "bot-message");
+      messageDiv.innerHTML = message;
+      chatBox.appendChild(messageDiv);
+  
+      // Scroll to the bottom of chat box
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+
+
+
+
 
         <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
