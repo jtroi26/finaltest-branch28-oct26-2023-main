@@ -180,12 +180,16 @@
     #highlightButton {
             display: none;
             position: absolute;
-            background-color: #4CAF50;
+            background-color: #000000;
             color: white;
             padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            /* To adjust the button position */
+            margin-top: -60px;
+            margin-left: -250px;
+            box-shadow: 0 4px 8px 0 rgba(4, 148, 16, 0.733);
         }
 
         #highlightedText {
@@ -346,7 +350,7 @@
                                                     <input type="text" id="userInput" name="userInput" placeholder="Type a message..." value="Magbigay ng Trivia patungkol sa <%= lessonData.lessonTitle %>" hidden>
                                                     <input type="text" id="highlight_input" name="highlight_input" placeholder="Your Highlighted Text here..." readonly>
                                                     <button type="button" class="btn btn-primary" onclick="sendhighlightedMessage()">Trivia about highlighted text</button>
-                                                    <button type="button" class="btn btn-info" onclick="sendMessage()">Generate</button>
+                                                    <button type="button" class="btn btn-info" onclick="sendMessage()">Generate Trivia about the Topic</button>
                                                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                                                   </div>
 
