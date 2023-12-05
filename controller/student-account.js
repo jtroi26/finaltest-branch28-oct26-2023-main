@@ -16,6 +16,11 @@ exports.getstudentAccount = async (req, res) => {
 exports.postChangePassword = async (req, res) => {
     const { studentID, oldPassword, newPassword, confirmPassword } = req.body;
 
+    // Validate that newPassword and confirmPassword match
+    if (newPassword !== confirmPassword) {
+        return res.render('student-account', {studentid: req.session.studentID, error: "New password and confirm password do not match" });
+    }
+
     try {
         // Create a connection pool
         const pool = mysql.createPool(conn);
@@ -33,8 +38,7 @@ exports.postChangePassword = async (req, res) => {
             res.redirect('/student/account');
         } else {
             // Old password does not match
-            console.log("old password does not password.");
-            res.render('student-account', { errorChange: 'Old Password does not match' });
+            res.render('student-account', {studentid: req.session.studentID, error: "Old password is incorrect" });
         }
 
         // Release the connection back to the pool

@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Change</title>
+
+        <!-- Include SweetAlert CDN in the head of your HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <h1>Password Change</h1>
 
-    <% if (typeof errorChange !== 'undefined' && errorChange !== null && errorChange !== '') { %>
-        <div class="error-message">
-            <%= errorChange %>
-        </div>
-    <% } %>
+    <% if (typeof error !=='undefined' && error ) { %>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '<%= error %>',
+            });
+        </script>
+        <% } %>
 
         <!-- The change password didnt work if the new and confirm password does not match -->
 
@@ -33,21 +41,8 @@
         <button type="submit">Change Password</button>
     </form>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          var form = document.getElementById('changePasswordForm');
-          form.addEventListener('submit', function (event) {
-            var newPassword = form.elements['newPassword'].value;
-            var confirmPassword = form.elements['confirmPassword'].value;
-      
-            if (newPassword !== confirmPassword) {
-              alert('New Password and Confirm Password do not match.');
-              event.preventDefault(); // Prevent the form from submitting
-            }
-          });
-        });
-      </script>
-      
+
+
 
 </body>
 </html>
