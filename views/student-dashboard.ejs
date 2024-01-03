@@ -38,6 +38,13 @@ button {
   margin-left: 10px;
   cursor: pointer;
 }
+
+/* Custom CSS */
+.custom-style {
+    color: white;
+    font-size: 15px;
+}
+
   </style>
 </head>
 <% if (studentid) { %>
@@ -65,14 +72,26 @@ button {
             <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
                 class="ti-menu ti-close"></i></a>
           </div>
-          <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-            <ul class="navbar-nav float-start me-auto">
-              <li class="nav-item d-none d-lg-block">
-                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                  data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
-              </li>
+        
+          <!-- <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                        data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+                </li>
             </ul>
-          </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="sidebar-item">
+                    <a href="/student/account" class="sidebar-link waves-effect waves-dark sidebar-link custom-style"
+                        style="margin-top: auto;" aria-expanded="false">
+                        <i class="mdi mdi-account"></i><span class="hide-menu">Account</span>
+                    </a>
+                </li>
+            </ul>
+        </div> -->
+        
+      
+        
         </nav>
       </header>
       <aside class="left-sidebar" data-sidebarbg="skin5">

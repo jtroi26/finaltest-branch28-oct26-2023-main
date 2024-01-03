@@ -7,29 +7,28 @@ const conn = {
     password: ''
 };
 
+exports.getteacherAccount = async (req, res) => {
 
-exports.getstudentAccount = async (req, res) => {
-
-    res.render('student-account', {studentid: req.session.studentID});
+    res.render('teacher-account', {teacherid: req.session.teacherid});
 }
 
-exports.postChangePassword = async (req, res) => {
-    const { studentID, oldPassword, newPassword, confirmPassword } = req.body;
+exports.postteacherChangePassword = async (req, res) => {
+    const { teacherid, oldPassword, newPassword, confirmPassword } = req.body;
 
-        // Regular expression pattern
+            // Regular expression pattern
     const passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+={}\[\]:;<>,.?\/\\-]).{8,}$/;
 
             // Validate if newPassword meets the pattern requirements
     if (!passwordPattern.test(newPassword)) {
-        return res.render('student-account', {
-            studentid: req.session.studentID,
+        return res.render('teacher-account', {
+            teacherid: req.session.teacherid,
             error: "New password must contain at least one capital letter, one special character, and be at least 8 characters long"
         });
     }
 
     // Validate that newPassword and confirmPassword match
     if (newPassword !== confirmPassword) {
-        return res.render('student-account', {studentid: req.session.studentID, error: "New password and confirm password do not match" });
+        return res.render('teacher-account', {teacherid: req.session.teacherid, error: "New password and confirm password do not match" });
     }
 
     try {
@@ -38,18 +37,18 @@ exports.postChangePassword = async (req, res) => {
         const connection = await pool.getConnection();
 
         // Check if the old password matches the current password in the database
-        const [results] = await connection.execute("SELECT * FROM studentlogins WHERE studentID = ? AND studentPassword = ?", [studentID, oldPassword]);
+        const [results] = await connection.execute("SELECT * FROM teacherlogins WHERE teacherid = ? AND userpassword = ?", [teacherid, oldPassword]);
 
         if (results.length > 0) {
             // Update the password in the database
-            await connection.execute("UPDATE studentlogins SET studentPassword = ? WHERE studentID = ?", [newPassword, studentID]);
+            await connection.execute("UPDATE teacherlogins SET userpassword = ? WHERE teacherid = ?", [newPassword, teacherid]);
 
             console.log("done changing password.");
             // Password updated successfully
-            res.redirect('/student/account');
+            res.redirect('/teacher/account');
         } else {
             // Old password does not match
-            res.render('student-account', {studentid: req.session.studentID, error: "Old password is incorrect" });
+            res.render('teacher-account', {teacherid: req.session.teacherid, error: "Old password is incorrect" });
         }
 
         // Release the connection back to the pool

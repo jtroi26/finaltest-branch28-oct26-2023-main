@@ -84,6 +84,9 @@ var studentIndexGradesViewRouter = require('./routes/student-index-grades');
 // student account
 var studentAccountRouter = require('./routes/student-account');
 
+// teacher account
+var teacherAccountRouter = require('./routes/teacher-account');
+
 // teacher view students
 var teacherViewStudents = require('./routes/teacher-view-students');
 var teacherCreateStudentAttendance = require('./routes/teacher-create-attendance');
@@ -206,6 +209,9 @@ app.use('/', studentIndexGradesViewRouter);
 
 // student account
 app.use('/', studentAccountRouter);
+
+// teacher account
+app.use('/', teacherAccountRouter);
 
 // teacher view students and attendance
 app.use('/', teacherViewStudents);
