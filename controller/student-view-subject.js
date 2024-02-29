@@ -61,12 +61,16 @@ exports.getSubjectView = (req, res) => {
                     res.render('student-view-subject', {
                         subjectData: result[0],
                         overview: overview,
-                        studentid
+                        studentid,
+                        subjectname: req.session.subjectname
                     });
                 }else {
                     // Successfully fetched both subject data and subject overview data
                     // Pass the results to the template
-                    res.render('student-view-subject', { subjectData: result[0], overview: resultOverview.length > 0 ? resultOverview[0].overview : "Subject Overview has not been set by the teacher.", studentid });
+                    res.render('student-view-subject', { 
+                        subjectData: result[0], 
+                        overview: resultOverview.length > 0 ? resultOverview[0].overview : "Subject Overview has not been set by the teacher.", 
+                        studentid });
                     connection.end(); // Close the database connection after rendering the template
                 }
             });

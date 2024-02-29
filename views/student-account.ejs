@@ -1,266 +1,261 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Password Change | DAZSMA </title>
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
-    <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
-    <link href="/dist/css/style.min.css" rel="stylesheet" />
-    <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.tiny.cloud/1/ufj9weyctvgle49pehrx5fwaafhproh0juhfnn9hrb2i9leo/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-  
-    <!-- Font Awesome -->
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-      <!-- Google Fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
-      <!-- MDB -->
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
-  
-    <link href="/dist/css/style.min.css" rel="stylesheet" />
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Password Change | DAZSMA </title>
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
+        <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+        <link href="/dist/css/style.min.css" rel="stylesheet" />
+        <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
 
-            <!-- Include SweetAlert CDN in the head of your HTML -->
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.tiny.cloud/1/ufj9weyctvgle49pehrx5fwaafhproh0juhfnn9hrb2i9leo/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
 
-    <style>
-        .container {
-            width: 50%;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin-bottom: 6px;
-        }
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        button[type="submit"] {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
 
-        .button-container {
-            text-align: center;
-        }
-    </style>
-            
-</head>
-    
-<% if (studentid) { %>
+        <link href="/dist/css/style.min.css" rel="stylesheet" />
 
-    <body>
-        <div class="preloader">
-            <div class="lds-ripple">
-                <div class="lds-pos"></div>
-                <div class="lds-pos"></div>
+        <!-- Include SweetAlert CDN in the head of your HTML -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <style>
+            .container {
+                width: 50%;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            label {
+                display: block;
+                margin-bottom: 6px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+            }
+
+            button[type="submit"] {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+            .button-container {
+                text-align: center;
+            }
+        </style>
+
+    </head>
+
+    <% if (studentid) { %>
+
+        <body>
+            <div class="preloader">
+                <div class="lds-ripple">
+                    <div class="lds-pos"></div>
+                    <div class="lds-pos"></div>
+                </div>
             </div>
-        </div>
-        <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-            data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-            <header class="topbar" data-navbarbg="skin5">
-                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                    <div class="navbar-header" data-logobg="skin5">
-                        <a class="navbar-brand" href="/student/dashboard">
-                            <b class="logo-icon ps-2">
-                                <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo"
-                                    width="25" />
-                            </b>
-                            <span class="logo-text ms-2">
-                                <span>DAZSMA</span>
-                            </span>
-                        </a>
-                        <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
-                                class="ti-menu ti-close"></i></a>
-                    </div>
-                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                        <ul class="navbar-nav float-start me-auto">
-                            <li class="nav-item d-none d-lg-block">
-                                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                                    data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <aside class="left-sidebar" data-sidebarbg="skin5">
-                <div class="scroll-sidebar">
-                    <nav class="sidebar-nav">
-                        <ul id="sidebarnav" class="pt-4">
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/student/dashboard"
-                                    aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                                        class="hide-menu">Dashboard</span></a>
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="/student/view/classmates" aria-expanded="false"><i
-                                        class="mdi mdi-account-multiple"></i><span
-                                        class="hide-menu">Classmates</span></a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="/student/view/announcement" aria-expanded="false"><i
-                                        class="mdi mdi-bullhorn"></i><span class="hide-menu">Announcements</span></a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="/student/view/lessons" aria-expanded="false"><i
-                                        class="mdi mdi-book-multiple"></i><span class="hide-menu">Lessons</span></a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="/student/index/grades"  aria-expanded="false"><i
-                                        class="mdi mdi-file-check"></i><span class="hide-menu">Grades</span></a>
-                            </li>
-                            <% if (studentid) { %>
-                                <form id="logoutForm" action="/logout" method="post">
-                                    <li class="sidebar-item">
-                                        <a href="javascript:void(0);"
-                                            class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            onclick="document.getElementById('logoutForm').submit();"
-                                            aria-expanded="false"><i class="mdi mdi-logout"></i><span
-                                                class="hide-menu">Logout</span></a>
-                                    </li>
-                                </form>
-                                <% } else { %>
-                                    <li class="sidebar-item">
-                                        <a href="/" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            style="margin-top: auto;" aria-expanded="false"><i
-                                                class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                                    </li>
-                                    <% } %>
-                        </ul>
+            <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+                data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+                <header class="topbar" data-navbarbg="skin5">
+                    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                        <div class="navbar-header" data-logobg="skin5">
+                            <a class="navbar-brand" href="/student/dashboard">
+                                <b class="logo-icon ps-2">
+                                    <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo"
+                                        width="25" />
+                                </b>
+                                <span class="logo-text ms-2">
+                                    <span>DAZSMA</span>
+                                </span>
+                            </a>
+                            <a class="nav-toggler waves-effect waves-dark d-block d-md-none"
+                                href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                            <ul class="navbar-nav float-start me-auto">
+                                <li class="nav-item d-none d-lg-block">
+                                    <a class="nav-link sidebartoggler waves-effect waves-light"
+                                        href="javascript:void(0)" data-sidebartype="mini-sidebar"><i
+                                            class="mdi mdi-menu font-24"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                     </nav>
-                </div>
-            </aside>
-            <div class="page-wrapper">
-                <div class="page-breadcrumb">
-                    <div class="row">
-                        <div class="col-12 d-flex no-block align-items-center">
-                            <h4 class="page-title">Change User Password
-                            </h4>
-                            <div class="ms-auto text-end">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/student/dashboard">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Change Password</li>
-                                    </ol>
-                                </nav>
+                </header>
+                <aside class="left-sidebar" data-sidebarbg="skin5">
+                    <div class="scroll-sidebar">
+                        <nav class="sidebar-nav">
+                            <ul id="sidebarnav" class="pt-4">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/student/dashboard" aria-expanded="false"><i
+                                            class="mdi mdi-view-dashboard"></i><span
+                                            class="hide-menu">Dashboard</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="/student/account" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        style="margin-top: auto;" aria-expanded="false"><i
+                                            class="mdi mdi-account"></i><span class="hide-menu">Account</span></a>
+                                </li>
+
+                                <% if (studentid) { %>
+                                    <form id="logoutForm" action="/logout" method="post">
+                                        <li class="sidebar-item">
+                                            <a href="javascript:void(0);"
+                                                class="sidebar-link waves-effect waves-dark sidebar-link"
+                                                onclick="document.getElementById('logoutForm').submit();"
+                                                aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                                                    class="hide-menu">Logout</span></a>
+                                        </li>
+                                    </form>
+                                    <% } else { %>
+                                        <li class="sidebar-item">
+                                            <a href="/" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                                style="margin-top: auto;" aria-expanded="false"><i
+                                                    class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
+                                        </li>
+                                        <% } %>
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+                <div class="page-wrapper">
+                    <div class="page-breadcrumb">
+                        <div class="row">
+                            <div class="col-12 d-flex no-block align-items-center">
+                                <h4 class="page-title">Change User Password
+                                </h4>
+                                <div class="ms-auto text-end">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="/student/dashboard">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Change Password</li>
+                                        </ol>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row ">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    
-                                    <br><br>
+                    <div class="container-fluid">
+                        <div class="row ">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
 
-                                    <% if (typeof error !=='undefined' && error ) { %>
-                                        <script>
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Oops...',
-                                                text: '<%= error %>',
-                                            });
-                                        </script>
-                                        <% } %>
-                                
-                                        <!-- The change password didnt work if the new and confirm password does not match -->
-                                
-                                <div class="container">
+                                        <br><br>
 
-                                    <form id="changePasswordForm" method="post" action="/student/change-password"  >
-                                        <label for="studentID">Student ID:</label>
-                                        <input type="text" name="studentID" readonly value="<%= studentid %>"><br>
-                                
-                                        <label for="oldPassword">Old Password:</label>
-                                        <input type="password" name="oldPassword" required><br>
-                                
-                                        <label for="newPassword">New Password:</label>
-                                        <input type="password" name="newPassword" required><br>
-                                
-                                        <label for="confirmPassword">Confirm Password:</label>
-                                        <input type="password" name="confirmPassword" required><br>
-                                
-                                        <div class="button-container">
-                                            <button type="submit">Change Password</button>
-                                        </div>
-                                    </form>
+                                        <% if (typeof error !=='undefined' && error ) { %>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Oops...',
+                                                    text: '<%= error %>',
+                                                });
+                                            </script>
+                                            <% } %>
 
-                                </div>
-                                    
-                                
+                                                <!-- The change password didnt work if the new and confirm password does not match -->
 
+                                                <div class="container">
+
+                                                    <form id="changePasswordForm" method="post"
+                                                        action="/student/change-password">
+                                                        <label for="studentID">Student ID:</label>
+                                                        <input type="text" name="studentID" readonly
+                                                            value="<%= studentid %>"><br>
+
+                                                        <label for="oldPassword">Old Password:</label>
+                                                        <input type="password" name="oldPassword" required><br>
+
+                                                        <label for="newPassword">New Password:</label>
+                                                        <input type="password" name="newPassword" required><br>
+
+                                                        <label for="confirmPassword">Confirm Password:</label>
+                                                        <input type="password" name="confirmPassword" required><br>
+
+                                                        <div class="button-container">
+                                                            <button type="submit">Change Password</button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+
+
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
-        <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-        <script src="/assets/extra-libs/sparkline/sparkline.js"></script>
-        <script src="/dist/js/waves.js"></script>
-        <script src="/dist/js/sidebarmenu.js"></script>
-        <script src="/dist/js/custom.min.js"></script>
-        <script src="/assets/libs/flot/excanvas.js"></script>
-        <script src="/assets/libs/flot/jquery.flot.js"></script>
-        <script src="/assets/libs/flot/jquery.flot.pie.js"></script>
-        <script src="/assets/libs/flot/jquery.flot.time.js"></script>
-        <script src="/assets/libs/flot/jquery.flot.stack.js"></script>
-        <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
-        <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-        <script src="/dist/js/pages/chart/chart-page-init.js"></script>
-    </body>
+            <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+            <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+            <script src="/assets/extra-libs/sparkline/sparkline.js"></script>
+            <script src="/dist/js/waves.js"></script>
+            <script src="/dist/js/sidebarmenu.js"></script>
+            <script src="/dist/js/custom.min.js"></script>
+            <script src="/assets/libs/flot/excanvas.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.pie.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.time.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.stack.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
+            <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+            <script src="/dist/js/pages/chart/chart-page-init.js"></script>
+        </body>
 
-    <% } else { %>
-        <div class="error-box">
-          <div class="error-body text-center">
-            <h1 class="error-title text-info">403</h1>
-            <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
-            <p class="text-muted mt-4 mb-4">
-              YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
-            </p>
-            <a href="/" class="
+        <% } else { %>
+            <div class="error-box">
+                <div class="error-body text-center">
+                    <h1 class="error-title text-info">403</h1>
+                    <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+                    <p class="text-muted mt-4 mb-4">
+                        YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+                    </p>
+                    <a href="/" class="
           btn btn-info btn-rounded
           waves-effect waves-light
           mb-5
           text-white
         ">Back to home</a>
-          </div>
-        </div>
-        <% } %>
+                </div>
+            </div>
+            <% } %>
 
 </html>

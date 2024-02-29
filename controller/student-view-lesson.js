@@ -14,7 +14,6 @@ const conn = {
 exports.getLessonPage = (req, res) => {
     const { id } = req.params;
 
-
     const studentid = req.session.studentID;
     const sql = `SELECT * FROM lessons WHERE id = ?;`;
     const connection = mysql.createConnection(conn); // Create a new connection
