@@ -62,11 +62,11 @@ exports.getSubjectCreatePage = (req, res) => {
 exports.postSubjectCreatePage = (req, res) => {
     const { subjectid, subjectname, sectionname, teacherid , visibility} = req.body;
 
-    console.log(subjectid);
-    console.log(subjectname);
-    console.log(sectionname);
-    console.log(teacherid);
-    console.log(visibility);
+    // console.log(subjectid);
+    // console.log(subjectname);
+    // console.log(sectionname);
+    // console.log(teacherid);
+    // console.log(visibility);
 
     const sql = `INSERT INTO subjects (subjectid, subjectname, sectionname, teacherid, visibility) VALUES (?, ?, ?, ?, ?);`;
     const values = [subjectid, subjectname, sectionname, teacherid, visibility];
@@ -89,13 +89,16 @@ exports.postSubjectCreatePage = (req, res) => {
                 return;
             }
 
+            // console output if subject is added successfully
+
             console.log('Subject Added');
             console.log('subjectID: ' + subjectid);
             console.log('subjectName: ' + subjectname);
-            console.log('Section: ' + sectionname); // Corrected variable name
-            console.log('Teacher: ' + teacherid); // Corrected variable name
+            console.log('Section: ' + sectionname); 
+            console.log('Teacher: ' + teacherid);
             console.log('Visibility: ' + visibility);
-            // Redirect to the root URL ('/')
+
+            // Redirect to the subject index URL ('/admin/index-subject')
             res.redirect('/admin/index-subject');
         });
     });
