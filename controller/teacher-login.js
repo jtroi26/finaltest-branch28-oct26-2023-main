@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const bcrypt = require("bcrypt");
 
 const conn = {
     host: 'localhost',
@@ -17,29 +18,41 @@ exports.postTeacherLogin = (req, res) => {
     const { teacherid, userlogin, userpassword } = req.body;
 
     // Use placeholders in the SQL query
-    const sql = `SELECT teacherlogins.teacherid, teacherdetails.firstname, teacherdetails.middlename, teacherdetails.lastname
+    const sql = `SELECT teacherlogins.teacherid, teacherdetails.firstname, teacherdetails.middlename, teacherdetails.lastname, teacherlogins.userpassword
     FROM teacherlogins
     INNER JOIN teacherdetails ON teacherlogins.teacherid = teacherdetails.teacherid
-    WHERE teacherlogins.teacherid =? AND teacherlogins.userlogin = ? AND teacherlogins.userpassword = ?`;
+    WHERE teacherlogins.teacherid = ? AND teacherlogins.userlogin = ?`;
 
-    connection.query(sql, [teacherid, userlogin, userpassword], (err, results) => {
+    connection.query(sql, [teacherid, userlogin], (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');
         } else {
             if (results.length > 0) {
+                const storedHashedPassword = results[0].userpassword;
 
-                const firstname = results[0].firstname;
-                req.session.teacherfirstname = firstname;
-                const middlename = results[0].middlename;
-                req.session.teachermiddlename = middlename;
-                const lastname = results[0].lastname;
-                req.session.teacherlastname = lastname;
-                req.session.teacherid = teacherid;
+                bcrypt.compare(userpassword, storedHashedPassword, function (err, result) {
+                    if (result) {
+                        const firstname = results[0].firstname;
+                        req.session.teacherfirstname = firstname;
+                        const middlename = results[0].middlename;
+                        req.session.teachermiddlename = middlename;
+                        const lastname = results[0].lastname;
+                        req.session.teacherlastname = lastname;
+                        req.session.teacherid = teacherid;
 
-                req.session.teacherusername = userlogin;
-                // Login successful
-                res.redirect('/teacher/dashboard');
+                        req.session.teacherusername = userlogin;
+                        // Login successful
+                        res.redirect('/teacher/dashboard');
+                    } else {
+                        // Increment the login attempts counter
+                        req.session.loginAttempts++;
+
+                        // Login failed
+                        console.log('Login Failed');
+                        res.render('teacher-login', { errorMessage: 'Invalid username or password for teacher.' });
+                    }
+                });
             } else {
                 // Increment the login attempts counter
                 req.session.loginAttempts++;

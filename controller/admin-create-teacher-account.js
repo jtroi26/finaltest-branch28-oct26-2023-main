@@ -1,4 +1,6 @@
 const mysql = require("mysql");
+require('dotenv').config();
+const bcrypt = require("bcrypt");
 
 const conn = {
     host: 'localhost',
@@ -33,55 +35,47 @@ exports.postTeacherCreateAccount = (req, res) => {
     // Generate the user login and password based on input data
     const userLogin = generateUserLogin(firstname, middlename, lastname);
     const userPassword = generatePassword();
-
-    // Include the generated values in the response
-    // console.log(req.body);
-    // console.log(userLogin);
-    // console.log(userPassword);
+    console.log(userPassword);
 
     const sql1 = `INSERT INTO teacherdetails (teacherid, firstname, middlename, lastname, suffix, department, visibility) VALUES (?,?,?,?,?,?,?);`;
     const values1 = [teacherid, firstname, middlename, lastname, suffix, department, visibility];
 
-    const sql2 = `INSERT INTO teacherlogins (teacherid, userlogin, userpassword) VALUES (?,?,?);`;
-    const values2 = [teacherid, userLogin, userPassword];
+    // Hash the generated password using bcrypt
+    bcrypt.genSalt(parseInt(process.env.SALT_TACCOUNT), function (err, salt) {
+        if (err) {
+            console.error('Error generating salt:', err);
+            res.status(500).json({ error: "An error occurred while hashing the password." });
+        } else {
+            bcrypt.hash(userPassword, salt, function (err, hashedPassword) {
+                if (err) {
+                    console.error('Error hashing password:', err);
+                    res.status(500).json({ error: "An error occurred while hashing the password." });
+                } else {
+                    const sql2 = `INSERT INTO teacherlogins (teacherid, userlogin, userpassword) VALUES (?,?,?);`;
+                    const values2 = [teacherid, userLogin, hashedPassword];
 
-    // Wrap each database operation in a promise
-    const insertDetails = new Promise((resolve, reject) => {
-        connection.query(sql1, values1, (err1, results1) => {
-            if (err1) {
-                console.error("Error inserting data into teacherdetails:", err1);
-                reject(err1);
-            } else {
-                resolve(results1);
-            }
-        });
+                    connection.query(sql1, values1, (err1, results1) => {
+                        if (err1) {
+                            console.error("Error inserting data into teacherdetails:", err1);
+                            connection.end(); // Close the database connection
+                            res.status(500).json({ error: "An error occurred while inserting data." });
+                        } else {
+                            connection.query(sql2, values2, (err2, results2) => {
+                                connection.end(); // Close the database connection
+                                if (err2) {
+                                    console.error("Error inserting data into teacherlogins:", err2);
+                                    res.status(500).json({ error: "An error occurred while inserting data." });
+                                } else {
+                                    res.redirect('/admin/index-teacher');
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
     });
-
-    const insertLogins = new Promise((resolve, reject) => {
-        connection.query(sql2, values2, (err2, results2) => {
-            if (err2) {
-                console.error("Error inserting data into teacherlogins:", err2);
-                reject(err2);
-            } else {
-                resolve(results2);
-            }
-        });
-    });
-
-    // Use Promise.all to execute both promises in parallel
-    Promise.all([insertDetails, insertLogins])
-        .then((results) => {
-            connection.end(); // Close the database connection
-            // Both queries were successful
-            res.redirect('/admin/index-teacher');
-        })
-        .catch((errors) => {
-            connection.end(); // Close the database connection
-            // Handle any errors that occurred during the database operations
-            res.status(500).json({ error: "An error occurred while inserting data." });
-        });
 };
-
 
 function generateUserLogin(firstName, middleName, lastName) {
     // Create the user login by taking the first letter of the first name, middle name, and the full last name
@@ -98,7 +92,7 @@ function generateUserLogin(firstName, middleName, lastName) {
 
 function generatePassword() {
     const length = 12; // Adjust the password length as needed
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*?+";
+    const charset = process.env.CHARSET || "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*?+";
     let password = "";
 
     while (password.length < length) {
