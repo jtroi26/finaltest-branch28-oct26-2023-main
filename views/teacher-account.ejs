@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Teacher-Dashboard | DAZSMA </title>
+  <title>User Account | DAZSMA </title>
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
   <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -114,39 +114,10 @@
                     class="hide-menu">Dashboard</span></a>
               </li>
               <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/announcement/"
-                  aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Announcements</span></a>
+                <a href="/teacher/account" class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-top: auto;"
+                  aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Account</span></a>
               </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/subjectoverview"
-                  aria-expanded="false"><i class="mdi mdi-eye"></i><span class="hide-menu">Subject
-                    Overview</span></a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/lesson/modules"
-                  aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">Lesson</span></a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Class</span></a>
-                <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/students"
-                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
-                        class="hide-menu">Students</span></a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/students/attendance/"
-                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
-                        class="hide-menu">Attendance</span></a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/index/grades"
-                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
-                        class="hide-menu">Grades</span></a>
-                  </li>
-                </ul>
-              </li>
+
 
               <% if (teacherid) { %>
                 <div class="logout-button-container">
