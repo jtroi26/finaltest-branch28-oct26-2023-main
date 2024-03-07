@@ -32,6 +32,11 @@ exports.getIndexPage = (req, res) => {
         // Close the connection after handling the results
         connection.end();
 
-        res.render('teacher-index-subject-overview', {results , teacherid});
+        res.render('teacher-index-subject-overview', 
+        {
+            results , 
+            teacherid, 
+            subjectname
+        });
     });
 };

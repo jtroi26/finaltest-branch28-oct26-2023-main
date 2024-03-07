@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Teacher-Subject Overview | DAZSMA </title>
+  <title>Subject Overview | DAZSMA </title>
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
   <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
   <link href="/dist/css/style.min.css" rel="stylesheet" />
@@ -114,12 +114,12 @@
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Subject > Overview</h4>
+              <h4 class="page-title">Subject Overview for  <%= subjectname %> </h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/teacher/dashboard">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Subject</li>
+                    <li class="breadcrumb-item active" aria-current="page">Subject Overview</li>
                   </ol>
                 </nav>
               </div>
@@ -151,10 +151,12 @@
                       <% }); %>
 
                         <% } else { %>
-                          <h2s>
-                            Unavailable.
-                          </h2s>
-                          <p>No subject overview available.</p>
+                          <h2>
+                            Subject Overview is yet to be set by the teacher.
+                          </h2>
+                          <p>
+                            <i>How about a fun introduction of the subject?</i>
+                          </p>
                           <div class="right-align">
                             <a href="/teacher/subjectoverview/create">Create Subject Overview</a>
                           </div>
