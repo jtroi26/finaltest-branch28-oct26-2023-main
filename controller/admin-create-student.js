@@ -3,12 +3,15 @@ const fs = require('fs');
 const fastCsv = require('fast-csv');
 const multer = require('multer');
 const path = require('path');
+const bcrypt = require("bcrypt");
+
+require('dotenv').config();
 
 const conn = {
-    host: 'localhost',
-    database: 'finalcapstone',
-    user: 'root',
-    password: ''
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
 };
 
 const storage = multer.diskStorage({
@@ -89,11 +92,14 @@ exports.postCreateStudentManual = (req, res) => {
 
         // Execute the first SQL query to insert data into the students table
         connection.query(sql1, values1, (err, results1) => {
+
             if (err) {
                 console.error('Error inserting data into students:', err);
                 res.status(500).send('Error inserting data into students');
                 connection.end();
-                return res.redirect('/admin/create/student'); // Redirect the user back to the create student page
+
+                // Redirect the user back to the create student page
+                return res.redirect('/admin/create/student'); 
             }
 
             // Execute the second SQL query to insert data into the studentlogins table
@@ -114,27 +120,6 @@ exports.postCreateStudentManual = (req, res) => {
     });
 };
 
-
-
-// function uploadCsv(filePath, callback) {
-//     const stream = fs.createReadStream(filePath);
-//     const csvData = [];
-//     const fileStream = fastCsv.parse({ headers: true }).on('data', (data) => {
-//         csvData.push(data);
-//     }).on('end', () => {
-//         const connection = mysql.createPool(conn);
-//         const query = 'INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname) VALUES ?';
-//         const values = csvData.map((row) => [row.studentID, row.firstname, row.middlename, row.lastname, row.suffix, row.sectionname]);
-//         connection.query(query, [values], (error) => {
-//             connection.end(); // Close the connection
-//             if (error) {
-//                 console.error(error);
-//             }
-//             callback();
-//         });
-//     });
-//     stream.pipe(fileStream);
-// }
 function uploadCsv(filePath, callback) {
     const stream = fs.createReadStream(filePath);
     const csvData = [];
@@ -203,15 +188,9 @@ function generateUserLogin(firstName, middleName, lastName) {
 }
 
 function generatePassword() {
-    const length = 12; // Adjust the password length as needed
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*?+";
-    let password = "";
 
-    while (password.length < length) {
-        const charIndex = Math.floor(Math.random() * charset.length);
-        const char = charset.charAt(charIndex);
-        password += char;
-    }
+    let password = process.env.TEMP_PASSWORD;
 
     return password;
 }
+

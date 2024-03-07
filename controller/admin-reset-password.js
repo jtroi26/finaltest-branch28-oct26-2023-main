@@ -1,11 +1,12 @@
 const mysql = require("mysql");
+require('dotenv').config();
 
 // Create a connection to your MySQL database
 const conn = mysql.createConnection({
-    host: 'localhost',
-    database: 'finalcapstone',
-    user: 'root',
-    password: ''
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
 });
 // Connect to the database
 conn.connect((err) => {

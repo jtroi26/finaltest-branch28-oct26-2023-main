@@ -1,12 +1,13 @@
 const mysql = require("mysql");
-require('dotenv').config();
 const bcrypt = require("bcrypt");
 
+require('dotenv').config();
+
 const conn = {
-    host: 'localhost',
-    database: 'finalcapstone',
-    user: 'root',
-    password: ''
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
 };
 
 exports.getTeacherCreatePage = (req, res) => {
@@ -91,15 +92,16 @@ function generateUserLogin(firstName, middleName, lastName) {
 }
 
 function generatePassword() {
-    const length = 12; // Adjust the password length as needed
-    const charset = process.env.CHARSET || "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*?+";
-    let password = "";
+    // const length = 12; // Adjust the password length as needed
+    // const charset = process.env.CHARSET || "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*?+";
+    // let password = "";
 
-    while (password.length < length) {
-        const charIndex = Math.floor(Math.random() * charset.length);
-        const char = charset.charAt(charIndex);
-        password += char;
-    }
+    // while (password.length < length) {
+    //     const charIndex = Math.floor(Math.random() * charset.length);
+    //     const char = charset.charAt(charIndex);
+    //     password += char;
+    // }
+    let password = process.env.TEMP_PASSWORD;
 
     return password;
 }

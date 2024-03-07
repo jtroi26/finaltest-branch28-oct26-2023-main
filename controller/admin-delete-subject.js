@@ -1,12 +1,13 @@
 const mysql = require("mysql");
 
-const conn = {
-    host: 'localhost',
-    database: 'finalcapstone',
-    user: 'root',
-    password: ''
-};
+require('dotenv').config();
 
+const conn = {
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
+};
 exports.postSetVisibility = (req, res) => {
     const connection = mysql.createConnection(conn);
 
