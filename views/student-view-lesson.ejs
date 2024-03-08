@@ -180,12 +180,16 @@
     #highlightButton {
             display: none;
             position: absolute;
-            background-color: #4CAF50;
+            background-color: #000000;
             color: white;
             padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            /* To adjust the button position */
+            margin-top: -60px;
+            margin-left: -250px;
+            box-shadow: 0 4px 8px 0 rgba(4, 148, 16, 0.733);
         }
 
         #highlightedText {
@@ -313,7 +317,7 @@
                                                 </p>
                                             </div>
                                             
-                                            <button id="highlightButton" onclick="copyHighlightedText()">Copy to Input</button>
+                                            <button id="highlightButton" onclick="copyHighlightedText()">Send to Trivia</button>
                                             <% if (lessonData['section' + i]) { %>
                                                 
                                                 <div class="container">
@@ -346,9 +350,9 @@
 
                                                   <div id="messageForm" class="form-container">
                                                     <input type="text" id="userInput" name="userInput" placeholder="Type a message..." value="Magbigay ng Trivia patungkol sa <%= lessonData.lessonTitle %>" hidden>
-                                                    <input type="text" id="highlight_input" name="highlight_input" placeholder="Your Highlighted Text here..." readonly>
+                                                    <input type="text" id="highlight_input" name="highlight_input" placeholder="Your Highlighted Text here..." readonly style="text-align: center;">
                                                     <button type="button" class="btn btn-primary" onclick="sendhighlightedMessage()">Trivia about highlighted text</button>
-                                                    <button type="button" class="btn btn-info" onclick="sendMessage()">Generate</button>
+                                                    <button type="button" class="btn btn-info" onclick="sendMessage()">Generate Trivia about the Topic</button>
                                                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                                                   </div>
 
@@ -448,6 +452,7 @@
             }
         
             function getSelectedText() {
+                
                 var selectedText = '';
                 if (window.getSelection) {
                     selectedText = window.getSelection().toString();
@@ -475,7 +480,7 @@
                 var selectedText = getSelectedText();
                 var highlightInput = document.getElementById('highlight_input');
                 highlightInput.value = selectedText;
-        
+                document.getElementById("myForm").style.display = "block";
                 // You can add additional actions here if needed
             }
         </script>
@@ -550,6 +555,7 @@
 
 <script>
     function sendhighlightedMessage() {
+    
       var userInput = document.getElementById("highlight_input");
       var message = userInput.value;
   
