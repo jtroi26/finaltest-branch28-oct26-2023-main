@@ -255,26 +255,28 @@
                             </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="/student/view/lessons" style="margin-bottom: 408px;" aria-expanded="false"><i
+                                    href="/student/view/lessons" aria-expanded="false"><i
                                         class="mdi mdi-book-multiple"></i><span class="hide-menu">Lessons</span></a>
                             </li>
                             <% if (studentid) { %>
-                                <form id="logoutForm" action="/logout" method="post">
+                                <div class="logout-button-container">
+                                  <form id="logoutForm" action="/logout" method="post">
                                     <li class="sidebar-item">
-                                        <a href="javascript:void(0);"
-                                            class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            onclick="document.getElementById('logoutForm').submit();"
-                                            aria-expanded="false"><i class="mdi mdi-logout"></i><span
-                                                class="hide-menu">Logout</span></a>
+                                      <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
+                                          class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
                                     </li>
-                                </form>
+                                  </form>
+                                </div>
+                
                                 <% } else { %>
+                                  <div class="logout-button-container">
                                     <li class="sidebar-item">
-                                        <a href="/" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            style="margin-top: auto;" aria-expanded="false"><i
-                                                class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
+                                      <a href="/" class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-top: auto;"
+                                        aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
                                     </li>
-                                    <% } %>
+                                  </div>
+                                  <% } %>
                         </ul>
                     </nav>
                 </div>
