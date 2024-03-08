@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2024 at 04:22 PM
+-- Generation Time: Mar 08, 2024 at 04:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -297,7 +297,7 @@ CREATE TABLE `studentlogins` (
   `id` int(11) NOT NULL,
   `studentID` varchar(25) DEFAULT NULL,
   `studentUserName` varchar(25) DEFAULT NULL,
-  `studentPassword` varchar(25) DEFAULT NULL
+  `studentPassword` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -306,7 +306,7 @@ CREATE TABLE `studentlogins` (
 
 INSERT INTO `studentlogins` (`id`, `studentID`, `studentUserName`, `studentPassword`) VALUES
 (7, 'DAZ20171525', 'DAZSMA-jrdmercado', '3V7$m*PMw$Tg'),
-(8, 'DAZ20230015', 'DAZSMA-ceapastrana', '9lvlIY9BMfQP'),
+(8, 'DAZ20230015', 'DAZSMA-ceapastrana', '$2b$10$FYpaVvtGenmgWst6MHop9O8n8sMUeocBsvnfvm9QwH/jxfwA0GZBu'),
 (9, 'DAZ20201015', 'DAZSMA-jcrico', 'r?!M0BUWxsjj'),
 (10, 'DAZ20181005', 'DAZSMA-mcramos', 'VXhvn%w#jWIb'),
 (11, 'DAZ11111111', 'DAZSMA-jlsupra', 'xiz7HL6CK4E&'),
@@ -476,10 +476,10 @@ CREATE TABLE `teacherlogins` (
 --
 
 INSERT INTO `teacherlogins` (`id`, `teacherid`, `userlogin`, `userpassword`) VALUES
-(1, '2020-069', 'havb-069', 'havb-069'),
-(2, '10420012023', 't-ceapastrana', 'P!*10v@5shsu'),
-(3, '104200120232', 't-mcramos', 'Dksx$*^?4KU+'),
-(4, '1910854', 't-airegla', '$2b$10$GB3bCiDne5h1AQm4si'),
+(1, '2020-069', 'havb-069', '$2b$10$tYybTFo2kN/rl9lBLb/k8u80o7s0DODD.cfRdSeI9RB36HGgkjd.y'),
+(2, '10420012023', 't-ceapastrana', '$2b$10$F1Ae4JBdjEJIHOGNQMH0bu92wUfb0ce11wHUo0c4KmqD65wDvi.nS'),
+(3, '104200120232', 't-mcramos', '$2b$10$R1XHClE0whRGV11gtFK4F.2Gtr3/BDW1kVU.6gEk4U9gInLZ.c8/q'),
+(4, '1910854', 't-airegla', '$2b$10$3yEi2tEDHbYQ7T4TFrbqAuhzBxWfEQLYsDmb6aVoSZ.sTCtL5zQGm'),
 (5, '333245051', 't-ceapastrana', '$2b$10$sKF97isEHshJd3ApCSKZyuBv4k8W9L88in0QXZafTNf26n5KdbP1e'),
 (6, '12113234', 't-dddota', '$2b$10$B5wezbzPqerrz4SIQrbkFeVyVhn8JdBeYmDQqot7RbUqrnR.8p.GW'),
 (7, '12113334', 't-jdreggy', '$2b$10$8JgiwnlsVcG5F09xolu85ePImAerrz6fqJAOadoLVSj9edbpLnfUq');
