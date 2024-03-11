@@ -77,10 +77,15 @@
                                         class="hide-menu">Teachers</span></a>
                             </li>
                             <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    style="margin-bottom: 300px;" href="/admin/index-department"
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-department"
                                     aria-expanded="false"><i class="mdi mdi-home"></i><span
                                         class="hide-menu">Departments</span></a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 300px;"
+                                    href="/admin/reset-password" aria-expanded="false"><i
+                                        class="mdi mdi-account-key"></i><span class="hide-menu">Reset
+                                        Passwords</span></a>
                             </li>
                             <% if (admin_id) { %>
                                 <form id="logoutForm" action="/admin-logout" method="post">
