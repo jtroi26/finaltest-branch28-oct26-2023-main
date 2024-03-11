@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const express = require('express');
+const bcrypt = require("bcrypt");
 const rateLimit = require("express-rate-limit");
 require('dotenv').config();
 const maxLoginAttempts = 5;
@@ -33,7 +33,7 @@ exports.postStudentLogin = [loginLimiter, (req, res) => {
             SELECT s.studentID, s.firstname, s.middlename, s.lastname, s.suffix, s.sectionname
             FROM studentlogins AS sl
             INNER JOIN students AS s ON sl.studentID = s.studentID
-            WHERE sl.studentID = ? AND sl.studentUserName = ? AND sl.studentPassword = ?
+            WHERE sl.studentID = ? AND sl.studentUserName = ?
         `;
 
     const values = [studentID, studentUserName, studentPassword];
@@ -67,7 +67,7 @@ exports.postStudentLogin = [loginLimiter, (req, res) => {
 
                 // Login successful
                 // Render the student dashboard EJS template with user data
-                console.log('Already login');
+                console.log('Logged In');
                 res.redirect('/student/dashboard');
             } else {
                 // Increment the login attempts counter

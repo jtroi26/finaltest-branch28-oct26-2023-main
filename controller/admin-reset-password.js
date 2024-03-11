@@ -81,7 +81,7 @@ exports.postStudentResetPassword = (req, res) => {
                     console.error('Error updating password:', queryErr);
                     return res.render('admin-reset-password');
                 }
-
+                console.log('Password successfully reset');
                 res.redirect('/admin/reset-password');
             });
         });
