@@ -80,21 +80,22 @@
                                     class="hide-menu">Departments</span></a>
                         </li>
                         <% if (admin_id) { %>
-                            <form id="logoutForm" action="/admin-logout" method="post">
-                                <li class="sidebar-item">
-                                    <a href="javascript:void(0);"
-                                        class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        onclick="document.getElementById('logoutForm').submit();"
-                                        aria-expanded="false"><i class="mdi mdi-logout"></i><span
-                                            class="hide-menu">Logout</span></a>
-                                </li>
-                            </form>
-                            <% } else { %>
-                                <li class="sidebar-item">
+                            <div class="logout-button-container">
+                                <form id="logoutForm" action="/admin-logout" method="post">
+                                  <li class="sidebar-item">
+                                    <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                      onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
+                                        class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
+                                  </li>
+                                </form>
+                              </div>
+                              <% } else { %>
+                                <div class="logout-button-container">
+                                  <li class="sidebar-item">
                                     <a href="/admin" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        style="margin-top: auto;" aria-expanded="false"><i
-                                            class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                                </li>
+                                      aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
+                                  </li>
+                                </div>
                                 <% } %>
                     </ul>
                 </nav>
