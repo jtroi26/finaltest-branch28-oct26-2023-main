@@ -27,17 +27,7 @@ localhost:3000/admin/index-department = index department
 localhost:3000/admin/create/student = create student
 localhost:3000/teacher/view-subject/:id = subject view teacher side
 
-
-mga wala pang design
-
-/teacher/view-subject/:id
-/teacher/announcement/
-/teacher/announcement/view/:id
-/teacher/announcement/edit/:id
-/teacher/lesson/modules
-/teacher/lesson/view-lesson/:id
-/teacher/lesson/edit-lesson/:id
-
+Branch logs
 branch 1  - created admin login and dashboard
 branch 2  - created student login and dashboard
 branch 3  - created teacher login and dashboard
