@@ -57,7 +57,7 @@ exports.getResetPasswordPage = (req, res) => {
 // for students
 exports.postStudentResetPassword = (req, res) => {
     const { studentID, newPassword } = req.body;
-    const saltRounds = parseInt(process.env.SALT_SACCOUNT, process.env.RADIX);
+    const saltRounds = parseInt(process.env.SALT_SACCOUNT);
 
     bcrypt.hash(newPassword, saltRounds, (hashErr, hashedPassword) => {
         if (hashErr) {
