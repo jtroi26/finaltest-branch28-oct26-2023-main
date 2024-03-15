@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const express = require('express');
+const bcrypt = require("bcrypt");
 const rateLimit = require("express-rate-limit");
 require('dotenv').config();
 const maxLoginAttempts = 5;
@@ -30,45 +30,47 @@ exports.postStudentLogin = [loginLimiter, (req, res) => {
     const { studentID, studentUserName, studentPassword } = req.body;
 
     const sql = `
-            SELECT s.studentID, s.firstname, s.middlename, s.lastname, s.suffix, s.sectionname
-            FROM studentlogins AS sl
-            INNER JOIN students AS s ON sl.studentID = s.studentID
-            WHERE sl.studentID = ? AND sl.studentUserName = ? AND sl.studentPassword = ?
-        `;
+        SELECT s.studentID, s.firstname, s.middlename, s.lastname, s.suffix, s.sectionname, sl.studentPassword
+        FROM studentlogins AS sl
+        INNER JOIN students AS s ON sl.studentID = s.studentID
+        WHERE sl.studentID = ? AND sl.studentUserName = ?
+    `;
 
-    const values = [studentID, studentUserName, studentPassword];
     const connection = mysql.createConnection(conn);
-    connection.query(sql, values, (err, results) => {
+
+    connection.query(sql, [studentID, studentUserName], (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');
         } else {
             if (results.length > 0) {
-                // Reset the login attempts counter on successful login
+                const storedHashedPassword = results[0].studentPassword;
 
-                // Make sure "section" is included in the SQL query
-                req.session.studentID = studentID;
+                bcrypt.compare(studentPassword, storedHashedPassword, function (err, result) {
+                    if (result) {
+                        // Reset the login attempts counter on successful login
+                        req.session.loginAttempts = 0;
 
-                const firstname = results[0].firstname;
-                req.session.studentfirstname = firstname;
+                        // Set session variables for the student
+                        req.session.studentID = studentID;
+                        req.session.studentfirstname = results[0].firstname;
+                        req.session.studentmiddlename = results[0].middlename;
+                        req.session.studentlastname = results[0].lastname;
+                        req.session.sectionname = results[0].sectionname;
+                        req.session.suffix = results[0].suffix;
 
-                const middlename = results[0].middlename;
-                req.session.studentmiddlename = middlename;
+                        // Login successful
+                        console.log('Already login');
+                        res.redirect('/student/dashboard');
+                    } else {
+                        // Increment the login attempts counter
+                        req.session.loginAttempts++;
 
-                const lastname = results[0].lastname;
-                req.session.studentlastname = lastname;
-                // Make sure "section" is included in the SQL query
-
-                const section = results[0].sectionname;
-                req.session.sectionname = section;
-
-                const suffix = results[0].suffix;
-                req.session.suffix = suffix;
-
-                // Login successful
-                // Render the student dashboard EJS template with user data
-                console.log('Already login');
-                res.redirect('/student/dashboard');
+                        // Login failed
+                        console.log('Login Failed');
+                        res.render('student-login', { errorMessage: 'Invalid username or password for student.' });
+                    }
+                });
             } else {
                 // Increment the login attempts counter
                 req.session.loginAttempts++;
@@ -77,7 +79,9 @@ exports.postStudentLogin = [loginLimiter, (req, res) => {
                 console.log('Login Failed');
                 res.render('student-login', { errorMessage: 'Invalid username or password for student.' });
             }
+
+            // Close the MySQL connection after the query
+            connection.end();
         }
     });
-}
-];
+}];
