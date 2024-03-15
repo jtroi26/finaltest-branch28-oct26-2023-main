@@ -1,222 +1,266 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Create Grades | DAZSMA </title>
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
-        <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
-        <link href="/dist/css/style.min.css" rel="stylesheet" />
-        <link href="/stylesheets/teacher-view-subject.css" rel="stylesheet" />
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create Grades | DAZSMA </title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
+    <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/assets/extra-libs/multicheck/multicheck.css" />
+    <link href="/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="/dist/css/style.min.css" rel="stylesheet" />
+</head>
 
-    <body>
-        <div class="preloader">
-            <div class="lds-ripple">
-                <div class="lds-pos"></div>
-                <div class="lds-pos"></div>
-            </div>
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
         </div>
-        <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-            data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-            <header class="topbar" data-navbarbg="skin5">
-                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                    <div class="navbar-header" data-logobg="skin5">
-                        <a class="navbar-brand" href="/student/dashboard">
-                            <b class="logo-icon ps-2">
-                                <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo"
-                                    width="25" />
-                            </b>
-                            <span class="logo-text ms-2">
-                                <span>DAZSMA</span>
-                            </span>
-                        </a>
-                        <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
-                                class="ti-menu ti-close"></i></a>
-                    </div>
-                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                        <ul class="navbar-nav float-start me-auto">
-                            <li class="nav-item d-none d-lg-block">
-                                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                                    data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <aside class="left-sidebar" data-sidebarbg="skin5">
-                <div class="scroll-sidebar">
-                    <nav class="sidebar-nav">
-                        <ul id="sidebarnav" class="pt-4">
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/dashboard"
-                                    aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                                        class="hide-menu">Dashboard</span></a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="/teacher/announcement/" aria-expanded="false"><i
-                                        class="mdi mdi-bullhorn"></i><span class="hide-menu">Announcements</span></a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="/teacher/subjectoverview" aria-expanded="false"><i
-                                        class="mdi mdi-account-multiple"></i><span class="hide-menu">Subject
-                                        Overview</span></a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="/teacher/lesson/modules" aria-expanded="false"><i
-                                        class="mdi mdi-account-multiple"></i><span class="hide-menu">Lesson</span></a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                                    aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Class
-                                        Menu </span></a>
-                                <ul aria-expanded="false" class="collapse first-level">
-                                    <li class="sidebar-item">
-                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            href="/teacher/view/students" aria-expanded="false"><i
-                                                class="mdi mdi-account-multiple"></i><span
-                                                class="hide-menu">Students</span></a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            href="/teacher/students/attendance/" aria-expanded="false"><i
-                                                class="mdi mdi-account-multiple"></i><span
-                                                class="hide-menu">Attendance</span></a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            style="margin-bottom: 462px;" href="/teacher/index/grades"
-                                            aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
-                                                class="hide-menu">Grades</span></a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <% if (teacherid) { %>
-                            <form id="logoutForm" action="/teacher-logout" method="post">
+    </div>
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <a class="navbar-brand" href="/student/dashboard">
+                        <b class="logo-icon ps-2">
+                            <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
+                        </b>
+                        <span class="logo-text ms-2">
+                            <span>DAZSMA</span>
+                        </span>
+                    </a>
+                    <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <ul class="navbar-nav float-start me-auto">
+                        <li class="nav-item d-none d-lg-block">
+                            <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                                data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <div class="scroll-sidebar">
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="pt-4">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/dashboard"
+                                aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/announcement/"
+                                aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span
+                                    class="hide-menu">Announcements</span></a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/subjectoverview"
+                                aria-expanded="false"><i class="mdi mdi-eye"></i><span class="hide-menu">Subject
+                                    Overview</span></a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/lesson/modules"
+                                aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span
+                                    class="hide-menu">Lesson</span></a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                                aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                                    class="hide-menu">Class
+                                </span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
-                                    <a href="javascript:void(0);"
-                                        class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        onclick="document.getElementById('logoutForm').submit();"
-                                        aria-expanded="false"><i class="mdi mdi-logout"></i><span
-                                            class="hide-menu">Logout</span></a>
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/teacher/view/students" aria-expanded="false"><i
+                                            class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                            class="hide-menu">Students</span></a>
                                 </li>
-                            </form>
-                            <% } else { %>
-                            <li class="sidebar-item">
-                                <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    style="margin-top: auto;" aria-expanded="false"><i class="mdi mdi-login"></i><span
-                                        class="hide-menu">Login</span></a>
-                            </li>
-                            <% } %>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/teacher/students/attendance/" aria-expanded="false"><i
+                                            class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                            class="hide-menu">Attendance</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                                aria-expanded="false"><i class="mdi mdi-clipboard-check"></i>
+                                <span class="hide-menu">Grade</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/teacher/view/grades/Assignment" aria-expanded="false"><i
+                                            class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                            class="hide-menu">Assignment</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/teacher/view/grades/Seatwork" aria-expanded="false"><i
+                                            class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                            class="hide-menu">Seatwork</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/teacher/view/grades/Quiz" aria-expanded="false"><i
+                                            class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                            class="hide-menu">Quiz</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/teacher/view/grades/Summative" aria-expanded="false"><i
+                                            class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                            class="hide-menu">Summative</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/teacher/view/grades/Periodical" aria-expanded="false"><i
+                                            class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                            class="hide-menu">Periodical</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/teacher/view/grades/Recitation" aria-expanded="false"><i
+                                            class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                            class="hide-menu">Recitation</span></a>
+                                </li>
+                            </ul>
+                        </li>
 
-            <div class="page-wrapper">
-                <div class="page-breadcrumb">
-                    <div class="row">
-                        <div class="col-12 d-flex no-block align-items-center">
-                            <h4 class="page-title">Create Grades > 
-                            </h4>
-                            <div class="ms-auto text-end">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/student/dashboard">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Create Grades</li>
-                                    </ol>
-                                </nav>
+
+                        <% if (teacherid) { %>
+                            <div class="logout-button-container">
+                                <form id="logoutForm" action="/teacher-logout" method="post">
+                                    <li class="sidebar-item">
+                                        <a href="javascript:void(0);"
+                                            class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            onclick="document.getElementById('logoutForm').submit();"
+                                            aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                                                class="hide-menu">Logout</span></a>
+                                    </li>
+                                </form>
                             </div>
+                            <% } else { %>
+                                <div class="logout-button-container">
+                                    <li class="sidebar-item">
+                                        <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            aria-expanded="false"><i class="mdi mdi-login"></i><span
+                                                class="hide-menu">Login</span></a>
+                                    </li>
+                                </div>
+                                <% } %>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="page-wrapper">
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Create Grades >
+                        </h4>
+                        <div class="ms-auto text-end">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/teacher/dashboard">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Create Grades</li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid">
-                    <div class="page-breadcrumb">
-                        <div class="row">
-                            <div class="card">
-                              <!-- Enter you Code Here -->
-
-                              <form action="/teacher/create/grades" method="post">
-
-                                <div style="text-align: center;">
-                                  <label for="assessmentTitle">Assessment Title</label><br>
-                                  <input type="text" name="assessmentTitle" id="assessmentTitle"><br><br>
-                            
-                                  <label for="dateGiven">Assessment Date</label><br>
-                                  <input type="date" name="dateGiven" id="dateGiven"><br><br>
-                            
-                                  <label for="assessmenttype">Assessment Type</label><br>
-                                  <select name="assessmenttype" id="assessmenttype" style="border-radius: 5px; background-color: #4A55A2; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
-                                      <% for (const type of assessmentTypes) { %>
-                                          <option value="<%= type.assessmenttype %>"><%= type.assessmenttype %></option>
-                                      <% } %>
-                                  </select><br><br>
-                            
-                                  <label for="quarterperiod">Quarter Period</label><br>
-                                  <select name="quarterperiod" id="quarterperiod" style="border-radius: 5px; background-color: #4A55A2; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
-                                      <% for (const period of quarterPeriods) { %>
-                                          <option value="<%= period.quarterperiod %>"><%= period.quarterperiod %></option>
-                                      <% } %>
-                                  </select><br><br>
-                            
-                                  <hr>
-                            
-                              </div>
-                            
-                                <div style="text-align: center;">
-                                  
-                                  <label for="total">Total Score for given assessment</label>
-                                    <input type="number" name="total" id="total" min="1" max="100" oninput="updateGradeMax()"><br><br>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="/teacher/create/grades" method="post">
+                                <div class="row">
+                                    <div class="col-3 mb-3">
+                                        <label for="assessmentTitle" class="form-label">Assessment Title</label>
+                                        <input type="text" class="form-control" name="assessmentTitle"
+                                            id="assessmentTitle">
+                                    </div>
+                                    <div class="col-3 mb-3">
+                                        <label for="dateGiven" class="form-label">Assessment Date</label>
+                                        <input type="date" class="form-control" name="dateGiven" id="dateGiven">
+                                    </div>
+                                    <div class="col-3 mb-3">
+                                        <label for="assessmenttype" class="form-label">Assessment Type</label><br>
+                                        <select name="assessmenttype" id="assessmenttype" class="form-select"
+                                            data-mdb-toggle="dropdown" aria-expanded="false">
+                                            <% for (const type of assessmentTypes) { %>
+                                                <option value="<%= type.assessmenttype %>">
+                                                    <%= type.assessmenttype %>
+                                                </option>
+                                                <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-3 mb-3">
+                                        <label for="quarterperiod">Quarter Period</label><br>
+                                        <select name="quarterperiod" id="quarterperiod" class="form-select"
+                                            data-mdb-toggle="dropdown" aria-expanded="false">
+                                            <% for (const period of quarterPeriods) { %>
+                                                <option value="<%= period.quarterperiod %>">
+                                                    <%= period.quarterperiod %>
+                                                </option>
+                                                <% } %>
+                                        </select>
+                                    </div>
                                 </div>
-
-                                <div style="text-align: center; width: 100%;">
-                                  <table border="1" style="width: 100%;">
-                                      <tr>
-                                          <th>Student ID</th>
-                                          <th>Student Name</th>
-                                          <th>Subject</th>
-                                          <th>Grade</th>
-                                      </tr>
-                                      <% for (const student of students) { %>
-                                          <tr>
-                                              <td hidden><input type="text" name="studentID" id="" value="<%= student.studentID %>" readonly></td>
-                                              <td><%= student.studentID %></td>
-                                              <td><%= student.full_name %></td>
-                                              <td><%= subjectname %></td>
-                                              <td>
-                                                  <input type="number" name="grade" id="grade" min="0" max="100"><br><br>
-                                              </td>
-                                          </tr>
-                                      <% } %>
-                                  </table>
-                              </div>
-                              
-                                  <br>
-                            
-                                  <div style="text-align: center;">
-                                    <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #4A55A2; border-color: #7895CB;">Create Grades</button>
-                                  </div>
-                                  <br>
-                                  
-                                </form>
-
-
-                              <!-- End of Entering codes -->
-                            </div>
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Student ID</th>
+                                                <th>Student Name</th>
+                                                <th>Subject</th>
+                                                <th>Grade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (const student of students) { %>
+                                                <tr>
+                                                    <td hidden><input type="text" name="studentID" id=""
+                                                            value="<%= student.studentID %>" readonly></td>
+                                                    <td>
+                                                        <%= student.studentID %>
+                                                    </td>
+                                                    <td>
+                                                        <%= student.full_name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= subjectname %>
+                                                    </td>
+                                                    <td class="grade-input-cell">
+                                                        <input type="number" class="form-control" name="grade" id="grade" min="0" max="100">
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="right-align mt-4">
+                                    <button type="submit" class="btn btn-primary btn-rounded">Create
+                                        Grades</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
-                            
-    </body>
+    </div>
+
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
@@ -231,5 +275,11 @@
     <script src="/assets/libs/flot/jquery.flot.stack.js"></script>
     <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="/dist/js/pages/chart/chart-page-init.js"></script>
+    <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script>
+
+        $("#zero_config").DataTable();
+    </script>
+</body>
+
 </html>

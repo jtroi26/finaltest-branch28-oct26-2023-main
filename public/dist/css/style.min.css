@@ -15360,3 +15360,23 @@ strong {
   left: 0;
   width: 100%; /* This ensures it spans the full width of the sidebar */
 }
+.grade-input-cell {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.grade-input-cell input[type="number"] {
+  width: 100px; /* Adjust width as needed */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 16px; /* Adjust font size as needed */
+  box-sizing: border-box; /* Ensure padding and border don't add to the width */
+}
+
+.grade-input-cell input[type="number"]:focus {
+  outline: none;
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a subtle box shadow on focus */
+}

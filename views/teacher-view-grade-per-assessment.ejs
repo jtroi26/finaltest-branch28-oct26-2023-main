@@ -5,7 +5,9 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><%= assessmenttype %> Grades | DAZSMA </title>
+  <title>
+    <%= assessmenttype %> Grades | DAZSMA
+  </title>
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
   <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="/assets/extra-libs/multicheck/multicheck.css" />
@@ -76,7 +78,8 @@
               </li>
               <li class="sidebar-item">
                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Class</span></a>
+                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Class
+                  </span></a>
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/students"
@@ -88,14 +91,47 @@
                       aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
                         class="hide-menu">Attendance</span></a>
                   </li>
+                </ul>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                  aria-expanded="false"><i class="mdi mdi-clipboard-check"></i>
+                  <span class="hide-menu">Grade</span>
+                </a>
+                <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 462px;"
-                      href="/teacher/index/grades" aria-expanded="false"><i
-                        class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
-                        class="hide-menu">Grades</span></a>
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/grades/Assignment"
+                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                        class="hide-menu">Assignment</span></a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/grades/Seatwork"
+                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                        class="hide-menu">Seatwork</span></a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/grades/Quiz"
+                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                        class="hide-menu">Quiz</span></a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/grades/Summative"
+                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                        class="hide-menu">Summative</span></a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/grades/Periodical"
+                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                        class="hide-menu">Periodical</span></a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/grades/Recitation"
+                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                        class="hide-menu">Recitation</span></a>
                   </li>
                 </ul>
               </li>
+
 
               <% if (teacherid) { %>
                 <div class="logout-button-container">
@@ -107,14 +143,14 @@
                     </li>
                   </form>
                 </div>
-                  <% } else { %>
-                    <div class="logout-button-container">
+                <% } else { %>
+                  <div class="logout-button-container">
                     <li class="sidebar-item">
                       <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
                         aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
                     </li>
                   </div>
-                <% } %>
+                  <% } %>
             </ul>
           </nav>
         </div>
@@ -251,7 +287,7 @@
 
                               <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
                                 aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-sm">
+                                <div class="modal-dialog modal-md modal-dialog-centered">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit Grade</h5>
@@ -260,12 +296,14 @@
                                     </div>
                                     <div class="modal-body">
                                       <form action="/teacher/grades/update/<%= result.id %>" method="post">
-                                        <label for="grade">Grade</label><br>
-                                        <input type="number" name="grade" id="grade" value="<%= result.grade %>"><br>
-                                        <label for="total">Assessment Total</label><br>
-                                        <input type="number" name="total" id="total"
+                                        <label for="grade" class="form-label">Grade</label><br>
+                                        <input type="number" name="grade" class="form-control" id="grade"
+                                          value="<%= result.grade %>"><br>
+                                        <label for="total" class="form-label">Assessment Total</label><br>
+                                        <input type="number" class="form-control" name="total" id="total"
                                           value="<%= result.total %>"><br><br>
-                                        <button type="submit">Update Data</button>
+                                        <button type="submit" <button type="submit"
+                                          class="btn btn-primary">Update</button>
                                       </form>
                                     </div>
                                   </div>
