@@ -10,6 +10,7 @@ npm i multer
 npm i fs
 npm i fast-csv
 import finalcapstone.sql
+npm i bcrypt
 
 
 routes:

@@ -46,6 +46,7 @@
           </div>
         </nav>
       </header>
+    
       <aside class="left-sidebar" data-sidebarbg="skin5">
         <div class="scroll-sidebar">
           <nav class="sidebar-nav">
@@ -56,9 +57,14 @@
                     class="hide-menu">Dashboard</span></a>
               </li>
               <li class="sidebar-item">
+                <a href="/file_uploads" class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-top: auto;"
+                  aria-expanded="false"><i class="mdi mdi-folder"></i><span class="hide-menu">Files</span></a>
+              </li>
+              <li class="sidebar-item">
                 <a href="/teacher/account" class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-top: auto;"
                   aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Account</span></a>
               </li>
+
               <% if (teacherid) { %>
                 <div class="logout-button-container">
                   <form id="logoutForm" action="/teacher-logout" method="post">

@@ -325,9 +325,12 @@
                                                         <button type="button" class="btn fa-solid fa-pause fa-2x" onclick="pauseSpeech()"></button>
                                                         <button type="button" class="btn fa-regular fa-circle-play fa-2x" onclick="resumeSpeech()"></button>
                                                     </div>
-                                                    <select class="form-select form-select-lg mb-3" id="voiceSelect">
-                                                        <!-- Options will be populated dynamically via JavaScript -->
-                                                    </select>
+                                                    <% if (i == 1) { %>
+                                                        <select class="form-select form-select-lg mb-3" id="voiceSelect">
+                                                            <!-- Options will be populated dynamically via JavaScript -->
+                                                        </select>
+                                                    <% } %>
+                                                    
                                                 </div>    
                                                     </select>
                                                     
