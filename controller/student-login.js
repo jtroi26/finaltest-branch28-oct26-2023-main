@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const express = require('express');
+const bcrypt = require("bcrypt");
 const rateLimit = require("express-rate-limit");
 const bcrypt = require("bcrypt");
 require('dotenv').config();
@@ -85,4 +85,5 @@ exports.postStudentLogin = [loginLimiter, (req, res) => {
             connection.end();
         }
     });
-}];
+}
+];
