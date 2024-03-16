@@ -50,6 +50,7 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            margin-left: 95%;
         }
     
         .close:hover,
@@ -188,18 +189,16 @@
                                                 <% files.forEach(file => { %>
                                                     <tr>
                                                         <td style="text-align: center;"><%= file.name_of_file %></td>
-                                                        <td >
+                                                        <td style="text-align: center;">
                                                             <% if (file.mimetype.startsWith('image')) { %>
                                                                 <!-- Display image preview with modal -->
                                                                 <a onclick="showModalImage('<%= file.filename %>')" type="button"
                                                                   class="btn btn-outline-warning"><i class="mdi mdi-eye"></i></a>
+                                                                
                                                             <% } else if (file.mimetype === 'application/pdf') { %>
                                                                 <!-- Display PDF preview with modal -->
                                                                 <a onclick="showModalPDF('<%= file.filename %>')" type="button"
                                                                   class="btn btn-outline-warning" ><i class="mdi mdi-eye"></i></a>
-                                                            <% } else if ( file.mimetype === 'application/vnd.openxmlformats-officedocument.presentationml.presentation') { %>
-                                                                <a onclick="showModalOtherfile('<%= file.filename %>')" type="button"
-                                                                    class="btn btn-outline-warning" ><i class="mdi mdi-eye"></i></a>
                                                             <% } else { %>
                                                                 <!-- Display a message for other file types -->
                                                                 File preview not available
