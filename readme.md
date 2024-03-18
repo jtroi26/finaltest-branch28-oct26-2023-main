@@ -11,7 +11,8 @@ npm i fs
 npm i fast-csv
 import finalcapstone.sql
 npm i bcrypt
-
+npm install express-flash
+(sa app.js - app.use(flash());)
 
 routes:
 

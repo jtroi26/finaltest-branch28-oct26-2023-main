@@ -67,6 +67,7 @@ exports.postEditAnnouncementForm = (req, res) => {
             console.error('Error updating announcement:', err);
             res.status(500).send('Internal Server Error');
         } else {
+            req.flash('success1', 'You can proceed');
             // Successfully updated the announcement
             res.redirect('/teacher/announcement');
         }

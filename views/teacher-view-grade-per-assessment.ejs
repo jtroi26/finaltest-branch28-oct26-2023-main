@@ -15,11 +15,35 @@
   <script src="https://code.highcharts.com/modules/data.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <% if (teacherid) { %>
 
   <body>
+
+    <% if (messages.success) { %>
+                        
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Subject Overview Created Successfully',
+              text: '<%= messages.success %>',
+          });
+      </script>
+  
+    <% } %>
+    <% if (messages.success1) { %>
+
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Subject Overview Updated Successfully',
+              text: '<%= messages.success1 %>',
+          });
+      </script>
+    <% } %>
+
     <div class="preloader">
       <div class="lds-ripple">
         <div class="lds-pos"></div>
@@ -587,6 +611,7 @@
                                         <button type="submit">Update Data</button>
                                       </form>
                                     </div>
+
                                   </div>
                                 </div>
                               </div>

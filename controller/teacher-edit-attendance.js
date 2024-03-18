@@ -78,7 +78,7 @@ exports.postEditAttendance = (req, res) => {
             // Handle the error (e.g., return an error response)
             return res.status(500).send('Internal Server Error');
         }
-
+        req.flash('success1', 'You can proceed');
         // Redirect to a success page or return a success response
         res.redirect('/teacher/students/attendance'); // Replace with your desired success page
     });

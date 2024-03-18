@@ -31,6 +31,7 @@ exports.postSetVisibility = (req, res) => {
             console.error('Error updating visibility:', error);
             res.status(500).send('Internal Server Error');
         } else {
+            req.flash('success', 'You can proceed');
             // Redirect to a page or send a response indicating success
             res.redirect('/teacher/lesson/modules'); // Change the URL to the appropriate success page
         }

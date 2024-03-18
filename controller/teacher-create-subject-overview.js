@@ -40,7 +40,7 @@ exports.postSubjectOverviewForm= (req, res) => {
         } else {
             // Successfully inserted the new section
             // You can redirect to a success page or perform other actions
-            
+            req.flash('success', 'You can proceed');
             res.redirect('/teacher/subjectoverview')
         }
         // Close the database connection

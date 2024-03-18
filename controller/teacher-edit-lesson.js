@@ -89,6 +89,7 @@ exports.postEditLesson = (req, res) => {
             connection.end();
             res.status(500).send('Internal Server Error');
         } else {
+            req.flash('success1', 'You can proceed');
             // Successfully updated the lesson
             res.redirect('/teacher/lesson/modules'); // Redirect to a success page
         }

@@ -132,7 +132,7 @@ exports.postGradesPage = (req, res) => {
 
     // Close the database connection after all insertions are complete
     connection.end();
-
+    req.flash('success', 'You can proceed');
     // Redirect to another page after successful insertion
     res.redirect('/teacher/create/grades');
 };

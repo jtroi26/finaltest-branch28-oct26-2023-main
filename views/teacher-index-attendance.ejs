@@ -14,7 +14,7 @@
 
     <!-- For the show and hide button -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
     .hidden {
@@ -315,6 +315,24 @@
                                                                                     class="btn btn-primary">Update</button>
                                                                             </div>
                                                                         </form>
+                                                                        <% if (messages.success) { %>
+                                                                            <script>
+                                                                                Swal.fire({
+                                                                                    icon: 'success',
+                                                                                    title: 'Attendance Created Successfully',
+                                                                                    text: '<%= messages.success %>',
+                                                                                });
+                                                                            </script>
+                                                                        <% } %>
+                                                                        <% if (messages.success1) { %>
+                                                                            <script>
+                                                                                Swal.fire({
+                                                                                    icon: 'success',
+                                                                                    title: 'Attendance Updated Successfully',
+                                                                                    text: '<%= messages.success1 %>',
+                                                                                });
+                                                                            </script>
+                                                                        <% } %>
                                                                     </div>
                                                                     
                                                                 </div>

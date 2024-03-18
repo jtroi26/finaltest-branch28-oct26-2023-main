@@ -114,7 +114,7 @@ exports.postAttendancePage = (req, res) => {
 
     // Close the database connection after all insertions are complete
     connection.end();
-
+    req.flash('success', 'You can proceed');
     // Respond with a success message or redirect to another page
     // res.status(200).send('Attendance recorded successfully');
     res.redirect('/teacher/students/attendance');

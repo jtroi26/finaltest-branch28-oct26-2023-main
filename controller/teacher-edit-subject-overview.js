@@ -58,6 +58,8 @@ exports.postSubjectOverview = (req, res) => {
         console.log('Subject overview updated successfully');
         connection.end(); // Close the MySQL connection
 
+        req.flash('success1', 'You can proceed');
+
         // Redirect to a relevant page after the update
         res.redirect('/teacher/subjectoverview');
     });

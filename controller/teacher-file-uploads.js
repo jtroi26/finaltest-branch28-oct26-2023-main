@@ -71,6 +71,7 @@ exports.uploadFile = async (req, res) => {
         );
         connection.release();
 
+        req.flash('success', 'You can proceed');
         res.redirect('/file_uploads');
     } catch (err) {
         console.error('Error uploading file:', err);
@@ -146,7 +147,7 @@ exports.postedit = async (req, res) => {
             [name_of_file, sectionname, visibility, id]
         );
         connection.release();
-
+        req.flash('success1', 'You can proceed');
         res.redirect('/file_uploads'); // Redirect to the main page or wherever appropriate
     } catch (err) {
         console.error('Error updating file attributes:', err);
@@ -166,7 +167,7 @@ exports.postdelete = async (req, res) => {
         
         // Execute the SQL DELETE statement
         await connection.query(deleteQuery, [id]);
-        
+        req.flash('success', 'You can proceed');
         // Send a success response
         res.redirect('/file_uploads');
     } catch (error) {
