@@ -25,6 +25,6 @@ router.get('/download/:filename', teacherfileuploadsrouter.download);
 router.get('/edit/:id', teacherfileuploadsrouter.getedit);
 router.post('/edit/:id', teacherfileuploadsrouter.postedit);
 //delete file
-router.post('/delete/:id', teacherfileuploadsrouter.postdelete);
+// router.post('/delete/:id', teacherfileuploadsrouter.postSetInvisibility);
 
 module.exports = router;

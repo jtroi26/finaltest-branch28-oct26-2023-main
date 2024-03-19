@@ -14,6 +14,10 @@
 <!-- Bootstrap JS (optional, if you need modal functionality) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -21,38 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-        }
-    
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 5% auto; /* 5% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 90%; /* 90% of the screen width */
-        max-width: 950px; /* Limit maximum width */
-        height: 90%; /* 90% of the screen height */
-        max-height: 90%; /* Limit maximum height */
-        overflow-y: auto; /* Enable vertical scroll if needed */
-    }
 
-    /* Adjust iframe size for PDF */
-    .modal-content iframe {
-        width: 100%; /* Occupy full width */
-        height: 100%; /* Occupy full height */
-    }
     
         /* Close button */
         .close {
@@ -60,6 +33,7 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            margin-left: 95%; 
         }
     
         .close:hover,
@@ -195,42 +169,58 @@
                             
 
                           
-                          <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 offset-md-3">
-                                    <h1 class="text-center">Upload a File</h1>
-                                    <form action="/file_uploads" method="POST" enctype="multipart/form-data">
+                          <!-- Button trigger modal -->
+<!-- Button to trigger modal -->
+                      <div class="right-align">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#uploadfileModal">
+                            Upload File
+                        </button>
+                      </div>
+
+<!-- Modal -->
+                          <div class="modal fade" id="uploadfileModal" tabindex="-1"
+                            aria-labelledby="uploadfileModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="uploadfileModalLabel">Upload File
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form action="/file_uploads" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="file">Choose File:</label>
-                                            <input type="file" class="form-control-file" id="file" name="file" required>
+                                          <label for="file">Choose File:</label>
+                                          <input type="file" class="form-control-file" id="file" name="file" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="name_of_file">Name of File:</label>
-                                            <input type="text" class="form-control" id="name_of_file" name="name_of_file" required>
+                                          <label for="name_of_file">Name of File:</label>
+                                          <input type="text" class="form-control" id="name_of_file" name="name_of_file" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sectionname">Select Section:</label>
-                                            <select class="form-control" id="sectionname" name="sectionname" required>
-                                                <% sections.forEach(section => { %>
-                                                <option value="<%= section.sectionname %>"><%= section.sectionname %></option>
-                                                <% }); %>
-                                            </select>
+                                          <label for="sectionname">Select Section:</label>
+                                          <select class="form-control" id="sectionname" name="sectionname" required>
+                                            <% sections.forEach(section => { %>
+                                            <option value="<%= section.sectionname %>"><%= section.sectionname %></option>
+                                            <% }); %>
+                                          </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="visibility">Visibility:</label>
-                                            <select class="form-control" id="visibility" name="visibility" required>
-                                                <option value="visible">Visible</option>
-                                                <option value="invisible">Invisible</option>
-                                            </select>
+                                          <label for="visibility">Visibility:</label>
+                                          <select class="form-control" id="visibility" name="visibility" required>
+                                            <option value="Visible">Visible</option>
+                                            <option value="Invisible">Invisible</option>
+                                          </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-block">Upload</button>
-                                    </form>
+                                      </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-    
-    
+                          </div>
+
 
             <hr>
 
@@ -248,7 +238,7 @@
                 <th>Preview</th>
                 <th>Download</th>
                 <th>Edit</th>
-                <th>Delete</th>
+                <!-- <th>Delete</th> -->
             </tr>
         </thead>
         <tbody>
@@ -326,8 +316,8 @@
                                       <label for="visibility">Visibility:</label>
                                       <select name="visibility" id="visibility" class="form-control" required>
                                           <option value="<%= file.visibility %>"><%= file.visibility %></option>
-                                          <option value="visible">Visible</option>
-                                          <option value="invisible">Invisible</option>
+                                          <option value="Visible">Visible</option>
+                                          <option value="Invisible">Invisible</option>
                                       </select>
                                   </div>
                                   <button type="submit" class="btn btn-primary">Upload</button>
@@ -340,9 +330,9 @@
 
                 
 
-                <td><form action="/delete/<%= file.id %>" method="POST">
+                <!-- <td><form action="/delete/<%= file.id %>" method="POST">
                     <a type="submit" type="button" class="btn btn-outline-danger">Delete</a>
-                </form></td>
+                </form></td> -->
                 
             </tr>
                             
@@ -462,6 +452,7 @@
 <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
 <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
 <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>

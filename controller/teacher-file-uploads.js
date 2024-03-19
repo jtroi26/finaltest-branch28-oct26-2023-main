@@ -155,24 +155,22 @@ exports.postedit = async (req, res) => {
     }
 };
 
-exports.postdelete = async (req, res) => {
-    const id = req.params.id; // Extract the ID from the URL parameter
+// exports.postSetInvisibility = (req, res) => {
+//     const connection = mysql.createConnection(conn);
+//     const { id } = req.params; // Extract the ID from the URL parameter
 
-    const pool = mysql.createPool(conn);
-    const connection = await pool.getConnection();
+//     const value = "Invisible";
     
-    try {
-        // Construct the SQL DELETE statement
-        const deleteQuery = `DELETE FROM uploaded_files WHERE id = ?`;
-        
-        // Execute the SQL DELETE statement
-        await connection.query(deleteQuery, [id]);
-        req.flash('success', 'You can proceed');
-        // Send a success response
-        res.redirect('/file_uploads');
-    } catch (error) {
-        // Handle any errors
-        console.error("Error deleting file:", error);
-        res.status(500).send("An error occurred while deleting the file");
-    }
-};
+//     const sql = `UPDATE uploaded_files SET visibility = ? WHERE id= ? `;
+
+//     connection.query(sql, [value, id], (error, results) => {
+//         if (error){
+//             console.error('Error Updating Visibilityy: ', error);
+//             res.status(500).send('Internal Server Error');
+//         }else{
+//             res.redirect('/file_uploads');
+//         };
+
+//     });
+
+// };
