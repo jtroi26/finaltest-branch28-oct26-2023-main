@@ -81,6 +81,7 @@ var studentAnnouncementsViewRouter = require('./routes/student-view-announcement
 var studentAnnouncementPageViewRouter = require('./routes/student-view-announcementpage');
 var studentAnnouncementIndexPageViewRouter = require('./routes/student-index-announcements');
 var studentIndexGradesViewRouter = require('./routes/student-index-grades');
+var studentViewFilesRouter = require ('./routes/student-view-files');
 
 // student account
 var studentAccountRouter = require('./routes/student-account');
@@ -105,6 +106,9 @@ var subjectOverview = require('./routes/teacher-create-subject-overview');
 var subjectOverviewIndex = require('./routes/teacher-index-subject-overview');
 var subjectOverviewEdit = require('./routes/teacher-edit-subject-overview');
 var app = express();
+
+// teacher file uploads
+var teacherfileuploads = require('./routes/teacher-file-uploads');
 
 const oneDay = 1000 * 60 * 60 * 24;
 
@@ -131,6 +135,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
+//app.use('/file_uploads', express.static('file_uploads'));
+app.use('/', express.static('file_uploads'));
 
 //routing the routes
 
@@ -209,6 +215,9 @@ app.use('/', studentAnnouncementPageViewRouter);
 app.use('/', studentAnnouncementIndexPageViewRouter);
 app.use('/', studentIndexGradesViewRouter);
 
+// student view files
+app.use('/', studentViewFilesRouter);
+
 // student account
 app.use('/', studentAccountRouter);
 
@@ -228,6 +237,9 @@ app.use('/', teacherViewGradesAssessment);
 app.use('/', subjectOverview);
 app.use('/', subjectOverviewIndex);
 app.use('/', subjectOverviewEdit);
+
+// teacher file uploads
+app.use('/', teacherfileuploads);
 
 // teacher create subject overview
 

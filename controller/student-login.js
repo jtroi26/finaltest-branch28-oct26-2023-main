@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const rateLimit = require("express-rate-limit");
+
 require('dotenv').config();
 const maxLoginAttempts = 5;
 
@@ -84,4 +85,5 @@ exports.postStudentLogin = [loginLimiter, (req, res) => {
             connection.end();
         }
     });
-}];
+}
+];
