@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const flash = require('express-flash');
 
 //routes instantiation
 //login routes
@@ -115,6 +116,7 @@ app.use(session({
       maxAge: oneDay, // 60 secs in milliseconds
   },
 }));
+app.use(flash());
 
 //port listener
 const port = 3000;

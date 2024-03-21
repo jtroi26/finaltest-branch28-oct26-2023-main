@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css" />
   <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
   <link href="../dist/css/style.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <% if (admin_id) { %>
 
@@ -75,15 +76,14 @@
               </li>
               <li class="sidebar-item">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-department"
-                    aria-expanded="false"><i class="mdi mdi-home"></i><span
-                        class="hide-menu">Departments</span></a>
-            </li>
-            <li class="sidebar-item">
+                  aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Departments</span></a>
+              </li>
+              <li class="sidebar-item">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 300px;"
-                    href="/admin/reset-password" aria-expanded="false"><i
-                        class="mdi mdi-account-key"></i><span class="hide-menu">Reset
-                        Passwords</span></a>
-            </li>
+                  href="/admin/reset-password" aria-expanded="false"><i class="mdi mdi-account-key"></i><span
+                    class="hide-menu">Reset
+                    Passwords</span></a>
+              </li>
               <% if (admin_id) { %>
                 <div class="logout-button-container">
                   <form id="logoutForm" action="/admin-logout" method="post">
@@ -125,126 +125,163 @@
           </div>
         </div>
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="right-align">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                      data-bs-target="#createSectionModal">
-                      Create Section
-                    </button>
-                  </div>
-                  <!-- Create Section Modal -->
-                  <div class="modal fade" id="createSectionModal" tabindex="-1"
-                    aria-labelledby="createSectionModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="createSectionModalLabel">Create New Section</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <form action="/admin/create-section" method="post">
-                            <div class="mb-3">
-                              <label for="sectionname" class="form-label">Section Name</label>
-                              <input type="text" class="form-control" id="sectionname" name="sectionname" required>
-                            </div>
-                            <div class="mb-3">
-                              <label for="visibility">Visibility</label>
-                              <select name="visibility" id="visibility" class="form-select" required>
-                                <option value="" disabled selected>Choose an option</option>
-                                <option value="Visible">Visible</option>
-                                <option value="Invisible">Invisible</option>
-                              </select>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary">Create Section</button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <% if (messages.success) { %>
 
+            <script>
+              Swal.fire({
+                icon: 'success',
+                title: 'File Uploaded Successfully',
+                text: '<%= messages.success %>',
+              });
+            </script>
 
-                  <div class="table-responsive">
-                    <table id="zero_config" class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Section Name</th>
-                          <th>Status</th>
-                          <th class="text-center">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% for (const section of sections) { %>
-                          <tr>
-                            <td>
-                              <%= section.sectionname %>
-                            </td>
-                            <td>
-                              <%= section.visibility %>
-                            </td>
-                            <td class="text-center">
-                              <!-- <a href="/admin/view-section/<%= section.id %>" class="btn btn-outline-info"><i
-                                  class="mdi mdi-eye"></i></a> -->
-                              <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
-                                data-bs-target="#editSectionModal-<%= section.id %>">
-                                <i class="mdi mdi-pencil"></i>
-                              </button>
-                              <form action="/admin/delete-section/<%= section.id %>" method="post"
-                                style="display: inline;">
-                                <button type="submit" class="btn btn-outline-danger"><i
-                                    class="mdi mdi-delete"></i></button>
-                              </form>
-                            </td>
-                          </tr>
-                          <!-- Edit Section Modal -->
-                          <div class="modal fade" id="editSectionModal-<%= section.id %>" tabindex="-1"
-                            aria-labelledby="editSectionModalLabel-<%= section.id %>" aria-hidden="true">
+            <% } %>
+            <% if (messages.error) { %>
+
+              <script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Duplicate Section',
+                  text: '<%= messages.error %>',
+                });
+              </script>
+  
+              <% } %>
+              <% if (messages.success1) { %>
+
+                <script>
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'File Updated Successfully',
+                    text: '<%= messages.success1 %>',
+                  });
+                </script>
+                <% } %>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="right-align">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                              data-bs-target="#createSectionModal">
+                              Create Section
+                            </button>
+                          </div>
+                          <!-- Create Section Modal -->
+                          <div class="modal fade" id="createSectionModal" tabindex="-1"
+                            aria-labelledby="createSectionModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="editSectionModalLabel-<%= section.id %>">Edit Section</h5>
+                                  <h5 class="modal-title" id="createSectionModalLabel">Create New Section</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                  <form action="/admin/edit-section/<%= section.id %>" method="post">
+                                  <form action="/admin/create-section" method="post">
                                     <div class="mb-3">
-                                      <label for="sectionname-<%= section.id %>" class="form-label">Section Name</label>
-                                      <input type="text" class="form-control" id="sectionname-<%= section.id %>"
-                                        name="sectionname" value="<%= section.sectionname %>" required>
+                                      <label for="sectionname" class="form-label">Section Name</label>
+                                      <input type="text" class="form-control" id="sectionname" name="sectionname"
+                                        required>
                                     </div>
                                     <div class="mb-3">
-                                      <label for="visibility-<%= section.id %>">Visibility</label>
-                                      <select name="visibility" id="visibility-<%= section.id %>" class="form-select"
-                                        required>
-                                        <option value="Visible" <%=section.visibility==='Visible' ? 'selected' : '' %>
-                                          >Visible</option>
-                                        <option value="Invisible" <%=section.visibility==='Invisible' ? 'selected' : ''
-                                          %>
-                                          >Invisible
-                                        </option>
+                                      <label for="visibility">Visibility</label>
+                                      <select name="visibility" id="visibility" class="form-select" required>
+                                        <option value="" disabled selected>Choose an option</option>
+                                        <option value="Visible">Visible</option>
+                                        <option value="Invisible">Invisible</option>
                                       </select>
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="submit" class="btn btn-warning">Update</button>
+                                      <button type="submit" class="btn btn-primary">Create Section</button>
                                     </div>
                                   </form>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <% } %>
-                      </tbody>
-                    </table>
+
+
+                          <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                              <thead>
+                                <tr>
+                                  <th>Section Name</th>
+                                  <th>Status</th>
+                                  <th class="text-center">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% for (const section of sections) { %>
+                                  <tr>
+                                    <td>
+                                      <%= section.sectionname %>
+                                    </td>
+                                    <td>
+                                      <%= section.visibility %>
+                                    </td>
+                                    <td class="text-center">
+                                      <!-- <a href="/admin/view-section/<%= section.id %>" class="btn btn-outline-info"><i
+                                  class="mdi mdi-eye"></i></a> -->
+                                      <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                                        data-bs-target="#editSectionModal-<%= section.id %>">
+                                        <i class="mdi mdi-pencil"></i>
+                                      </button>
+                                      <form action="/admin/delete-section/<%= section.id %>" method="post"
+                                        style="display: inline;">
+                                        <button type="submit" class="btn btn-outline-danger"><i
+                                            class="mdi mdi-delete"></i></button>
+                                      </form>
+                                    </td>
+                                  </tr>
+                                  <!-- Edit Section Modal -->
+                                  <div class="modal fade" id="editSectionModal-<%= section.id %>" tabindex="-1"
+                                    aria-labelledby="editSectionModalLabel-<%= section.id %>" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="editSectionModalLabel-<%= section.id %>">Edit
+                                            Section</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form action="/admin/edit-section/<%= section.id %>" method="post">
+                                            <div class="mb-3">
+                                              <label for="sectionname-<%= section.id %>" class="form-label">Section
+                                                Name</label>
+                                              <input type="text" class="form-control" id="sectionname-<%= section.id %>"
+                                                name="sectionname" value="<%= section.sectionname %>" required>
+                                            </div>
+                                            <div class="mb-3">
+                                              <label for="visibility-<%= section.id %>">Visibility</label>
+                                              <select name="visibility" id="visibility-<%= section.id %>"
+                                                class="form-select" required>
+                                                <option value="Visible" <%=section.visibility==='Visible' ? 'selected'
+                                                  : '' %>
+                                                  >Visible</option>
+                                                <option value="Invisible" <%=section.visibility==='Invisible'
+                                                  ? 'selected' : '' %>
+                                                  >Invisible
+                                                </option>
+                                              </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="submit" class="btn btn-warning">Update</button>
+                                            </div>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <% } %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

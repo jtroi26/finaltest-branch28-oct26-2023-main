@@ -16,7 +16,7 @@ exports.postSetVisibility = (req, res) => {
     const value = "Invisible";
     
     const sql = `
-    UPDATE sections
+    UPDATE sectionsa
     SET visibility = ?
     WHERE id = ?;
     `;
