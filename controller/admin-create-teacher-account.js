@@ -46,11 +46,13 @@ exports.postTeacherCreateAccount = (req, res) => {
         if (err) {
             console.error('Error generating salt:', err);
             res.status(500).json({ error: "An error occurred while hashing the password." });
+            req.flash('error', "Invalid Data");
         } else {
             bcrypt.hash(userPassword, salt, function (err, hashedPassword) {
                 if (err) {
                     console.error('Error hashing password:', err);
                     res.status(500).json({ error: "An error occurred while hashing the password." });
+                    req.flash('error', "Invalid Data");
                 } else {
                     const sql2 = `INSERT INTO teacherlogins (teacherid, userlogin, userpassword) VALUES (?,?,?);`;
                     const values2 = [teacherid, userLogin, hashedPassword];
@@ -60,13 +62,16 @@ exports.postTeacherCreateAccount = (req, res) => {
                             console.error("Error inserting data into teacherdetails:", err1);
                             connection.end(); // Close the database connection
                             res.status(500).json({ error: "An error occurred while inserting data." });
+                            req.flash('error', "Invalid Data");
                         } else {
                             connection.query(sql2, values2, (err2, results2) => {
                                 connection.end(); // Close the database connection
                                 if (err2) {
                                     console.error("Error inserting data into teacherlogins:", err2);
                                     res.status(500).json({ error: "An error occurred while inserting data." });
+                                    req.flash('error', "Invalid Data");
                                 } else {
+                                    req.flash('success', "Created Successfully");
                                     res.redirect('/admin/index-teacher');
                                 }
                             });

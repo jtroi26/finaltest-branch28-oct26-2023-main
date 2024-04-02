@@ -65,8 +65,10 @@ exports.postEditTeacherAccountPage = (req, res) => {
         if (err) {
             console.error('Error updating teacher details:', err);
             res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
         } else {
             // Successfully updated the department
+            req.flash('update', "Update Successfully");
             res.redirect('/admin/index-teacher');
         }
         // Close the database connection

@@ -29,8 +29,10 @@ exports.postSetVisibility = (req, res) => {
         if (error) {
             console.error('Error updating visibility:', error);
             res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
         } else {
             // Redirect to a page or send a response indicating success
+            req.flash('success', "Set Invisible");
             res.redirect('/admin/index-subject'); // Change the URL to the appropriate success page
         }
     });

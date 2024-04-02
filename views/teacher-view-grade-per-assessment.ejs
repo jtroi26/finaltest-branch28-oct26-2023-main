@@ -5,7 +5,9 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><%= assessmenttype %> Grades | DAZSMA </title>
+  <title>
+    <%= assessmenttype %> Grades | DAZSMA
+  </title>
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/dazsma-logo.ico" />
   <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="/assets/extra-libs/multicheck/multicheck.css" />
@@ -23,697 +25,756 @@
   <body>
 
     <% if (messages.success) { %>
-                        
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Subject Overview Created Successfully',
-              text: '<%= messages.success %>',
-          });
-      </script>
-  
-    <% } %>
-    <% if (messages.success1) { %>
 
       <script>
-          Swal.fire({
+        Swal.fire({
+          icon: 'success',
+          title: 'Subject Overview Created Successfully',
+          text: '<%= messages.success %>',
+        });
+      </script>
+
+      <% } %>
+        <% if (messages.success1) { %>
+
+          <script>
+            Swal.fire({
               icon: 'success',
               title: 'Subject Overview Updated Successfully',
               text: '<%= messages.success1 %>',
-          });
-      </script>
-    <% } %>
+            });
+          </script>
+          <% } %>
 
-    <div class="preloader">
-      <div class="lds-ripple">
-        <div class="lds-pos"></div>
-        <div class="lds-pos"></div>
-      </div>
-    </div>
-    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-      <header class="topbar" data-navbarbg="skin5">
-        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-          <div class="navbar-header" data-logobg="skin5">
-            <a class="navbar-brand" href="/teacher/dashboard">
-              <b class="logo-icon ps-2">
-                <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
-              </b>
-              <span class="logo-text ms-2">
-                <span>DAZSMA</span>
-              </span>
-            </a>
-            <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
-                class="ti-menu ti-close"></i></a>
-          </div>
-          <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-            <ul class="navbar-nav float-start me-auto">
-              <li class="nav-item d-none d-lg-block">
-                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                  data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <aside class="left-sidebar" data-sidebarbg="skin5">
-        <div class="scroll-sidebar">
-          <nav class="sidebar-nav">
-            <ul id="sidebarnav" class="pt-4">
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/dashboard"
-                  aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                    class="hide-menu">Dashboard</span></a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/announcement/"
-                  aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Announcements</span></a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/subjectoverview"
-                  aria-expanded="false"><i class="mdi mdi-eye"></i><span class="hide-menu">Subject
-                    Overview</span></a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/lesson/modules"
-                  aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">Lesson</span></a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Class</span></a>
-                <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/students"
-                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
-                        class="hide-menu">Students</span></a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/students/attendance/"
-                      aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
-                        class="hide-menu">Attendance</span></a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" style="margin-bottom: 462px;"
-                      href="/teacher/index/grades" aria-expanded="false"><i
-                        class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
-                        class="hide-menu">Grades</span></a>
-                  </li>
-                </ul>
-              </li>
-
-              <% if (teacherid) { %>
-                <div class="logout-button-container">
-                  <form id="logoutForm" action="/teacher-logout" method="post">
-                    <li class="sidebar-item">
-                      <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
-                        onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
-                          class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
-                    </li>
-                  </form>
-                </div>
-                  <% } else { %>
-                    <div class="logout-button-container">
-                    <li class="sidebar-item">
-                      <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
-                        aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                    </li>
+            <div class="preloader">
+              <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+              </div>
+            </div>
+            <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+              data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+              <header class="topbar" data-navbarbg="skin5">
+                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                  <div class="navbar-header" data-logobg="skin5">
+                    <a class="navbar-brand" href="/teacher/dashboard">
+                      <b class="logo-icon ps-2">
+                        <img src="/assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
+                      </b>
+                      <span class="logo-text ms-2">
+                        <span>DAZSMA</span>
+                      </span>
+                    </a>
+                    <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
+                        class="ti-menu ti-close"></i></a>
                   </div>
-                <% } %>
-            </ul>
-          </nav>
-        </div>
-      </aside>
-      <div class="page-wrapper">
-        <div class="page-breadcrumb">
-          <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-              <!-- <h4 class="page-title"><%= assessmenttype %>
-              </h4> -->
-              <div class="ms-auto text-end">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/teacher/dashboard">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Grades</li>
-                  </ol>
+                  <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <ul class="navbar-nav float-start me-auto">
+                      <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                          data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+                      </li>
+                    </ul>
+                  </div>
                 </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container-fluid">
-          <div class="row">
-            <!-- start -->
-            <div class="card">
-              <div class="card-body">
-                <div class="card-title">
-                  <h1 style="text-align: center;">
-                    <%= assessmenttype %>
-                  </h1>
+              </header>
+              <aside class="left-sidebar" data-sidebarbg="skin5">
+                <div class="scroll-sidebar">
+                  <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="pt-4">
+                      <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/dashboard"
+                          aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                            class="hide-menu">Dashboard</span></a>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/announcement/"
+                          aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span
+                            class="hide-menu">Announcements</span></a>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/subjectoverview"
+                          aria-expanded="false"><i class="mdi mdi-eye"></i><span class="hide-menu">Subject
+                            Overview</span></a>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/lesson/modules"
+                          aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span
+                            class="hide-menu">Lesson</span></a>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                          aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Class
+                          </span></a>
+                        <ul aria-expanded="false" class="collapse first-level">
+                          <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/teacher/view/students"
+                              aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                class="hide-menu">Students</span></a>
+                          </li>
+                          <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                              href="/teacher/students/attendance/" aria-expanded="false"><i
+                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                class="hide-menu">Attendance</span></a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="sidebar-item">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                          aria-expanded="false"><i class="mdi mdi-clipboard-check"></i>
+                          <span class="hide-menu">Grade</span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level">
+                          <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                              href="/teacher/view/grades/Assignment" aria-expanded="false"><i
+                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                class="hide-menu">Assignment</span></a>
+                          </li>
+                          <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                              href="/teacher/view/grades/Seatwork" aria-expanded="false"><i
+                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                class="hide-menu">Seatwork</span></a>
+                          </li>
+                          <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                              href="/teacher/view/grades/Quiz" aria-expanded="false"><i
+                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                class="hide-menu">Quiz</span></a>
+                          </li>
+                          <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                              href="/teacher/view/grades/Summative" aria-expanded="false"><i
+                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                class="hide-menu">Summative</span></a>
+                          </li>
+                          <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                              href="/teacher/view/grades/Periodical" aria-expanded="false"><i
+                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                class="hide-menu">Periodical</span></a>
+                          </li>
+                          <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                              href="/teacher/view/grades/Recitation" aria-expanded="false"><i
+                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                class="hide-menu">Recitation</span></a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <% if (teacherid) { %>
+                        <div class="logout-button-container">
+                          <form id="logoutForm" action="/teacher-logout" method="post">
+                            <li class="sidebar-item">
+                              <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
+                                  class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
+                            </li>
+                          </form>
+                        </div>
+                        <% } else { %>
+                          <div class="logout-button-container">
+                            <li class="sidebar-item">
+                              <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                aria-expanded="false"><i class="mdi mdi-login"></i><span
+                                  class="hide-menu">Login</span></a>
+                            </li>
+                          </div>
+                          <% } %>
+                    </ul>
+                  </nav>
                 </div>
-                <hr>
-                <div class="seperate" id="seperate-id">
-                  <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                      <a class="nav-link active" id="first-quarter-tab" data-bs-toggle="tab" href="#first-quarter"
-                        role="tab" aria-controls="first-quarter" aria-selected="true">First Quarter</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <a class="nav-link" id="second-quarter-tab" data-bs-toggle="tab" href="#second-quarter" role="tab"
-                        aria-controls="second-quarter" aria-selected="false">Second Quarter</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <a class="nav-link" id="third-quarter-tab" data-bs-toggle="tab" href="#third-quarter" role="tab"
-                        aria-controls="third-quarter" aria-selected="false">Third Quarter</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <a class="nav-link" id="fourth-quarter-tab" data-bs-toggle="tab" href="#fourth-quarter" role="tab"
-                        aria-controls="fourth-quarter" aria-selected="false">Fourth Quarter</a>
-                    </li>
-                  </ul>
-                  <br>
-
-                  <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane show1 active" id="first-quarter" role="tabpanel"
-                      aria-labelledby="first-quarter-tab">
-                      <!-- Period 1 Table -->
-                      <div class="table-responsive">
-                        <table id="zero_config1" class="table table-striped table-bordered">
-                          <thead>
-                            <tr>
-                              <th>assessmentTitle</th>
-                              <th>Quarter Period</th>
-                              <th>Date</th>
-                              <th>Student Full Name</th>
-                              <th>Sectionname</th>
-                              <th>subjectname</th>
-                              <th>Achieved Grade</th>
-                              <th>Assessment Overall Grade</th>
-                              <th>View Grade</th>
-                              <th>Edit Grade</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% period1.forEach(result=> { %>
-                              <tr>
-                                <td>
-                                  <%= result.assessmentTitle %>
-                                </td>
-                                <td>
-                                  <%= result.quarterperiod %>
-                                </td>
-                                <td>
-                                  <%= result.dateGiven %>
-                                </td>
-                                <td>
-                                  <%= result.full_name %>
-                                </td>
-                                <td>
-                                  <%= result.sectionname %>
-                                </td>
-                                <td>
-                                  <%= result.subjectname %>
-                                </td>
-                                <td>
-                                  <%= result.grade %>
-                                </td>
-                                <td>
-                                  <%= result.total %>
-                                </td>
-                                <td>
-                                  <button class="btn btn-outline-info view-grade-btn" data-bs-toggle="modal"
-                                    data-bs-target="#viewGradeModal<%= result.id %>" data-grade="<%= result.grade %>"
-                                    data-total="<%= result.total %>">
-                                    <i class="mdi mdi-eye"></i>
-                                  </button>
-                                </td>
-                                <td>
-                                  <button class="btn btn-outline-warning" data-bs-toggle="modal"
-                                    data-bs-target="#editGradeModal<%= result.id %>">
-                                    <i class="mdi mdi-pencil"></i>
-                                  </button>
-                                </td>
-                              </tr>
-
-                              <div class="modal fade" id="viewGradeModal<%= result.id %>" tabindex="-1"
-                                aria-labelledby="viewGradeModal<%= result.id %>" aria-hidden="true">
-                                <!-- Modal content -->
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="viewGradeModal<%= result.id %>">View Grade</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <!-- Container for Highcharts chart -->
-                                      <div class="highchart-container" id="studentcharts<%= result.id %>"
-                                        style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
-                                aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-sm">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit Grade</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form action="/teacher/grades/update/<%= result.id %>" method="post">
-                                        <label for="grade">Grade</label><br>
-                                        <input type="number" name="grade" id="grade" value="<%= result.grade %>"><br>
-                                        <label for="total">Assessment Total</label><br>
-                                        <input type="number" name="total" id="total"
-                                          value="<%= result.total %>"><br><br>
-                                        <button type="submit">Update Data</button>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <% }); %>
-                          </tbody>
-                        </table>
+              </aside>
+              <div class="page-wrapper">
+                <div class="page-breadcrumb">
+                  <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                      <!-- <h4 class="page-title"><%= assessmenttype %>
+              </h4> -->
+                      <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/teacher/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Grades</li>
+                          </ol>
+                        </nav>
                       </div>
                     </div>
-
-                    <div class="tab-pane fade" id="second-quarter" role="tabpanel" aria-labelledby="second-quarter-tab">
-                      <!-- Period 2 Table -->
-                      <div class="table-responsive">
-                        <table id="zero_config2" class="table table-striped table-bordered">
-                          <thead>
-                            <tr>
-                              <th>assessmentTitle</th>
-                              <th>Quarter Period</th>
-                              <th>Date</th>
-                              <th>Student Full Name</th>
-                              <th>Sectionname</th>
-                              <th>subjectname</th>
-                              <th>Achieved Grade</th>
-                              <th>Assessment Overall Grade</th>
-                              <th>View Grade</th>
-                              <th>Edit Grade</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% period2.forEach(result=> { %>
-                              <tr>
-                                <td>
-                                  <%= result.assessmentTitle %>
-                                </td>
-                                <td>
-                                  <%= result.quarterperiod %>
-                                </td>
-                                <td>
-                                  <%= result.dateGiven %>
-                                </td>
-                                <td>
-                                  <%= result.full_name %>
-                                </td>
-                                <td>
-                                  <%= result.sectionname %>
-                                </td>
-                                <td>
-                                  <%= result.subjectname %>
-                                </td>
-                                <td>
-                                  <%= result.grade %>
-                                </td>
-                                <td>
-                                  <%= result.total %>
-                                </td>
-                                <td>
-                                  <button class="btn btn-outline-info view-grade-btn" data-bs-toggle="modal"
-                                    data-bs-target="#viewGradeModal<%= result.id %>" data-grade="<%= result.grade %>"
-                                    data-total="<%= result.total %>">
-                                    <i class="mdi mdi-eye"></i>
-                                  </button>
-                                </td>
-                                <td>
-                                  <button class="btn btn-outline-warning" data-bs-toggle="modal"
-                                    data-bs-target="#editGradeModal<%= result.id %>">
-                                    <i class="mdi mdi-pencil"></i>
-                                  </button>
-                                </td>
-                              </tr>
-
-                              <div class="modal fade" id="viewGradeModal<%= result.id %>" tabindex="-1"
-                                aria-labelledby="viewGradeModal<%= result.id %>" aria-hidden="true">
-                                <!-- Modal content -->
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="viewGradeModal<%= result.id %>">View Grade</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <!-- Container for Highcharts chart -->
-                                      <div class="highchart-container" id="studentcharts<%= result.id %>"
-                                        style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
-                                aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-sm">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit Grade</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form action="/teacher/grades/update/<%= result.id %>" method="post">
-                                        <label for="grade">Grade</label><br>
-                                        <input type="number" name="grade" id="grade" value="<%= result.grade %>"><br>
-                                        <label for="total">Assessment Total</label><br>
-                                        <input type="number" name="total" id="total"
-                                          value="<%= result.total %>"><br><br>
-                                        <button type="submit">Update Data</button>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <% }); %>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="third-quarter" role="tabpanel" aria-labelledby="third-quarter-tab">
-                      <div class="table-responsive">
-                        <table id="zero_config3" class="table table-striped table-bordered">
-                          <thead>
-                            <tr>
-                              <th>assessmentTitle</th>
-                              <th>Quarter Period</th>
-                              <th>Date</th>
-                              <th>Student Full Name</th>
-                              <th>Sectionname</th>
-                              <th>subjectname</th>
-                              <th>Achieved Grade</th>
-                              <th>Assessment Overall Grade</th>
-                              <th>View Grade</th>
-                              <th>Edit Grade</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% period3.forEach(result=> { %>
-                              <tr>
-                                <td>
-                                  <%= result.assessmentTitle %>
-                                </td>
-                                <td>
-                                  <%= result.quarterperiod %>
-                                </td>
-                                <td>
-                                  <%= result.dateGiven %>
-                                </td>
-                                <td>
-                                  <%= result.full_name %>
-                                </td>
-                                <td>
-                                  <%= result.sectionname %>
-                                </td>
-                                <td>
-                                  <%= result.subjectname %>
-                                </td>
-                                <td>
-                                  <%= result.grade %>
-                                </td>
-                                <td>
-                                  <%= result.total %>
-                                </td>
-                                <td>
-                                  <button class="btn btn-outline-info view-grade-btn" data-bs-toggle="modal"
-                                    data-bs-target="#viewGradeModal<%= result.id %>" data-grade="<%= result.grade %>"
-                                    data-total="<%= result.total %>">
-                                    <i class="mdi mdi-eye"></i>
-                                  </button>
-                                </td>
-                                <td>
-                                  <button class="btn btn-outline-warning" data-bs-toggle="modal"
-                                    data-bs-target="#editGradeModal<%= result.id %>">
-                                    <i class="mdi mdi-pencil"></i>
-                                  </button>
-                                </td>
-                              </tr>
-
-                              <div class="modal fade" id="viewGradeModal<%= result.id %>" tabindex="-1"
-                                aria-labelledby="viewGradeModal<%= result.id %>" aria-hidden="true">
-                                <!-- Modal content -->
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="viewGradeModal<%= result.id %>">View Grade</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <!-- Container for Highcharts chart -->
-                                      <div class="highchart-container" id="studentcharts<%= result.id %>"
-                                        style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
-                                aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-sm">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit Grade</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form action="/teacher/grades/update/<%= result.id %>" method="post">
-                                        <label for="grade">Grade</label><br>
-                                        <input type="number" name="grade" id="grade" value="<%= result.grade %>"><br>
-                                        <label for="total">Assessment Total</label><br>
-                                        <input type="number" name="total" id="total"
-                                          value="<%= result.total %>"><br><br>
-                                        <button type="submit">Update Data</button>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <% }); %>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="fourth-quarter" role="tabpanel" aria-labelledby="fourth-quarter-tab">
-                      <div class="table-responsive">
-                        <table id="zero_config4" class="table table-striped table-bordered">
-                          <thead>
-                            <tr>
-                              <th>assessmentTitle</th>
-                              <th>Quarter Period</th>
-                              <th>Date</th>
-                              <th>Student Full Name</th>
-                              <th>Sectionname</th>
-                              <th>subjectname</th>
-                              <th>Achieved Grade</th>
-                              <th>Assessment Overall Grade</th>
-                              <th>View Grade</th>
-                              <th>Edit Grade</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% period4.forEach(result=> { %>
-                              <tr>
-                                <td>
-                                  <%= result.assessmentTitle %>
-                                </td>
-                                <td>
-                                  <%= result.quarterperiod %>
-                                </td>
-                                <td>
-                                  <%= result.dateGiven %>
-                                </td>
-                                <td>
-                                  <%= result.full_name %>
-                                </td>
-                                <td>
-                                  <%= result.sectionname %>
-                                </td>
-                                <td>
-                                  <%= result.subjectname %>
-                                </td>
-                                <td>
-                                  <%= result.grade %>
-                                </td>
-                                <td>
-                                  <%= result.total %>
-                                </td>
-                                <td>
-                                  <button class="btn btn-outline-info view-grade-btn" data-bs-toggle="modal"
-                                    data-bs-target="#viewGradeModal<%= result.id %>" data-grade="<%= result.grade %>"
-                                    data-total="<%= result.total %>">
-                                    <i class="mdi mdi-eye"></i>
-                                  </button>
-                                </td>
-                                <td>
-                                  <button class="btn btn-outline-warning" data-bs-toggle="modal"
-                                    data-bs-target="#editGradeModal<%= result.id %>">
-                                    <i class="mdi mdi-pencil"></i>
-                                  </button>
-                                </td>
-                              </tr>
-
-                              <div class="modal fade" id="viewGradeModal<%= result.id %>" tabindex="-1"
-                                aria-labelledby="viewGradeModal<%= result.id %>" aria-hidden="true">
-                                <!-- Modal content -->
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="viewGradeModal<%= result.id %>">View Grade</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <!-- Container for Highcharts chart -->
-                                      <div class="highchart-container" id="studentcharts<%= result.id %>"
-                                        style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
-                                aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
-                                <div class="modal-dialog modal-sm">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit Grade</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form action="/teacher/grades/update/<%= result.id %>" method="post">
-                                        <label for="grade">Grade</label><br>
-                                        <input type="number" name="grade" id="grade" value="<%= result.grade %>"><br>
-                                        <label for="total">Assessment Total</label><br>
-                                        <input type="number" name="total" id="total"
-                                          value="<%= result.total %>"><br><br>
-                                        <button type="submit">Update Data</button>
-                                      </form>
-                                    </div>
-
-                                  </div>
-                                </div>
-                              </div>
-                              <% }); %>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
                   </div>
-                  <a class="btn btn-primary " href="/teacher/index/grades">Go Back</a>
                 </div>
+                <div class="container-fluid">
+                  <div class="row">
+                    <!-- start -->
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="card-title">
+                          <h1 style="text-align: center;">
+                            <%= assessmenttype %>
+                          </h1>
+                        </div>
+                        <hr>
+                        <div class="seperate" id="seperate-id">
+                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="first-quarter-tab" data-bs-toggle="tab"
+                                href="#first-quarter" role="tab" aria-controls="first-quarter"
+                                aria-selected="true">First Quarter</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="second-quarter-tab" data-bs-toggle="tab" href="#second-quarter"
+                                role="tab" aria-controls="second-quarter" aria-selected="false">Second Quarter</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="third-quarter-tab" data-bs-toggle="tab" href="#third-quarter"
+                                role="tab" aria-controls="third-quarter" aria-selected="false">Third Quarter</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="fourth-quarter-tab" data-bs-toggle="tab" href="#fourth-quarter"
+                                role="tab" aria-controls="fourth-quarter" aria-selected="false">Fourth Quarter</a>
+                            </li>
+                          </ul>
+                          <br>
+
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane show1 active" id="first-quarter" role="tabpanel"
+                              aria-labelledby="first-quarter-tab">
+                              <!-- Period 1 Table -->
+                              <div class="table-responsive">
+                                <table id="zero_config1" class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th>assessmentTitle</th>
+                                      <th>Quarter Period</th>
+                                      <th>Date</th>
+                                      <th>Student Full Name</th>
+                                      <th>Sectionname</th>
+                                      <th>subjectname</th>
+                                      <th>Achieved Grade</th>
+                                      <th>Assessment Overall Grade</th>
+                                      <th>View Grade</th>
+                                      <th>Edit Grade</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% period1.forEach(result=> { %>
+                                      <tr>
+                                        <td>
+                                          <%= result.assessmentTitle %>
+                                        </td>
+                                        <td>
+                                          <%= result.quarterperiod %>
+                                        </td>
+                                        <td>
+                                          <%= result.dateGiven %>
+                                        </td>
+                                        <td>
+                                          <%= result.full_name %>
+                                        </td>
+                                        <td>
+                                          <%= result.sectionname %>
+                                        </td>
+                                        <td>
+                                          <%= result.subjectname %>
+                                        </td>
+                                        <td>
+                                          <%= result.grade %>
+                                        </td>
+                                        <td>
+                                          <%= result.total %>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-outline-info view-grade-btn" data-bs-toggle="modal"
+                                            data-bs-target="#viewGradeModal<%= result.id %>"
+                                            data-grade="<%= result.grade %>" data-total="<%= result.total %>">
+                                            <i class="mdi mdi-eye"></i>
+                                          </button>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-outline-warning" data-bs-toggle="modal"
+                                            data-bs-target="#editGradeModal<%= result.id %>">
+                                            <i class="mdi mdi-pencil"></i>
+                                          </button>
+                                        </td>
+                                      </tr>
+
+                                      <div class="modal fade" id="viewGradeModal<%= result.id %>" tabindex="-1"
+                                        aria-labelledby="viewGradeModal<%= result.id %>" aria-hidden="true">
+                                        <!-- Modal content -->
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="viewGradeModal<%= result.id %>">View Grade
+                                              </h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <!-- Container for Highcharts chart -->
+                                              <div class="highchart-container" id="studentcharts<%= result.id %>"
+                                                style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
+                                        aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit
+                                                Grade</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="/teacher/grades/update/<%= result.id %>" method="post">
+                                                <label for="grade">Grade</label><br>
+                                                <input type="number" name="grade" id="grade"
+                                                  value="<%= result.grade %>"><br>
+                                                <label for="total">Assessment Total</label><br>
+                                                <input type="number" name="total" id="total"
+                                                  value="<%= result.total %>"><br><br>
+                                                <button type="submit">Update Data</button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <% }); %>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="second-quarter" role="tabpanel"
+                              aria-labelledby="second-quarter-tab">
+                              <!-- Period 2 Table -->
+                              <div class="table-responsive">
+                                <table id="zero_config2" class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th>assessmentTitle</th>
+                                      <th>Quarter Period</th>
+                                      <th>Date</th>
+                                      <th>Student Full Name</th>
+                                      <th>Sectionname</th>
+                                      <th>subjectname</th>
+                                      <th>Achieved Grade</th>
+                                      <th>Assessment Overall Grade</th>
+                                      <th>View Grade</th>
+                                      <th>Edit Grade</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% period2.forEach(result=> { %>
+                                      <tr>
+                                        <td>
+                                          <%= result.assessmentTitle %>
+                                        </td>
+                                        <td>
+                                          <%= result.quarterperiod %>
+                                        </td>
+                                        <td>
+                                          <%= result.dateGiven %>
+                                        </td>
+                                        <td>
+                                          <%= result.full_name %>
+                                        </td>
+                                        <td>
+                                          <%= result.sectionname %>
+                                        </td>
+                                        <td>
+                                          <%= result.subjectname %>
+                                        </td>
+                                        <td>
+                                          <%= result.grade %>
+                                        </td>
+                                        <td>
+                                          <%= result.total %>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-outline-info view-grade-btn" data-bs-toggle="modal"
+                                            data-bs-target="#viewGradeModal<%= result.id %>"
+                                            data-grade="<%= result.grade %>" data-total="<%= result.total %>">
+                                            <i class="mdi mdi-eye"></i>
+                                          </button>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-outline-warning" data-bs-toggle="modal"
+                                            data-bs-target="#editGradeModal<%= result.id %>">
+                                            <i class="mdi mdi-pencil"></i>
+                                          </button>
+                                        </td>
+                                      </tr>
+
+                                      <div class="modal fade" id="viewGradeModal<%= result.id %>" tabindex="-1"
+                                        aria-labelledby="viewGradeModal<%= result.id %>" aria-hidden="true">
+                                        <!-- Modal content -->
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="viewGradeModal<%= result.id %>">View Grade
+                                              </h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <!-- Container for Highcharts chart -->
+                                              <div class="highchart-container" id="studentcharts<%= result.id %>"
+                                                style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
+                                        aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit
+                                                Grade</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="/teacher/grades/update/<%= result.id %>" method="post">
+                                                <label for="grade">Grade</label><br>
+                                                <input type="number" name="grade" id="grade"
+                                                  value="<%= result.grade %>"><br>
+                                                <label for="total">Assessment Total</label><br>
+                                                <input type="number" name="total" id="total"
+                                                  value="<%= result.total %>"><br><br>
+                                                <button type="submit">Update Data</button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <% }); %>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="third-quarter" role="tabpanel"
+                              aria-labelledby="third-quarter-tab">
+                              <div class="table-responsive">
+                                <table id="zero_config3" class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th>assessmentTitle</th>
+                                      <th>Quarter Period</th>
+                                      <th>Date</th>
+                                      <th>Student Full Name</th>
+                                      <th>Sectionname</th>
+                                      <th>subjectname</th>
+                                      <th>Achieved Grade</th>
+                                      <th>Assessment Overall Grade</th>
+                                      <th>View Grade</th>
+                                      <th>Edit Grade</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% period3.forEach(result=> { %>
+                                      <tr>
+                                        <td>
+                                          <%= result.assessmentTitle %>
+                                        </td>
+                                        <td>
+                                          <%= result.quarterperiod %>
+                                        </td>
+                                        <td>
+                                          <%= result.dateGiven %>
+                                        </td>
+                                        <td>
+                                          <%= result.full_name %>
+                                        </td>
+                                        <td>
+                                          <%= result.sectionname %>
+                                        </td>
+                                        <td>
+                                          <%= result.subjectname %>
+                                        </td>
+                                        <td>
+                                          <%= result.grade %>
+                                        </td>
+                                        <td>
+                                          <%= result.total %>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-outline-info view-grade-btn" data-bs-toggle="modal"
+                                            data-bs-target="#viewGradeModal<%= result.id %>"
+                                            data-grade="<%= result.grade %>" data-total="<%= result.total %>">
+                                            <i class="mdi mdi-eye"></i>
+                                          </button>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-outline-warning" data-bs-toggle="modal"
+                                            data-bs-target="#editGradeModal<%= result.id %>">
+                                            <i class="mdi mdi-pencil"></i>
+                                          </button>
+                                        </td>
+                                      </tr>
+
+                                      <div class="modal fade" id="viewGradeModal<%= result.id %>" tabindex="-1"
+                                        aria-labelledby="viewGradeModal<%= result.id %>" aria-hidden="true">
+                                        <!-- Modal content -->
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="viewGradeModal<%= result.id %>">View Grade
+                                              </h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <!-- Container for Highcharts chart -->
+                                              <div class="highchart-container" id="studentcharts<%= result.id %>"
+                                                style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
+                                        aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit
+                                                Grade</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="/teacher/grades/update/<%= result.id %>" method="post">
+                                                <label for="grade">Grade</label><br>
+                                                <input type="number" name="grade" id="grade"
+                                                  value="<%= result.grade %>"><br>
+                                                <label for="total">Assessment Total</label><br>
+                                                <input type="number" name="total" id="total"
+                                                  value="<%= result.total %>"><br><br>
+                                                <button type="submit">Update Data</button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <% }); %>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="fourth-quarter" role="tabpanel"
+                              aria-labelledby="fourth-quarter-tab">
+                              <div class="table-responsive">
+                                <table id="zero_config4" class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th>assessmentTitle</th>
+                                      <th>Quarter Period</th>
+                                      <th>Date</th>
+                                      <th>Student Full Name</th>
+                                      <th>Sectionname</th>
+                                      <th>subjectname</th>
+                                      <th>Achieved Grade</th>
+                                      <th>Assessment Overall Grade</th>
+                                      <th>View Grade</th>
+                                      <th>Edit Grade</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% period4.forEach(result=> { %>
+                                      <tr>
+                                        <td>
+                                          <%= result.assessmentTitle %>
+                                        </td>
+                                        <td>
+                                          <%= result.quarterperiod %>
+                                        </td>
+                                        <td>
+                                          <%= result.dateGiven %>
+                                        </td>
+                                        <td>
+                                          <%= result.full_name %>
+                                        </td>
+                                        <td>
+                                          <%= result.sectionname %>
+                                        </td>
+                                        <td>
+                                          <%= result.subjectname %>
+                                        </td>
+                                        <td>
+                                          <%= result.grade %>
+                                        </td>
+                                        <td>
+                                          <%= result.total %>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-outline-info view-grade-btn" data-bs-toggle="modal"
+                                            data-bs-target="#viewGradeModal<%= result.id %>"
+                                            data-grade="<%= result.grade %>" data-total="<%= result.total %>">
+                                            <i class="mdi mdi-eye"></i>
+                                          </button>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-outline-warning" data-bs-toggle="modal"
+                                            data-bs-target="#editGradeModal<%= result.id %>">
+                                            <i class="mdi mdi-pencil"></i>
+                                          </button>
+                                        </td>
+                                      </tr>
+
+                                      <div class="modal fade" id="viewGradeModal<%= result.id %>" tabindex="-1"
+                                        aria-labelledby="viewGradeModal<%= result.id %>" aria-hidden="true">
+                                        <!-- Modal content -->
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="viewGradeModal<%= result.id %>">View Grade
+                                              </h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <!-- Container for Highcharts chart -->
+                                              <div class="highchart-container" id="studentcharts<%= result.id %>"
+                                                style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="modal fade" id="editGradeModal<%= result.id %>" tabindex="-1"
+                                        aria-labelledby="editGradeModalLabel<%= result.id %>" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="editGradeModalLabel<%= result.id %>">Edit
+                                                Grade</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="/teacher/grades/update/<%= result.id %>" method="post">
+                                                <label for="grade">Grade</label><br>
+                                                <input type="number" name="grade" id="grade"
+                                                  value="<%= result.grade %>"><br>
+                                                <label for="total">Assessment Total</label><br>
+                                                <input type="number" name="total" id="total"
+                                                  value="<%= result.total %>"><br><br>
+                                                <button type="submit">Update Data</button>
+                                              </form>
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <% }); %>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                          </div>
+                          <a class="btn btn-primary " href="/teacher/index/grades">Go Back</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end -->
+                  </div>
+                  <!-- students per section chart -->
+                  <figure class="highcharts-figure">
+                    <div id="studentcharts"></div>
+                  </figure>
+                </div>
+
               </div>
+
             </div>
-            <!-- end -->
-          </div>
-          <!-- students per section chart -->
-          <figure class="highcharts-figure">
-            <div id="studentcharts"></div>
-          </figure>
-        </div>
+            <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+            <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+            <script src="/assets/extra-libs/sparkline/sparkline.js"></script>
+            <script src="/dist/js/waves.js"></script>
+            <script src="/dist/js/sidebarmenu.js"></script>
+            <script src="/dist/js/custom.min.js"></script>
+            <script src="/assets/libs/flot/excanvas.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.pie.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.time.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.stack.js"></script>
+            <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
+            <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+            <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>
+            <script>
 
-      </div>
+              $("#zero_config1").DataTable();
+              $("#zero_config2").DataTable();
+              $("#zero_config3").DataTable();
+              $("#zero_config4").DataTable();
+            </script>
+            <script>
+              // Function to create pie chart
+              function createPieChart(containerId, grade, total) {
+                const remaining = total - grade;
 
-    </div>
-    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/assets/extra-libs/sparkline/sparkline.js"></script>
-    <script src="/dist/js/waves.js"></script>
-    <script src="/dist/js/sidebarmenu.js"></script>
-    <script src="/dist/js/custom.min.js"></script>
-    <script src="/assets/libs/flot/excanvas.js"></script>
-    <script src="/assets/libs/flot/jquery.flot.js"></script>
-    <script src="/assets/libs/flot/jquery.flot.pie.js"></script>
-    <script src="/assets/libs/flot/jquery.flot.time.js"></script>
-    <script src="/assets/libs/flot/jquery.flot.stack.js"></script>
-    <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
-    <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>
-    <script>
-
-      $("#zero_config1").DataTable();
-      $("#zero_config2").DataTable();
-      $("#zero_config3").DataTable();
-      $("#zero_config4").DataTable();
-    </script>
-    <script>
-      // Function to create pie chart
-      function createPieChart(containerId, grade, total) {
-        const remaining = total - grade;
-
-        Highcharts.chart(containerId, {
-          chart: {
-            type: 'pie'
-          },
-          title: {
-            text: 'Student Grade'
-          },
-          plotOptions: {
-            pie: {
-              allowPointSelect: true,
-              cursor: 'pointer',
-              dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.y} / {point.total}',
-                distance: -50,
-                style: {
-                  fontWeight: 'bold',
-                  color: 'white'
-                }
+                Highcharts.chart(containerId, {
+                  chart: {
+                    type: 'pie'
+                  },
+                  title: {
+                    text: 'Student Grade'
+                  },
+                  plotOptions: {
+                    pie: {
+                      allowPointSelect: true,
+                      cursor: 'pointer',
+                      dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.y} / {point.total}',
+                        distance: -50,
+                        style: {
+                          fontWeight: 'bold',
+                          color: 'white'
+                        }
+                      }
+                    }
+                  },
+                  series: [{
+                    name: 'Items',
+                    data: [{
+                      name: 'Correct',
+                      y: grade
+                    }, {
+                      name: 'Mistakes',
+                      y: remaining
+                    }]
+                  }]
+                });
               }
-            }
-          },
-          series: [{
-            name: 'Items',
-            data: [{
-              name: 'Correct',
-              y: grade
-            }, {
-              name: 'Mistakes',
-              y: remaining
-            }]
-          }]
-        });
-      }
 
-      // Event listener for the "View Grade" button click
-      document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('view-grade-btn')) {
-          const grade = parseFloat(event.target.getAttribute('data-grade'));
-          const total = parseFloat(event.target.getAttribute('data-total'));
-          const modalId = event.target.getAttribute('data-bs-target').replace('#', '');
+              // Event listener for the "View Grade" button click
+              document.addEventListener('click', function (event) {
+                if (event.target.classList.contains('view-grade-btn')) {
+                  const grade = parseFloat(event.target.getAttribute('data-grade'));
+                  const total = parseFloat(event.target.getAttribute('data-total'));
+                  const modalId = event.target.getAttribute('data-bs-target').replace('#', '');
 
-          // Generate a unique container ID for each chart
-          const containerId = `studentcharts${modalId.split('viewGradeModal')[1]}`;
+                  // Generate a unique container ID for each chart
+                  const containerId = `studentcharts${modalId.split('viewGradeModal')[1]}`;
 
-          // Create the pie chart within the modal for the clicked row
-          createPieChart(containerId, grade, total);
-        }
-      });
-    </script>
+                  // Create the pie chart within the modal for the clicked row
+                  createPieChart(containerId, grade, total);
+                }
+              });
+            </script>
 
 
   </body>
