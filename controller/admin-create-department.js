@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const flash = require('express-flash');
 
 require('dotenv').config();
 
@@ -26,9 +27,11 @@ exports.postCreateDepartmentPage = (req, res) => {
             console.error('Error creating department:', err);
             // Handle the error (e.g., send an error response)
             res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
         } else {
             // Successfully inserted the new department
             // You can redirect to a success page or perform other actions
+            req.flash('success', "Created Successfully");
             res.redirect('/admin/index-department');
             return; // Add this return statement to prevent further code execution
         }

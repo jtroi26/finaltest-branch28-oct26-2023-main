@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const flash = require('express-flash');
 
 require('dotenv').config();
 
@@ -68,8 +69,10 @@ exports.postEditStudent = (req, res) => {
         if (err) {
             console.error('Error updating student details:', err);
             res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
         } else {
             // Successfully updated the student
+            req.flash('update', "Update Successfully");
             res.redirect('/admin/index-student');
         }
         // Close the database connection

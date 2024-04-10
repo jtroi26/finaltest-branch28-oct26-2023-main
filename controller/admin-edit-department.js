@@ -51,8 +51,10 @@ exports.postEditDepartmentPage = (req, res) => {
         if (err) {
             console.error('Error updating department:', err);
             res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
         } else {
             // Successfully updated the department
+            req.flash('update', "Update Successfully");
             res.redirect('/admin/index-department');
         }
 

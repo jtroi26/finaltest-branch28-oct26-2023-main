@@ -17,12 +17,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-    .hidden {
-        display: none;
+        .hidden {
+            display: none;
         }
-
     </style>
-    
+
 </head>
 
 <% if (teacherid) { %>
@@ -89,7 +88,8 @@
                             <li class="sidebar-item">
                                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                                     aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
-                                        class="hide-menu">Class</span></a>
+                                        class="hide-menu">Class
+                                    </span></a>
                                 <ul aria-expanded="false" class="collapse first-level">
                                     <li class="sidebar-item">
                                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -103,34 +103,74 @@
                                                 class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
                                                 class="hide-menu">Attendance</span></a>
                                     </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                                    aria-expanded="false"><i class="mdi mdi-clipboard-check"></i>
+                                    <span class="hide-menu">Grade</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse first-level">
                                     <li class="sidebar-item">
                                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                            style="margin-bottom: 462px;" href="/teacher/index/grades"
-                                            aria-expanded="false"><i
+                                            href="/teacher/view/grades/Assignment" aria-expanded="false"><i
                                                 class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
-                                                class="hide-menu">Grades</span></a>
+                                                class="hide-menu">Assignment</span></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/view/grades/Seatwork" aria-expanded="false"><i
+                                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                                class="hide-menu">Seatwork</span></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/view/grades/Quiz" aria-expanded="false"><i
+                                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                                class="hide-menu">Quiz</i></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/view/grades/Summative" aria-expanded="false"><i
+                                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                                class="hide-menu">Summative</span></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/view/grades/Periodical" aria-expanded="false"><i
+                                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                                class="hide-menu">Periodical</span></a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                            href="/teacher/view/grades/Recitation" aria-expanded="false"><i
+                                                class="mdi mdi-checkbox-multiple-blank-circle-outline"></i><span
+                                                class="hide-menu">Recitation</span></a>
                                     </li>
                                 </ul>
                             </li>
 
                             <% if (teacherid) { %>
                                 <div class="logout-button-container">
-                                  <form id="logoutForm" action="/teacher-logout" method="post">
-                                    <li class="sidebar-item">
-                                      <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
-                                          class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
-                                    </li>
-                                  </form>
+                                    <form id="logoutForm" action="/teacher-logout" method="post">
+                                        <li class="sidebar-item">
+                                            <a href="javascript:void(0);"
+                                                class="sidebar-link waves-effect waves-dark sidebar-link"
+                                                onclick="document.getElementById('logoutForm').submit();"
+                                                aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                                                    class="hide-menu">Logout</span></a>
+                                        </li>
+                                    </form>
                                 </div>
-                                  <% } else { %>
+                                <% } else { %>
                                     <div class="logout-button-container">
-                                    <li class="sidebar-item">
-                                      <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                                    </li>
-                                  </div>
-                                <% } %>
+                                        <li class="sidebar-item">
+                                            <a href="/teacher" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                                aria-expanded="false"><i class="mdi mdi-login"></i><span
+                                                    class="hide-menu">Login</span></a>
+                                        </li>
+                                    </div>
+                                    <% } %>
                         </ul>
                     </nav>
                 </div>
@@ -139,7 +179,8 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h4 class="page-title">Students' Attendance for <%= sectionname %> <%= subjectname %> 
+                            <h4 class="page-title">Students' Attendance for <%= sectionname %>
+                                    <%= subjectname %>
                             </h4>
                             <div class="ms-auto text-end">
                                 <nav aria-label="breadcrumb">
@@ -323,18 +364,18 @@
                                                                                     text: '<%= messages.success %>',
                                                                                 });
                                                                             </script>
-                                                                        <% } %>
-                                                                        <% if (messages.success1) { %>
-                                                                            <script>
-                                                                                Swal.fire({
-                                                                                    icon: 'success',
-                                                                                    title: 'Attendance Updated Successfully',
-                                                                                    text: '<%= messages.success1 %>',
-                                                                                });
-                                                                            </script>
-                                                                        <% } %>
+                                                                            <% } %>
+                                                                                <% if (messages.success1) { %>
+                                                                                    <script>
+                                                                                        Swal.fire({
+                                                                                            icon: 'success',
+                                                                                            title: 'Attendance Updated Successfully',
+                                                                                            text: '<%= messages.success1 %>',
+                                                                                        });
+                                                                                    </script>
+                                                                                    <% } %>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -98,8 +98,10 @@ exports.postEditSubjectPage = (req, res) => {
         if (err) {
             console.error('Error updating subject:', err);
             res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
         } else {
             // Successfully updated the subject
+            req.flash('update', "Update Successfully");
             res.redirect('/admin/index-subject');
         }
 

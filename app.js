@@ -120,7 +120,6 @@ app.use(session({
       maxAge: oneDay, // 60 secs in milliseconds
   },
 }));
-
 app.use(flash());
 
 //port listener

@@ -50,13 +50,16 @@ exports.getSubjectCreatePage = (req, res) => {
         ])
             .then(() => {
                 connection.end(); // Close the database connection
+                req.flash('success', "Created Successfully");
 
                 // Pass the data to your EJS template and render it
                 res.render('admin-create-subject', { data });
             })
             .catch((err) => {
-                console.error('Error:', err);
-                res.status(500).send('Internal Server Error');
+                // console.error('Error:', err);
+                // res.status(500).send('Internal Server Error');
+                req.flash('error',"Invalid Input");
+
             });
     });
 };
@@ -79,6 +82,7 @@ exports.postSubjectCreatePage = (req, res) => {
         if (err) {
             console.error('Error connecting to the database:', err);
             res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
             return;
         }
 
@@ -88,6 +92,7 @@ exports.postSubjectCreatePage = (req, res) => {
             if (err) {
                 console.error('Error executing SQL query:', err);
                 res.status(500).send('Internal Server Error');
+                req.flash('error', "Invalid Data");
                 return;
             }
 
@@ -101,6 +106,7 @@ exports.postSubjectCreatePage = (req, res) => {
             console.log('Visibility: ' + visibility);
 
             // Redirect to the subject index URL ('/admin/index-subject')
+            req.flash('success', "Create Successfully");
             res.redirect('/admin/index-subject');
         });
     });

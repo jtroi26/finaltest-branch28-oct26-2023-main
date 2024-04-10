@@ -3,10 +3,10 @@ const mysql = require("mysql");
 require('dotenv').config();
 
 const conn = {
-    host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD
 };
 
 exports.getEditSectionPage = (req, res) => {
@@ -40,10 +40,11 @@ exports.postEditSectionPage = (req, res) => {
 
   connection.query(sql, values, (err, result) => {
     if (err) {
-      console.error('Error updating section:', err);
-      res.status(500).send('Internal Server Error');
+      req.flash('error', "Invalid Input");
+      res.redirect('/admin/index-section');
     } else {
       // Successfully updated the subject
+      req.flash('update', "Updated Successfully");
       res.redirect('/admin/index-section');
     }
 

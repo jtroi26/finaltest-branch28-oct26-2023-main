@@ -34,7 +34,8 @@ exports.getfileuploads = async (req, res) => {
 
         
         // Fetch sections
-        const [sectionRows] = await connection.query(`SELECT * FROM sections
+        const [sectionRows] = await connection.query(`
+        SELECT * FROM sections
                                 INNER JOIN subjects ON sections.sectionname = subjects.sectionname
                                 INNER JOIN teacherdetails ON subjects.teacherid = teacherdetails.teacherid
                                 WHERE subjects.teacherid = ?`, [teacherid]);
@@ -154,23 +155,3 @@ exports.postedit = async (req, res) => {
         res.status(500).send('Error updating file attributes');
     }
 };
-
-// exports.postSetInvisibility = (req, res) => {
-//     const connection = mysql.createConnection(conn);
-//     const { id } = req.params; // Extract the ID from the URL parameter
-
-//     const value = "Invisible";
-    
-//     const sql = `UPDATE uploaded_files SET visibility = ? WHERE id= ? `;
-
-//     connection.query(sql, [value, id], (error, results) => {
-//         if (error){
-//             console.error('Error Updating Visibilityy: ', error);
-//             res.status(500).send('Internal Server Error');
-//         }else{
-//             res.redirect('/file_uploads');
-//         };
-
-//     });
-
-// };

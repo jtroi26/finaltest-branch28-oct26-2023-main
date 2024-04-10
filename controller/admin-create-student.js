@@ -4,6 +4,7 @@ const fastCsv = require('fast-csv');
 const multer = require('multer');
 const path = require('path');
 const bcrypt = require("bcrypt");
+const flash = require('express-flash');
 
 require('dotenv').config();
 
@@ -46,7 +47,6 @@ exports.getCreateStudent = (req, res) => {
             }
 
             connection.end(); // Close the database connection
-
             // Pass the data to your EJS template and render it
             res.render('admin-create-student', { sections: results });
         });
@@ -87,6 +87,7 @@ exports.postCreateStudentManual = (req, res) => {
         if (err) {
             console.error('Error connecting to the database:', err);
             res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
             return;
         }
 
@@ -97,9 +98,9 @@ exports.postCreateStudentManual = (req, res) => {
                 console.error('Error inserting data into students:', err);
                 res.status(500).send('Error inserting data into students');
                 connection.end();
-
+                req.flash('error', "Invalid Data");
                 // Redirect the user back to the create student page
-                return res.redirect('/admin/create/student'); 
+                return res.redirect('/admin/create/student');
             }
 
             // Execute the second SQL query to insert data into the studentlogins table
@@ -108,15 +109,17 @@ exports.postCreateStudentManual = (req, res) => {
                     console.error('Error inserting data into studentlogins:', err);
                     res.status(500).send('Error inserting data into studentlogins');
                     connection.end();
+                    req.flash('error', "Invalid Data");
                     return res.redirect('/admin/create/student'); // Redirect the user back to the create student page
                 }
 
                 // Both queries were successful, so redirect the user to a success page or take further action
+                req.flash('success', "Created Successfully");
                 res.redirect('/admin/index-student'); // Change this URL to your desired success page
 
                 connection.end(); // Close the database connection
             });
-        });
+        }); 
     });
 };
 

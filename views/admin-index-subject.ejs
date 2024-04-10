@@ -122,6 +122,76 @@
                     </div>
                 </div>
                 <div class="container-fluid">
+                    <% if (messages.success) { %>
+
+                        <script>
+                          Swal.fire({
+                            icon: 'success',
+                            title: 'Created Successfully',
+                            text: '<%= messages.success %>',
+                          });
+                        </script>
+            
+                        <% } %>
+                          <% if (messages.error) { %>
+            
+                            <script>
+                              Swal.fire({
+                                icon: 'error',
+                                title: 'Duplicate Section',
+                                text: '<%= messages.error %>',
+                              });
+                            </script>
+            
+                            <% } %>
+                              <% if (messages.update) { %>
+            
+                                <script>
+                                  Swal.fire({
+                                    icon: 'success',
+                                    title: 'Updated Successfully',
+                                    text: '<%= messages.update %>',
+                                  });
+                                </script>
+                                <% } %>
+                                  <% if (messages.delete) { %>
+            
+                                    <script>
+                                      const swalWithBootstrapButtons = Swal.mixin({
+                                        customClass: {
+                                          confirmButton: "btn btn-success",
+                                          cancelButton: "btn btn-danger"
+                                        },
+                                        buttonsStyling: false
+                                      });
+                                      swalWithBootstrapButtons.fire({
+                                        title: "Are you sure?",
+                                        text: "You won't be able to revert this!",
+                                        icon: "warning",
+                                        showCancelButton: true,
+                                        confirmButtonText: "Yes, delete it!",
+                                        cancelButtonText: "No, cancel!",
+                                        reverseButtons: true
+                                      }).then((result) => {
+                                        if (result.isConfirmed) {
+                                          swalWithBootstrapButtons.fire({
+                                            title: "Deleted!",
+                                            text: "Your file has been deleted.",
+                                            icon: "success"
+                                          });
+                                        } else if (
+                                          /* Read more about handling dismissals below */
+                                          result.dismiss === Swal.DismissReason.cancel
+                                        ) {
+                                          swalWithBootstrapButtons.fire({
+                                            title: "Cancelled",
+                                            text: "Your imaginary file is safe :)",
+                                            icon: "error"
+                                          });
+                                        }
+                                      });
+                                    </script>
+                                    <% } %>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
