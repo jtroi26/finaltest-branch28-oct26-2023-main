@@ -119,7 +119,7 @@ exports.postGradesPage = (req, res) => {
 
         // If grade is not 'NULL' or null, proceed to insert data
         const sql = `INSERT INTO assessments (assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, sectionname, subjectname, teacherid, grade, total) VALUES (?,?,?,?,?,?,?,?,?,?)`;
-        const values = [assessmentTitle, assessmenttype, quarterperiod, formattedDate, studentID[i], sectionname, subjectname, teacherid, grade[i], total];
+        const values = [assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID[i], sectionname, subjectname, teacherid, grade[i], total];
 
         connection.query(sql, values, (err, results) => {
             if (err) {

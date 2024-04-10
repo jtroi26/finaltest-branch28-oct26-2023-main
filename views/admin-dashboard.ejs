@@ -237,6 +237,58 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-md-6" >
+              <div class="card">
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="assessmentcharts"></div>
+                    <table id="datatableforassessment" hidden>
+                      <tr>
+                        <th>Section</th>
+                        <th>Assessment</th>
+                      </tr>
+                      <% assessmentData.forEach(function(assessment) { %>
+                        <tr>
+                          <td>
+                            <%= assessment.assessmenttype %>
+                          </td>
+                          <td>
+                            <%= assessment.assessment_count %>
+                          </td>
+                        </tr>
+                        <% }); %>
+                    </table>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6" >
+              <div class="card">
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="assessmentdatecharts"></div>
+                    <table id="datatableforassessmentdate" hidden>
+                      <tr>
+                        <th>Section</th>
+                        <th>Assessment</th>
+                      </tr>
+                      <% assessmentdateData.forEach(function(assessment) { %>
+                        <tr>
+                          <td>
+                            <%= assessment.dateGiven %>
+                          </td>
+                          <td>
+                            <%= assessment.assessment_date %>
+                          </td>
+                        </tr>
+                        <% }); %>
+                    </table>
+                  </figure>
+                </div>
+              </div>
+            </div>
             
           </div>
         </div>
@@ -299,6 +351,54 @@
           allowDecimals: false,
           title: {
             text: 'Population of Students'
+          }
+        }
+      });
+    </script>
+
+    <script>
+      Highcharts.chart('assessmentcharts', {
+        data: {
+          table: 'datatableforassessment'
+        },
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Number of assessment per assessmenttype'
+        },
+
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          allowDecimals: false,
+          title: {
+            text: 'Assessment Count'
+          }
+        }
+      });
+    </script>
+
+    <script>
+      Highcharts.chart('assessmentdatecharts', {
+        data: {
+          table: 'datatableforassessmentdate'
+        },
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Number of assessment per date'
+        },
+
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          allowDecimals: false,
+          title: {
+            text: 'Assessment Count'
           }
         }
       });

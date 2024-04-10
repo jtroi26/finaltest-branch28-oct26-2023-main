@@ -37,6 +37,24 @@ exports.getDashboard = (req, res) => {
         ORDER BY sections.id ASC;
       `;
 
+      // Query to check the number of assessment done by assessmenttypes
+      const assessmentsql = `
+        SELECT ass.assessmenttype, COUNT(ass.id) AS assessment_count
+        FROM assessments ass
+        INNER JOIN assessmenttype AS asstype ON asstype.assessmenttype = ass.assessmenttype
+        GROUP BY ass.assessmenttype
+        ORDER BY ass.id ASC;
+      `;
+
+      // Query to check the number of assessment done by dates
+        const assessmentdatesql = `
+        SELECT ass.dateGiven, COUNT(ass.id) AS assessment_date
+        FROM assessments ass
+        INNER JOIN assessmenttype AS asstype ON asstype.assessmenttype = ass.assessmenttype
+        GROUP BY ass.dateGiven
+        ORDER BY ass.id ASC;
+      `;
+
       // Query to retrieve student count
         const studentcountsql = `
         SELECT COUNT(*) AS enrolled_count FROM students WHERE status = 'Enrolled';
@@ -100,12 +118,28 @@ exports.getDashboard = (req, res) => {
               console.error(err);
               return;
             }
+
+          connection.query(assessmentsql, function(err, assessmentcountResults) {
+            if (err) {
+              // Handle error
+              console.error(err);
+              return;
+            }
+
+          connection.query(assessmentdatesql, function(err, assessmentdatecountResults) {
+            if (err) {
+              // Handle error
+              console.error(err);
+              return;
+            }
   
           // Rendering the admin dashboard view with the retrieved data for both teachers and students
           res.render('admin-dashboard', {
             admin_id: req.session.admin_id,
             departmentData: teacherResults, // Sending teacher department data to the view
             studentData: studentResults, // Sending student section data to the view
+            assessmentData: assessmentcountResults,
+            assessmentdateData: assessmentdatecountResults,
             enrolledCount: studentcountResults[0].enrolled_count, // Sending enrolled student count to the view
             teachercount: teachercountResults[0].teachercount,
             subjectcount: subjectcountResults[0].subjectcount,
@@ -114,6 +148,8 @@ exports.getDashboard = (req, res) => {
   
           // Closing the database connection after executing both queries
           connection.end();
+                    });
+                  });
                 });
               });
             });
