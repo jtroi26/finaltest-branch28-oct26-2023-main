@@ -50,6 +50,6 @@ exports.postEditGrade = (req, res) => {
         req.flash('success1', 'You can proceed');
 
         // Assuming you want to redirect to a page after the update
-        res.redirect(`/teacher/view/grades/${assessmenttype}`);
+        res.redirect(`/teacher/index/grades/${assessmenttype}`);
     });
 };
