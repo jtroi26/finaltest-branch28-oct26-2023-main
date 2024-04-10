@@ -302,7 +302,7 @@
                                   <div class="form-group">
                                       <label for="sectionname">Section name:</label>
                                       <select id="sectionname" name="sectionname" class="form-control" required>
-                                          <option value="<%= file.sectionname %>"><%= file.sectionname %></option>
+
                                           <% sections.forEach(section => { %>
                                           <option value="<%= section.sectionname %>"><%= section.sectionname %></option>
                                           <% }); %>
