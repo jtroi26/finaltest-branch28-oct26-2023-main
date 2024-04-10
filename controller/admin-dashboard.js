@@ -47,6 +47,11 @@ exports.getDashboard = (req, res) => {
         SELECT COUNT(*) AS teachercount FROM teacherdetails;
         `;
 
+      // Query to retrieve teacher count
+        const subjectcountsql = `
+        SELECT COUNT(*) AS subjectcount FROM subjects;
+        `;
+
   
       // Executing the SQL queries for both teachers and students
       connection.query(teachersql, (err, teacherResults) => {
@@ -70,12 +75,19 @@ exports.getDashboard = (req, res) => {
               return;
             }
 
-            connection.query(teachercountsql, function(err, teachercountResults) {
-              if (err) {
-                // Handle error
-                console.error(err);
-                return;
-              }
+          connection.query(teachercountsql, function(err, teachercountResults) {
+            if (err) {
+              // Handle error
+              console.error(err);
+              return;
+            }
+
+          connection.query(subjectcountsql, function(err, subjectcountResults) {
+            if (err) {
+              // Handle error
+              console.error(err);
+              return;
+            }
   
           // Rendering the admin dashboard view with the retrieved data for both teachers and students
           res.render('admin-dashboard', {
@@ -83,11 +95,13 @@ exports.getDashboard = (req, res) => {
             departmentData: teacherResults, // Sending teacher department data to the view
             studentData: studentResults, // Sending student section data to the view
             enrolledCount: studentcountResults[0].enrolled_count, // Sending enrolled student count to the view
-            teachercount: teachercountResults[0].teachercount
+            teachercount: teachercountResults[0].teachercount,
+            subjectcount: subjectcountResults[0].subjectcount
           });
   
           // Closing the database connection after executing both queries
           connection.end();
+              });
             });
           });
         });

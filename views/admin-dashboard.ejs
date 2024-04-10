@@ -123,40 +123,54 @@
             </div>
           </div>
         </div>
-        <div class="container" >
-          <div class="row" >
-            <div class="col-md-6" >
-              <div class="card" style="height: 400px;">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-3" >
+              <div class="card" style="height: 250px;">
                 <div class="card-body">
-                  <figure class="highcharts-figure">
-                    <div id="studentcountcharts"></div>
-                    <h1 style="text-align: center;">Total Number of Enrolled Students: </h1>
+                    <div id="studentcount"></div>
+                    <h3 style="text-align: center;">Total Number of Enrolled Students: </h3>
                     <div>
-                      <p style="font-size: 200px; text-align: center;">
+                      <p style="font-size: 100px; text-align: center;">
                         <%= enrolledCount %>
                       </p>
                     </div>
-                  </figure>
+                  
                 </div>
               </div>
             </div>
-            <div class="col-md-6" >
-              <div class="card" style="height: 400px;">
+            <div class="col-md-3" >
+              <div class="card" style="height: 250px;">
                 <div class="card-body">
-                  <figure class="highcharts-figure">
-                    <div id="studentcountcharts"></div>
-                    <h1 style="text-align: center;">Total Number of Teachers: </h1>
+                    <div id="teachercount"></div>
+                    <h3 style="text-align: center;">Total Number of Teachers: </h3>
                     <div>
-                      <p style="font-size: 200px; text-align: center;">
+                      <p style="font-size: 100px; text-align: center;">
                         <%= teachercount %>
                       </p>
                     </div>
-                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3" >
+              <div class="card" style="height: 250px;">
+                <div class="card-body">
+                    <div id="subjectcount"></div>
+                    <h3 style="text-align: center;">Total Number of subjects: </h3>
+                    <div>
+                      <p style="font-size: 100px; text-align: center;">
+                        <%= subjectcount %>
+                      </p>
+                    </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        
+
+        <!-- High charts -->
         <div class="container-fluid">
           <div class="row">
             
