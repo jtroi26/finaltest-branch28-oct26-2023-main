@@ -51,22 +51,17 @@ exports.getEditAttendancePage = (req, res) => {
 
 exports.postEditAttendance = (req, res) => {
     const { id } = req.params;
-    const { date, quarterperiod, attendance } = req.body;
+    const { quarterperiod, attendance } = req.body;
     
-    // Format the date
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = new Date(date).toLocaleDateString(undefined, options);
-
     const sql = `
     UPDATE studentattendance
     SET
-    date = ?,
     quarterperiod = ?,
     attendance = ?
     WHERE id = ?
     `;
 
-    const values = [formattedDate, quarterperiod, attendance, id];
+    const values = [quarterperiod, attendance, id];
 
     const connection = mysql.createConnection(conn);
 

@@ -31,14 +31,14 @@ exports.getGradesPage = (req, res) => {
     sub.subjectid,
     s.status
     
-FROM students AS s
-INNER JOIN subjects AS sub
-ON sub.sectionname = s.sectionname
-WHERE sub.teacherid = ?  
-    AND sub.subjectid = ?  
-    AND s.sectionname = ?  
-    AND s.status = 'Enrolled'
-ORDER BY full_name ASC, s.status ASC;`;
+    FROM students AS s
+    INNER JOIN subjects AS sub
+    ON sub.sectionname = s.sectionname
+    WHERE sub.teacherid = ?  
+        AND sub.subjectid = ?  
+        AND s.sectionname = ?  
+        AND s.status = 'Enrolled'
+    ORDER BY full_name ASC, s.status ASC;`;
     const assessmenttypesql = `SELECT assessmenttype FROM assessmenttype ORDER BY assessmenttype ASC`;
     const quarterperiodsql = `SELECT quarterperiod FROM quarters ORDER BY id`;
 
@@ -83,7 +83,7 @@ ORDER BY full_name ASC, s.status ASC;`;
         }
     });
 
-    
+
 };
 
 
@@ -95,9 +95,9 @@ exports.postGradesPage = (req, res) => {
 
     const { assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, grade, total } = req.body;
 
-    const dateObject = new Date(dateGiven);
+    const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = dateObject.toLocaleDateString(undefined, options);
+    const formattedDate = currentDate.toLocaleDateString(undefined, options);;
 
     // Ensure that the arrays have the same length
     if (!Array.isArray(studentID) || !Array.isArray(grade) || studentID.length !== grade.length) {

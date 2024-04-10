@@ -123,12 +123,12 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h4 class="page-title">Create Grades > 
+                            <h4 class="page-title">Create Grades
                             </h4>
                             <div class="ms-auto text-end">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/student/dashboard">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="/teacher/index/grades">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Create Grades</li>
                                     </ol>
                                 </nav>
@@ -217,6 +217,15 @@
     
                             
     </body>
+    <script>
+        function updateGradeMax() {
+            var totalScore = parseInt(document.getElementById('total').value);
+            var gradeInputs = document.getElementsByName('grade');
+            for (var i = 0; i < gradeInputs.length; i++) {
+                gradeInputs[i].setAttribute('max', totalScore);
+            }
+        }
+    </script>
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>

@@ -53,7 +53,11 @@ exports.getAttendanceIndexPage = (req, res) => {
             console.log(attendanceData);
 
             // Render the 'teacher-index-attendance' template and pass the attendance data
-            res.render('teacher-index-attendance', { attendance: attendanceData, teacherid: teacherid, subjectname: subjectname, sectionname: sectionname });
+            res.render('teacher-index-attendance', { 
+                attendance: attendanceData, 
+                teacherid: teacherid, 
+                subjectname: subjectname, 
+                sectionname: sectionname });
 
             // Close the database connection
             connection.end();
