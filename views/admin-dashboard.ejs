@@ -123,8 +123,43 @@
             </div>
           </div>
         </div>
+        <div class="container" >
+          <div class="row" >
+            <div class="col-md-6" >
+              <div class="card" style="height: 400px;">
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="studentcountcharts"></div>
+                    <h1 style="text-align: center;">Total Number of Enrolled Students: </h1>
+                    <div>
+                      <p style="font-size: 200px; text-align: center;">
+                        <%= enrolledCount %>
+                      </p>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6" >
+              <div class="card" style="height: 400px;">
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="studentcountcharts"></div>
+                    <h1 style="text-align: center;">Total Number of Teachers: </h1>
+                    <div>
+                      <p style="font-size: 200px; text-align: center;">
+                        <%= teachercount %>
+                      </p>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="container-fluid">
           <div class="row">
+            
             <div class="col-md-6">
               <div class="card">
                 <div class="card-body">
@@ -175,6 +210,7 @@
                 </div>
               </div>
             </div>
+            
           </div>
         </div>
       </div>
@@ -240,6 +276,9 @@
         }
       });
     </script>
+
+
+    
   </body>
 
   <% } else { %>
