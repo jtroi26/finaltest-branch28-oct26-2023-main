@@ -28,7 +28,7 @@ exports.getLessonPage = (req, res) => {
             if (results.length === 1) {
                 // Successfully fetched the lesson data
                 // Pass the single result (row) to the template
-                res.render('student-view-lesson', { lessonData: results[0] , studentid: studentid, speech: null});
+                res.render('student-view-lesson', {id:id, lessonData: results[0] , studentid: studentid, speech: null});
             } else {
                 res.status(404).send('Lesson not found'); // Handle the case where no or multiple rows are found
             }
