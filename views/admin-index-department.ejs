@@ -119,6 +119,38 @@
                 </div>
             </div>
             <div class="container-fluid">
+                <% if (messages.success) { %>
+
+                    <script>
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Created Successfully',
+                        text: '<%= messages.success %>',
+                      });
+                    </script>
+        
+                    <% } %>
+                      <% if (messages.error) { %>
+        
+                        <script>
+                          Swal.fire({
+                            icon: 'error',
+                            title: 'Duplicate Section',
+                            text: '<%= messages.error %>',
+                          });
+                        </script>
+        
+                        <% } %>
+                          <% if (messages.update) { %>
+        
+                            <script>
+                              Swal.fire({
+                                icon: 'success',
+                                title: 'Updated Successfully',
+                                text: '<%= messages.update %>',
+                              });
+                            </script>
+                            <% } %>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
