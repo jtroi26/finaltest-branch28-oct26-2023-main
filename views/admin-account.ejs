@@ -13,7 +13,60 @@
   <script src="https://code.highcharts.com/modules/data.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+   <!-- Font Awesome -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+   <!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+   <!-- MDB -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
+
+ <link href="/dist/css/style.min.css" rel="stylesheet" />
+             <!-- Include SweetAlert CDN in the head of your HTML -->
+             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
+<style>
+    /* Centering the form container */
+.container {
+            width: 50%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+</style>
+
 <% if (admin_id) { %>
 
   <body>
@@ -117,178 +170,68 @@
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Dashboard</h4>
+              <h4 class="page-title">Account > Change User Password</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="/teacher/dashboard">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Change Password</li>
                   </ol>
                 </nav>
               </div>
             </div>
           </div>
-        </div>      
-
-        <!-- High charts -->
+        </div>
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="card" style="height: 250px;">
+          <div class="row ">
+            <div class="col-12">
+              <div class="card">
                 <div class="card-body">
-                    <div id="studentcount"></div>
-                    <h3 style="text-align: center;">Total Number of Enrolled Students: </h3>
-                    <div>
-                      <p style="font-size: 100px; text-align: center;">
-                        <%= enrolledCount %>
-                      </p>
-                    </div>
                   
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3" >
-              <div class="card" style="height: 250px;">
-                <div class="card-body">
-                    <div id="teachercount"></div>
-                    <h3 style="text-align: center;">Total Number of Teachers: </h3>
-                    <div>
-                      <p style="font-size: 100px; text-align: center;">
-                        <%= teachercount %>
-                      </p>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3" >
-              <div class="card" style="height: 250px;">
-                <div class="card-body">
-                    <div id="subjectcount"></div>
-                    <h3 style="text-align: center;">Total Number of subjects: </h3>
-                    <div>
-                      <p style="font-size: 100px; text-align: center;">
-                        <%= subjectcount %>
-                      </p>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3" >
-              <div class="card" style="height: 250px;">
-                <div class="card-body">
-                    <div id="sectioncount"></div>
-                    <h3 style="text-align: center;">Total Number of Sections: </h3>
-                    <div>
-                      <p style="font-size: 100px; text-align: center;">
-                        <%= sectioncount %>
-                      </p>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-body">
-                  <figure class="highcharts-figure">
-                    <div id="teachercharts"></div>
-                  </figure>
-                  <table id="datatableforteachers" hidden>
-                    <tr>
-                      <th>Department</th>
-                      <th>Number of Teachers</th>
-                    </tr>
-                    <% departmentData.forEach(function(department) { %>
-                      <tr>
-                        <td>
-                          <%= department.department %>
-                        </td>
-                        <td>
-                          <%= department.department_count %>
-                        </td>
-                      </tr>
-                      <% }); %>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6" >
-              <div class="card">
-                <div class="card-body">
-                  <figure class="highcharts-figure">
-                    <div id="studentcharts"></div>
-                    <table id="datatableforstudents" hidden>
-                      <tr>
-                        <th>Section</th>
-                        <th>Number of Students</th>
-                      </tr>
-                      <% studentData.forEach(function(section) { %>
-                        <tr>
-                          <td>
-                            <%= section.sectionname %>
-                          </td>
-                          <td>
-                            <%= section.students_count %>
-                          </td>
-                        </tr>
-                        <% }); %>
-                    </table>
-                  </figure>
-                </div>
-              </div>
-            </div>
+                    
 
-            <div class="col-md-6" >
-              <div class="card">
-                <div class="card-body">
-                  <figure class="highcharts-figure">
-                    <div id="assessmentcharts"></div>
-                    <table id="datatableforassessment" hidden>
-                      <tr>
-                        <th>Section</th>
-                        <th>Assessment</th>
-                      </tr>
-                      <% assessmentData.forEach(function(assessment) { %>
-                        <tr>
-                          <td>
-                            <%= assessment.assessmenttype %>
-                          </td>
-                          <td>
-                            <%= assessment.assessment_count %>
-                          </td>
-                        </tr>
-                        <% }); %>
-                    </table>
-                  </figure>
-                </div>
-              </div>
-            </div>
+                                    <% if (typeof error !=='undefined' && error ) { %>
+                                        <script>
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Oops...',
+                                                text: '<%= error %>',
+                                            });
+                                        </script>
+                                        <% } %>
+                                
+                                        <!-- The change password didnt work if the new and confirm password does not match -->
+                                
+                                <div class="container">
+                                    <form id="changePasswordForm" method="post" action="/admin/change-password"  >
 
-            <div class="col-md-6" >
-              <div class="card">
-                <div class="card-body">
-                  <figure class="highcharts-figure">
-                    <div id="assessmentdatecharts"></div>
-                    <table id="datatableforassessmentdate" hidden>
-                      <tr>
-                        <th>Section</th>
-                        <th>Assessment</th>
-                      </tr>
-                      <% assessmentdateData.forEach(function(assessment) { %>
-                        <tr>
-                          <td>
-                            <%= assessment.dateGiven %>
-                          </td>
-                          <td>
-                            <%= assessment.assessment_date %>
-                          </td>
-                        </tr>
-                        <% }); %>
-                    </table>
-                  </figure>
+                                        <div class="input-container">
+                                            <h1>Teacher Password Change</h1>
+
+                                            <label for="teacherid">Teacher ID:</label>
+                                            <input class="form-control" type="text" name="teacherid" readonly value="<%= admin_id %>"><br>
+                                    
+                                            <label for="oldPassword">Old Password:</label>
+                                            <input class="form-control" type="password" name="oldPassword" required><br>
+                                    
+                                            <label for="newPassword">New Password:</label>
+                                            <input class="form-control" type="password" name="newPassword" required><br>
+                                    
+                                            <label for="confirmPassword">Confirm Password:</label>
+                                            <input class="form-control" type="password" name="confirmPassword" required><br>
+                                    
+                                        </div>
+                                        
+                                        <div class="button-container">
+                                            <button type="submit">Change Password</button>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -308,101 +251,7 @@
     <script src="../assets/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="../dist/js/pages/chart/chart-page-init.js"></script>
-    <script>
-      Highcharts.chart('teachercharts', {
-        data: {
-          table: 'datatableforteachers'
-        },
-        chart: {
-          type: 'pie'
-        },
-        title: {
-          text: 'Number of Teachers in each Department'
-        },
-
-        xAxis: {
-          type: 'category'
-        },
-        yAxis: {
-          allowDecimals: false,
-          title: {
-            text: 'Population'
-          }
-        }
-      });
-    </script>
-    <script>
-      Highcharts.chart('studentcharts', {
-        data: {
-          table: 'datatableforstudents'
-        },
-        chart: {
-          type: 'bar'
-        },
-        title: {
-          text: 'Number of Students per Section'
-        },
-
-        xAxis: {
-          type: 'category'
-        },
-        yAxis: {
-          allowDecimals: false,
-          title: {
-            text: 'Population of Students'
-          }
-        }
-      });
-    </script>
-
-    <script>
-      Highcharts.chart('assessmentcharts', {
-        data: {
-          table: 'datatableforassessment'
-        },
-        chart: {
-          type: 'bar'
-        },
-        title: {
-          text: 'Number of Assessments per Assessment Type'
-        },
-
-        xAxis: {
-          type: 'category'
-        },
-        yAxis: {
-          allowDecimals: false,
-          title: {
-            text: 'Assessment Count'
-          }
-        }
-      });
-    </script>
-
-    <script>
-      Highcharts.chart('assessmentdatecharts', {
-        data: {
-          table: 'datatableforassessmentdate'
-        },
-        chart: {
-          type: 'bar'
-        },
-        title: {
-          text: 'Number of Assessments per date'
-        },
-
-        xAxis: {
-          type: 'category'
-        },
-        yAxis: {
-          allowDecimals: false,
-          title: {
-            text: 'Assessment Count'
-          }
-        }
-      });
-    </script>
-
+    
 
     
   </body>
