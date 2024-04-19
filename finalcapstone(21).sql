@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 02:36 PM
+-- Generation Time: Apr 10, 2024 at 01:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -123,11 +123,11 @@ INSERT INTO `assessments` (`id`, `assessmentTitle`, `assessmenttype`, `quarterpe
 (149, 'Quiz 3', 'Quiz', 'Fourth Quarter', '0000-00-00', 'DAZ20181005', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 14, 25),
 (150, 'Quiz 3', 'Quiz', 'Fourth Quarter', '0000-00-00', 'DAZ20201015', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 15, 25),
 (151, 'Quiz 3', 'Quiz', 'Fourth Quarter', '0000-00-00', 'DAZ11111111', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 16, 25),
-(157, 'Assignment 4', 'Assignment', 'First Quarter', '2024-04-18', 'DAZ11111112', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 14, 15),
-(158, 'Assignment 4', 'Assignment', 'First Quarter', '2024-04-18', 'DAZ20171525', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 13, 15),
-(159, 'Assignment 4', 'Assignment', 'First Quarter', '2024-04-18', 'DAZ20181005', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 12, 15),
-(160, 'Assignment 4', 'Assignment', 'First Quarter', '2024-04-18', 'DAZ20201015', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 11, 15),
-(161, 'Assignment 4', 'Assignment', 'First Quarter', '2024-04-18', 'DAZ11111111', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 10, 15);
+(152, 'Quiz 4', 'Quiz', 'Fourth Quarter', 'April 10, 2024', 'DAZ11111112', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 2, 24),
+(153, 'Quiz 4', 'Quiz', 'Fourth Quarter', 'April 10, 2024', 'DAZ20171525', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 1, 24),
+(154, 'Quiz 4', 'Quiz', 'Fourth Quarter', 'April 10, 2024', 'DAZ20181005', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 14, 24),
+(155, 'Quiz 4', 'Quiz', 'Fourth Quarter', 'April 10, 2024', 'DAZ20201015', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 15, 24),
+(156, 'Quiz 4', 'Quiz', 'Fourth Quarter', 'April 10, 2024', 'DAZ11111111', 'VIII - St. Mary', 'Araling Panlipunan', '10420012023', 17, 24);
 
 -- --------------------------------------------------------
 
@@ -256,28 +256,28 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`id`, `sectionname`, `visibility`) VALUES
-(5, 'VII - St. Lorenzo', 'Invisible'),
-(6, 'VII - St. Dominic', 'Invisible'),
-(7, 'VII - St. Martin', 'Invisible'),
-(8, 'VII - St. Blaise', 'Invisible'),
-(9, 'VII - St. Jude', 'Invisible'),
+(5, 'VII - St. Lorenzo', 'Visible'),
+(6, 'VII - St. Dominic', 'Visible'),
+(7, 'VII - St. Martin', 'Visible'),
+(8, 'VII - St. Blaise', 'Visible'),
+(9, 'VII - St. Jude', 'Visible'),
 (10, 'VIII - St. Mary', 'Visible'),
 (11, 'VIII - St. Elizabeth', 'Visible'),
 (12, 'VIII - St. Bernadette', 'Visible'),
 (13, 'VIII - St. Anne', 'Visible'),
 (14, 'VIII - St. Therese', 'Visible'),
-(15, 'IX - St. Matthew', 'Invisible'),
-(16, 'IX - St. Mark', 'Invisible'),
-(17, 'IX - St. Luke', 'Invisible'),
-(18, 'IX - St. John E.', 'Invisible'),
-(19, 'IX - St. Thomas', 'Invisible'),
-(20, 'X - St. Joseph', 'Invisible'),
-(21, 'X - John B.', 'Invisible'),
-(22, 'X - Clement', 'Invisible'),
-(23, 'X - St. Peter', 'Invisible'),
-(24, 'X - St. Paul', 'Invisible'),
-(25, 'XI', 'Invisible'),
-(26, 'xii', 'Invisible');
+(15, 'IX - St. Matthew', 'Visible'),
+(16, 'IX - St. Mark', 'Visible'),
+(17, 'IX - St. Luke', 'Visible'),
+(18, 'IX - St. John E.', 'Visible'),
+(19, 'IX - St. Thomas', 'Visible'),
+(20, 'X - St. Joseph', 'Visible'),
+(21, 'X - John B.', 'Visible'),
+(22, 'X - Clement', 'Visible'),
+(23, 'X - St. Peter', 'Visible'),
+(24, 'X - St. Paul', 'Visible'),
+(25, 'XI', 'Visible'),
+(26, 'xii', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -341,7 +341,7 @@ CREATE TABLE `studentlogins` (
 --
 
 INSERT INTO `studentlogins` (`id`, `studentID`, `studentUserName`, `studentPassword`) VALUES
-(7, 'DAZ20171525', 'DAZSMA-jrdmercado', '$2b$11$m6oeGnFTt1KEugq7FSKxeOXVJt62MCe9UI/JFKO2QUXPRE51tu8pG'),
+(7, 'DAZ20171525', 'DAZSMA-jrdmercado', '$2b$11$kH7Y.WcKt6oX6wHRLjzejOboXXhxi/WZsrFpR8c3.MO3i6wBV/6.W'),
 (8, 'DAZ20230015', 'DAZSMA-ceapastrana', '$2b$11$2vhg0rqf1MLIKvMniY2ub.ac3grX39PVt2JpRw1i51YRKGGv.WoS.'),
 (9, 'DAZ20201015', 'DAZSMA-jcrico', '$2b$11$25ZqC4HmjBfa7g7vA/1qwuomhy8GYQiG1aztAx0AHF4Jr6b1ICuai'),
 (10, 'DAZ20181005', 'DAZSMA-mcramos', 'VXhvn%w#jWIb'),
@@ -372,7 +372,7 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`, `dateEnrolled`, `status`) VALUES
 (13, 'DAZ20171525', 'Jan Raymarc', 'D.', 'Mercado', 'Sr.', 'VIII - St. Mary', '2023-11-04 21:54:33', 'Enrolled'),
-(14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'VIII - St. Mary', '2023-11-04 21:54:33', 'Enrolled'),
+(14, 'DAZ20230015', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'III', 'VII - St. Lorenzo', '2023-11-04 21:54:33', 'Enrolled'),
 (15, 'DAZ20201015', 'Justroilon', 'C.', 'Rico', 'Sr.', 'VIII - St. Mary', '2023-11-04 21:54:33', 'Enrolled'),
 (16, 'DAZ20181005', 'Marc', 'Casupang', 'Ramos', 'Sr.', 'VIII - St. Mary', '2023-11-04 21:54:33', 'Enrolled'),
 (18, 'DAZ11111111', 'James', 'Lebron', 'Supra', 'Sr.', 'VIII - St. Mary', '2023-11-06 04:22:00', 'Enrolled'),
@@ -427,8 +427,7 @@ INSERT INTO `subjects` (`id`, `subjectid`, `subjectname`, `teacherid`, `sectionn
 (7, 'Math-032', 'Algebra2', '2020-069', 'VIII - St. Anne', 'Invisible'),
 (8, 'GenMath-11', 'General Math', '12113334', 'VII - St. Lorenzo', 'Invisible'),
 (9, 'AP-02', 'Araling Panlipunan', '10420012023', 'VIII - St. Mary', 'Visible'),
-(10, 'Science09', 'Science-Biology', '12113234', 'VII - St. Blaise', 'Invisible'),
-(12, 'AP-02', 'Araling Panlipunan', '12113334', 'VIII - St. Elizabeth', 'Visible');
+(10, 'Science09', 'Science-Biology', '12113234', 'VII - St. Blaise', 'Invisible');
 
 -- --------------------------------------------------------
 
@@ -670,6 +669,7 @@ ALTER TABLE `subjectoverview`
 --
 ALTER TABLE `subjects`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `subjectname` (`subjectname`),
   ADD KEY `teacherid` (`teacherid`) USING BTREE,
   ADD KEY `sectionname` (`sectionname`);
 
@@ -725,7 +725,7 @@ ALTER TABLE `adminlogins`
 -- AUTO_INCREMENT for table `assessments`
 --
 ALTER TABLE `assessments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT for table `assessmenttype`
@@ -785,7 +785,7 @@ ALTER TABLE `subjectoverview`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `teacherannouncements`
