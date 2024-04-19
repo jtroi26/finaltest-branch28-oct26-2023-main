@@ -117,9 +117,9 @@ exports.getAssessmentGrades = (req, res) => {
     INNER JOIN
         students AS s ON ass.studentID = s.studentID
     WHERE
-        ass.teacherid = ? AND ass.sectionname = ? AND ass.subjectname = ? AND ass.quarterperiod = 'Fourth Quarter' and ass.assessmenttype = ?;`;
+        ass.teacherid = ? AND ass.sectionname = ? AND ass.subjectname = ? AND ass.quarterperiod = 'Fourth Quarter' AND ass.assessmenttype = ?;`;
 
-    const values = [teacherid, sectionname, subjectname, id];
+    const values = [teacherid, sectionname, subjectname, assessmenttype];
 
     const connection = mysql.createConnection(conn);
 
