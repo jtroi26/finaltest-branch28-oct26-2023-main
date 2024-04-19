@@ -25,6 +25,7 @@ exports.getDashboard = (req, res) => {
         SELECT dept.department, COUNT(td.department) AS department_count
         FROM teacherdetails AS td
         INNER JOIN departments AS dept ON td.department = dept.department
+        where dept.visibility = 'Visible'
         GROUP BY td.department, dept.department;
       `;
   
@@ -33,6 +34,7 @@ exports.getDashboard = (req, res) => {
         SELECT sections.sectionname, COUNT(students.sectionname) AS students_count
         FROM sections
         LEFT JOIN students ON students.sectionname = sections.sectionname
+        WHERE sections.visibility = 'Visible'
         GROUP BY sections.sectionname
         ORDER BY sections.id ASC;
       `;
@@ -67,12 +69,14 @@ exports.getDashboard = (req, res) => {
 
       // Query to retrieve teacher count
         const subjectcountsql = `
-        SELECT COUNT(*) AS subjectcount FROM subjects;
+        SELECT COUNT(*) AS subjectcount FROM subjects
+        where visibility = 'Visible';
         `;
 
       // Query to retrieve teacher count
       const sectioncountsql = `
-      SELECT COUNT(*) AS sectioncount FROM sections;
+      SELECT COUNT(*) AS sectioncount FROM sections
+      where visibility = 'Visible';
       `;
 
   
