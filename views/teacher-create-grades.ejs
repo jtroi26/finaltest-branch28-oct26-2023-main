@@ -10,6 +10,7 @@
         <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
         <link href="/dist/css/style.min.css" rel="stylesheet" />
         <link href="/stylesheets/teacher-view-subject.css" rel="stylesheet" />
+        <link href="/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     </head>
 
     <body>
@@ -137,77 +138,90 @@
                     </div>
                 </div>
                 <div class="container-fluid">
-                    <div class="page-breadcrumb">
-                        <div class="row">
-                            <div class="card">
-                              <!-- Enter you Code Here -->
-
-                              <form action="/teacher/create/grades" method="post">
-
-                                <div style="text-align: center;">
-                                  <label for="assessmentTitle">Assessment Title</label><br>
-                                  <input type="text" name="assessmentTitle" id="assessmentTitle"><br><br>
-                            
-                                  <label for="dateGiven">Assessment Date</label><br>
-                                  <input type="date" name="dateGiven" id="dateGiven"><br><br>
-                            
-                                  <label for="assessmenttype">Assessment Type</label><br>
-                                  <select name="assessmenttype" id="assessmenttype" style="border-radius: 5px; background-color: #4A55A2; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
-                                      <% for (const type of assessmentTypes) { %>
-                                          <option value="<%= type.assessmenttype %>"><%= type.assessmenttype %></option>
-                                      <% } %>
-                                  </select><br><br>
-                            
-                                  <label for="quarterperiod">Quarter Period</label><br>
-                                  <select name="quarterperiod" id="quarterperiod" style="border-radius: 5px; background-color: #4A55A2; border-color: #4A55A2;" type="button" class="btn btn-primary dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">
-                                      <% for (const period of quarterPeriods) { %>
-                                          <option value="<%= period.quarterperiod %>"><%= period.quarterperiod %></option>
-                                      <% } %>
-                                  </select><br><br>
-                            
-                                  <hr>
-                            
-                              </div>
-                            
-                                <div style="text-align: center;">
-                                  
-                                  <label for="total">Total Score for given assessment</label>
-                                    <input type="number" name="total" id="total" min="1" max="100" oninput="updateGradeMax()"><br><br>
-                                </div>
-
-                                <div style="text-align: center; width: 100%;">
-                                  <table border="1" style="width: 100%;">
-                                      <tr>
-                                          <th>Student ID</th>
-                                          <th>Student Name</th>
-                                          <th>Subject</th>
-                                          <th>Grade</th>
-                                      </tr>
-                                      <% for (const student of students) { %>
-                                          <tr>
-                                              <td hidden><input type="text" name="studentID" id="" value="<%= student.studentID %>" readonly></td>
-                                              <td><%= student.studentID %></td>
-                                              <td><%= student.full_name %></td>
-                                              <td><%= subjectname %></td>
-                                              <td>
-                                                  <input type="number" name="grade" id="grade" min="0" max="100"><br><br>
-                                              </td>
-                                          </tr>
-                                      <% } %>
-                                  </table>
-                              </div>
-                              
-                                  <br>
-                            
-                                  <div style="text-align: center;">
-                                    <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #4A55A2; border-color: #7895CB;">Create Grades</button>
-                                  </div>
-                                  <br>
-                                  
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="/teacher/create/grades" method="post">
+                                    <div class="row">
+                                        <div class="col-4 mb-3">
+                                            <label for="assessmentTitle" class="form-label">Assessment Title</label>
+                                            <input type="text" class="form-control" name="assessmentTitle"
+                                                id="assessmentTitle">
+                                        </div>
+    
+                                        <div class="col-2 mb-3">
+                                            <label for="dateGiven" class="form-label">Assessment Date</label>
+                                            <input type="date" class="form-control" name="dateGiven" id="dateGiven">
+                                        </div>
+    
+                                        <div class="col-2 mb-3">
+                                            <label for="assessmenttype" class="form-label">Assessment Type</label><br>
+                                            <select name="assessmenttype" id="assessmenttype" class="form-select"
+                                                data-mdb-toggle="dropdown" aria-expanded="false">
+                                                <% for (const type of assessmentTypes) { %>
+                                                    <option value="<%= type.assessmenttype %>">
+                                                        <%= type.assessmenttype %>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                        </div>
+    
+                                        <div class="col-2 mb-3">
+                                            <label for="quarterperiod">Quarter Period</label><br>
+                                            <select name="quarterperiod" id="quarterperiod" class="form-select"
+                                                data-mdb-toggle="dropdown" aria-expanded="false">
+                                                <% for (const period of quarterPeriods) { %>
+                                                    <option value="<%= period.quarterperiod %>">
+                                                        <%= period.quarterperiod %>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                        </div>
+    
+                                        <div class="col-2 mb-3">
+                                            <label for="total">Overall Score</label>
+                                            <input type="number" class="form-control" name="total" id="total" min="1"
+                                                max="100" oninput="updateGradeMax()">
+                                        </div>
+    
+                                        <div class="table-responsive">
+                                            <table id="zero_config" class="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Student ID</th>
+                                                        <th>Student Name</th>
+                                                        <th>Subject</th>
+                                                        <th>Grade</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% for (const student of students) { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= student.studentID %>
+                                                            </td>
+                                                            <td>
+                                                                <%= student.full_name %>
+                                                            </td>
+                                                            <td>
+                                                                <%= subjectname %>
+                                                            </td>
+                                                            <td class="grade-input-cell">
+                                                                <input type="number" class="form-control" name="grade"
+                                                                    id="grade" min="0" max="100">
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                        <% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="right-align mt-4">
+                                        <button type="submit" class="btn btn-primary btn-rounded">Create
+                                            Grades</button>
+                                    </div>
                                 </form>
-
-
-                              <!-- End of Entering codes -->
                             </div>
                         </div>
                     </div>
@@ -241,4 +255,9 @@
     <script src="/assets/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="/dist/js/pages/chart/chart-page-init.js"></script>
+    <script src="/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="/assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script>
+        $("#zero_config").DataTable();
+    </script>
 </html>
