@@ -12,7 +12,7 @@
         <link href="/stylesheets/teacher-view-subject.css" rel="stylesheet" />
         <link href="/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     </head>
-
+    <% if (teacherid) { %>
     <body>
         <div class="preloader">
             <div class="lds-ripple">
@@ -188,6 +188,7 @@
                                             <table id="zero_config" class="table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
+                                                        <th hidden>studentid</th>
                                                         <th>Student ID</th>
                                                         <th>Student Name</th>
                                                         <th>Subject</th>
@@ -197,6 +198,9 @@
                                                 <tbody>
                                                     <% for (const student of students) { %>
                                                         <tr>
+                                                            <td hidden><input type="text" name="studentID" id=""
+                                                                    value="<%= student.studentID %>" readonly>
+                                                            </td>
                                                             <td>
                                                                 <%= student.studentID %>
                                                             </td>
@@ -260,4 +264,22 @@
     <script>
         $("#zero_config").DataTable();
     </script>
+ <% } else { %>
+    <div class="error-box">
+        <div class="error-body text-center">
+            <h1 class="error-title text-info">403</h1>
+            <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+            <p class="text-muted mt-4 mb-4">
+                YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+            </p>
+            <a href="/" class="
+  btn btn-info btn-rounded
+  waves-effect waves-light
+  mb-5
+  text-white
+">Back to home</a>
+        </div>
+    </div>
+    <% } %>
+
 </html>
