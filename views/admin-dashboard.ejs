@@ -1,376 +1,437 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard | DAZSMA </title>
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/dazsma-logo.ico" />
-    <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
-    <link href="../dist/css/style.min.css" rel="stylesheet" />
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-  </head>
-  <% if (admin_id) { %>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard | DAZSMA </title>
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/dazsma-logo.ico" />
+  <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+  <link href="../dist/css/style.min.css" rel="stylesheet" />
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/data.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<% if (admin_id) { %>
 
-    <body>
-      <div class="preloader">
-        <div class="lds-ripple">
-          <div class="lds-pos"></div>
-          <div class="lds-pos"></div>
-        </div>
+  <body>
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
       </div>
-      <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        <header class="topbar" data-navbarbg="skin5">
-          <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-            <div class="navbar-header" data-logobg="skin5">
-              <a class="navbar-brand" href="/admin/dashboard">
-                <b class="logo-icon ps-2">
-                  <img src="../assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
-                </b>
-                <span class="logo-text ms-2">
-                  <span>DAZSMA</span>
-                </span>
-              </a>
-              <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
-                  class="ti-menu ti-close"></i></a>
-            </div>
-            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-              <ul class="navbar-nav float-start me-auto">
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                    data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-          <div class="scroll-sidebar">
-            <nav class="sidebar-nav">
-              <ul id="sidebarnav" class="pt-4">
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/dashboard"
-                    aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                      class="hide-menu">Dashboard</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-subject"
-                    aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Subjects</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-section"
-                    aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
-                      class="hide-menu">Sections</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-student"
-                    aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Students</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-teacher"
-                    aria-expanded="false"><i class="mdi mdi-account-outline"></i><span
-                      class="hide-menu">Teachers</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-department"
-                    aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Departments</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/reset-password"
-                    aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Reset
-                      Passwords</span></a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/account"
-                    aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Admin
-                      Password</span></a>
-                </li>
+    </div>
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+      <header class="topbar" data-navbarbg="skin5">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+          <div class="navbar-header" data-logobg="skin5">
+            <a class="navbar-brand" href="/admin/dashboard">
+              <b class="logo-icon ps-2">
+                <img src="../assets/images/dazsma-logo.png" alt="homepage" class="light-logo" width="25" />
+              </b>
+              <span class="logo-text ms-2">
+                <span>DAZSMA</span>
+              </span>
+            </a>
+            <a class="nav-toggler waves-effect waves-dark d-block d-md-none" href="javascript:void(0)"><i
+                class="ti-menu ti-close"></i></a>
+          </div>
+          <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+            <ul class="navbar-nav float-start me-auto">
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                  data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <aside class="left-sidebar" data-sidebarbg="skin5">
+        <div class="scroll-sidebar">
+          <nav class="sidebar-nav">
+            <ul id="sidebarnav" class="pt-4">
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/dashboard"
+                  aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                    class="hide-menu">Dashboard</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-subject"
+                  aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Subjects</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-section"
+                  aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
+                    class="hide-menu">Sections</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-student"
+                  aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Students</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-teacher"
+                  aria-expanded="false"><i class="mdi mdi-account-outline"></i><span
+                    class="hide-menu">Teachers</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/index-department"
+                  aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">Departments</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/reset-password"
+                  aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Reset
+                    Passwords</span></a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/account"
+                  aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Admin
+                    Password</span></a>
+              </li>
 
 
-                <% if (admin_id) { %>
+              <% if (admin_id) { %>
+                <div class="logout-button-container">
+                  <form id="logoutForm" action="/admin-logout" method="post">
+                    <li class="sidebar-item">
+                      <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
+                        onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
+                          class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
+                    </li>
+                  </form>
+                </div>
+                <% } else { %>
                   <div class="logout-button-container">
-                    <form id="logoutForm" action="/admin-logout" method="post">
-                      <li class="sidebar-item">
-                        <a href="javascript:void(0);" class="sidebar-link waves-effect waves-dark sidebar-link"
-                          onclick="document.getElementById('logoutForm').submit();" aria-expanded="false"><i
-                            class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
-                      </li>
-                    </form>
+                    <li class="sidebar-item">
+                      <a href="/admin" class="sidebar-link waves-effect waves-dark sidebar-link"
+                        aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
+                    </li>
                   </div>
-                  <% } else { %>
-                    <div class="logout-button-container">
-                      <li class="sidebar-item">
-                        <a href="/admin" class="sidebar-link waves-effect waves-dark sidebar-link"
-                          aria-expanded="false"><i class="mdi mdi-login"></i><span class="hide-menu">Login</span></a>
-                      </li>
-                    </div>
-                    <% } %>
-              </ul>
-            </nav>
-          </div>
-        </aside>
-        <div class="page-wrapper">
-          <div class="page-breadcrumb">
-            <div class="row">
-              <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Dashboard</h4>
-                <div class="ms-auto text-end">
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                    </ol>
-                  </nav>
-                </div>
+                  <% } %>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <div class="page-wrapper">
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Dashboard</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                  </ol>
+                </nav>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- High charts -->
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="card" style="height: 250px;">
-                  <div class="card-body">
-                    <div id="studentcount"></div>
-                    <h3 style="text-align: center;">Total Number of Enrolled Students: </h3>
-                    <div>
-                      <p style="font-size: 100px; text-align: center;">
-                        <%= enrolledCount %>
-                      </p>
-                    </div>
+        <!-- High charts -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card" style="height: 250px;">
+                <div class="card-body">
+                  <div id="studentcount"></div>
+                  <h3 style="text-align: center;">Total Number of Enrolled Students: </h3>
+                  <div>
+                    <p style="font-size: 100px; text-align: center;">
+                      <%= enrolledCount %>
+                    </p>
+                  </div>
 
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card" style="height: 250px;">
+                <div class="card-body">
+                  <div id="teachercount"></div>
+                  <h3 style="text-align: center;">Total Number of Teachers: </h3>
+                  <div>
+                    <p style="font-size: 100px; text-align: center;">
+                      <%= teachercount %>
+                    </p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="card" style="height: 250px;">
-                  <div class="card-body">
-                    <div id="teachercount"></div>
-                    <h3 style="text-align: center;">Total Number of Teachers: </h3>
-                    <div>
-                      <p style="font-size: 100px; text-align: center;">
-                        <%= teachercount %>
-                      </p>
-                    </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card" style="height: 250px;">
+                <div class="card-body">
+                  <div id="subjectcount"></div>
+                  <h3 style="text-align: center;">Total Number of Subjects: </h3>
+                  <div>
+                    <p style="font-size: 100px; text-align: center;">
+                      <%= subjectcount %>
+                    </p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="card" style="height: 250px;">
-                  <div class="card-body">
-                    <div id="subjectcount"></div>
-                    <h3 style="text-align: center;">Total Number of Subjects: </h3>
-                    <div>
-                      <p style="font-size: 100px; text-align: center;">
-                        <%= subjectcount %>
-                      </p>
-                    </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card" style="height: 250px;">
+                <div class="card-body">
+                  <div id="sectioncount"></div>
+                  <h3 style="text-align: center;">Total Number of Sections: </h3>
+                  <div>
+                    <p style="font-size: 100px; text-align: center;">
+                      <%= sectioncount %>
+                    </p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="card" style="height: 250px;">
-                  <div class="card-body">
-                    <div id="sectioncount"></div>
-                    <h3 style="text-align: center;">Total Number of Sections: </h3>
-                    <div>
-                      <p style="font-size: 100px; text-align: center;">
-                        <%= sectioncount %>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <figure class="highcharts-figure">
-                      <div id="teachercharts"></div>
-                    </figure>
-                    <table id="datatableforteachers" hidden>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="teachercharts"></div>
+                  </figure>
+                  <table id="datatableforteachers" hidden>
+                    <tr>
+                      <th>Department</th>
+                      <th>Number of Teachers</th>
+                    </tr>
+                    <% departmentData.forEach(function(department) { %>
                       <tr>
-                        <th>Department</th>
-                        <th>Number of Teachers</th>
+                        <td>
+                          <%= department.department %>
+                        </td>
+                        <td>
+                          <%= department.department_count %>
+                        </td>
                       </tr>
-                      <% departmentData.forEach(function(department) { %>
+                      <% }); %>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="studentcharts"></div>
+                    <table id="datatableforstudents" hidden>
+                      <tr>
+                        <th>Section</th>
+                        <th>Number of Students</th>
+                      </tr>
+                      <% studentData.forEach(function(section) { %>
                         <tr>
                           <td>
-                            <%= department.department %>
+                            <%= section.sectionname %>
                           </td>
                           <td>
-                            <%= department.department_count %>
+                            <%= section.students_count %>
                           </td>
                         </tr>
                         <% }); %>
                     </table>
-                  </div>
+                  </figure>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <figure class="highcharts-figure">
-                      <div id="studentcharts"></div>
-                      <table id="datatableforstudents" hidden>
-                        <tr>
-                          <th>Section</th>
-                          <th>Number of Students</th>
-                        </tr>
-                        <% studentData.forEach(function(section) { %>
-                          <tr>
-                            <td>
-                              <%= section.sectionname %>
-                            </td>
-                            <td>
-                              <%= section.students_count %>
-                            </td>
-                          </tr>
-                          <% }); %>
-                      </table>
-                    </figure>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <figure class="highcharts-figure">
-                      <div id="assessmentcharts"></div>
-                      <table id="datatableforassessment" hidden>
-                        <tr>
-                          <th>Section</th>
-                          <th>Assessment</th>
-                        </tr>
-                        <% assessmentData.forEach(function(assessment) { %>
-                          <tr>
-                            <td>
-                              <%= assessment.assessmenttype %>
-                            </td>
-                            <td>
-                              <%= assessment.assessment_count %>
-                            </td>
-                          </tr>
-                          <% }); %>
-                      </table>
-                    </figure>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <figure class="highcharts-figure">
-                      <div id="assessmentdatecharts"></div>
-                      <table id="datatableforassessmentdate" hidden>
-                        <tr>
-                          <th>Section</th>
-                          <th>Assessment</th>
-                        </tr>
-                        <% assessmentdateData.forEach(function(assessment) { %>
-                          <tr>
-                            <td>
-                              <%= assessment.dateGiven %>
-                            </td>
-                            <td>
-                              <%= assessment.assessment_date %>
-                            </td>
-                          </tr>
-                          <% }); %>
-                      </table>
-                    </figure>
-                  </div>
-                </div>
-              </div>
-
             </div>
+
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <select id="chartSelector" class="form-select">
+                    <option value="assessmentcharts">Assessments per Component Type</option>
+                    <option value="assessmentdatecharts">Assessment Over Time</option>
+                  </select>
+                  <figure class="highcharts-figure">
+                    <div id="chartContainer"></div>
+                    <table id="datatableforassessment" hidden>
+                      <tr>
+                        <th>Section</th>
+                        <th>Assessment</th>
+                      </tr>
+                      <% assessmentData.forEach(function(assessment) { %>
+                        <tr>
+                          <td>
+                            <%= assessment.assessmenttype %>
+                          </td>
+                          <td>
+                            <%= assessment.assessment_count %>
+                          </td>
+                        </tr>
+                        <% }); %>
+                    </table>
+                    <table id="datatableforassessmentdate" hidden>
+                      <tr>
+                        <th>Section</th>
+                        <th>Assessment</th>
+                      </tr>
+                      <% assessmentdateData.forEach(function(assessment) { %>
+                        <tr>
+                          <td>
+                            <%= assessment.dateGiven %>
+                          </td>
+                          <td>
+                            <%= assessment.assessment_date %>
+                          </td>
+                        </tr>
+                        <% }); %>
+                    </table>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
-      <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-      <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-      <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
-      <script src="../dist/js/waves.js"></script>
-      <script src="../dist/js/sidebarmenu.js"></script>
-      <script src="../dist/js/custom.min.js"></script>
-      <script src="../assets/libs/flot/excanvas.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.pie.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.time.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.stack.js"></script>
-      <script src="../assets/libs/flot/jquery.flot.crosshair.js"></script>
-      <script src="../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-      <script src="../dist/js/pages/chart/chart-page-init.js"></script>
-      <script>
-        Highcharts.chart('teachercharts', {
-          data: {
-            table: 'datatableforteachers'
-          },
-          chart: {
-            type: 'pie'
-          },
-          title: {
-            text: 'Teacher Population per Department'
-          },
+    </div>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="../dist/js/waves.js"></script>
+    <script src="../dist/js/sidebarmenu.js"></script>
+    <script src="../dist/js/custom.min.js"></script>
+    <script src="../assets/libs/flot/excanvas.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="../assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="../dist/js/pages/chart/chart-page-init.js"></script>
+    <script>
+      Highcharts.chart('teachercharts', {
+        data: {
+          table: 'datatableforteachers'
+        },
+        chart: {
+          type: 'pie'
+        },
+        title: {
+          text: 'Teacher Population per Department'
+        },
 
-          xAxis: {
-            type: 'category'
-          },
-          yAxis: {
-            allowDecimals: false,
-            title: {
-              text: 'Population'
-            }
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          allowDecimals: false,
+          title: {
+            text: 'Population'
           }
-        });
-      </script>
-      <script>
-        Highcharts.chart('studentcharts', {
+        }
+      });
+    </script>
+    <script>
+      Highcharts.chart('studentcharts', {
+        data: {
+          table: 'datatableforstudents'
+        },
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Student Population per Section'
+        },
+
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          allowDecimals: false,
+          title: {
+            text: 'Population of Students'
+          }
+        },
+        plotOptions: {
+          series: {
+            colorByPoint: true
+          }
+        }
+      });
+    </script>
+
+    <script>
+      Highcharts.chart('assessmentcharts', {
+        data: {
+          table: 'datatableforassessment'
+        },
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Number of Assessments per Component Type'
+        },
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          allowDecimals: false,
+          title: {
+            text: 'Assessment Count'
+          }
+        },
+        plotOptions: {
+          series: {
+            colorByPoint: true
+          }
+        }
+      });
+    </script>
+
+
+    <script>
+      Highcharts.chart('assessmentdatecharts', {
+        data: {
+          table: 'datatableforassessmentdate'
+        },
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Assessment Over Time'
+        },
+
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          allowDecimals: false,
+          title: {
+            text: 'Assessment Count'
+          }
+        },
+        plotOptions: {
+          series: {
+            colorByPoint: true
+          }
+        }
+      });
+    </script>
+
+    <script>
+      document.getElementById('chartSelector').addEventListener('change', function () {
+        loadChart(this.value);
+      });
+
+      function loadChart(chartType) {
+        var dataTableName = chartType === 'assessmentcharts' ? 'datatableforassessment' : 'datatableforassessmentdate';
+        var chartTitle = chartType === 'assessmentcharts' ? 'Number of Assessments per Component Type' : 'Assessment Over Time';
+
+        Highcharts.chart('chartContainer', {
           data: {
-            table: 'datatableforstudents'
+            table: dataTableName
           },
           chart: {
             type: 'bar'
           },
           title: {
-            text: 'Student Population per Section'
-          },
-
-          xAxis: {
-            type: 'category'
-          },
-          yAxis: {
-            allowDecimals: false,
-            title: {
-              text: 'Population of Students'
-            }
-          },
-          plotOptions: {
-            series: {
-              colorByPoint: true
-            }
-          }
-        });
-      </script>
-
-      <script>
-        Highcharts.chart('assessmentcharts', {
-          data: {
-            table: 'datatableforassessment'
-          },
-          chart: {
-            type: 'bar'
-          },
-          title: {
-            text: 'Number of Assessments per Assessment Type'
+            text: chartTitle
           },
           xAxis: {
             type: 'category'
@@ -387,58 +448,31 @@
             }
           }
         });
-      </script>
+      }
 
+      // Initial load of the first chart
+      loadChart('assessmentcharts');
 
-      <script>
-        Highcharts.chart('assessmentdatecharts', {
-          data: {
-            table: 'datatableforassessmentdate'
-          },
-          chart: {
-            type: 'bar'
-          },
-          title: {
-            text: 'Number of Assessments per date'
-          },
+    </script>
 
-          xAxis: {
-            type: 'category'
-          },
-          yAxis: {
-            allowDecimals: false,
-            title: {
-              text: 'Assessment Count'
-            }
-          },
-          plotOptions: {
-            series: {
-              colorByPoint: true
-            }
-          }
-        });
-      </script>
+  </body>
 
-
-
-    </body>
-
-    <% } else { %>
-      <div class="error-box">
-        <div class="error-body text-center">
-          <h1 class="error-title text-info">403</h1>
-          <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
-          <p class="text-muted mt-4 mb-4">
-            YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
-          </p>
-          <a href="/" class="
+  <% } else { %>
+    <div class="error-box">
+      <div class="error-body text-center">
+        <h1 class="error-title text-info">403</h1>
+        <h3 class="text-uppercase error-subtitle">ACCESS FORBIDDEN !</h3>
+        <p class="text-muted mt-4 mb-4">
+          YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+        </p>
+        <a href="/" class="
       btn btn-info btn-rounded
       waves-effect waves-light
       mb-5
       text-white
     ">Back to home</a>
-        </div>
       </div>
-      <% } %>
+    </div>
+    <% } %>
 
 </html>
