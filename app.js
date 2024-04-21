@@ -102,7 +102,7 @@ var teacherEditStudentAttendance = require('./routes/teacher-edit-attendance');
 var teacherCreateGrades = require('./routes/teacher-create-grades');
 var teacherIndexGrades = require('./routes/teacher-index-grades');
 var teacherViewGradesAssessment = require('./routes/teacher-view-grade-per-assessment');
-var teacherEditGrade = require('./routes/teacher-create-subject-overview');
+var teacherEditGrade = require('./routes/teacher-edit-grade');
 
 // teacher create subject overview
 var subjectOverview = require('./routes/teacher-create-subject-overview');
@@ -240,6 +240,7 @@ app.use('/', teacherEditStudentAttendance);
 app.use('/', teacherCreateGrades);
 app.use('/', teacherIndexGrades);
 app.use('/', teacherViewGradesAssessment);
+app.use('/', teacherEditGrade);
 app.use('/', subjectOverview);
 app.use('/', subjectOverviewIndex);
 app.use('/', subjectOverviewEdit);

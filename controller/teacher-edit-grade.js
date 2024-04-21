@@ -37,6 +37,7 @@ exports.postEditGrade = (req, res) => {
     const sql = `UPDATE assessments SET grade = ?, total = ? WHERE id = ?;`;
     const values = [grade, total, id];
     const assessmenttype = req.session.assessmenttype;
+    console.log(assessmenttype)
     const connection = mysql.createConnection(conn);
 
     connection.query(sql, values, (error, results) => {
@@ -50,6 +51,6 @@ exports.postEditGrade = (req, res) => {
         req.flash('success1', 'You can proceed');
 
         // Assuming you want to redirect to a page after the update
-        res.redirect(`/teacher/index/grades/${assessmenttype}`);
+        res.redirect(`/teacher/view/grades/${assessmenttype}`);
     });
 };

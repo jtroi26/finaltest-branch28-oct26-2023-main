@@ -17,6 +17,9 @@ exports.getAssessmentGrades = (req, res) => {
     const subjectname = req.session.subjectname;
     const teacherid = req.session.teacherid;
     const assessmenttype = id;
+    req.session.assessmenttype = assessmenttype;
+
+    console.log('Assessment type:' + req.session.assessmenttype);
 
     // const sqltest = `select assessmenttype, grade, total from assessments where assessmenttype = 'Recitation'`;
     const sqlquarterperiod1 = `
@@ -152,7 +155,7 @@ exports.getAssessmentGrades = (req, res) => {
 
                     // Combine the results as needed and render the page
                     // const combinedResults = [results1, results2, results3, results4];
-                    res.render('teacher-view-grade-per-assessment', { period1:results1, period2:results2, period3:results3, period4:results4, teacherid: req.session.teacherid, assessmenttype });
+                    res.render('teacher-view-grade-per-assessment', { period1:results1, period2:results2, period3:results3, period4:results4, teacherid: req.session.teacherid, assessmenttype: req.session.assessmenttype });
                 });
             });
         });
