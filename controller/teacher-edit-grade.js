@@ -48,7 +48,7 @@ exports.postEditGrade = (req, res) => {
         // Close the connection after executing the update
         connection.end();
 
-        req.flash('success1', 'You can proceed');
+        req.flash('success1', 'You can proceed.');
 
         // Assuming you want to redirect to a page after the update
         res.redirect(`/teacher/view/grades/${assessmenttype}`);
