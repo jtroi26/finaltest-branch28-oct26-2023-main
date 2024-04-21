@@ -36,7 +36,8 @@ exports.getIndexPage = (req, res) => {
         {
             results , 
             teacherid, 
-            subjectname
+            subjectname,
+            sectionname
         });
     });
 };

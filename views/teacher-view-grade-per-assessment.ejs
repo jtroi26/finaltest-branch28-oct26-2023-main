@@ -335,15 +335,50 @@
                                               </div>
                                               <div class="modal-body">
                                                 <form action="/teacher/grades/update/<%= result.id %>" method="post">
-                                                  <label for="grade">Grade</label><br>
-                                                  <input type="number" name="grade" id="grade" class="form-control"
-                                                    value="<%= result.grade %>"><br>
-                                                  <label for="total">Assessment Total</label><br>
-                                                  <input type="number" name="total" id="total" class="form-control"
-                                                    value="<%= result.total %>"><br><br>
-                                                  <button class="btn btn-primary" style="float: right;"
-                                                    type="submit">Update Grade</button>
+                                                    <div class="form-group row">
+                                                        <label for="full_name" class="col-sm-3 col-form-label">Full Name</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="full_name" class="form-control" value="<%= result.full_name %>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="assessment_title" class="col-sm-3 col-form-label">Assessment Title</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="assessment_title" class="form-control" value="<%= result.assessmentTitle %>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="date_given" class="col-sm-3 col-form-label">Date Given</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="date_given" class="form-control" value="<%= result.dateGiven %>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="current_grade" class="col-sm-3 col-form-label">Current Grade</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="current_grade" class="form-control" value="<%= result.grade %>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="grade" class="col-sm-3 col-form-label">New Grade</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="number" id="grade" name="grade" class="form-control" value="<%= result.grade %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="total" class="col-sm-3 col-form-label">Assessment Total</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="number" id="total" name="total" class="form-control" value="<%= result.total %>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-12 text-right" style="float: right;">
+                                                            <button class="btn btn-primary" type="submit">Update Grade</button>
+                                                        </div>
+                                                    </div>
                                                 </form>
+                                            </div>
+                                            
                                               </div>
                                             </div>
                                           </div>
