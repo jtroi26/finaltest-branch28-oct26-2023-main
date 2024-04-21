@@ -335,12 +335,24 @@
                                               </div>
                                               <div class="modal-body">
                                                 <form action="/teacher/grades/update/<%= result.id %>" method="post">
-                                                  <label for="grade">Grade</label><br>
+                                                  <label for="grade">Full Name</label><br>
+                                                    <input type="text" name="" id="" class="form-control"
+                                                    value="<%= result.full_name %>" readonly><br>
+                                                  <label for="grade">Assessment Title</label><br>
+                                                    <input type="text" name="" id="" class="form-control"
+                                                    value="<%= result.assessmentTitle %>" readonly><br>
+                                                  <label for="grade">Date Given</label><br>
+                                                    <input type="text" name="" id="" class="form-control"
+                                                    value="<%= result.dateGiven %>" readonly><br>
+                                                  <label for="grade">Current Grade</label><br>
+                                                    <input type="text" name="" id="" class="form-control"
+                                                    value="<%= result.grade %>" readonly><br>
+                                                  <label for="grade">New Grade</label><br>
                                                   <input type="number" name="grade" id="grade" class="form-control"
                                                     value="<%= result.grade %>"><br>
                                                   <label for="total">Assessment Total</label><br>
                                                   <input type="number" name="total" id="total" class="form-control"
-                                                    value="<%= result.total %>"><br><br>
+                                                    value="<%= result.total %>" readonly><br><br>
                                                   <button class="btn btn-primary" style="float: right;"
                                                     type="submit">Update Grade</button>
                                                 </form>
