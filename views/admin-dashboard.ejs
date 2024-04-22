@@ -297,7 +297,7 @@
                     <div id="chartContainer1"></div>
                     <table id="datatableforassessment1" hidden>
                       <tr>
-                        <th>Section</th>
+                        <th>Subject</th>
                         <th>Assessment</th>
                       </tr>
                       <% assessmentData.forEach(function(assessment) { %>
@@ -311,24 +311,7 @@
                         </tr>
                         <% }); %>
                     </table>
-                    <table id="datatableforassessment1" hidden>
-                      <tr>
-                        <th>Section</th>
-                        <th>Assessment</th>
-                      </tr>
-                      <% assessmentdateData.forEach(function(assessment) { %>
-                        <tr>
-                          <td>
-                            <%= assessment.dateGiven %>
-                          </td>
-                          <td>
-                            <%= assessment.assessment_date %>
-                          </td>
-                        </tr>
-                        <% }); %>
-                    </table>
                   </figure>
-
                 </div>
               </div>
             </div>
@@ -503,44 +486,67 @@
 
     </script>
 
-    <script>
-      // JavaScript code to populate the Highchart
-      document.addEventListener('DOMContentLoaded', function () {
-        // Get assessment data from the hidden table
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Function to update chart
+    function updateChart() {
+        // Initialize an empty array to hold the data for the chart
         var data = [];
+        
+        // Get the table containing the assessment data
         var table = document.getElementById('datatableforassessment1');
+        
+        // Loop through each row of the table (starting from index 1, skipping the header row)
         for (var i = 1, row; row = table.rows[i]; i++) {
-          var section = row.cells[0].textContent;
-          var assessment = parseInt(row.cells[1].textContent);
-          data.push([section, assessment]);
+            // Extract the section name and assessment count from each row
+            var section = row.cells[0].textContent;
+            var assessment = parseInt(row.cells[1].textContent);
+            
+            // Push the section name and assessment count as an array to the 'data' array
+            data.push([section, assessment]);
         }
 
-        // Create the Highchart
-        Highcharts.chart('chartContainer1', {
-          chart: {
-            type: 'column'
-          },
-          title: {
-            text: 'Assessment Data'
-          },
-          xAxis: {
-            type: 'category',
+        // Update chart data and redraw
+        var chart = Highcharts.chart('chartContainer1', {
+            chart: {
+                type: 'column'
+            },
             title: {
-              text: 'Section'
-            }
-          },
-          yAxis: {
-            title: {
-              text: 'Assessment Count'
-            }
-          },
-          series: [{
-            name: 'Assessment Count',
-            data: data
-          }]
+                text: 'Assessment Data'
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Assessment Type'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Assessment Count'
+                }
+            },
+            series: [{
+                name: 'Assessment Count',
+                data: data
+            }]
         });
-      });
-    </script>
+    }
+
+    // Initial chart creation
+    updateChart();
+
+    // Event listener for select change
+    document.getElementById('subjectSelector1').addEventListener('change', function () {
+        // Here you would typically fetch the data for the selected subjectname using AJAX or another method,
+        // then update the 'data' array with the new data for the selected subject.
+        // For simplicity, let's assume you've already updated the 'data' array correctly.
+
+        // Redraw the chart with updated data
+        updateChart();
+    });
+});
+
+</script>
 
   </body>
 
