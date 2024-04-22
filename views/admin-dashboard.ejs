@@ -286,15 +286,51 @@
             <div class="col-md-6">
               <div class="card">
                   <div class="card-body">
-                      <select id="subjectSelector" class="form-select">
+                      <select id="subjectSelector1" class="form-select">
                           <% numassessmentResults.forEach(function(result) { %>
                               <option value="<%= result.subjectname %>"><%= result.subjectname %></option>
                           <% }); %>
                       </select>
-                      <div id="chartContainer"></div>
+                      <figure class="highcharts-figure">
+                        <div id="chartContainer1"></div>
+                        <table id="datatableforassessment1" hidden>
+                          <tr>
+                            <th>Section</th>
+                            <th>Assessment</th>
+                          </tr>
+                          <% assessmentData.forEach(function(assessment) { %>
+                            <tr>
+                              <td>
+                                <%= assessment.assessmenttype %>
+                              </td>
+                              <td>
+                                <%= assessment.assessment_count %>
+                              </td>
+                            </tr>
+                            <% }); %>
+                        </table>
+                        <table id="datatableforassessment1" hidden>
+                          <tr>
+                            <th>Section</th>
+                            <th>Assessment</th>
+                          </tr>
+                          <% assessmentdateData.forEach(function(assessment) { %>
+                            <tr>
+                              <td>
+                                <%= assessment.dateGiven %>
+                              </td>
+                              <td>
+                                <%= assessment.assessment_date %>
+                              </td>
+                            </tr>
+                            <% }); %>
+                        </table>
+                      </figure>
+                      
                   </div>
               </div>
           </div>
+          
 
           </div>
         </div>
@@ -425,6 +461,45 @@
       });
     </script>
 
+<script>
+  // JavaScript code to populate the Highchart
+  document.addEventListener('DOMContentLoaded', function () {
+      // Get assessment data from the hidden table
+      var data = [];
+      var table = document.getElementById('datatableforassessment1');
+      for (var i = 1, row; row = table.rows[i]; i++) {
+          var section = row.cells[0].textContent;
+          var assessment = parseInt(row.cells[1].textContent);
+          data.push([section, assessment]);
+      }
+  
+      // Create the Highchart
+      Highcharts.chart('chartContainer1', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'Assessment Data'
+          },
+          xAxis: {
+              type: 'category',
+              title: {
+                  text: 'Section'
+              }
+          },
+          yAxis: {
+              title: {
+                  text: 'Assessment Count'
+              }
+          },
+          series: [{
+              name: 'Assessment Count',
+              data: data
+          }]
+      });
+  });
+  </script>
+
     <script>
       document.getElementById('chartSelector').addEventListener('change', function () {
         loadChart(this.value);
@@ -509,6 +584,7 @@
       updateChart();
   });
 </script>
+
 
   </body>
 

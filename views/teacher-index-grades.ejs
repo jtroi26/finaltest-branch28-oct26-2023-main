@@ -10,9 +10,31 @@
   <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
   <link href="/dist/css/style.min.css" rel="stylesheet" />
   <link href="/stylesheets/teacher-view-subject.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
+  <% if (messages.success) { %>
+                        
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Grades Created Successfully',
+            text: '<%= messages.success %>',
+        });
+    </script>
+
+  <% } %>
+  <% if (messages.success1) { %>
+
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Grades Updated Successfully',
+            text: '<%= messages.success1 %>',
+        });
+    </script>
+  <% } %>
   <div class="preloader">
     <div class="lds-ripple">
       <div class="lds-pos"></div>
