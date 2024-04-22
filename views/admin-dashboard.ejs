@@ -285,16 +285,36 @@
             </div>
             <div class="col-md-6">
               <div class="card">
-                  <div class="card-body">
-                      <select id="subjectSelector" class="form-select">
-                          <% numassessmentResults.forEach(function(result) { %>
-                              <option value="<%= result.subjectname %>"><%= result.subjectname %></option>
-                          <% }); %>
-                      </select>
-                      <div id="chartContainer"></div>
-                  </div>
+                <div class="card-body">
+                  <select id="subjectSelector1" class="form-select">
+                    <% numassessmentResults.forEach(function(result) { %>
+                      <option value="<%= result.subjectname %>">
+                        <%= result.subjectname %>
+                      </option>
+                      <% }); %>
+                  </select>
+                  <figure class="highcharts-figure">
+                    <div id="chartContainer1"></div>
+                    <table id="datatableforassessment1" hidden>
+                      <tr>
+                        <th>Subject</th>
+                        <th>Assessment</th>
+                      </tr>
+                      <% assessmentData.forEach(function(assessment) { %>
+                        <tr>
+                          <td>
+                            <%= assessment.assessmenttype %>
+                          </td>
+                          <td>
+                            <%= assessment.assessment_count %>
+                          </td>
+                        </tr>
+                        <% }); %>
+                    </table>
+                  </figure>
+                </div>
               </div>
-          </div>
+            </div>
 
           </div>
         </div>
@@ -426,84 +446,9 @@
       });
     </script>
 
-<<<<<<< HEAD
       <script>
         document.getElementById('chartSelector').addEventListener('change', function () {
           loadChart(this.value);
-=======
-<script>
-  // JavaScript code to populate the Highchart
-  document.addEventListener('DOMContentLoaded', function () {
-      // Get assessment data from the hidden table
-      var data = [];
-      var table = document.getElementById('datatableforassessment1');
-      for (var i = 1, row; row = table.rows[i]; i++) {
-          var section = row.cells[0].textContent;
-          var assessment = parseInt(row.cells[1].textContent);
-          data.push([section, assessment]);
-      }
-  
-      // Create the Highchart
-      Highcharts.chart('chartContainer1', {
-          chart: {
-              type: 'column'
-          },
-          title: {
-              text: 'Assessment Data'
-          },
-          xAxis: {
-              type: 'category',
-              title: {
-                  text: 'Section'
-              }
-          },
-          yAxis: {
-              title: {
-                  text: 'Assessment Count'
-              }
-          },
-          series: [{
-              name: 'Assessment Count',
-              data: data
-          }]
-      });
-  });
-  </script>
-
-    <script>
-      document.getElementById('chartSelector').addEventListener('change', function () {
-        loadChart(this.value);
-      });
-
-      function loadChart(chartType) {
-        var dataTableName = chartType === 'assessmentcharts' ? 'datatableforassessment' : 'datatableforassessmentdate';
-        var chartTitle = chartType === 'assessmentcharts' ? 'Number of Assessments per Component Type' : 'Assessment Over Time';
-
-        Highcharts.chart('chartContainer', {
-          data: {
-            table: dataTableName
-          },
-          chart: {
-            type: 'bar'
-          },
-          title: {
-            text: chartTitle
-          },
-          xAxis: {
-            type: 'category'
-          },
-          yAxis: {
-            allowDecimals: false,
-            title: {
-              text: 'Assessment Count'
-            }
-          },
-          plotOptions: {
-            series: {
-              colorByPoint: true
-            }
-          }
->>>>>>> 09d206e2e6ec5855e58be7876f1141e8ecfc742e
         });
 
         function loadChart(chartType) {
@@ -603,7 +548,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
   
-
 
   </body>
 
