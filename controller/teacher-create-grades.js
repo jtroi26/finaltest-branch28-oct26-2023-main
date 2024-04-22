@@ -129,6 +129,7 @@ exports.postGradesPage = (req, res) => {
             }
         });
     }
+    console.log('hello world');
 
     // Close the database connection after all insertions are complete
     connection.end();

@@ -194,6 +194,18 @@
                     
                 <% } %>
 
+                <% if (messages.success2) { %>
+                        
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Announcement Set Invisible Successfully',
+                            text: '<%= messages.success2 %>',
+                        });
+                    </script>
+                
+            <% } %>
+
                     <div class="container-fluid">
                         <div class="right-align">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -276,7 +288,7 @@
                                                             method="post" style="display: inline;">
                                                             <button type="submit"
                                                                 class="btn btn-danger btn-sm text-white">
-                                                                Delete
+                                                                Set Invisible
                                                             </button>
                                                         </form>
 
