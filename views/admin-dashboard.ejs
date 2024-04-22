@@ -335,6 +335,7 @@
     <script src="../assets/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="../dist/js/pages/chart/chart-page-init.js"></script>
+
     <script>
       Highcharts.chart('teachercharts', {
         data: {
@@ -445,108 +446,108 @@
       });
     </script>
 
-    <script>
-      document.getElementById('chartSelector').addEventListener('change', function () {
-        loadChart(this.value);
-      });
-
-      function loadChart(chartType) {
-        var dataTableName = chartType === 'assessmentcharts' ? 'datatableforassessment' : 'datatableforassessmentdate';
-        var chartTitle = chartType === 'assessmentcharts' ? 'Number of Assessments per Component Type' : 'Assessment Over Time';
-
-        Highcharts.chart('chartContainer', {
-          data: {
-            table: dataTableName
-          },
-          chart: {
-            type: 'bar'
-          },
-          title: {
-            text: chartTitle
-          },
-          xAxis: {
-            type: 'category'
-          },
-          yAxis: {
-            allowDecimals: false,
-            title: {
-              text: 'Assessment Count'
-            }
-          },
-          plotOptions: {
-            series: {
-              colorByPoint: true
-            }
-          }
+      <script>
+        document.getElementById('chartSelector').addEventListener('change', function () {
+          loadChart(this.value);
         });
-      }
 
-      // Initial load of the first chart
-      loadChart('assessmentcharts');
+        function loadChart(chartType) {
+          var dataTableName = chartType === 'assessmentcharts' ? 'datatableforassessment' : 'datatableforassessmentdate';
+          var chartTitle = chartType === 'assessmentcharts' ? 'Number of Assessments per Component Type' : 'Assessment Over Time';
 
-    </script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Function to update chart
-    function updateChart() {
-        // Initialize an empty array to hold the data for the chart
-        var data = [];
-        
-        // Get the table containing the assessment data
-        var table = document.getElementById('datatableforassessment1');
-        
-        // Loop through each row of the table (starting from index 1, skipping the header row)
-        for (var i = 1, row; row = table.rows[i]; i++) {
-            // Extract the section name and assessment count from each row
-            var section = row.cells[0].textContent;
-            var assessment = parseInt(row.cells[1].textContent);
-            
-            // Push the section name and assessment count as an array to the 'data' array
-            data.push([section, assessment]);
-        }
-
-        // Update chart data and redraw
-        var chart = Highcharts.chart('chartContainer1', {
+          Highcharts.chart('chartContainer', {
+            data: {
+              table: dataTableName
+            },
             chart: {
-                type: 'column'
+              type: 'bar'
             },
             title: {
-                text: 'Assessment Data'
+              text: chartTitle
             },
             xAxis: {
-                type: 'category',
-                title: {
-                    text: 'Assessment Type'
-                }
+              type: 'category'
             },
             yAxis: {
-                title: {
-                    text: 'Assessment Count'
-                }
+              allowDecimals: false,
+              title: {
+                text: 'Assessment Count'
+              }
             },
-            series: [{
-                name: 'Assessment Count',
-                data: data
-            }]
-        });
+            plotOptions: {
+              series: {
+                colorByPoint: true
+              }
+            }
+          });
+        }
+
+        // Initial load of the first chart
+        loadChart('assessmentcharts');
+
+      </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var chart;  // Declare the chart variable outside to access it in the update function
+
+    // Function to update chart based on selected subject
+    function updateChart(selectedSubject) {
+        var data = [];
+        var table = document.getElementById('datatableforassessment1');
+        
+        // Filter data based on selected subject
+        for (var i = 1, row; row = table.rows[i]; i++) {
+            var subject = row.cells[0].textContent;
+            var assessment = parseInt(row.cells[1].textContent);
+            if (!selectedSubject || selectedSubject === subject) {
+                data.push([subject, assessment]);
+            }
+        }
+
+        // If chart already exists, update series data and redraw
+        if (chart) {
+            chart.series[0].update({ data: data });
+            chart.redraw();
+        } else {
+            // Initial chart creation
+            chart = Highcharts.chart('chartContainer1', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Assessment Data'
+                },
+                xAxis: {
+                    type: 'category',
+                    title: {
+                        text: 'Subject'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Assessment Count'
+                    }
+                },
+                series: [{
+                    name: 'Assessment Count',
+                    data: data
+                }]
+            });
+        }
     }
 
-    // Initial chart creation
-    updateChart();
-
-    // Event listener for select change
+    // Listen to changes on the dropdown and update the chart
     document.getElementById('subjectSelector1').addEventListener('change', function () {
-        // Here you would typically fetch the data for the selected subjectname using AJAX or another method,
-        // then update the 'data' array with the new data for the selected subject.
-        // For simplicity, let's assume you've already updated the 'data' array correctly.
-
-        // Redraw the chart with updated data
-        updateChart();
+        var selectedSubject = this.value;
+        updateChart(selectedSubject);
     });
-});
 
+    // Initial chart setup
+    updateChart();  // No subject selected initially
+});
 </script>
+  
 
   </body>
 
