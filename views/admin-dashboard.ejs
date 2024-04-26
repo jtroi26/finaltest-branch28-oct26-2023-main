@@ -132,6 +132,7 @@
           </div>
 
           <!-- High charts -->
+<!-- Number of enrolled students -->
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-3">
@@ -148,6 +149,8 @@
                   </div>
                 </div>
               </div>
+
+<!-- Techer count -->
               <div class="col-md-3">
                 <div class="card" style="height: 250px;">
                   <div class="card-body">
@@ -161,6 +164,8 @@
                   </div>
                 </div>
               </div>
+
+<!-- Subject counts -->
               <div class="col-md-3">
                 <div class="card" style="height: 250px;">
                   <div class="card-body">
@@ -174,6 +179,8 @@
                   </div>
                 </div>
               </div>
+
+<!-- Section counts -->
               <div class="col-md-3">
                 <div class="card" style="height: 250px;">
                   <div class="card-body">
@@ -187,6 +194,8 @@
                   </div>
                 </div>
               </div>
+
+<!-- Teacher population per department charts -->
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-body">
@@ -212,6 +221,8 @@
                   </div>
                 </div>
               </div>
+
+<!-- Student population per section charts-->
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-body">
@@ -238,6 +249,7 @@
                 </div>
               </div>
 
+<!-- Number of assessment per components type charts -->
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-body">
@@ -283,34 +295,39 @@
                   </div>
                 </div>
               </div>
+
+<!-- Assessment data per department -->
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-body">
                     <select id="subjectSelector1" class="form-select">
-                      <% numassessmentResults.forEach(function(result) { %>
-                        <option value="<%= result.subjectname %>">
-                          <%= result.subjectname %>
+                      <% subjectResults.forEach(function(subject, index) { %>
+                        <option value="<%= subject.subjectname + '_' + index %>">
+                          <%= subject.subjectname %>
                         </option>
-                        <% }); %>
+                      <% }); %>
                     </select>
-                    <figure class="highcharts-figure">
+                  </select>
+                    <figure class="highcharts-figure1">
                       <div id="chartContainer1"></div>
-                      <table id="datatableforassessment1" hidden>
-                        <tr>
-                          <th>Subject</th>
-                          <th>Assessment</th>
-                        </tr>
-                        <% assessmentData.forEach(function(assessment) { %>
+                    <% subjectResults.forEach(function(subject, index) { %>
+                        <table id="datatableforassessment_persection<%= index %>" hidden>
                           <tr>
-                            <td>
-                              <%= assessment.assessmenttype %>
-                            </td>
-                            <td>
-                              <%= assessment.assessment_count %>
-                            </td>
+                            <th>Subject</th>
+                            <th>Assessment</th>
                           </tr>
+                          <% assessmentData.forEach(function(assessment) { %>
+                            <tr>
+                              <td>
+                                <%= assessment.assessmenttype %>
+                              </td>
+                              <td>
+                                <%= assessment.assessment_count %>
+                              </td>
+                            </tr>
                           <% }); %>
-                      </table>
+                        </table>
+                    <% }); %>
                     </figure>
                   </div>
                 </div>
@@ -336,6 +353,7 @@
       <script src="../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
       <script src="../dist/js/pages/chart/chart-page-init.js"></script>
 
+  <!-- Teacher Population per department -->
       <script>
         Highcharts.chart('teachercharts', {
           data: {
@@ -359,6 +377,8 @@
           }
         });
       </script>
+
+    <!-- Student population per department -->
       <script>
         Highcharts.chart('studentcharts', {
           data: {
@@ -388,6 +408,7 @@
         });
       </script>
 
+<!-- Assessment per components types -->
       <script>
         Highcharts.chart('assessmentcharts', {
           data: {
@@ -416,7 +437,7 @@
         });
       </script>
 
-
+<!-- Assessment Overtime -->
       <script>
         Highcharts.chart('assessmentdatecharts', {
           data: {
@@ -487,69 +508,99 @@
 
       </script>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          var chart;  // Declare the chart variable outside to access it in the update function
+<!-- For Assessment per subject -->
+<script>
+  document.getElementById('subjectSelector1').addEventListener('change', function () {
+    loadChart(this.value);
+  });
 
-          // Function to update chart based on selected subject
-          function updateChart(selectedSubject) {
-            var data = [];
-            var table = document.getElementById('datatableforassessment1');
+  function loadChart(chartType) {
+    var dataTableName = chartType === 'assessmentcharts' ? 'datatableforassessment' : 'datatableforassessmentdate';
+    var chartTitle = chartType === 'assessmentcharts' ? 'Number of Assessments per Component Type' : 'Assessment Over Time';
 
-            // Filter data based on selected subject
-            for (var i = 1, row; row = table.rows[i]; i++) {
-              var subject = row.cells[0].textContent;
-              var assessment = parseInt(row.cells[1].textContent);
-              if (!selectedSubject || selectedSubject === subject) {
-                data.push([subject, assessment]);
-              }
-            }
+    Highcharts.chart('chartContainer', {
+      data: {
+        table: dataTableName
+      },
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: chartTitle
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        allowDecimals: false,
+        title: {
+          text: 'Assessment Count'
+        }
+      },
+      plotOptions: {
+        series: {
+          colorByPoint: true
+        }
+      }
+    });
+  }
 
-            // If chart already exists, update series data and redraw
-            if (chart) {
-              chart.series[0].update({ data: data });
-              chart.redraw();
-            } else {
-              // Initial chart creation
-              chart = Highcharts.chart('chartContainer1', {
-                chart: {
-                  type: 'column'
-                },
-                title: {
-                  text: 'Assessment Data'
-                },
-                xAxis: {
-                  type: 'category',
-                  title: {
-                    text: 'Subject'
-                  }
-                },
-                yAxis: {
-                  title: {
-                    text: 'Assessment Count'
-                  }
-                },
-                series: [{
-                  name: 'Assessment Count',
-                  data: data
-                }]
-              });
-            }
-          }
+  // Initial load of the first chart
+  loadChart('assessmentcharts');
 
-          // Listen to changes on the dropdown and update the chart
-          document.getElementById('subjectSelector1').addEventListener('change', function () {
-            var selectedSubject = this.value;
-            updateChart(selectedSubject);
-          });
+</script>
 
-          // Initial chart setup
-          updateChart();  // No subject selected initially
-        });
-      </script>
+<script>
+  // Function to extract data from the table and generate Highcharts chart
+  function generateChart() {
+    var index = document.getElementById("subjectSelector1").selectedIndex;
+    var tableId = "datatableforassessment_persection" + index;
+    var table = document.getElementById(tableId);
+    var data = [];
+    var categories = [];
+    for (var i = 1; i < table.rows.length; i++) {
+      var row = table.rows[i];
+      var category = row.cells[0].innerText;
+      var value = parseInt(row.cells[1].innerText);
+      categories.push(category);
+      data.push(value);
+    }
 
+    Highcharts.chart('chartContainer1', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Assessment Data'
+      },
+      xAxis: {
+        categories: categories,
+        title: {
+          text: 'Assessment Type'
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Assessment Count'
+        }
+      },
+      series: [{
+        name: 'Assessment Count',
+        data: data
+      }]
+    });
+  }
 
-    </body>
+  // Call the function initially
+  generateChart();
+
+  // Attach an event listener to the selector to regenerate chart on change
+  document.getElementById("subjectSelector1").addEventListener("change", function() {
+    generateChart();
+  });
+</script>
+  </body>
 
     <% } else { %>
       <div class="error-box">

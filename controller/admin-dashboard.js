@@ -82,15 +82,23 @@ exports.getDashboard = (req, res) => {
 
     // Query to retrieve number of assessments per subject
     const numassessmentpersubject = `
-      SELECT subjectname, 
-       COUNT(CASE WHEN assessmenttype = 'Assignment' THEN 1 END) AS Assignments,
-       COUNT(CASE WHEN assessmenttype = 'Periodical Exam' THEN 1 END) AS 'Periodical Exams',
-       COUNT(CASE WHEN assessmenttype = 'Quiz' THEN 1 END) AS Quizzes,
-       COUNT(CASE WHEN assessmenttype = 'Recitation' THEN 1 END) AS Recitations,
-       COUNT(CASE WHEN assessmenttype = 'Summative Exam' THEN 1 END) AS 'Summative Exams'
-      FROM assessments
-      GROUP BY subjectname;
+    SELECT a.subjectname, 
+    COUNT(CASE WHEN a.assessmenttype = 'Assignment' THEN 1 END) AS Assignments,
+    COUNT(CASE WHEN a.assessmenttype = 'Periodical Exam' THEN 1 END) AS 'Periodical Exams',
+    COUNT(CASE WHEN a.assessmenttype = 'Quiz' THEN 1 END) AS Quizzes,
+    COUNT(CASE WHEN a.assessmenttype = 'Recitation' THEN 1 END) AS Recitations,
+    COUNT(CASE WHEN a.assessmenttype = 'Summative Exam' THEN 1 END) AS 'Summative Exams'
+FROM assessments AS a
+JOIN subjects AS t ON a.teacherid = t.teacherid
+where visibility = 'Visible'
+GROUP BY a.subjectname;
       `
+
+    const subjectsql = `
+      SELECT * FROM subjects
+      where visibility = 'Visible'
+      ORDER BY subjectname ASC;
+      `;
 
     // Executing the SQL queries for both teachers and students
     connection.query(teachersql, (err, teacherResults) => {
@@ -154,6 +162,14 @@ exports.getDashboard = (req, res) => {
                         console.error(err);
                         return;
                       }
+
+                      connection.query(subjectsql, function (err, subjectResults) {
+                        if (err) {
+                          // Handle error
+                          console.error(err);
+                          return;
+                        }
+                      console.log('hello')
                       console.log(numassessmentResults);
 
                       // Rendering the admin dashboard view with the retrieved data for both teachers and students
@@ -162,16 +178,19 @@ exports.getDashboard = (req, res) => {
                         departmentData: teacherResults, // Sending teacher department data to the view
                         studentData: studentResults, // Sending student section data to the view
                         assessmentData: assessmentcountResults,
+                        assessmentData1: assessmentcountResults,
                         assessmentdateData: assessmentdatecountResults,
                         enrolledCount: studentcountResults[0].enrolled_count, // Sending enrolled student count to the view
                         teachercount: teachercountResults[0].teachercount,
                         subjectcount: subjectcountResults[0].subjectcount,
                         sectioncount: sectioncountResults[0].sectioncount,
-                        numassessmentResults: numassessmentResults
+                        numassessmentResults: numassessmentResults,
+                        subjectResults: subjectResults
                       });
 
                       // Closing the database connection after executing both queries
                       connection.end();
+                     });
                     });
                   });
                 });
