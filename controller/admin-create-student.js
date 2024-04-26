@@ -51,6 +51,7 @@ exports.getCreateStudent = (req, res) => {
             res.render('admin-create-student', { sections: results });
         });
     });
+    console.log(generatePassword());
 };
 
 
@@ -68,58 +69,119 @@ exports.postCreateStudentUpload = (req, res) => {
     uploadCsv(filePath, uploadCallback);
 };
 
+// exports.postCreateStudentManual = (req, res) => {
+//     const { studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status } = req.body;
+//     const newDate = new Date(dateEnrolled).toISOString().slice(0, 19).replace("T", " ");
+
+//     const studentLogin = generateUserLogin(firstname, middlename, lastname);
+//     const studentPassword = generatePassword();
+
+//     const sql1 = `INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status) VALUES (?,?,?,?,?,?,?,?);`;
+//     const values1 = [studentID, firstname, middlename, lastname, suffix, sectionname, newDate, status];
+
+//     const sql2 = `INSERT INTO studentlogins (studentID, studentUserName, studentPassword) VALUES (?,?,?);`;
+//     const values2 = [studentID, studentLogin, studentPassword];
+
+//     const connection = mysql.createConnection(conn);
+
+//     connection.connect((err) => {
+//         if (err) {
+//             console.error('Error connecting to the database:', err);
+//             res.status(500).send('Internal Server Error');
+//             req.flash('error', "Invalid Data");
+//             return;
+//         }
+
+//         // Execute the first SQL query to insert data into the students table
+//         connection.query(sql1, values1, (err, results1) => {
+
+//             if (err) {
+//                 console.error('Error inserting data into students:', err);
+//                 res.status(500).send('Error inserting data into students');
+//                 connection.end();
+//                 req.flash('error', "Invalid Data");
+//                 // Redirect the user back to the create student page
+//                 return res.redirect('/admin/create/student');
+//             }
+
+//             // Execute the second SQL query to insert data into the studentlogins table
+//             connection.query(sql2, values2, (err, results2) => {
+//                 if (err) {
+//                     console.error('Error inserting data into studentlogins:', err);
+//                     res.status(500).send('Error inserting data into studentlogins');
+//                     connection.end();
+//                     req.flash('error', "Invalid Data");
+//                     return res.redirect('/admin/create/student'); // Redirect the user back to the create student page
+//                 }
+
+//                 // Both queries were successful, so redirect the user to a success page or take further action
+//                 req.flash('success', "Created Successfully");
+//                 res.redirect('/admin/index-student'); // Change this URL to your desired success page
+
+//                 connection.end(); // Close the database connection
+//             });
+//         }); 
+//     });
+// };
+
 exports.postCreateStudentManual = (req, res) => {
     const { studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status } = req.body;
     const newDate = new Date(dateEnrolled).toISOString().slice(0, 19).replace("T", " ");
 
     const studentLogin = generateUserLogin(firstname, middlename, lastname);
-    const studentPassword = generatePassword();
+    const studentPassword = generatePassword(); // This password should be generated in a secure way
 
-    const sql1 = `INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status) VALUES (?,?,?,?,?,?,?,?);`;
-    const values1 = [studentID, firstname, middlename, lastname, suffix, sectionname, newDate, status];
-
-    const sql2 = `INSERT INTO studentlogins (studentID, studentUserName, studentPassword) VALUES (?,?,?);`;
-    const values2 = [studentID, studentLogin, studentPassword];
-
-    const connection = mysql.createConnection(conn);
-
-    connection.connect((err) => {
+    bcrypt.genSalt(parseInt(process.env.SALT_SACCOUNT), function (err, salt) {
         if (err) {
-            console.error('Error connecting to the database:', err);
-            res.status(500).send('Internal Server Error');
-            req.flash('error', "Invalid Data");
-            return;
+            console.error('Error generating salt:', err);
+            return res.status(500).send('Internal Server Error');
         }
 
-        // Execute the first SQL query to insert data into the students table
-        connection.query(sql1, values1, (err, results1) => {
-
+        // Hash the password using the generated salt
+        bcrypt.hash(studentPassword, salt, function (err, hashedPassword) {
             if (err) {
-                console.error('Error inserting data into students:', err);
-                res.status(500).send('Error inserting data into students');
-                connection.end();
-                req.flash('error', "Invalid Data");
-                // Redirect the user back to the create student page
-                return res.redirect('/admin/create/student');
+                console.error('Error hashing password:', err);
+                return res.status(500).send('Internal Server Error');
             }
 
-            // Execute the second SQL query to insert data into the studentlogins table
-            connection.query(sql2, values2, (err, results2) => {
+            const sql1 = `INSERT INTO students (studentID, firstname, middlename, lastname, suffix, sectionname, dateEnrolled, status) VALUES (?,?,?,?,?,?,?,?);`;
+            const values1 = [studentID, firstname, middlename, lastname, suffix, sectionname, newDate, status];
+
+            const sql2 = `INSERT INTO studentlogins (studentID, studentUserName, studentPassword) VALUES (?,?,?);`;
+            const values2 = [studentID, studentLogin, hashedPassword]; // Insert hashed password
+
+            const connection = mysql.createConnection(conn);
+
+            connection.connect((err) => {
                 if (err) {
-                    console.error('Error inserting data into studentlogins:', err);
-                    res.status(500).send('Error inserting data into studentlogins');
-                    connection.end();
-                    req.flash('error', "Invalid Data");
-                    return res.redirect('/admin/create/student'); // Redirect the user back to the create student page
+                    console.error('Error connecting to the database:', err);
+                    return res.status(500).send('Internal Server Error');
                 }
 
-                // Both queries were successful, so redirect the user to a success page or take further action
-                req.flash('success', "Created Successfully");
-                res.redirect('/admin/index-student'); // Change this URL to your desired success page
+                // Execute the first SQL query to insert data into the students table
+                connection.query(sql1, values1, (err, results1) => {
+                    if (err) {
+                        console.error('Error inserting data into students:', err);
+                        connection.end();
+                        return res.status(500).send('Error inserting data into students');
+                    }
 
-                connection.end(); // Close the database connection
+                    // Execute the second SQL query to insert data into the studentlogins table
+                    connection.query(sql2, values2, (err, results2) => {
+                        if (err) {
+                            console.error('Error inserting data into studentlogins:', err);
+                            connection.end();
+                            return res.status(500).send('Error inserting data into studentlogins');
+                        }
+
+                        req.flash('success', "Created Successfully");
+                        res.redirect('/admin/index-student');
+
+                        connection.end();
+                    });
+                }); 
             });
-        }); 
+        });
     });
 };
 
@@ -191,9 +253,23 @@ function generateUserLogin(firstName, middleName, lastName) {
 }
 
 function generatePassword() {
+    return new Promise((resolve, reject) => {
+        bcrypt.genSalt(parseInt(process.env.SALT_SACCOUNT), (err, salt) => {
+            if (err) {
+                console.error('Error generating salt:', err);
+                reject(err);
+            }
 
-    let password = process.env.TEMP_PASSWORD;
-
-    return password;
+            // Generate a random password with bcrypt
+            bcrypt.hash(process.env.TEMP_PASSWORD, salt, (err, hashedPassword) => {
+                if (err) {
+                    console.error('Error hashing password:', err);
+                    reject(err);
+                }
+                resolve(hashedPassword); // Resolve with the hashed password
+            });
+        });
+    });
 }
+
 
