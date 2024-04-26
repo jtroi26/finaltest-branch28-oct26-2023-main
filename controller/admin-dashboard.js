@@ -50,11 +50,12 @@ exports.getDashboard = (req, res) => {
 
     // Query to check the number of assessment done by dates
     const assessmentdatesql = `
-        SELECT ass.dateGiven, COUNT(ass.id) AS assessment_date
-        FROM assessments ass
-        INNER JOIN assessmenttype AS asstype ON asstype.assessmenttype = ass.assessmenttype
-        GROUP BY ass.dateGiven
-        ORDER BY ass.id ASC;
+    SELECT MONTHNAME(ass.dateGiven) AS month_name, COUNT(ass.id) AS assessment_date
+    FROM assessments ass
+    INNER JOIN assessmenttype AS asstype ON asstype.assessmenttype = ass.assessmenttype
+    GROUP BY MONTH(ass.dateGiven)
+    ORDER BY MONTH(ass.dateGiven) ASC;
+    
       `;
 
     // Query to retrieve student count
