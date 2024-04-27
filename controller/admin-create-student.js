@@ -129,7 +129,7 @@ exports.postCreateStudentManual = (req, res) => {
     const newDate = new Date(dateEnrolled).toISOString().slice(0, 19).replace("T", " ");
 
     const studentLogin = generateUserLogin(firstname, middlename, lastname);
-    const studentPassword = generatePassword(); // This password should be generated in a secure way
+    const studentPassword = process.env.TEMP_PASSWORD; // This password should be generated in a secure way
 
     bcrypt.genSalt(parseInt(process.env.SALT_SACCOUNT), function (err, salt) {
         if (err) {
