@@ -517,13 +517,14 @@
   function loadChart(chartType) {
     var dataTableName = chartType === 'assessmentcharts' ? 'datatableforassessment' : 'datatableforassessmentdate';
     var chartTitle = chartType === 'assessmentcharts' ? 'Number of Assessments per Component Type' : 'Assessment Over Time';
+    var chartType = chartType === 'assessmentcharts' ? 'bar' : 'line';  // Determine the chart type based on the selection
 
     Highcharts.chart('chartContainer', {
       data: {
         table: dataTableName
       },
       chart: {
-        type: 'bar'
+        type: chartType  // Apply the determined chart type
       },
       title: {
         text: chartTitle
@@ -547,8 +548,8 @@
 
   // Initial load of the first chart
   loadChart('assessmentcharts');
-
 </script>
+
 
 <script>
   // Function to extract data from the table and generate Highcharts chart
