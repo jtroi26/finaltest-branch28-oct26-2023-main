@@ -226,7 +226,7 @@
                                                                         <label for="sectionname"
                                                                             class="form-label">Section</label>
                                                                         <select class="form-select" name="sectionname"
-                                                                            id="sectionname">
+                                                                            id="sectionname" required>
                                                                             <option value="" default selected disabled>
                                                                                 Choose an Option</option>
                                                                             <% section.forEach((section)=> { %>
@@ -243,7 +243,7 @@
                                                                             class="form-label">Enrollment Date</label>
                                                                         <input type="datetime-local"
                                                                             class="form-control" name="dateEnrolled"
-                                                                            id="dateEnrolled">
+                                                                            id="dateEnrolled" required>
                                                                     </div>
                                                                     <!-- Enrollment Status -->
                                                                     <div class="mb-3">
@@ -251,7 +251,7 @@
                                                                             class="form-label">Enrollment
                                                                             Status</label>
                                                                         <select class="form-select" name="status"
-                                                                            id="status">
+                                                                            id="status" required>
                                                                             <option value="" default selected disabled>
                                                                                 Choose an Option</option>
                                                                             <option value="Enrolled">Enrolled</option>
@@ -278,7 +278,7 @@
                                                                             Name</label>
                                                                         <input type="text" class="form-control"
                                                                             name="middlename" id="middlename"
-                                                                            oninput="generateUserLogin()">
+                                                                            oninput="generateUserLogin()" required>
                                                                     </div>
                                                                     <!-- Last Name -->
                                                                     <div class="mb-3">
@@ -293,7 +293,7 @@
                                                                         <label for="suffix"
                                                                             class="form-label">Suffix</label>
                                                                         <select name="suffix" id="suffix"
-                                                                            class="form-select">
+                                                                            class="form-select" required>
                                                                             <option value="" default selected disabled>
                                                                                 Choose an Option</option>
                                                                             <option value="Sr.">Senior</option>

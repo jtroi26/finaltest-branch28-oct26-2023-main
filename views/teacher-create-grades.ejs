@@ -169,18 +169,18 @@
                                         <div class="col-4 mb-3">
                                             <label for="assessmentTitle" class="form-label">Assessment Title</label>
                                             <input type="text" class="form-control" name="assessmentTitle"
-                                                id="assessmentTitle">
+                                                id="assessmentTitle" required>
                                         </div>
     
                                         <div class="col-2 mb-3">
                                             <label for="dateGiven" class="form-label">Assessment Date</label>
-                                            <input type="date" class="form-control" name="dateGiven" id="dateGiven">
+                                            <input type="date" class="form-control" name="dateGiven" id="dateGiven" required>
                                         </div>
     
                                         <div class="col-2 mb-3">
                                             <label for="assessmenttype" class="form-label">Assessment Type</label><br>
                                             <select name="assessmenttype" id="assessmenttype" class="form-select"
-                                                data-mdb-toggle="dropdown" aria-expanded="false">
+                                                data-mdb-toggle="dropdown" aria-expanded="false" required>
                                                 <% for (const type of assessmentTypes) { %>
                                                     <option value="<%= type.assessmenttype %>">
                                                         <%= type.assessmenttype %>
@@ -192,7 +192,7 @@
                                         <div class="col-2 mb-3">
                                             <label for="quarterperiod">Quarter Period</label><br>
                                             <select name="quarterperiod" id="quarterperiod" class="form-select"
-                                                data-mdb-toggle="dropdown" aria-expanded="false">
+                                                data-mdb-toggle="dropdown" aria-expanded="false" required>
                                                 <% for (const period of quarterPeriods) { %>
                                                     <option value="<%= period.quarterperiod %>">
                                                         <%= period.quarterperiod %>

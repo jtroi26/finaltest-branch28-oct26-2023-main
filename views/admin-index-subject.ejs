@@ -394,7 +394,7 @@
                                                                             <label for=""
                                                                                 class="form-label">Teacher</label>
                                                                             <select name="teacherid" id="teacherId"
-                                                                                class="form-select">
+                                                                                class="form-select" required>
                                                                                 <% teacher.forEach((teacher)=> { %>
                                                                                     <option
                                                                                         value="<%= teacher.teacherid %>"
@@ -412,7 +412,7 @@
                                                                             <label for="visibility"
                                                                                 class="form-label">Visibility</label>
                                                                             <select name="visibility" id="visibility"
-                                                                                class="form-select">
+                                                                                class="form-select" required>
                                                                                 <option value="Visible"
                                                                                     <%=row.visibility==="Visible"
                                                                                     ? 'selected' : '' %>

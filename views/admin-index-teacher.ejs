@@ -203,7 +203,7 @@
                                                                     <label for="department"
                                                                         class="form-label">Department</label>
                                                                     <select name="department" id="department"
-                                                                        class="form-select">
+                                                                        class="form-select" required>
                                                                         <option value="" disabled selected>Choose an
                                                                             option</option>
                                                                         <% for (let department of departments) { %>
@@ -218,8 +218,8 @@
                                                                     <label for="visibility"
                                                                         class="form-label">Visibility</label>
                                                                     <select name="visibility" id="visibility"
-                                                                        class="form-select">
-                                                                        <<option value="" disabled selected>Choose an
+                                                                        class="form-select" required>
+                                                                        <option value="" disabled selected>Choose an
                                                                             option</option>
                                                                             <option value="Visible">Visible</option>
                                                                             <option value="Invisible">Invisible</option>
@@ -234,27 +234,27 @@
                                                                         Name</label>
                                                                     <input type="text" class="form-control"
                                                                         name="firstname" id="firstname"
-                                                                        oninput="generateUserLogin()">
+                                                                        oninput="generateUserLogin()" required>
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="middlename" class="form-label">Middle
                                                                         Name</label>
                                                                     <input type="text" class="form-control"
                                                                         name="middlename" id="middlename"
-                                                                        oninput="generateUserLogin()">
+                                                                        oninput="generateUserLogin()" required>
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="lastname" class="form-label">Last
                                                                         Name</label>
                                                                     <input type="text" class="form-control"
                                                                         name="lastname" id="lastname"
-                                                                        oninput="generateUserLogin()">
+                                                                        oninput="generateUserLogin()" required>
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="suffix"
                                                                         class="form-label">Suffix</label>
                                                                     <select name="suffix" id="suffix"
-                                                                        class="form-select">
+                                                                        class="form-select" required>
                                                                         <option value="" disabled selected>Choose an
                                                                             option</option>
                                                                         <option value="Sr.">Senior</option>
