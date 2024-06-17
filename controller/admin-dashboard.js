@@ -88,10 +88,10 @@ exports.getDashboard = (req, res) => {
     COUNT(CASE WHEN a.assessmenttype = 'Quiz' THEN 1 END) AS Quizzes,
     COUNT(CASE WHEN a.assessmenttype = 'Recitation' THEN 1 END) AS Recitations,
     COUNT(CASE WHEN a.assessmenttype = 'Summative Exam' THEN 1 END) AS 'Summative Exams'
-FROM assessments AS a
-JOIN subjects AS t ON a.teacherid = t.teacherid
-where visibility = 'Visible'
-GROUP BY a.subjectname;
+    FROM assessments AS a
+    INNER JOIN subjects AS t ON a.teacherid = t.teacherid
+    where visibility = 'Visible'
+    GROUP BY a.subjectname;
       `
 
     const subjectsql = `
@@ -99,6 +99,49 @@ GROUP BY a.subjectname;
       where visibility = 'Visible'
       ORDER BY subjectname ASC;
       `;
+
+      const assessmentpersectionsql = `
+      SELECT 
+      a.subjectname, 
+      a.sectionname, 
+      COUNT(a.id) AS assessment_count, 
+      a.assessmenttype,
+      COUNT(CASE WHEN a.assessmenttype = 'Assignment' THEN 1 END) AS Assignments,
+      COUNT(CASE WHEN a.assessmenttype = 'Periodical Exam' THEN 1 END) AS 'Periodical Exams',
+      COUNT(CASE WHEN a.assessmenttype = 'Quiz' THEN 1 END) AS Quizzes,
+      COUNT(CASE WHEN a.assessmenttype = 'Recitation' THEN 1 END) AS Recitations,
+      COUNT(CASE WHEN a.assessmenttype = 'Summative Exam' THEN 1 END) AS 'Summative Exams'
+  FROM 
+      assessments AS a
+  JOIN 
+      assessmenttype AS asstype ON asstype.assessmenttype = a.assessmenttype
+  JOIN 
+      subjects AS S ON a.teacherid = S.teacherid
+  WHERE 
+      visibility = 'Visible'
+      AND (
+          S.sectionname = 'VIII - St. Mary'
+          OR S.sectionname = 'VIII - St. Elizabeth'
+          OR S.sectionname = 'VIII - St. Bernadette'
+          OR S.sectionname = 'VIII - St. Anne'
+          OR S.sectionname = 'VIII - St. Therese'
+      )
+  GROUP BY 
+      a.subjectname;  
+        `
+
+    const asessmenttypechartsql = `
+    SELECT ass.assessmenttype, COUNT(ass.id) AS assessment_count
+    FROM assessments ass
+    INNER JOIN assessmenttype AS asstype ON asstype.assessmenttype = ass.assessmenttype
+    WHERE (ass.sectionname = 'VIII - St. Mary'
+    OR ass.sectionname = 'VIII - St. Elizabeth'
+    OR ass.sectionname = 'VIII - St. Bernadette'
+    OR ass.sectionname = 'VIII - St. Anne'
+    OR ass.sectionname = 'VIII - St. Therese')
+    GROUP BY ass.assessmenttype
+    ORDER BY ass.id ASC;
+    `
 
     // Executing the SQL queries for both teachers and students
     connection.query(teachersql, (err, teacherResults) => {
@@ -172,6 +215,20 @@ GROUP BY a.subjectname;
                       console.log('hello')
                       console.log(numassessmentResults);
 
+                      connection.query(assessmentpersectionsql, function (err, assessmentpersectionResults) {
+                        if (err) {
+                          // Handle error
+                          console.error(err);
+                          return;
+                        }
+
+                        connection.query(asessmenttypechartsql, function (err, asessmenttypechartsqlResults) {
+                          if (err) {
+                            // Handle error
+                            console.error(err);
+                            return;
+                          }
+
                       // Rendering the admin dashboard view with the retrieved data for both teachers and students
                       res.render('admin-dashboard', {
                         admin_id: req.session.admin_id,
@@ -185,11 +242,15 @@ GROUP BY a.subjectname;
                         subjectcount: subjectcountResults[0].subjectcount,
                         sectioncount: sectioncountResults[0].sectioncount,
                         numassessmentResults: numassessmentResults,
-                        subjectResults: subjectResults
+                        subjectResults: subjectResults,
+                        assessmentpersectionResults: assessmentpersectionResults,
+                        asessmenttypechartsqlResults: asessmenttypechartsqlResults,
                       });
 
                       // Closing the database connection after executing both queries
                       connection.end();
+                      });
+                      });
                      });
                     });
                   });
