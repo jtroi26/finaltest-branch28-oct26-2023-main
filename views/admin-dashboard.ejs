@@ -255,7 +255,7 @@
               </div>
 
 <!-- Number of assessment per components type charts -->
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="card">
                   <div class="card-body">
                     <select id="chartSelector" class="form-select">
@@ -301,42 +301,7 @@
                 </div>
               </div>
 
-<!-- Assessment data per department -->
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <select id="subjectSelector1" class="form-select">
-                      <% subjectResults.forEach(function(subject, index) { %>
-                        <option value="<%= subject.subjectname + '_' + index %>">
-                          <%= subject.subjectname %>
-                        </option>
-                      <% }); %>
-                    </select>
-                  </select>
-                    <figure class="highcharts-figure1">
-                      <div id="chartContainer1"></div>
-                    <% subjectResults.forEach(function(subject, index) { %>
-                        <table id="datatableforassessment_persection<%= index %>" hidden>
-                          <tr>
-                            <th>Subject</th>
-                            <th>Assessment</th>
-                          </tr>
-                          <% assessmentData.forEach(function(assessment) { %>
-                            <tr>
-                              <td>
-                                <%= assessment.assessmenttype %>
-                              </td>
-                              <td>
-                                <%= assessment.assessment_count %>
-                              </td>
-                            </tr>
-                          <% }); %>
-                        </table>
-                    <% }); %>
-                    </figure>
-                  </div>
-                </div>
-              </div>
+
 
             </div>
           </div>
@@ -555,57 +520,6 @@
   loadChart('assessmentcharts');
 </script>
 
-
-<script>
-  // Function to extract data from the table and generate Highcharts chart
-  function generateChart() {
-    var index = document.getElementById("subjectSelector1").selectedIndex;
-    var tableId = "datatableforassessment_persection" + index;
-    var table = document.getElementById(tableId);
-    var data = [];
-    var categories = [];
-    for (var i = 1; i < table.rows.length; i++) {
-      var row = table.rows[i];
-      var category = row.cells[0].innerText;
-      var value = parseInt(row.cells[1].innerText);
-      categories.push(category);
-      data.push(value);
-    }
-
-    Highcharts.chart('chartContainer1', {
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: 'Assessment Data'
-      },
-      xAxis: {
-        categories: categories,
-        title: {
-          text: 'Assessment Type'
-        }
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Assessment Count'
-        }
-      },
-      series: [{
-        name: 'Assessment Count',
-        data: data
-      }]
-    });
-  }
-
-  // Call the function initially
-  generateChart();
-
-  // Attach an event listener to the selector to regenerate chart on change
-  document.getElementById("subjectSelector1").addEventListener("change", function() {
-    generateChart();
-  });
-</script>
   </body>
 
     <% } else { %>
