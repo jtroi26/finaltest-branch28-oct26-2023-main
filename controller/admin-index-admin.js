@@ -245,15 +245,7 @@ function generateUserLogin(firstName, middleName, lastName) {
 }
 
 function generatePassword() {
-    // const length = 12; // Adjust the password length as needed
-    // const charset = process.env.CHARSET || "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*?+";
-    // let password = "";
 
-    // while (password.length < length) {
-    //     const charIndex = Math.floor(Math.random() * charset.length);
-    //     const char = charset.charAt(charIndex);
-    //     password += char;
-    // }
     let password = process.env.TEMP_PASSWORD;
 
     return password;
