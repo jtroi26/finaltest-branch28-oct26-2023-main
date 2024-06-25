@@ -46,14 +46,14 @@ exports.getGradesPage = (req, res) => {
 
     connection.query(sql, values, (error, results) => {
         if (error) {
-            console.error(error);
+            console.log(error);
             // Handle the error and return an error response
             return res.status(500).send('Internal Server Error');
         } else {
             // Fetch assessment types and quarter periods
             connection.query(assessmenttypesql, (err, assessmentTypeResults) => {
                 if (err) {
-                    console.error(err);
+                    console.log(err);
                     // Handle the error and return an error response
                     return res.status(500).send('Internal Server Error');
                 } else {
@@ -61,7 +61,7 @@ exports.getGradesPage = (req, res) => {
                         if (err) {
                             // Close the database connection after all queries have been executed
                             connection.end();
-                            console.error(err);
+                            console.log(err);
                             // Handle the error and return an error response
                             return res.status(500).send('Internal Server Error');
                         } else {
@@ -87,28 +87,87 @@ exports.getGradesPage = (req, res) => {
 };
 
 
+// exports.postGradesPage = (req, res) => {
+//     const sectionname = req.session.sectionname;
+//     const subjectid = req.session.subjectid;
+//     const subjectname = req.session.subjectname;
+//     const teacherid = req.session.teacherid;
+
+//     const { assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, grade, total } = req.body;
+
+//     const currentDate = new Date();
+//     const options = { year: 'numeric', month: 'long', day: 'numeric' };
+//     const formattedDate = currentDate.toLocaleDateString(undefined, options);
+
+//     // Ensure that the arrays have the same length
+//     if (!Array.isArray(studentID) || !Array.isArray(grade) || studentID.length !== grade.length) {
+
+//         studentID = [studentID];
+//         grade = [grade];
+//         // Handle the error (e.g., return an error response)
+//         return res.status(400).send('Mismatched data');
+//     }
+
+//     const connection = mysql.createConnection(conn);
+
+//     // Loop through the data and insert assessments for each student
+//     for (let i = 0; i < studentID.length; i++) {
+//         if (grade[i] === '' || grade[i] === null) {
+//             // Skip this iteration of the loop if grade is 'NULL' or null
+//             continue;
+//         }
+
+//         // If grade is not 'NULL' or null, proceed to insert data
+//         const sql = `INSERT INTO assessments (assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, sectionname, subjectname, teacherid, grade, total) VALUES (?,?,?,?,?,?,?,?,?,?)`;
+//         const values = [assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID[i], sectionname, subjectname, teacherid, grade[i], total];
+
+//         connection.query(sql, values, (err, results) => {
+//             if (err) {
+//                 console.error('Error inserting assessment:', err);
+//                 // Handle the error (e.g., return an error response)
+//                 return res.status(500).send('Internal Server Error');
+//             }
+//         });
+//     }
+//     console.log('hello world');
+
+//     // Close the database connection after all insertions are complete
+//     connection.end();
+//     req.flash('success', 'You can proceed');
+//     // Redirect to another page after successful insertion
+//     res.redirect('/teacher/create/grades');
+// };
+
 exports.postGradesPage = (req, res) => {
     const sectionname = req.session.sectionname;
     const subjectid = req.session.subjectid;
     const subjectname = req.session.subjectname;
     const teacherid = req.session.teacherid;
 
-    const { assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, grade, total } = req.body;
+    let { assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, grade, total } = req.body;
 
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = currentDate.toLocaleDateString(undefined, options);;
+    const formattedDate = currentDate.toLocaleDateString(undefined, options);
+
+    // Ensure studentID and grade are arrays
+    if (!Array.isArray(studentID)) studentID = [studentID];
+    if (!Array.isArray(grade)) grade = [grade];
 
     // Ensure that the arrays have the same length
-    if (!Array.isArray(studentID) || !Array.isArray(grade) || studentID.length !== grade.length) {
-
-        studentID = [studentID];
-        grade = [grade];
+    if (studentID.length !== grade.length) {
         // Handle the error (e.g., return an error response)
         return res.status(400).send('Mismatched data');
     }
 
     const connection = mysql.createConnection(conn);
+
+    // Track completed queries
+    let completedQueries = 0;
+    const totalQueries = studentID.length;
+
+    // Error tracking
+    let hasErrorOccurred = false;
 
     // Loop through the data and insert assessments for each student
     for (let i = 0; i < studentID.length; i++) {
@@ -117,24 +176,29 @@ exports.postGradesPage = (req, res) => {
             continue;
         }
 
-        // If grade is not 'NULL' or null, proceed to insert data
         const sql = `INSERT INTO assessments (assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID, sectionname, subjectname, teacherid, grade, total) VALUES (?,?,?,?,?,?,?,?,?,?)`;
         const values = [assessmentTitle, assessmenttype, quarterperiod, dateGiven, studentID[i], sectionname, subjectname, teacherid, grade[i], total];
 
         connection.query(sql, values, (err, results) => {
             if (err) {
                 console.error('Error inserting assessment:', err);
-                // Handle the error (e.g., return an error response)
-                return res.status(500).send('Internal Server Error');
+                if (!hasErrorOccurred) {
+                    hasErrorOccurred = true;
+                    // Handle the error and close the connection
+                    connection.end();
+                    return res.status(500).send('Internal Server Error');
+                }
+            } else {
+                completedQueries++;
+                if (completedQueries === totalQueries) {
+                    // All queries are completed successfully
+                    connection.end();
+                    req.flash('success', 'You can proceed');
+                    res.redirect('/teacher/create/grades');
+                }
             }
         });
     }
+
     console.log('hello world');
-
-    // Close the database connection after all insertions are complete
-    connection.end();
-    req.flash('success', 'You can proceed');
-    // Redirect to another page after successful insertion
-    res.redirect('/teacher/create/grades');
 };
-
