@@ -1,5 +1,4 @@
 const mysql = require("mysql");
-const express = require('express');
 const rateLimit = require("express-rate-limit");
 const bcrypt = require("bcrypt");
 require('dotenv').config();
