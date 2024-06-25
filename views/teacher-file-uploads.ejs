@@ -24,7 +24,7 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <style>
+    <!-- <style>
 
     
         /* Close button */
@@ -42,7 +42,7 @@
             text-decoration: none;
             cursor: pointer;
         }
-    </style>
+    </style> -->
 
 </head>
 <% if (teacherid) { %>
@@ -282,50 +282,50 @@
                     </button>
                   </td> -->
                   <!-- Trigger/Open The Modal -->
-                  <td><a id="myBtn<%= file.id %>" type="button" class="btn btn-outline-success"><i class="mdi mdi-pencil"></i></a></td>
+                  <!-- <td><a id="myBtn<%= file.id %>" type="button" class="btn btn-outline-success"><i class="mdi mdi-pencil"></i></a></td> -->
+                  <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#myModal<%= file.id %>"><i class="mdi mdi-pencil"></i></button></td>
 
-                <!-- The Modal -->
-                <div id="myModal<%= file.id %>" class="modal">
-                  <!-- Modal content -->
-                  <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title">Edit File</h5>
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-                          <div class="modal-body">
-                              <form action="/edit/<%= file.id %>" method="POST">
-                                  <div class="form-group">
-                                      <label for="filename" id="modalfilename">File:</label>
-                                      <input type="text" class="form-control" id="filename" name="filename" value="<%= file.filename %>" readonly>
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="sectionname">Section name:</label>
-                                      <select id="sectionname" name="sectionname" class="form-control" required>
+<!-- The Modal -->
+<div id="myModal<%= file.id %>" class="modal fade" tabindex="-1" aria-labelledby="editFileModalLabel<%= file.id %>" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editFileModalLabel<%= file.id %>">Update File Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/edit/<%= file.id %>" method="POST">
+                    <div class="form-group">
+                        <label for="filename<%= file.id %>" id="modalfilename">File:</label>
+                        <input type="text" class="form-control" id="filename<%= file.id %>" name="filename" value="<%= file.filename %>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="sectionname<%= file.id %>">Section name:</label>
+                        <select id="sectionname<%= file.id %>" name="sectionname" class="form-control" required>
+                            <% sections.forEach(section => { %>
+                            <option value="<%= section.sectionname %>"><%= section.sectionname %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name_of_file<%= file.id %>">Name of File:</label>
+                        <input type="text" class="form-control" id="name_of_file<%= file.id %>" name="name_of_file" value="<%= file.name_of_file %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="visibility<%= file.id %>">Visibility:</label>
+                        <select name="visibility" id="visibility<%= file.id %>" class="form-control" required>
+                            <option value="<%= file.visibility %>"><%= file.visibility %></option>
+                            <option value="Visible">Visible</option>
+                            <option value="Invisible">Invisible</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                          <% sections.forEach(section => { %>
-                                          <option value="<%= section.sectionname %>"><%= section.sectionname %></option>
-                                          <% }); %>
-                                      </select>
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="name_of_file">Name of File:</label>
-                                      <input type="text" class="form-control" id="name_of_file" name="name_of_file" value="<%= file.name_of_file %>">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="visibility">Visibility:</label>
-                                      <select name="visibility" id="visibility" class="form-control" required>
-                                          <option value="<%= file.visibility %>"><%= file.visibility %></option>
-                                          <option value="Visible">Visible</option>
-                                          <option value="Invisible">Invisible</option>
-                                      </select>
-                                  </div>
-                                  <button type="submit" class="btn btn-primary">Upload</button>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
               
 
                 
