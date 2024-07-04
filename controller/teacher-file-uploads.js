@@ -72,7 +72,7 @@ exports.uploadFile = async (req, res) => {
         );
         connection.release();
 
-        req.flash('success', 'You can proceed');
+        req.flash('success', 'You can now proceed');
         res.redirect('/file_uploads');
     } catch (err) {
         console.error('Error uploading file:', err);
