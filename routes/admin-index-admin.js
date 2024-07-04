@@ -7,5 +7,6 @@ router.post('/create-admin-account', adminIndexAdmin.postAdminAccount);
 router.get('/view-admin-account', adminIndexAdmin.getViewAdmin);
 router.get('/edit-admin-account/:id', adminIndexAdmin.getEditAdmin);
 router.post('/edit-admin-account/:id', adminIndexAdmin.postEditAdmin);
+router.post('/admin/delete/admin-account/:id', adminIndexAdmin.postDelete);
 
 module.exports = router;

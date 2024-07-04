@@ -308,12 +308,11 @@
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#editAdminModal-<%= ad.admin_id %>"><i
                                                             class="mdi mdi-pencil"></i></button>
-                                                    <!-- <form
-                                                        action="/admin/delete-admin-account/<%= ad.admin_id %>"
-                                                        method="post" style="display: inline;">
-                                                        <button type="submit" class="btn btn-outline-danger"><i
-                                                                class="mdi mdi-delete"></i></button>
-                                                    </form> -->
+                                                    <form action="/admin/delete/admin-account/<%= ad.admin_id %>" method="post" style="display: inline;">
+                                                        <button type="submit" class="btn btn-outline-danger">
+                                                            <i class="mdi mdi-delete"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             <div class="modal fade" id="viewAdminModal-<%= ad.admin_id %>"

@@ -230,6 +230,34 @@ exports.postEditAdmin = (req, res) => {
     });
 }
 
+exports.postDelete = (req, res) => {
+    const connection = mysql.createConnection(conn);
+    
+    const {id} = req.params;
+    
+    const deletelogins = 'DELETE FROM adminlogins WHERE admin_id = ?';
+    
+    connection.query(deletelogins, [id], (err, result) => {
+        if (err) {
+            console.error('Error deleting admin account:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+    const deletedetails = 'DELETE FROM admindetails WHERE admin_id = ?';
+    connection.query(deletedetails, [id], (err, result) => {
+        if (err) {
+            console.error('Error deleting admin account:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        
+        console.log(`Admin account with ID ${id} deleted successfully.`);
+        res.redirect('/admin-index-admin'); // Redirect to the admin accounts page or any other page
+        });
+    });
+}
+
+
+
 
 function generateUserLogin(firstName, middleName, lastName) {
     // Create the user login by taking the first letter of the first name, middle name, and the full last name
