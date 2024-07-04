@@ -17,7 +17,7 @@ exports.postSetVisibility = (req, res) => {
     const sql = `
     UPDATE subjects
     SET visibility = ?
-    WHERE subjectid = ?;
+    WHERE id = ?;
     `;
     console.log('SQL Query:', sql);
     console.log('Values:', [value, id]);
