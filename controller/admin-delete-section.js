@@ -34,7 +34,7 @@ exports.postSetVisibility = (req, res) => {
             res.redirect('/admin/index-section');
         } else {
             // Redirect to a page or send a response indicating success
-            req.flash('success', "Set Invisible"); 
+            req.flash('success', "Section Unpublished"); 
             res.redirect('/admin/index-section'); // Change the URL to the appropriate success page
         }
     });

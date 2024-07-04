@@ -32,7 +32,7 @@ exports.postSetVisibility = (req, res) => {
             res.status(500).send('Internal Server Error');
             req.flash('error', "Invalid Data");
         } else {
-            req.flash('success', "Set Invisible");
+            req.flash('success', "Department Unpublished");
             res.redirect('/admin/index-department'); // Change the URL to the appropriate success page
         }
     });

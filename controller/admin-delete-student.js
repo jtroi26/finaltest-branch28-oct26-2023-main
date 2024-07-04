@@ -33,7 +33,7 @@ exports.postSetStatus = (req, res) => {
             req.flash('error', "Invalid Data");
         } else {
             // Redirect to a page or send a response indicating success
-            req.flash('success', "Set Invisible");
+            req.flash('success', "Account Disabled");
             res.redirect('/admin/index-student'); // Change the URL to the appropriate success page
         }
     });
