@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Teachers | DAZSMA</title>
+    <title>Admin Accounts | DAZSMA</title>
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/dazsma-logo.ico" />
     <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css" />
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
@@ -308,12 +308,12 @@
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#editAdminModal-<%= ad.admin_id %>"><i
                                                             class="mdi mdi-pencil"></i></button>
-                                                    <form
-                                                        action="/admin/delete/teacher-account/<%= ad.admin_id %>"
+                                                    <!-- <form
+                                                        action="/admin/delete-admin-account/<%= ad.admin_id %>"
                                                         method="post" style="display: inline;">
                                                         <button type="submit" class="btn btn-outline-danger"><i
                                                                 class="mdi mdi-delete"></i></button>
-                                                    </form>
+                                                    </form> -->
                                                 </td>
                                             </tr>
                                             <div class="modal fade" id="viewAdminModal-<%= ad.admin_id %>"
