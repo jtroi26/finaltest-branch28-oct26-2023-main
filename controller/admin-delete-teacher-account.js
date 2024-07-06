@@ -20,6 +20,7 @@ exports.postSetVisibility = (req, res) => {
     SET visibility = ?
     WHERE id = ?;
     `;
+    
     console.log('SQL Query:', sql);
     console.log('Values:', [value, id]);
     

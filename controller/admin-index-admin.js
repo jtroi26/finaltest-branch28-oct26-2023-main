@@ -232,29 +232,57 @@ exports.postEditAdmin = (req, res) => {
 
 exports.postDelete = (req, res) => {
     const connection = mysql.createConnection(conn);
-    
-    const {id} = req.params;
-    
-    const deletelogins = 'DELETE FROM adminlogins WHERE admin_id = ?';
-    
-    connection.query(deletelogins, [id], (err, result) => {
-        if (err) {
-            console.error('Error deleting admin account:', err);
-            return res.status(500).send('Internal Server Error');
-        }
 
-    const deletedetails = 'DELETE FROM admindetails WHERE admin_id = ?';
-    connection.query(deletedetails, [id], (err, result) => {
-        if (err) {
-            console.error('Error deleting admin account:', err);
-            return res.status(500).send('Internal Server Error');
+    const { id } = req.params;
+    const value = "Invisible";
+
+    const sql = `
+    UPDATE admindetails
+    SET visibility = ?
+    WHERE id = ?;
+    `;
+
+    console.log('SQL Query:', sql);
+    console.log('Values:', [value, id]);
+
+    connection.query(sql, [value, id], (error, results) => {
+        if (error) {
+            console.error('Error updating visibility:', error);
+            res.status(500).send('Internal Server Error');
+            req.flash('error', "Invalid Data");
+        } else {
+            req.flash('success', "Account Disabled");
+            res.redirect('/admin-index-admin');
         }
-        
-        console.log(`Admin account with ID ${id} deleted successfully.`);
-        res.redirect('/admin-index-admin'); // Redirect to the admin accounts page or any other page
-        });
     });
+
 }
+
+// exports.postDelete = (req, res) => {
+//     const connection = mysql.createConnection(conn);
+    
+//     const {id} = req.params;
+    
+//     const deletelogins = 'DELETE FROM adminlogins WHERE admin_id = ?';
+    
+//     connection.query(deletelogins, [id], (err, result) => {
+//         if (err) {
+//             console.error('Error deleting admin account:', err);
+//             return res.status(500).send('Internal Server Error');
+//         }
+
+//     const deletedetails = 'DELETE FROM admindetails WHERE admin_id = ?';
+//     connection.query(deletedetails, [id], (err, result) => {
+//         if (err) {
+//             console.error('Error deleting admin account:', err);
+//             return res.status(500).send('Internal Server Error');
+//         }
+        
+//         console.log(`Admin account with ID ${id} deleted successfully.`);
+//         res.redirect('/admin-index-admin'); // Redirect to the admin accounts page or any other page
+//         });
+//     });
+// }
 
 
 

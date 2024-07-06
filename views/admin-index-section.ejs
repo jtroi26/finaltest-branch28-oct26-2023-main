@@ -270,11 +270,22 @@
                                                 data-bs-target="#editSectionModal-<%= section.id %>">
                                                 <i class="mdi mdi-pencil"></i>
                                               </button>
-                                              <form action="/admin/delete-section/<%= section.id %>" method="post"
+                                              <form id="deleteForm" action="/admin/delete-section/<%= section.id %>" method="post"
                                                 style="display: inline;">
-                                                <button type="submit" class="btn btn-outline-danger"><i
+                                                <button type="submit" class="btn btn-outline-danger" onclick="return confirmDelete();"><i
                                                     class="mdi mdi-delete"></i></button>
                                               </form>
+
+                                              <script>
+                                                function confirmDelete() {
+                                                    if (confirm("Are you sure you want to unpublish this section?")) {
+                                                        return true; // Proceed with the form submission
+                                                    } else {
+                                                        return false; // Cancel the form submission
+                                                    }
+                                                }
+                                            </script>
+
                                             </td>
                                           </tr>
                                           <!-- Edit Section Modal -->

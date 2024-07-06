@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css" />
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <link href="../dist/css/style.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <% if (admin_id) { %>
 
@@ -320,12 +321,22 @@
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#editTeacherModal-<%= td.teacher_id %>"><i
                                                                     class="mdi mdi-pencil"></i></button>
-                                                            <form
-                                                                action="/admin/delete/teacher-account/<%= td.teacher_id %>"
+                                                            <form id="deleteForm" action="/admin/delete/teacher-account/<%= td.teacher_id %>"
                                                                 method="post" style="display: inline;">
-                                                                <button type="submit" class="btn btn-outline-danger"><i
-                                                                        class="mdi mdi-delete"></i></button>
+                                                                <button type="submit" class="btn btn-outline-danger" onclick="return confirmDelete();">
+                                                                    <i class="mdi mdi-delete" ></i></button>
                                                             </form>
+
+                                                            <script>
+                                                                function confirmDelete() {
+                                                                    if (confirm("Are you sure you want to disable this account?")) {
+                                                                        return true; // Proceed with the form submission
+                                                                    } else {
+                                                                        return false; // Cancel the form submission
+                                                                    }
+                                                                }
+                                                            </script>
+                                                            
                                                         </td>
                                                     </tr>
                                                     <div class="modal fade" id="viewTeacherModal-<%= td.teacher_id %>"

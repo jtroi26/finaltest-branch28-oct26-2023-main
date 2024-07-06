@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css" />
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <link href="../dist/css/style.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <% if (admin_id) { %>
 <body>
@@ -238,11 +239,22 @@
                                                             data-bs-target="#editDepartmentModal-<%= department.id %>">
                                                             <i class="mdi mdi-pencil"></i>
                                                         </button>
-                                                        <form action="/admin/delete-department/<%= department.id %>"
+                                                        <form id="deleteForm" action="/admin/delete-department/<%= department.id %>"
                                                             method="post" style="display: inline;">
-                                                            <button type="submit" class="btn btn-outline-danger"><i
+                                                            <button type="submit" class="btn btn-outline-danger" onclick="return confirmDelete();"><i
                                                                     class="mdi mdi-delete"></i></button>
                                                         </form>
+
+                                                        <script>
+                                                            function confirmDelete() {
+                                                                if (confirm("Are you sure you want to unpublish this Department?")) {
+                                                                    return true; // Proceed with the form submission
+                                                                } else {
+                                                                    return false; // Cancel the form submission
+                                                                }
+                                                            }
+                                                        </script>
+                                                        
                                                     </td>
                                                 </tr>
                                                 <!-- Edit Department Modal -->

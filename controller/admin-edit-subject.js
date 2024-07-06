@@ -63,7 +63,7 @@ exports.getEditSubjectPage = (req, res) => {
         ])
             .then(() => {
                 connection.end(); // Close the database connection
-
+                req.flash('success1', 'You can proceed');
                 // Pass the data to your EJS template and render it
                 res.render('admin-edit-subject', { data });
             })
