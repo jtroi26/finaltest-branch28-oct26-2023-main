@@ -1,6 +1,31 @@
-const mysql = require("mysql");
-
+const mysql = require("mysql2/promise");
+const sanitizeHtml = require('sanitize-html');
 require('dotenv').config();
+
+const tinyMceAllowedTags = [
+    'a', 'b', 'blockquote', 'br', 'caption', 'code', 'col', 'colgroup',
+    'dd', 'div', 'dl', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 
+    'i', 'img', 'li', 'ol', 'p', 'pre', 'span', 'strong', 'table', 
+    'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul'
+];
+
+const tinyMceAllowedAttributes = {
+    a: ['href', 'name', 'target'],
+    img: ['src', 'alt', 'width', 'height'],
+    '*': ['style', 'class', 'id']
+};
+
+const sanitizeTinyMceInput = (input) => {
+    return sanitizeHtml(input, {
+        allowedTags: tinyMceAllowedTags,
+        allowedAttributes: tinyMceAllowedAttributes,
+        selfClosing: ['img', 'br', 'hr'],
+        allowedSchemes: ['http', 'https', 'mailto'],
+        allowedSchemesByTag: {
+            img: ['http', 'https', 'data']
+        }
+    });
+};
 
 const conn = {
     host: process.env.DB_HOST,
@@ -9,7 +34,7 @@ const conn = {
     password: process.env.DB_PASSWORD
 };
 
-exports.getIndexPage = (req, res) => {
+exports.getIndexPage = async (req, res) => {
     const sectionname = req.session.sectionname;
     const subjectid = req.session.subjectid;
     const subjectname = req.session.subjectname;
@@ -19,25 +44,26 @@ exports.getIndexPage = (req, res) => {
     WHERE teacherid = ? AND subjectname = ? AND sectionname = ?;`;
     const values = [teacherid, subjectname, sectionname];
 
-    const connection = mysql.createConnection(conn);
+    try {
+        const pool = mysql.createPool(conn);
+        const connection = await pool.getConnection();
+        const [results] = await connection.query(sql, values);
 
-    connection.query(sql,values,(error, results) => {
-        if (error) {
-            throw error;
-        }
+        results.forEach(result => {
+            result.overview = sanitizeTinyMceInput(result.overview);
+        });
+
         console.log(results);
-        // You can use the 'results' variable to access the query results.
-        // For example, console.log(results);
+        connection.release();
 
-        // Close the connection after handling the results
-        connection.end();
-
-        res.render('teacher-index-subject-overview', 
-        {
-            results , 
-            teacherid, 
+        res.render('teacher-index-subject-overview', {
+            results,
+            teacherid,
             subjectname,
             sectionname
         });
-    });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
 };
