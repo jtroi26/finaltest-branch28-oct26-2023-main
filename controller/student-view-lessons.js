@@ -17,8 +17,8 @@ exports.getLessonsView = (req, res) => {
     console.log('in lessons view');
 
     console.log(subjectname);
-            console.log(sectionname);
-            console.log(teacherid);
+    console.log(sectionname);
+    console.log(teacherid);
 
     const sql = `SELECT * FROM lessons WHERE sectionname = ? AND subjectname = ? AND teacherid = ?;`;
     const values = [sectionname, subjectname, teacherid];
