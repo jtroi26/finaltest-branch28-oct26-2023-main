@@ -38,7 +38,7 @@ exports.postAdminLogin = (req, res) => {
                     } else {
                         if (visibilityResults.length > 0 && visibilityResults[0].visibility === 'Invisible') {
                             console.log('Login forbidden: Admin visibility is Invisible');
-                            res.render('admin-login', { errorMessage: 'Login forbidden: Admin visibility is Invisible' });
+                            res.render('admin-login', { errorMessage: 'Login forbidden: Admin account is disabled.' });
                         } else {
                             // Compare the provided password with the stored hashed password
                             bcrypt.compare(userpassword, storedHashedPassword, (bcryptErr, result) => {
