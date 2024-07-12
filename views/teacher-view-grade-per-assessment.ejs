@@ -324,7 +324,7 @@
                                                     <div class="form-group row">
                                                         <label for="grade" class="col-sm-3 col-form-label">New Grade</label>
                                                         <div class="col-sm-9">
-                                                            <input type="number" id="grade" name="grade" class="form-control" value="<%= result.grade %>">
+                                                            <input type="number" id="grade" name="grade" class="form-control" value="<%= result.grade %>" onchange="validateGrade()">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -802,3 +802,17 @@
       <% } %>
 
 </html>
+<script>
+  function validateGrade() {
+    const newGradeInput = document.getElementById("grade");
+    const totalInput = document.getElementById("total");
+  
+    const newGrade = parseInt(newGradeInput.value);
+    const totalGrade = parseInt(totalInput.value);
+  
+    if (newGrade > totalGrade) {
+      alert("New grade cannot be greater than the Assessment Total!");
+      newGradeInput.value = totalGrade; // Set the value back to total grade
+    }
+  }
+  </script>
