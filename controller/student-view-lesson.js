@@ -1,9 +1,8 @@
-const mysql = require("mysql");
+const mysql = require('mysql');
 require('dotenv').config();
 const OpenAI = require('openai').OpenAI;
 const openai = new OpenAI;
-
-require('dotenv').config();
+const sanitizeHtml = require('sanitize-html');
 
 const conn = {
     host: process.env.DB_HOST,
@@ -12,29 +11,57 @@ const conn = {
     password: process.env.DB_PASSWORD
 };
 
+const tinyMceAllowedTags = [
+  'a', 'b', 'blockquote', 'br', 'caption', 'code', 'col', 'colgroup',
+  'dd', 'div', 'dl', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 
+  'i', 'img', 'li', 'ol', 'p', 'pre', 'span', 'strong', 'table', 
+  'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul'
+];
+
+const tinyMceAllowedAttributes = {
+  a: ['href', 'name', 'target'],
+  img: ['src', 'alt', 'width', 'height'],
+  '*': ['style', 'class', 'id']
+};
+
+const sanitizeTinyMceInput = (input) => {
+  return sanitizeHtml(input, {
+      allowedTags: tinyMceAllowedTags,
+      allowedAttributes: tinyMceAllowedAttributes,
+      selfClosing: ['img', 'br', 'hr'],
+      allowedSchemes: ['http', 'https', 'mailto'],
+      allowedSchemesByTag: {
+          img: ['http', 'https', 'data']
+      }
+  });
+};
 
 exports.getLessonPage = (req, res) => {
     const { id } = req.params;
 
     const studentid = req.session.studentID;
     const sql = `SELECT * FROM lessons WHERE id = ?;`;
-    const connection = mysql.createConnection(conn); // Create a new connection
-    connection.query(sql, id, (err, results) => {
-        if (err) {
-            console.error('Error fetching lesson data:', err);
-            connection.end(); // Close the database connection in case of an error
-            res.status(500).send('Internal Server Error');
-        } else {
-            if (results.length === 1) {
-                // Successfully fetched the lesson data
-                // Pass the single result (row) to the template
-                res.render('student-view-lesson', {id:id, lessonData: results[0] , studentid: studentid, speech: null});
-            } else {
-                res.status(404).send('Lesson not found'); // Handle the case where no or multiple rows are found
-            }
+    const connection = mysql.createConnection(conn);
 
-            connection.end(); // Close the database connection after rendering the template or sending an error response
+    connection.connect((err) => {
+        if (err) {
+            console.error('Database connection failed:', err);
+            return res.status(500).send('Internal Server Error');
         }
+
+        connection.query(sql, [id], (err, results) => {
+            if (err) {
+                console.error('Error fetching lesson data:', err);
+                res.status(500).send('Internal Server Error');
+            } else {
+                if (results.length === 1) {
+                    res.render('student-view-lesson', {id, lessonData: results[0], studentid, speech: null});
+                } else {
+                    res.status(404).send('Lesson not found');
+                }
+            }
+            connection.end();
+        });
     });
 };
 
