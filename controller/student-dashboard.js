@@ -25,7 +25,7 @@ exports.getStudentDashboard = (req, res) => {
     ON subjects.sectionname = students.sectionname
     WHERE students.studentID = ? AND students.sectionname = ? AND subjects.visibility = 'Visible'`;
 
-    const sqlannouncement = `SELECT id, teacherid, subjectname, sectionname, announcementTitle, announcement, visibility, dateCreated from teacherannouncements WHERE  sectionname = ? ORDER BY dateCreated DESC LIMIT 5`
+    const sqlannouncement = `SELECT id, teacherid, subjectname, sectionname, announcementTitle, announcement, visibility, dateCreated from teacherannouncements WHERE  sectionname = ? AND visibility = 'Visible' ORDER BY dateCreated DESC LIMIT 5`
     
     const studentid = req.session.studentID;
     const sectionname = req.session.sectionname;

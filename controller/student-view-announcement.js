@@ -28,6 +28,7 @@ exports.getAnnouncementPage = (req, res) => {
     WHERE teacherid = ?
       AND subjectname = ?
       AND sectionname = ?
+      AND visibility = 'Visible'
     ORDER BY dateCreated DESC`;
 
     connection.query(sql, [teacherid, subjectname, sectionname], (err, results) => {

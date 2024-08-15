@@ -22,7 +22,7 @@ exports.getAnnouncementIndexPage = (req, res) => {
             SELECT ta.id, ta.announcementTitle, ta.subjectname, ta.announcement, ta.dateCreated
             FROM sections AS s
             INNER JOIN teacherannouncements AS ta ON s.sectionname = ta.sectionname
-            WHERE s.sectionname = ?
+            WHERE s.sectionname = ? and ta.visibility = 'Visible'
             ORDER BY ta.dateCreated DESC;`;
     
         // Use the connection pool to get a connection
