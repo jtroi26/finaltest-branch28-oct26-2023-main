@@ -32,7 +32,7 @@ exports.getviewfiles = async (req, res) => {
         const connection = await pool.getConnection();
         
         // Fetch uploaded files
-        const [fileRows] = await connection.query('SELECT * FROM uploaded_files WHERE sectionname = ?', [sectionname]);
+        const [fileRows] = await connection.query(`SELECT * FROM uploaded_files WHERE sectionname = ? AND visibility = 'Visible' `, [sectionname]);
         
         connection.release();
 
