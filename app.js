@@ -111,6 +111,10 @@ var teacherEditGrade = require('./routes/teacher-edit-grade');
 var subjectOverview = require('./routes/teacher-create-subject-overview');
 var subjectOverviewIndex = require('./routes/teacher-index-subject-overview');
 var subjectOverviewEdit = require('./routes/teacher-edit-subject-overview');
+
+// ethical consideration
+var ethicalConsideration = require('./routes/student-ethical-consideration');
+var ethicalConsiderationTeacher = require('./routes/teacher-ethical-consideration');
 var app = express();
 
 // teacher file uploads
@@ -253,6 +257,10 @@ app.use('/', subjectOverviewEdit);
 
 // teacher file uploads
 app.use('/', teacherfileuploads);
+
+// ethical consideration
+app.use('/', ethicalConsideration)
+app.use('/', ethicalConsiderationTeacher)
 
 // teacher create subject overview
 

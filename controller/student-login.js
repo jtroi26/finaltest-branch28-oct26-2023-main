@@ -14,7 +14,6 @@ const loginLimiter = rateLimit({
 });
 
 
-
 const conn = {
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
